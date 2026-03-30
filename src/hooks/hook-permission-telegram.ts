@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+
 /**
  * hook-permission-telegram.ts - Blocking PermissionRequest hook
  * Forwards permission prompts to Telegram with Approve/Deny inline buttons.

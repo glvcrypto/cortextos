@@ -4,6 +4,7 @@ import type { Approval, ApprovalCategory, ApprovalStatus, BusPaths } from '../ty
 import { atomicWriteSync, ensureDir } from '../utils/atomic.js';
 import { randomString } from '../utils/random.js';
 import { validateApprovalCategory } from '../utils/validate.js';
+import { sendMessage } from './message.js';
 
 /**
  * Create an approval request.
@@ -47,12 +48,13 @@ export function createApproval(
 
 /**
  * Update an approval's status (approve or deny).
+ * Notifies the requesting agent via inbox message.
  */
 export function updateApproval(
   paths: BusPaths,
   approvalId: string,
   status: ApprovalStatus,
-  decidedBy?: string,
+  note?: string,
 ): void {
   const pendingDir = join(paths.approvalDir, 'pending');
   const filePath = join(pendingDir, `${approvalId}.json`);
@@ -63,7 +65,7 @@ export function updateApproval(
     approval.status = status;
     approval.updated_at = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
     approval.resolved_at = approval.updated_at;
-    approval.resolved_by = decidedBy || null;
+    approval.resolved_by = note || null;
 
     // Move to resolved/ directory (matches bash version)
     const destDir = join(paths.approvalDir, 'resolved');
@@ -73,6 +75,13 @@ export function updateApproval(
     // Remove from pending
     const { unlinkSync } = require('fs');
     unlinkSync(filePath);
+
+    // Notify requesting agent via inbox
+    if (approval.requesting_agent) {
+      const noteText = note ? ` Note: ${note}` : '';
+      const msg = `Approval decision: ${status.toUpperCase()}\napproval_id: ${approvalId}\ndecision: ${status}${noteText}`;
+      sendMessage(paths, 'system', approval.requesting_agent, 'urgent', msg);
+    }
   } catch (err) {
     throw new Error(`Approval ${approvalId} not found: ${err}`);
   }

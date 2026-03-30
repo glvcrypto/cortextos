@@ -211,7 +211,7 @@ After workflows and tools are configured:
 19. **Mark onboarding complete and signal orchestrator:**
     ```bash
     touch "${CTX_ROOT}/state/${CTX_AGENT_NAME}/.onboarded"
-    cortextos bus log-event action onboarding_complete info '{"agent":"'$CTX_AGENT_NAME'","role":"specialist"}'
+    cortextos bus log-event action onboarding_complete info --meta '{"agent":"'$CTX_AGENT_NAME'","role":"specialist"}'
     ```
 
     Signal the orchestrator that this specialist is fully configured and ready:

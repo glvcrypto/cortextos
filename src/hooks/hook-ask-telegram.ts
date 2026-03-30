@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+
 /**
  * hook-ask-telegram.ts - Non-blocking PreToolUse hook for AskUserQuestion
  * Sends question(s) to Telegram, saves state file, exits immediately.

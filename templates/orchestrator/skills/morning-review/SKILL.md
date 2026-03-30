@@ -446,7 +446,7 @@ Tasks dispatched to specialist agents to help James. These run proactively BEFOR
 ```bash
 TASK_ID=$(cortextos bus create-task "<task title>" "<description>" paul high)
 cortextos bus send-message <agent-name> high '<task details>'
-cortextos bus log-event action task_dispatched info '{"to":"<agent>","task":"<title>"}'
+cortextos bus log-event action task_dispatched info --meta '{"to":"<agent>","task":"<title>"}'
 ```
 
 ### Stage 3: Agent Autonomous Tasks
@@ -481,7 +481,7 @@ cortextos bus list-tasks --agent data --status completed
 If alex is active:
 ```bash
 cortextos bus send-message alex high 'Need 5 short-form scripts for today filming window 8:30-10 AM. Use trending AI topics.'
-cortextos bus log-event action task_dispatched info '{"to":"alex","task":"Generate 5 filming scripts"}'
+cortextos bus log-event action task_dispatched info --meta '{"to":"alex","task":"Generate 5 filming scripts"}'
 ```
 
 If alex is NOT active, note in briefing:
@@ -584,7 +584,7 @@ For each approved task:
 TASK_ID=$(cortextos bus create-task "<title>" "<description>" paul high)
 cortextos bus update-task "$TASK_ID" in_progress
 cortextos bus send-message <agent> high '<task details>'
-cortextos bus log-event action task_dispatched info '{"to":"<agent>","task":"<title>"}'
+cortextos bus log-event action task_dispatched info --meta '{"to":"<agent>","task":"<title>"}'
 ```
 
 ---
@@ -631,7 +631,7 @@ For each James task, evaluate which agent can help prepare:
 
 ```bash
 # For each dispatched task
-cortextos bus log-event action task_dispatched info '{"to":"<agent>","task":"<title>"}'
+cortextos bus log-event action task_dispatched info --meta '{"to":"<agent>","task":"<title>"}'
 ```
 
 ---
@@ -642,7 +642,7 @@ After morning review completes:
 
 ### Step 1: Log event
 ```bash
-cortextos bus log-event action briefing_sent info '{"type":"morning_review"}'
+cortextos bus log-event action briefing_sent info --meta '{"type":"morning_review"}'
 ```
 
 ### Step 2: Log to memory

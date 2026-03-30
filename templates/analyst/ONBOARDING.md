@@ -305,7 +305,14 @@ After theta wave is configured:
 
 28. **Offer a dashboard walkthrough:**
 
-   > "One more thing before we wrap up — would you like a quick tour of the web dashboard? It's live right now at [dashboard URL]. I can walk you through what each page shows and how to use it."
+   Before sending this message, get the dashboard URL:
+   ```bash
+   # Dashboard runs on port 3000 by default (or PORT env var if set)
+   DASH_PORT=${PORT:-3000}
+   echo "http://localhost:${DASH_PORT}"
+   ```
+
+   > "One more thing before we wrap up — would you like a quick tour of the web dashboard? It's live right now at http://localhost:3000 (login: admin / cortextos). I can walk you through what each page shows and how to use it."
 
    If yes: walk through each section:
    - **Agents page** — status of every agent, last heartbeat, current task
@@ -353,7 +360,7 @@ After dashboard walkthrough (or if skipped):
 
    ```bash
    touch "${CTX_ROOT}/state/${CTX_AGENT_NAME}/.onboarded"
-   cortextos bus log-event action onboarding_complete info '{"agent":"'$CTX_AGENT_NAME'","role":"analyst"}'
+   cortextos bus log-event action onboarding_complete info --meta '{"agent":"'$CTX_AGENT_NAME'","role":"analyst"}'
    ```
 
    Deliver the system-ready message:

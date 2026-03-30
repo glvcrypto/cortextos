@@ -516,7 +516,7 @@ cortextos bus update-task "$TASK_ID" in_progress
 cortextos bus send-message <agent> high '<task details with full context>'
 
 # 4. Log dispatch event
-cortextos bus log-event action task_dispatched info '{"to":"<agent>","task":"<title>"}'
+cortextos bus log-event action task_dispatched info --meta '{"to":"<agent>","task":"<title>"}'
 
 # 5. Write to memory
 TODAY=$(date -u +%Y-%m-%d)
@@ -674,7 +674,7 @@ After evening review completes:
 
 ```bash
 # Log the event
-cortextos bus log-event action briefing_sent info '{"type":"evening_review"}'
+cortextos bus log-event action briefing_sent info --meta '{"type":"evening_review"}'
 
 # Update heartbeat
 cortextos bus update-heartbeat "evening review complete - transitioning to nighttime mode"
@@ -708,7 +708,7 @@ For each approved task:
 TASK_ID=$(cortextos bus create-task "<title>" "<description>" paul high)
 cortextos bus update-task "$TASK_ID" in_progress
 cortextos bus send-message <agent> high '<full task details>'
-cortextos bus log-event action task_dispatched info '{"to":"<agent>","task":"<title>"}'
+cortextos bus log-event action task_dispatched info --meta '{"to":"<agent>","task":"<title>"}'
 ```
 
 ### Step 3: Confirm to James

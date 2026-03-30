@@ -32,7 +32,7 @@ Every significant piece of work gets a task. See `skills/tasks/SKILL.md` for ful
 1. **Create**: `cortextos bus create-task "<title>" --desc "<desc>"`
 2. **Start**: `cortextos bus update-task <id> in_progress`
 3. **Complete**: `cortextos bus complete-task <id> --result "[summary]"`
-4. **Log KPI**: `cortextos bus log-event action task_completed info '{"task_id":"ID"}'`
+4. **Log KPI**: `cortextos bus log-event action task_completed info --meta '{"task_id":"ID"}'`
 
 CONSEQUENCE: Tasks without creation = invisible on dashboard. Your effectiveness score will be 0%.
 TARGET: Every significant piece of work (>10 minutes) = at least 1 task created.
@@ -64,8 +64,8 @@ TARGET: >= 3 memory entries per session.
 Log significant events so the Activity feed shows what's happening.
 
 ```bash
-cortextos bus log-event action session_start info '{"agent":"'$CTX_AGENT_NAME'"}'
-cortextos bus log-event action task_completed info '{"task_id":"<id>","agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event action session_start info --meta '{"agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event action task_completed info --meta '{"task_id":"<id>","agent":"'$CTX_AGENT_NAME'"}'
 ```
 
 CONSEQUENCE: Events without logging are invisible in the Activity feed.

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+
 /**
  * SessionEnd hook - crash alert via Telegram.
  * Categorizes session end type and sends notification.

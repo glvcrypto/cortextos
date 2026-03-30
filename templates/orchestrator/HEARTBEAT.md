@@ -41,7 +41,7 @@ Stale tasks are visible on the dashboard. They make you look broken.
 ## Step 4: Log heartbeat event
 
 ```bash
-cortextos bus log-event heartbeat agent_heartbeat info '{"agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event heartbeat agent_heartbeat info --meta '{"agent":"'$CTX_AGENT_NAME'"}'
 ```
 
 ## Step 5: Write daily memory

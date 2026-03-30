@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+
 /**
  * hook-planmode-telegram.ts - ExitPlanMode PermissionRequest hook
  * Reads the plan file, sends it to Telegram with Approve/Deny buttons.

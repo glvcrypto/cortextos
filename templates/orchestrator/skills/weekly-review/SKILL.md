@@ -112,7 +112,7 @@ Based on the weekly data, Paul should:
 3. Log event
 
 ```bash
-cortextos bus log-event action briefing_sent info '{"type":"weekly_review"}'
+cortextos bus log-event action briefing_sent info --meta '{"type":"weekly_review"}'
 cortextos bus update-heartbeat "weekly review complete"
 ```
 
@@ -322,7 +322,7 @@ After review:
 
 ```bash
 # 1. Log event
-cortextos bus log-event action briefing_sent info '{"type":"weekly_review"}'
+cortextos bus log-event action briefing_sent info --meta '{"type":"weekly_review"}'
 
 # 2. Update heartbeat
 cortextos bus update-heartbeat "weekly review complete - next week planned"

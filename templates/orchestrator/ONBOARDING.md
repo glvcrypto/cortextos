@@ -217,7 +217,7 @@ After identity is established, collect behavioral configuration:
 20. **Mark onboarding complete:**
     ```bash
     touch "${CTX_ROOT}/state/${CTX_AGENT_NAME}/.onboarded"
-    cortextos bus log-event action onboarding_complete info '{"agent":"'$CTX_AGENT_NAME'","role":"orchestrator"}'
+    cortextos bus log-event action onboarding_complete info --meta '{"agent":"'$CTX_AGENT_NAME'","role":"orchestrator"}'
     ```
 
 21. **Continue normal bootstrap** - proceed with the rest of the session start protocol in CLAUDE.md (crons are already set up from step 11, so skip that step).
@@ -370,13 +370,13 @@ After completing all above steps, create your Analyst agent. The Analyst is your
 
     Log the completion:
     ```bash
-    cortextos bus log-event action analyst_created info '{"analyst":"'${ANALYST_NAME}'","org":"'${CTX_ORG}'"}'
+    cortextos bus log-event action analyst_created info --meta '{"analyst":"'${ANALYST_NAME}'","org":"'${CTX_ORG}'"}'
     ```
 
     **Your onboarding is now complete.** Mark it done and proceed to normal operations:
     ```bash
     touch "${CTX_ROOT}/state/${CTX_AGENT_NAME}/.onboarded"
-    cortextos bus log-event action onboarding_complete info '{"agent":"'$CTX_AGENT_NAME'","role":"orchestrator"}'
+    cortextos bus log-event action onboarding_complete info --meta '{"agent":"'$CTX_AGENT_NAME'","role":"orchestrator"}'
     ```
 
     Wait for the Analyst to finish its own onboarding. When it does, it will either:

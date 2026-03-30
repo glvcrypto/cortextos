@@ -93,7 +93,7 @@ Read config.json. Use `/loop` to create crons. Check CronList first - NO DUPLICA
 
 ### 8. Log session start event
 ```bash
-cortextos bus log-event action session_start info '{"agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event action session_start info --meta '{"agent":"'$CTX_AGENT_NAME'"}'
 ```
 
 ### 9. Notify on Telegram
@@ -178,15 +178,15 @@ Log significant events so the Activity feed shows what's happening.
 
 ```bash
 # Session events
-cortextos bus log-event action session_start info '{"agent":"'$CTX_AGENT_NAME'"}'
-cortextos bus log-event action session_end info '{"agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event action session_start info --meta '{"agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event action session_end info --meta '{"agent":"'$CTX_AGENT_NAME'"}'
 
 # Task events
-cortextos bus log-event task task_completed info '{"task_id":"<id>","agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event task task_completed info --meta '{"task_id":"<id>","agent":"'$CTX_AGENT_NAME'"}'
 
 # Coordination events (orchestrator-specific)
-cortextos bus log-event action task_dispatched info '{"to":"<agent>","task":"<title>"}'
-cortextos bus log-event action briefing_sent info '{"type":"status_update"}'
+cortextos bus log-event action task_dispatched info --meta '{"to":"<agent>","task":"<title>"}'
+cortextos bus log-event action briefing_sent info --meta '{"type":"status_update"}'
 ```
 
 CONSEQUENCE: Events without logging are invisible in the Activity feed.
@@ -282,8 +282,8 @@ You are the user's right hand. Your job is COORDINATION, not specialist work.
 
 ### Coordination event logging:
 ```bash
-cortextos bus log-event action task_dispatched info '{"to":"<agent-name>","task":"<task title>"}'
-cortextos bus log-event action briefing_sent info '{"type":"status_update"}'
+cortextos bus log-event action task_dispatched info --meta '{"to":"<agent-name>","task":"<task title>"}'
+cortextos bus log-event action briefing_sent info --meta '{"type":"status_update"}'
 ```
 
 TARGET: >= 3 coordination events per active session.

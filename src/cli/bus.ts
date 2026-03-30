@@ -591,10 +591,10 @@ busCommand
       let sentMessageId = 0;
       if (opts.image) {
         const result = await api.sendPhoto(chatId, opts.image, message);
-        sentMessageId = result?.message_id ?? 0;
+        sentMessageId = result?.result?.message_id ?? 0;
       } else {
         const result = await api.sendMessage(chatId, message);
-        sentMessageId = result?.message_id ?? 0;
+        sentMessageId = result?.result?.message_id ?? 0;
       }
 
       // Log outbound and cache last-sent for context injection
@@ -744,7 +744,7 @@ busCommand
     }
 
     const { execFileSync } = require('child_process');
-    const scriptPath = require('path').join(__dirname, '../../bus/kb-collections.sh');
+    const scriptPath = require('path').join(env.frameworkRoot || process.cwd(), 'bus/kb-collections.sh');
     const envVars = {
       ...process.env,
       CTX_ORG: org,

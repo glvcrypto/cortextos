@@ -41,7 +41,7 @@ Stale tasks are visible on the dashboard. They make you look broken.
 ## Step 4: Log heartbeat event
 
 ```bash
-cortextos bus log-event heartbeat agent_heartbeat info '{"agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event heartbeat agent_heartbeat info --meta '{"agent":"'$CTX_AGENT_NAME'"}'
 ```
 
 ## Step 5: Write daily memory
@@ -88,7 +88,7 @@ Ask yourself: did I skip any procedures this cycle? Did I rationalize not doing 
 
 If yes, log it:
 ```bash
-cortextos bus log-event action guardrail_triggered info '{"guardrail":"<which one>","context":"<what happened>"}'
+cortextos bus log-event action guardrail_triggered info --meta '{"guardrail":"<which one>","context":"<what happened>"}'
 ```
 
 If you discovered a new pattern that should be a guardrail, add it to GUARDRAILS.md now.

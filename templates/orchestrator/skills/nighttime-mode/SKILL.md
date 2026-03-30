@@ -84,7 +84,7 @@ When an agent reports task completion:
 cortextos bus complete-task "$TASK_ID" "<what was produced>"
 
 # 2. Log the event
-cortextos bus log-event task task_completed info '{"task_id":"'$TASK_ID'","agent":"'$CTX_AGENT_NAME'"}'
+cortextos bus log-event task task_completed info --meta '{"task_id":"'$TASK_ID'","agent":"'$CTX_AGENT_NAME'"}'
 
 # 3. Write to memory
 TODAY=$(date -u +%Y-%m-%d)
@@ -185,13 +185,13 @@ Log overnight milestones:
 
 ```bash
 # Session transition
-cortextos bus log-event action nighttime_mode_start info '{"agent":"paul"}'
+cortextos bus log-event action nighttime_mode_start info --meta '{"agent":"paul"}'
 
 # Task completions
-cortextos bus log-event task task_completed info '{"task_id":"<id>","agent":"<completing_agent>"}'
+cortextos bus log-event task task_completed info --meta '{"task_id":"<id>","agent":"<completing_agent>"}'
 
 # Morning ready
-cortextos bus log-event action morning_briefing_ready info '{"tasks_completed":"X","tasks_blocked":"Y"}'
+cortextos bus log-event action morning_briefing_ready info --meta '{"tasks_completed":"X","tasks_blocked":"Y"}'
 ```
 
 ---
