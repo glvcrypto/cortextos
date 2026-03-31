@@ -986,9 +986,11 @@ busCommand
       } catch { return null; }
     }
 
+    type SkillInfo = { name: string; description: string; path: string; source: string };
+
     // Scan a skills directory, returns map of name -> skill info
-    function scanSkillsDir(dir: string, source: string): Map<string, object> {
-      const map = new Map<string, object>();
+    function scanSkillsDir(dir: string, source: string): Map<string, SkillInfo> {
+      const map = new Map<string, SkillInfo>();
       if (!existsSync(dir)) return map;
       for (const entry of readdirSync(dir)) {
         const skillFile = join(dir, entry, 'SKILL.md');
@@ -1000,18 +1002,18 @@ busCommand
     }
 
     // Merge in priority order: framework < template < agent (agent wins)
-    const merged = new Map<string, object>();
+    const merged = new Map<string, SkillInfo>();
     for (const [k, v] of scanSkillsDir(join(frameworkRoot, '.claude', 'skills'), 'framework')) merged.set(k, v);
     if (template) {
       for (const [k, v] of scanSkillsDir(join(frameworkRoot, 'templates', template, '.claude', 'skills'), `template:${template}`)) merged.set(k, v);
     }
     for (const [k, v] of scanSkillsDir(join(agentDir, '.claude', 'skills'), 'agent')) merged.set(k, v);
 
-    const skills = Array.from(merged.values()).sort((a: any, b: any) => a.name.localeCompare(b.name));
+    const skills = Array.from(merged.values()).sort((a, b) => a.name.localeCompare(b.name));
 
     if (opts.format === 'text') {
       console.log(`Available skills for ${env.agentName}:\n`);
-      for (const s: any of skills) {
+      for (const s of skills) {
         console.log(`  ${s.name} (${s.source})`);
         if (s.description) console.log(`    ${s.description}`);
         console.log('');
