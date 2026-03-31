@@ -56,9 +56,34 @@ After identity is established, collect behavioral configuration:
 
    Update SOUL.md Autonomy Rules section to reflect their preference. For level 1: add "check with user before delegating any task over 2 hours". For level 3: remove most "ask first" rules, keep only truly irreversible actions.
 
+## Part 1c: Approval Policy
+
+7. **Ask about approval requirements:**
+   > "Before I start routing work, I need to know when to stop and ask for your sign-off vs. just handle it. For each of these, should I require your approval or just proceed?"
+   > - "External communications — emails, social posts, messages to people outside the system?"
+   > - "Deployments — pushing code, running migrations, modifying infrastructure?"
+   > - "Financial actions — purchases, subscriptions, API costs above a threshold? If yes, what's the per-action threshold that triggers approval? (e.g., $10, $50)"
+   > - "Data deletion — permanently removing files, records, or data? (strongly recommend: yes)"
+
+   Write the approval policy to `orgs/${CTX_ORG}/context.json`:
+   ```bash
+   CTX_JSON="${CTX_FRAMEWORK_ROOT}/orgs/${CTX_ORG}/context.json"
+   jq '.approval_policy = {
+     "external_comms": true,
+     "deployment": true,
+     "financial": true,
+     "financial_threshold_usd": 10,
+     "data_deletion": true
+   }' "${CTX_JSON}" > "${CTX_JSON}.tmp" && mv "${CTX_JSON}.tmp" "${CTX_JSON}"
+   ```
+   (Update each field to match their actual answers.)
+
+   Tell the user:
+   > "Got it. I'll enforce these for myself and pass the same defaults to any specialist agents I create. You can always adjust them by messaging me."
+
 ## Part 2: Team Awareness
 
-7. **Discover existing agents:**
+8. **Discover existing agents:**
    ```bash
    cortextos bus check-inbox 2>/dev/null; ls "${CTX_ROOT}/state/" 2>/dev/null
    ```
@@ -70,13 +95,13 @@ After identity is established, collect behavioral configuration:
    If no other agents are found:
    > "I don't see any other agents yet. What specialist agents are you planning to add? Knowing the future team helps me prepare."
 
-8. **Ask for delegation rules:**
+9. **Ask for delegation rules:**
    > "What kind of work should I handle myself vs delegate? Are there any agents that need special handling - like checking in more often, or not assigning certain types of work?"
 
-9. **Ask for agent-to-agent communication style:**
+10. **Ask for agent-to-agent communication style:**
    > "When I delegate work to agents, should task descriptions be terse and technical, or detailed and explanatory? This affects how I write assignments."
 
-10. **Ask for user communication preferences:**
+11. **Ask for user communication preferences:**
     > "How do you want me to communicate with you? Daily briefings, only when something needs attention, or somewhere in between? What time works best for status updates?"
 
 ## Part 3: Workflows and Crons

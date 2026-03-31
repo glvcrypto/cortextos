@@ -47,7 +47,7 @@ You are guiding the user through a complete interactive onboarding for cortextOS
 
 > "The setup flow: I'll help you configure the technical infrastructure here in Claude Code. Then your Orchestrator agent will come online in Telegram and walk you through content setup — name, personality, goals, workflows. The Orchestrator then creates your Analyst, which does its own Telegram onboarding. The Analyst recommends specialist agents, the Orchestrator creates them, and each specialist does its own Telegram onboarding. By the end, your full AI team is configured and running."
 
-Ask: "Ready to get started? And — do you already have a Telegram bot token ready, or do we need to create one?"
+Ask: "Ready to get started? And — do you already have a Telegram bot token ready, or do we need to create one? While you answer, I will set up the dependencies"
 
 ---
 
@@ -159,13 +159,13 @@ CTX_ROOT="${HOME}/.cortextos/${INSTANCE_ID}"
 
 ### 4a. Explain Organizations (verbatim)
 
-> "cortextOS organizes your agents into Organizations. An Organization is a group of agents that work together toward shared goals — for your business, a side project, or any domain of your life. Each org has its own task queue, approval workflow, analytics, and shared context."
+> "cortextOS organizes your agents into Organizations. An Organization is a group of agents that work together toward shared goals — for your business, a side project, or any domain of your life. Each org has its own task queue, approval workflow, analytics, set of dashboard pages, and shared context."
 
 ### 4b. Gather Organization context
 
 Ask these questions one at a time. Follow up on interesting answers. Let the user elaborate.
 
-1. "What do you want to call your Organization?" (lowercase, hyphens OK — e.g., `mycompany`, `life-ops`, `cointally`)
+1. The more detail and context you give me to answer questions during onboarding, the better cortextOS will work for you after install. This applies for all onboarding steps of the system. "What do you want to call your first Organization?" (lowercase, hyphens OK — e.g., `mycompany`, `life-ops`, `cointally`)
 
 **Validate**: Convert to lowercase, replace spaces with hyphens, strip characters that are not `a-z`, `0-9`, or `-`. Show the cleaned name and confirm.
 
@@ -211,10 +211,10 @@ Update `orgs/${ORG_NAME}/goals.json`:
 ### 4d. Knowledge Base
 
 Ask:
-> "Let's set up your org's shared knowledge base. This is context that all your agents read on every boot. Tell me:"
+> "Let's set up your org's shared knowledge file. This is context that all your agents read on every boot. Tell me:"
 > 1. "Your business or project — what does it do, key products/services, model?"
-> 2. "Your team — key people and roles (human or AI)"
-> 3. "Technical setup — repos, infrastructure, key services"
+> 2. "Your team — key people and roles (human or AI, we will set up your other agents later)"
+> 3. "Technical setup — existing projects on this computer or elsewhere, repos, infrastructure, tools, key services"
 > 4. "Important links — dashboards, docs, tools"
 > 5. "Any key decisions or context agents should know?"
 
@@ -246,27 +246,6 @@ Ask: "What do you want to call your Analyst?" (suggest: `analyst`, `sentinel`, `
 
 Store: `ORCH_NAME` and `ANALYST_NAME`
 
-### 5c. Specialist Agent Planning
-
-> "Beyond the Orchestrator and Analyst, you can add specialist agents — agents that focus on a specific domain of work. For example: a developer agent that writes code, a content agent that handles writing, a research agent that does web research, a data agent for analytics."
-
-Ask: "What kind of specialist agents do you think you'll need? List 1-3 roles. (You can always add more later via Telegram.)"
-
-For each role they mention:
-- Note the name and domain
-- Jot the primary responsibility in one sentence
-
-Write their answers to `orgs/${ORG_NAME}/context.json` under a `planned_specialists` key so the Orchestrator has this context during Telegram onboarding:
-
-```bash
-jq --argjson specialists '[{"name":"<name>","role":"<role>","domain":"<domain>"}]' \
-  '.planned_specialists = $specialists' "orgs/${ORG_NAME}/context.json" > "${TMPDIR:-/tmp}/_ctx.json" && mv "${TMPDIR:-/tmp}/_ctx.json" "orgs/${ORG_NAME}/context.json"
-```
-
-> "Your Orchestrator will create these specialist agents during its Telegram onboarding. Each one gets its own Telegram bot, personality, and cron schedule."
-
-Store: `SPECIALIST_PLANS` list for reference.
-
 ---
 
 ## Phase 6: Orchestrator Setup
@@ -281,10 +260,11 @@ Walk through step by step:
 4. "Give it a display name (e.g., 'MyOrg Orchestrator')"
 5. "Give it a username that ends in 'bot' (e.g., 'myorg_commander_bot')"
 6. "BotFather will reply with an HTTP API token — paste it here"
+7. Click the t.me link BotFather provides you to open the chat with your new agent. 
 
 After token paste:
 
-7. "Now send any message to your new bot on Telegram (just 'hi' is fine). This lets me detect your chat ID."
+7. "Now send any message to your new bot on Telegram (just 'hi' is fine). This lets me detect your chat ID so that only you can message your agent. You can configure other chat IDs later so other members of your team can you cortextOS as well."
 
 Wait for confirmation, then auto-detect:
 
@@ -325,130 +305,16 @@ ORCH_CONFIG="orgs/${ORG_NAME}/agents/${ORCH_NAME}/config.json"
 jq --arg name "${ORCH_NAME}" '.agent_name = $name' "${ORCH_CONFIG}" > "${TMPDIR:-/tmp}/_cfg.json" && mv "${TMPDIR:-/tmp}/_cfg.json" "${ORCH_CONFIG}"
 ```
 
-### 6c. Bootstrap File Pre-population
+### 6c. Model Selection
 
-Use the Write tool to write lightweight seed versions of these files. The Orchestrator's ONBOARDING.md will have the agent rewrite them with full content via Telegram — these are just the structural stubs the agent needs to reference.
-
-**IDENTITY.md** — write based on org context and orchestrator name:
-```markdown
-# Orchestrator Identity
-
-## Name
-<orchestrator name>
-
-## Role
-Coordinator for <org name> — delegates, routes, monitors, briefs
-
-## Vibe
-<placeholder — agent will rewrite during onboarding>
-
-## Work Style
-- Decompose user directives into tasks for specialist agents
-- Delegate via send-message.sh; monitor via heartbeats
-- Route approvals; send briefings
-- Never do specialist work — delegate everything
-```
-
-**GOALS.md** — pre-populate with org goals:
-```markdown
-# Current Goals
-
-## Bottleneck
-Getting agents operational
-
-## Goals
-1. <org goal 1>
-2. <org goal 2>
-3. <org goal 3>
-- Complete onboarding and establish agent team
-
-## Updated
-<current ISO timestamp>
-```
-
-**USER.md** — gather from user before writing. Ask:
-
-1. "What's your name?" (first name is fine)
-2. "What's your role? (e.g., 'Founder of a startup', 'Independent developer', 'eCom operator')"
-3. "What are your working hours? (e.g., '9am-11pm EST') — this sets when agents run in active day mode vs. quiet night mode"
-4. "Anything specific you want your agents to know about how you like to work? (communication style, preferences, pet peeves)"
-
-Write **USER.md** — non-sensitive context only (NO tokens, IDs, or credentials):
-```markdown
-# About the User
-
-## Name
-<their answer>
-
-## Role
-<their answer>
-
-## Communication Style
-<casual|professional|technical — from org setup>
-
-## Working Hours
-- Day mode: <their start time> - <their end time>
-- Night mode: outside those hours
-- Timezone: <IANA timezone from Phase 4>
-
-## Preferences
-<their answer about work style>
-```
-
-**Note:** Do NOT write sensitive data (Telegram IDs, bot tokens, API keys) to USER.md. It may be committed to git.
-
-Store `DAY_START` and `DAY_END` variables for use in Phase 6c-iii autonomy setup.
-
-Leave CLAUDE.md, SOUL.md, HEARTBEAT.md, and TOOLS.md as template defaults — the agent uses them as-is on first boot.
-
-### 6c-ii. Autonomy Strength
-
-Ask:
-
-> "How autonomously should your agents operate? Choose a level:"
-> 1. **Ask first** — agents ask your approval before most significant actions (safest, most oversight)
-> 2. **Balanced** — agents act autonomously on routine work, ask only for high-stakes actions (external comms, deploys, financial, deletions)
-> 3. **Autonomous** — agents operate independently and report results; only ask for truly irreversible actions
-
-This determines how your agents interpret their SOUL.md autonomy rules. Write to `orgs/${ORG_NAME}/context.json` under an `autonomy_level` key (1, 2, or 3). Default is 2 (Balanced) if they skip.
-
-```bash
-jq --argjson level <1|2|3> '.autonomy_level = $level' "orgs/${ORG_NAME}/context.json" > "${TMPDIR:-/tmp}/_ctx.json" && mv "${TMPDIR:-/tmp}/_ctx.json" "orgs/${ORG_NAME}/context.json"
-```
-
-### 6c-iii. Cron Schedule
-
-Ask these questions to pre-configure the Orchestrator's cron schedule. The agent will finalize these during Telegram onboarding, but seeding them here avoids a blank config.json on first boot.
-
-1. "What time should your Orchestrator send you a morning briefing? (e.g., '8:00 AM' — we'll set a daily cron for this)"
-2. "What time for an end-of-day summary? (e.g., '6:00 PM' — or skip if you don't want one)"
-3. "How often should the Orchestrator send heartbeat health checks? (default: every 4 hours — options: 1h, 2h, 4h, 8h, 1d)"
-4. "Any other recurring tasks you want the Orchestrator to run? (e.g., 'weekly goals review on Monday', 'content calendar check daily' — or skip)"
-
-Convert their times to cron interval notation. Morning/evening reviews use `1d` interval (the agent handles time-of-day logic via its HEARTBEAT.md). Write to `orgs/${ORG_NAME}/agents/${ORCH_NAME}/config.json`:
+Ask: "Which Claude model should your Orchestrator use? Recommended: `claude-opus-4-6` for the Orchestrator (most capable), `claude-sonnet-4-6` for worker agents (faster, cheaper)."
 
 ```bash
 ORCH_CONFIG="orgs/${ORG_NAME}/agents/${ORCH_NAME}/config.json"
-jq '.crons = [
-  {"name": "morning-review", "interval": "1d", "prompt": "Run morning review: check overnight tasks, summarize progress, send briefing to user."},
-  {"name": "evening-review", "interval": "1d", "prompt": "Run evening review: summarize day, surface any blockers, send EOD summary to user."},
-  {"name": "heartbeat", "interval": "4h", "prompt": "Read HEARTBEAT.md and follow its instructions."}
-]' "${ORCH_CONFIG}" > "${TMPDIR:-/tmp}/_cfg.json" && mv "${TMPDIR:-/tmp}/_cfg.json" "${ORCH_CONFIG}"
-```
-
-Adjust intervals and add custom crons based on user answers. If user skipped evening review, omit it.
-
-**Note on timing:** The 1d interval fires from when the agent first boots. The agent will use its internal time-of-day logic to align morning/evening reviews to the times you specified. It will confirm the exact schedule during Telegram onboarding.
-
-Also set `max_session_seconds` if they gave a preference (default 255600 = ~71h, which is fine for most users):
-```bash
-jq '.max_session_seconds = 255600' "${ORCH_CONFIG}" > "${TMPDIR:-/tmp}/_cfg.json" && mv "${TMPDIR:-/tmp}/_cfg.json" "${ORCH_CONFIG}"
-```
-
-And the Claude model (ask: "Which Claude model should your Orchestrator use? Recommended: `claude-opus-4-6` for the Orchestrator, `claude-sonnet-4-6` for workers"):
-```bash
 jq --arg model "claude-opus-4-6" '.model = $model' "${ORCH_CONFIG}" > "${TMPDIR:-/tmp}/_cfg.json" && mv "${TMPDIR:-/tmp}/_cfg.json" "${ORCH_CONFIG}"
 ```
+
+**Note:** Everything else — identity, personality, working hours, autonomy level, approval policy, cron schedule, USER.md — is configured by the Orchestrator itself during its Telegram onboarding. The template provides sensible defaults; the agent rewrites them with real content.
 
 ### 6d. Enable Orchestrator
 
@@ -690,36 +556,6 @@ The knowledge base initializes automatically on first use — no separate setup 
 If no: skip. Note that `GEMINI_API_KEY` can be added to `orgs/${ORG_NAME}/secrets.env` at any time to enable the knowledge base — agents will pick it up on next restart.
 
 ---
-
-## Phase 8g: Approval Behavior
-
-### What it is (verbatim)
-
-> "Agents request your approval before taking high-stakes actions — sending emails, deploying code, making financial moves, deleting data. You decide via the dashboard or by replying to the agent on Telegram. Let's configure when approvals are required."
-
-Ask these questions:
-
-1. "Should agents require approval before sending external communications? (emails, social posts, messages to people outside the system) — yes/no"
-2. "Should agents require approval before any deployment actions? (pushing code, running migrations, modifying infrastructure) — yes/no"
-3. "Should agents require approval before financial actions? (purchases, subscriptions, API costs above a threshold) — yes/no"
-4. "If yes to financial: what's the per-action cost threshold that triggers approval? (e.g., $5, $50, $100)"
-5. "Should agents require approval before data deletion? — yes/no (strongly recommended: yes)"
-
-Write the answers to `orgs/${ORG_NAME}/context.json` under an `approval_policy` key:
-```json
-{
-  "approval_policy": {
-    "external_comms": true,
-    "deployment": true,
-    "financial": true,
-    "financial_threshold_usd": 10,
-    "data_deletion": true
-  }
-}
-```
-
-Tell the user:
-> "These are defaults for your Orchestrator. It will enforce them when briefing you on pending approvals. You can adjust per-agent behavior in each agent's CLAUDE.md during Telegram onboarding."
 
 ---
 
