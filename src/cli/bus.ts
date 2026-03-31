@@ -1062,42 +1062,56 @@ busCommand
   .argument('<agent>', 'Target agent name to restart')
   .argument('[reason]', 'Reason for restart', 'user request via soft-restart')
   .action((targetAgent: string, reason: string) => {
-    const { mkdirSync, writeFileSync } = require('fs');
+    const { mkdirSync, writeFileSync, existsSync } = require('fs');
     const { join } = require('path');
     const { execSync } = require('child_process');
+    const { createConnection } = require('net');
     const env = resolveEnv();
     const ctxRoot = require('path').join(require('os').homedir(), '.cortextos', env.instanceId);
 
-    // Resolve tmux session name (try org-scoped first)
-    const tmuxName = env.org
-      ? `ctx-${env.instanceId}-${env.org}-${targetAgent}`
-      : `ctx-${env.instanceId}-${targetAgent}`;
-
-    // Verify session exists
-    try {
-      execSync(`tmux has-session -t "${tmuxName}"`, { stdio: 'ignore' });
-    } catch {
-      console.error(`ERROR: No tmux session found for ${targetAgent} (tried ${tmuxName})`);
-      process.exit(1);
-    }
-
-    // Step 1: Write .user-restart marker BEFORE sending /exit
+    // Step 1: Write .user-restart marker BEFORE triggering exit
     const stateDir = join(ctxRoot, 'state', targetAgent);
     mkdirSync(stateDir, { recursive: true });
     writeFileSync(join(stateDir, '.user-restart'), reason);
     console.log(`Wrote .user-restart marker for ${targetAgent}: ${reason}`);
 
-    // Step 2: Escape to clear any TUI state, then send /exit
-    try {
+    // Step 2: Try IPC first (Node.js daemon), then fall back to tmux (bash daemon)
+    const sockPath = join(ctxRoot, 'daemon.sock');
+    if (existsSync(sockPath)) {
+      // Node.js daemon: send restart-agent via IPC
+      const client = createConnection(sockPath, () => {
+        client.write(JSON.stringify({ type: 'restart-agent', agent: targetAgent }));
+      });
+      client.on('data', (data: Buffer) => {
+        const resp = JSON.parse(data.toString());
+        if (resp.success) {
+          console.log(`Restarted ${targetAgent} via daemon IPC`);
+        } else {
+          console.error(`Daemon restart failed: ${resp.error}`);
+        }
+        client.destroy();
+      });
+      client.on('error', (err: Error) => {
+        console.error(`IPC error: ${err.message}`);
+        process.exit(1);
+      });
+    } else {
+      // Bash daemon: use tmux
+      const tmuxName = env.org
+        ? `ctx-${env.instanceId}-${env.org}-${targetAgent}`
+        : `ctx-${env.instanceId}-${targetAgent}`;
+      try {
+        execSync(`tmux has-session -t "${tmuxName}"`, { stdio: 'ignore' });
+      } catch {
+        console.error(`ERROR: No tmux session found for ${targetAgent} (tried ${tmuxName})`);
+        process.exit(1);
+      }
       execSync(`tmux send-keys -t "${tmuxName}" Escape`, { stdio: 'ignore' });
       setTimeout(() => {
         execSync(`tmux send-keys -t "${tmuxName}" "/exit" Enter`, { stdio: 'ignore' });
         console.log(`Sent /exit to ${targetAgent} (session: ${tmuxName})`);
         console.log('Agent will restart via launchd/wrapper. crash-alert will categorize as user_initiated.');
       }, 1000);
-    } catch (err: any) {
-      console.error(`Failed to send /exit: ${err.message || err}`);
-      process.exit(1);
     }
   });
 
