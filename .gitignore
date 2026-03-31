@@ -6,23 +6,18 @@ node_modules/
 # Include template .claude dirs (needed for agent settings.json)
 !templates/**/.claude/
 !templates/**/.claude/**
-# Include agent skills in orgs (same as templates pattern)
-!orgs/**/.claude/
-!orgs/**/.claude/**
 dist/
+
+# User-created org data (not part of the framework)
+orgs/
 
 # Secrets
 .env
 !.env.example
 templates/*/.env
-orgs/*/.env
-orgs/*/agents/*/.env
-orgs/*/activity-channel.env
 .cortextos-env
 
 # Agent runtime data
-orgs/*/agents/*/local/
-orgs/*/agents/*/telegram-images/
 orgs/*/agents/*/memory/
 agents/*/local/
 agents/*/telegram-images/
