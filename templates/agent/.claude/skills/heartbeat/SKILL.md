@@ -59,7 +59,7 @@ cortextos bus read-all-heartbeats --format json
 
 Returns: agent name, status, last update timestamp, current task.
 
-**Stale threshold:** An agent that hasn't updated in >6h should be investigated. Check their tmux session.
+**Stale threshold:** An agent that hasn't updated in >6h should be investigated. Check their status via `cortextos status` or their heartbeat file.
 
 ---
 
@@ -69,9 +69,11 @@ Returns: agent name, status, last update timestamp, current task.
 # Read their heartbeat file directly
 cat "$CTX_ROOT/state/<agent-name>/heartbeat.json"
 
-# Check if their tmux session is alive
-tmux has-session -t "ctx-${CTX_INSTANCE_ID}-${CTX_ORG}-<agent-name>" 2>/dev/null \
-  && echo "SESSION ALIVE" || echo "SESSION DEAD"
+# Check agent status via daemon
+cortextos status
+
+# Check PM2 process status
+pm2 list
 ```
 
 ---

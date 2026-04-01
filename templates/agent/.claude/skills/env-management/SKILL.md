@@ -1,7 +1,7 @@
 ---
 name: env-management
-description: "You need to add a new API key to the system, update an existing credential, check what secrets are configured for the org or a specific agent, onboard a new third-party tool that needs credentials, or diagnose why an agent cannot access a service because a key appears missing. You need to know where to put the key, how the load order works so it actually gets picked up, and what rules to follow to avoid leaking credentials."
-triggers: ["add key", "api key", "env file", ".env", "secret", "credential", "token", "environment variable", "configure key", "set key", "missing key", "can"t find key", "key not set", "where do I put", "shared secret", "org secret", "agent secret", "key not loading", "credential setup", "configure credentials", "new api key", "add to env"]
+description: "You need to add a new API key to the system, update an existing credential, check what secrets are configured for the org or a specific agent, onboard a new third-party tool that needs credentials, diagnose why an agent cannot access a service because a key appears missing, rotate a compromised or expired key, or restart affected agents after a credential change. This skill covers the full lifecycle of environment variables and secrets in cortextOS."
+triggers: ["add key", "api key", "env file", ".env", "secret", "credential", "token", "environment variable", "configure key", "set key", "missing key", "key not set", "where do I put", "shared secret", "org secret", "agent secret", "key not loading", "configure credentials", "new api key", "add to env", "rotate key", "rotate token", "key compromised", "token expired", "update api key", "new bot token", "revoke key", "credential rotation", "key rotation", "secret rotation", "key was leaked", "compromised credential", "force rotation", "provider rotated", "expired key", "rotate credentials", "update secret"]
 ---
 
 # Environment Variable Management
@@ -59,7 +59,7 @@ AGENT_ENV="$CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/agents/$CTX_AGENT_NAME/.env"
 echo 'MY_KEY=value' >> "$AGENT_ENV"
 chmod 600 "$AGENT_ENV"
 
-# 3. Restart THIS agent only (soft restart to preserve context if possible)
+# 3. Restart THIS agent only
 cortextos bus self-restart --reason "new agent secret added: MY_KEY"
 ```
 
@@ -80,6 +80,65 @@ grep -v '^#' "$CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/agents/$CTX_AGENT_NAME/.env" | g
 
 ---
 
+## Rotating a Secret
+
+A key update without restarting the agent does nothing — the old value stays in the PTY environment until the process restarts.
+
+### Rotation Decision Tree
+
+```
+Is this a shared org-level key (OPENAI_API_KEY, APIFY_TOKEN, etc.)?
+  → Update orgs/{org}/.env → hard-restart ALL agents
+
+Is this an agent-specific key (BOT_TOKEN, CHAT_ID, OAuth token)?
+  → Update agents/{agent}/.env → hard-restart THAT AGENT ONLY
+
+Is this ANTHROPIC_API_KEY?
+  → Update ~/.zshrc or ~/.bashrc → restart the daemon via PM2
+  → Do NOT store in any .env file
+```
+
+### Rotating a Shared Org Secret
+
+```bash
+ORG_ENV="$CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/.env"
+# Update the value in the file (edit KEY_NAME line)
+
+# Restart all agents in sequence (stagger to avoid gaps)
+cortextos list-agents --format json | jq -r '.[].name' | while read agent; do
+  echo "Restarting $agent..."
+  cortextos bus send-message "$agent" high "hard-restart" "secret rotation: KEY_NAME"
+  sleep 30
+done
+
+# Log the rotation
+cortextos bus log-event action secret_rotated info \
+  --meta "{\"key\":\"KEY_NAME\",\"scope\":\"org\",\"agent\":\"$CTX_AGENT_NAME\"}"
+```
+
+### Rotating an Agent-Specific Secret
+
+```bash
+AGENT_ENV="$CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/agents/AGENT_NAME/.env"
+# Update the value in the file
+chmod 600 "$AGENT_ENV"
+
+# Hard-restart that agent (not soft — PTY must rebuild env)
+cortextos bus send-message AGENT_NAME high "hard-restart" "secret rotation: KEY_NAME"
+
+cortextos bus log-event action secret_rotated info \
+  --meta "{\"key\":\"KEY_NAME\",\"scope\":\"agent\",\"agent\":\"AGENT_NAME\"}"
+```
+
+### Rotating a Bot Token (BOT_TOKEN)
+
+1. Go to @BotFather → `/mybots` → select the bot → `API Token` → `Revoke current token`
+2. Copy the new token
+3. Update `agents/{agent}/.env` — replace `BOT_TOKEN=` value
+4. Hard-restart the agent immediately (old token is already invalid)
+
+---
+
 ## Critical Rules
 
 1. **Never print secret values** — log key names only, never values
@@ -88,3 +147,4 @@ grep -v '^#' "$CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/agents/$CTX_AGENT_NAME/.env" | g
 4. **Never edit a running agent's .env without restarting** — changes won't take effect until the PTY env is rebuilt
 5. **Never add BOT_TOKEN to org .env** — each agent must have its own Telegram bot
 6. **ANTHROPIC_API_KEY lives only in the shell** — do not add to any .env file
+7. **Always hard-restart after rotating** — soft-restart preserves the PTY env which still has the old value

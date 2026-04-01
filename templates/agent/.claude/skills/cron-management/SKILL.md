@@ -36,7 +36,7 @@ No crons are defined by default. Users can add any recurring tasks they need to 
 
 ## Cron Expiry
 
-Built-in `/loop` crons expire after 3 days. Since your session restarts via launchd, this isn't an issue - crons are recreated from `config.json` on each fresh start.
+Built-in `/loop` crons expire after 3 days. Since your session restarts via PM2, this isn't an issue — crons are recreated from `config.json` on each fresh start.
 
 ## Troubleshooting
 

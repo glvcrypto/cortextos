@@ -1,7 +1,7 @@
 ---
 name: heartbeat
-description: "Update your heartbeat and check fleet health. Use when: executing your heartbeat cron, checking if other agents are alive, monitoring agent health, or diagnosing why an agent appears offline."
-triggers: ["heartbeat", "update heartbeat", "check health", "agent health", "fleet health", "agent status", "is agent alive", "agent offline", "agent stale", "read heartbeats"]
+description: "Your heartbeat cron has fired and you need to update your status so the dashboard shows you as alive. Or you are checking whether another agent is responsive before sending them work. Or an agent appears offline or stale in the dashboard and you need to investigate whether their session is still running. A dead heartbeat means the system thinks you are down — update it proactively and check fleet health on every heartbeat cycle."
+triggers: ["heartbeat", "update heartbeat", "check health", "agent health", "fleet health", "agent status", "is agent alive", "agent offline", "agent stale", "read heartbeats", "heartbeat cron", "i'm alive", "prove alive", "agent not responding", "stale agent", "check fleet", "fleet status", "who is online", "agent last seen"]
 ---
 
 # Heartbeat
@@ -59,7 +59,7 @@ cortextos bus read-all-heartbeats --format json
 
 Returns: agent name, status, last update timestamp, current task.
 
-**Stale threshold:** An agent that hasn't updated in >6h should be investigated. Check their tmux session.
+**Stale threshold:** An agent that hasn't updated in >6h should be investigated. Check their status via `cortextos status` or their heartbeat file.
 
 ---
 
@@ -69,9 +69,11 @@ Returns: agent name, status, last update timestamp, current task.
 # Read their heartbeat file directly
 cat "$CTX_ROOT/state/<agent-name>/heartbeat.json"
 
-# Check if their tmux session is alive
-tmux has-session -t "ctx-${CTX_INSTANCE_ID}-${CTX_ORG}-<agent-name>" 2>/dev/null \
-  && echo "SESSION ALIVE" || echo "SESSION DEAD"
+# Check agent status via daemon
+cortextos status
+
+# Check PM2 process status
+pm2 list
 ```
 
 ---
