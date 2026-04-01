@@ -728,6 +728,45 @@ See you in the morning!"
 
 ---
 
+## Phase 7: Update Goals.json
+
+Before entering nighttime mode, persist today's bottleneck and carry-forward state to `goals.json` so the morning review has accurate context.
+
+### 1. Update org bottleneck
+
+```bash
+jq --arg b "today's biggest blocker (or empty if none)" \
+    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    '.bottleneck = $b | .updated_at = $ts' \
+    $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json > /tmp/goals.tmp \
+  && mv /tmp/goals.tmp $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json
+```
+
+### 2. Update each agent's bottleneck if it changed
+
+For any agent whose blocking status changed during the day:
+
+```bash
+# Update agent goals.json bottleneck
+jq --arg b "what's blocking them" --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    '.bottleneck = $b | .updated_at = $ts | .updated_by = "orchestrator-evening-review"' \
+    $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/agents/<agent>/goals.json > /tmp/agent-goals.tmp \
+  && mv /tmp/agent-goals.tmp $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/agents/<agent>/goals.json
+
+# Regenerate GOALS.md
+cortextos goals generate-md --agent <agent> --org $CTX_ORG
+```
+
+### 3. Clear daily focus (it resets each morning)
+
+```bash
+jq '.daily_focus = "" | .daily_focus_set_at = ""' \
+    $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json > /tmp/goals.tmp \
+  && mv /tmp/goals.tmp $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json
+```
+
+---
+
 ## NEXT: Read Nighttime Mode Skill
 
 After completing evening review and receiving approval, immediately read and follow `skills/nighttime-mode/SKILL.md` for the overnight work protocol.

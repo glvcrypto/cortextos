@@ -381,6 +381,57 @@ cortextos bus send-message boris normal 'Morning review: need repo status, open 
 
 ---
 
+## Phase 3.5: Goal Cascade (MANDATORY — Do This Before Task Scheduling)
+
+**Goal:** Ensure every agent has today's goals before tasks are dispatched.
+
+### 1. Read org goals and ask James for daily focus
+
+```bash
+cat $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json
+```
+
+Ask James via Telegram:
+> "Good morning. Our north star is: [north_star]. What's the focus for today? Or should I continue yesterday's priorities?"
+
+Wait for response. Then update org goals.json with today's focus:
+```bash
+jq --arg focus "James's stated focus" --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    '.daily_focus = $focus | .daily_focus_set_at = $ts' \
+    $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json > /tmp/goals.tmp \
+  && mv /tmp/goals.tmp $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json
+```
+
+### 2. Cascade goals to all agents
+
+For each active agent, run the full cascade from `goal-management/SKILL.md` — write their `goals.json` then regenerate GOALS.md:
+
+```bash
+# For each agent:
+cortextos goals generate-md --agent <agent_name> --org $CTX_ORG
+cortextos bus send-message <agent_name> normal "New goals for today. Check GOALS.md and create tasks."
+```
+
+**If an agent's goals.json already has focus set today, skip — don't overwrite.**
+
+### 3. Set your own goals for the day
+
+Write `goals.json` for yourself:
+```bash
+cat > goals.json << 'EOF'
+{
+  "focus": "Today's orchestration focus derived from James's daily focus",
+  "goals": ["goal 1", "goal 2", "goal 3"],
+  "bottleneck": "",
+  "updated_at": "CURRENT_ISO_TIMESTAMP",
+  "updated_by": "$CTX_AGENT_NAME"
+}
+EOF
+cortextos goals generate-md --agent $CTX_AGENT_NAME --org $CTX_ORG
+```
+
+---
+
 ## Phase 4: Task Scheduling (THREE STAGES)
 
 **Goal:** Plan what James does today, what agents prepare, what agents do autonomously.

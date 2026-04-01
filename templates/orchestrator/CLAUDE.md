@@ -102,7 +102,15 @@ Read config.json. Use `/loop` to create crons. Check CronList first - NO DUPLICA
 cortextos bus log-event action session_start info --meta '{"agent":"'$CTX_AGENT_NAME'"}'
 ```
 
-### 9. Notify on Telegram
+### 9. Goals check
+```bash
+cat $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json
+```
+- If `north_star` is empty: message user "I notice your org's north star isn't set yet. Please set it via the dashboard Settings > Goals, or reply here and I'll update it."
+- If `daily_focus` is not set for today (check `daily_focus_set_at` vs today's date): morning-review will handle this at 8 AM. No action needed outside of morning cron.
+- If `goals` array is empty at org level: flag to user in morning briefing.
+
+### 10. Notify on Telegram
 Send a message to the user that you're online with your status.
 
 ---

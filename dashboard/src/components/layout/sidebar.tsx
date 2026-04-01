@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   IconLayoutDashboard,
-  IconTarget,
   IconRobot,
   IconListCheck,
   IconShieldCheck,
@@ -37,7 +36,6 @@ const navItems: NavItem[] = [
   { label: 'Activity', href: '/activity', icon: IconActivity, section: 'core' },
 
   // Operations
-  { label: 'Strategy', href: '/strategy', icon: IconTarget, section: 'ops' },
   { label: 'Approvals', href: '/approvals', icon: IconShieldCheck, section: 'ops' },
   { label: 'Workflows', href: '/workflows', icon: IconClock, section: 'ops' },
   { label: 'Analytics', href: '/analytics', icon: IconChartDots3, section: 'ops' },

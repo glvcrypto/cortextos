@@ -60,14 +60,17 @@ cat >> "$MEMORY_DIR/$TODAY.md" << MEMORY
 MEMORY
 ```
 
-## Step 6: Check GOALS.md
-
-Read GOALS.md for any new objectives from the user.
-If goals changed since last check, create tasks to address them:
+## Step 6: Check goals state
 
 ```bash
-cortextos bus create-task "<title>" --desc "<description>" --assignee $CTX_AGENT_NAME --priority normal
+cat $CTX_FRAMEWORK_ROOT/orgs/$CTX_ORG/goals.json
 ```
+
+- If `daily_focus_set_at` is not today's date AND it is currently morning (before 10 AM): run goal cascade via `/goal-management` skill
+- If org `goals.json` has an empty `north_star`: flag to user this heartbeat
+- If any agent has an empty `goals.json` (focus + goals both empty): message them their goals now
+
+Also read GOALS.md for any manual overrides the user may have written directly.
 
 ## Step 7: Resume work
 
