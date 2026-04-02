@@ -57,7 +57,12 @@ Based on accumulated learnings:
 ```bash
 cortextos bus create-experiment "<metric_name>" "<your hypothesis>" --surface <path> --direction <higher|lower> --window <duration>
 ```
-If `approval_required` is true in your config, an approval will be created. Wait for approval before proceeding.
+If `approval_required` is true in `experiments/config.json`, you must manually create an approval before proceeding:
+```bash
+APPR_ID=$(cortextos bus create-approval "Run experiment: <hypothesis>" experiments "Cycle: <cycle_name>, Metric: <metric_name>, Surface: <surface>")
+cortextos bus send-telegram $CTX_TELEGRAM_CHAT_ID "Approval needed to run experiment for <metric_name> — check dashboard"
+# Block until approved, then continue to Step 5
+```
 
 ### Step 5: Make Changes and Run
 Apply your hypothesized changes to the surface file. Then:
@@ -97,14 +102,15 @@ You compare baseline vs experiment output side by side and score 1-10.
 
 ## Setting Up a Cycle
 
-If the user asks you to set up autoresearch, collect:
+If the user asks you to set up autoresearch, collect these 8 things:
 1. **Metric** — what to optimize (e.g., "engagement_rate", "task_completion_rate", "briefing_quality")
 2. **Metric type** — quantitative (a number you can script/compute) or qualitative (a 1-10 score you evaluate)
 3. **Surface** — the file to experiment on (e.g., `experiments/surfaces/engagement/current.md` for a prompt, or `SOUL.md` for behavior)
 4. **Direction** — higher or lower is better
-5. **Window** — how long to wait before measuring the result (e.g., `24h`, `48h`)
-6. **Loop interval** — how often to run the experiment loop (the cron frequency — often same as window)
-7. **Approval** — should you need approval before running each experiment?
+5. **Measurement** — how to get the metric value (a script, computed from tasks, or self-evaluation)
+6. **Window** — how long to wait before measuring the result (e.g., `24h`, `48h`)
+7. **Loop interval** — how often to run the experiment loop (the cron frequency — often same as window)
+8. **Approval** — should you need approval before running each experiment?
 
 Then create the cycle and surface directory:
 ```bash

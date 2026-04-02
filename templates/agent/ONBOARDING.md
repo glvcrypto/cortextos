@@ -253,8 +253,12 @@ After workflows and tools are configured:
     Then set up the cycle and cron. Read `.claude/skills/autoresearch/SKILL.md` for the full setup commands. In brief:
     ```bash
     # Create surface directory and baseline file
-    mkdir -p "experiments/surfaces/<metric>"
-    echo "# <metric> Baseline\n\n[Current approach description]" > "experiments/surfaces/<metric>/current.md"
+    mkdir -p "$CTX_AGENT_DIR/experiments/surfaces/<metric>"
+    cat > "$CTX_AGENT_DIR/experiments/surfaces/<metric>/current.md" << 'EOF'
+    # <metric> Baseline
+
+    [Current approach description]
+    EOF
 
     # Register the cycle
     cortextos bus manage-cycle create $CTX_AGENT_NAME \
@@ -274,7 +278,7 @@ After workflows and tools are configured:
 
     If user set approval_required to false, update `experiments/config.json`:
     ```bash
-    jq '.approval_required = false' experiments/config.json > /tmp/cfg.tmp && mv /tmp/cfg.tmp experiments/config.json
+    jq '.approval_required = false' "$CTX_AGENT_DIR/experiments/config.json" > /tmp/cfg.tmp && mv /tmp/cfg.tmp "$CTX_AGENT_DIR/experiments/config.json"
     ```
 
 24. If user does not want to set up now:

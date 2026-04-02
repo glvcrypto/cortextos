@@ -57,7 +57,12 @@ Based on accumulated learnings:
 ```bash
 cortextos bus create-experiment "<metric_name>" "<your hypothesis>" --surface <path> --direction <higher|lower> --window <duration>
 ```
-If `approval_required` is true in your config, an approval will be created. Wait for approval before proceeding.
+If `approval_required` is true in `experiments/config.json`, you must manually create an approval before proceeding:
+```bash
+APPR_ID=$(cortextos bus create-approval "Run experiment: <hypothesis>" experiments "Cycle: <cycle_name>, Metric: <metric_name>, Surface: <surface>")
+cortextos bus send-telegram $CTX_TELEGRAM_CHAT_ID "Approval needed to run experiment for <metric_name> — check dashboard"
+# Block until approved, then continue to Step 5
+```
 
 ### Step 5: Make Changes and Run
 Apply your hypothesized changes to the surface file. Then:
@@ -102,14 +107,15 @@ Orchestrator-appropriate metrics to suggest to the user:
 - **approval_routing_speed** — quantitative: minutes from approval created to user Telegram notification (computed from event log timestamps)
 - **goal_cascade_alignment** — qualitative score 1-10 on how well agents' tasks match the north star (surface: goal-management skill or SOUL.md)
 
-If the user wants to set up a cycle, collect:
+If the user wants to set up a cycle, collect these 8 things:
 1. **Metric** — which of the above (or their own choice)
 2. **Metric type** — quantitative (scripted/computed) or qualitative (you score 1-10 each cycle)
 3. **Surface** — the file to experiment on
 4. **Direction** — higher or lower is better (usually higher)
-5. **Window** — how long to wait before measuring (e.g., `72h` for briefing quality — needs a few days of data)
-6. **Loop interval** — how often to run the experiment loop
-7. **Approval** — should each experiment need your approval before running?
+5. **Measurement** — how to get the metric value (for briefing quality: self-score 1-10; for approval routing: compute timestamp delta from event log)
+6. **Window** — how long to wait before measuring (e.g., `72h` for briefing quality — needs a few days of data)
+7. **Loop interval** — how often to run the experiment loop (often same as window)
+8. **Approval** — should each experiment need your approval before running?
 
 Then create the cycle and surface directory:
 ```bash

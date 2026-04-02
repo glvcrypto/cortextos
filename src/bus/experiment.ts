@@ -81,6 +81,7 @@ export interface ExperimentCycle {
 export interface ExperimentConfig {
   approval_required?: boolean;
   cycles?: ExperimentCycle[];
+  theta_wave_notifications?: boolean;
 }
 
 // --- Helpers ---
@@ -393,6 +394,7 @@ export function manageCycle(
     window?: string;
     measurement?: string;
     loop_interval?: string;
+    enabled?: boolean;
   },
 ): ExperimentCycle[] {
   const config = loadConfig(agentDir);
@@ -436,6 +438,7 @@ export function manageCycle(
       if (options.metric_type) config.cycles[idx].metric_type = options.metric_type;
       if (options.surface) config.cycles[idx].surface = options.surface;
       if (options.direction) config.cycles[idx].direction = options.direction;
+      if (options.enabled !== undefined) config.cycles[idx].enabled = options.enabled;
       if (options.window) config.cycles[idx].window = options.window;
       if (options.measurement) config.cycles[idx].measurement = options.measurement;
       if (options.loop_interval) config.cycles[idx].loop_interval = options.loop_interval;

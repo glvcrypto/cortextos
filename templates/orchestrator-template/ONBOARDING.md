@@ -257,11 +257,15 @@ Then tell the user:
 >
 > You don't need to set one up now — you can tell me to configure autoresearch anytime. Want to set up a cycle now?"
 
-If yes, collect:
-- Which metric to optimize
-- Measurement window (briefing quality needs a few days: 72h; approval routing can be 24h)
-- Loop interval (cron frequency — how often to run the experiment loop)
-- Approval required before running each experiment?
+If yes, collect all 8 things (just like agent onboarding):
+- (a) Which metric to optimize
+- (b) Metric type: quantitative (computed) or qualitative (you score 1-10)?
+- (c) Which file to experiment on (the "surface" — e.g. a briefing prompt file or SOUL.md)
+- (d) Direction: higher or lower is better?
+- (e) How to measure: for briefing quality → self-score 1-10; for approval routing → timestamp delta from event log
+- (f) Measurement window (briefing quality needs a few days of data: 72h; approval routing: 24h)
+- (g) Loop interval — how often to run the experiment loop (often same as window)
+- (h) Approval required before running each experiment?
 
 Then set up following `.claude/skills/autoresearch/SKILL.md` setup steps exactly. The cycle must be created with `cortextos bus manage-cycle create` including `--loop-interval`. The cron must be set up immediately after:
 ```
