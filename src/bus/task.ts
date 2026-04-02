@@ -33,7 +33,7 @@ export function createTask(
 
   validatePriority(priority);
 
-  const epoch = Math.floor(Date.now() / 1000);
+  const epoch = Date.now();
   const rand = randomDigits(3);
   const taskId = `task_${epoch}_${rand}`;
   const now = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');

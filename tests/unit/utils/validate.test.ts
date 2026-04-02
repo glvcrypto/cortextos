@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   validateAgentName,
+  validateInstanceId,
   validatePriority,
   validateEventCategory,
   validateEventSeverity,
@@ -8,6 +9,24 @@ import {
   validateModel,
   isValidJson,
 } from '../../../src/utils/validate';
+
+describe('validateInstanceId', () => {
+  it('accepts valid instance IDs', () => {
+    expect(() => validateInstanceId('default')).not.toThrow();
+    expect(() => validateInstanceId('e2e-test')).not.toThrow();
+    expect(() => validateInstanceId('ci_test')).not.toThrow();
+    expect(() => validateInstanceId('prod')).not.toThrow();
+  });
+
+  it('rejects invalid instance IDs', () => {
+    expect(() => validateInstanceId('')).toThrow();
+    expect(() => validateInstanceId('My Instance')).toThrow(); // spaces
+    expect(() => validateInstanceId('instance/bad')).toThrow(); // forward slash breaks Unix socket path
+    expect(() => validateInstanceId('instance\\bad')).toThrow(); // backslash breaks Windows named pipe
+    expect(() => validateInstanceId('../traversal')).toThrow(); // path traversal
+    expect(() => validateInstanceId('Instance')).toThrow(); // uppercase
+  });
+});
 
 describe('validateAgentName', () => {
   it('accepts valid names', () => {

@@ -3,6 +3,14 @@ import { VALID_PRIORITIES } from '../types/index.js';
 
 const AGENT_NAME_REGEX = /^[a-z0-9_-]+$/;
 
+export function validateInstanceId(instanceId: string): void {
+  if (!instanceId || !AGENT_NAME_REGEX.test(instanceId)) {
+    throw new Error(
+      `Invalid instance ID '${instanceId}'. Must contain only lowercase letters, numbers, underscores, and hyphens.`
+    );
+  }
+}
+
 export function validateAgentName(name: string): void {
   if (!name || !AGENT_NAME_REGEX.test(name)) {
     throw new Error(

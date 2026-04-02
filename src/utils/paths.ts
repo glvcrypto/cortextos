@@ -1,6 +1,7 @@
 import { homedir } from 'os';
 import { join } from 'path';
 import type { BusPaths } from '../types/index.js';
+import { validateInstanceId } from './validate.js';
 
 /**
  * Resolve all bus paths for an agent.
@@ -27,6 +28,7 @@ export function resolvePaths(
   instanceId: string = 'default',
   org?: string,
 ): BusPaths {
+  validateInstanceId(instanceId);
   const ctxRoot = join(homedir(), '.cortextos', instanceId);
 
   // Org-scoped paths for tasks, approvals, analytics
@@ -50,6 +52,7 @@ export function resolvePaths(
  * Unix domain socket on macOS/Linux, named pipe on Windows.
  */
 export function getIpcPath(instanceId: string = 'default'): string {
+  validateInstanceId(instanceId);
   if (process.platform === 'win32') {
     return `\\\\.\\pipe\\cortextos-${instanceId}`;
   }
