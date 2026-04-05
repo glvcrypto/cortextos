@@ -444,7 +444,9 @@ busCommand
   .option('--json', 'Output as JSON')
   .action((opts: { agent?: string; status?: string; metric?: string; json?: boolean }) => {
     const env = resolveEnv();
-    const agentDir = env.agentDir || process.cwd();
+    const agentDir = opts.agent && env.frameworkRoot
+      ? join(env.frameworkRoot, 'orgs', env.org, 'agents', opts.agent)
+      : (env.agentDir || process.cwd());
     const experiments = listExperiments(agentDir, {
       agent: opts.agent,
       status: opts.status,
@@ -460,8 +462,10 @@ busCommand
   .option('--format <fmt>', 'Output format: json or markdown', 'json')
   .action((opts: { agent?: string; format?: string }) => {
     const env = resolveEnv();
-    const agentDir = env.agentDir || process.cwd();
     const agentName = opts.agent || env.agentName;
+    const agentDir = opts.agent && env.frameworkRoot
+      ? join(env.frameworkRoot, 'orgs', env.org, 'agents', opts.agent)
+      : (env.agentDir || process.cwd());
     const context = gatherContext(agentDir, agentName, { format: opts.format as 'json' | 'markdown' });
     console.log(JSON.stringify(context, null, 2));
   });
