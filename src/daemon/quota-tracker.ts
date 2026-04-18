@@ -59,6 +59,7 @@ export class QuotaTracker {
     return this.check();
   }
 
+  /** Returns current quota status. Note: hard_blocked is sticky until midnight reset — once set, subsequent calls return hard_blocked even if spend hasn't increased. */
   check(): QuotaCheckResult {
     this.ensureFreshDay();
     const pct = (this.state.spent_usd / this.config.daily_budget_usd) * 100;
