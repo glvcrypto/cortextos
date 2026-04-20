@@ -213,3 +213,13 @@ export function getAllAgents(): Array<{ name: string; org: string }> {
 export function getAllowedRootsConfigPath(): string {
   return path.join(CTX_ROOT, 'config', 'allowed-roots.json');
 }
+
+// -- Client-scoped paths (nested under org in framework root) --
+
+export function getClientsDir(org: string): string {
+  return path.join(CTX_FRAMEWORK_ROOT, 'orgs', org, 'clients');
+}
+
+export function getClientDir(org: string, client: string): string {
+  return path.join(CTX_FRAMEWORK_ROOT, 'orgs', org, 'clients', client);
+}

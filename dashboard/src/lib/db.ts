@@ -141,6 +141,24 @@ function initializeSchema(db: Database.Database): void {
       last_synced TEXT NOT NULL DEFAULT (datetime('now'))
     );
 
+    CREATE TABLE IF NOT EXISTS clients (
+      id TEXT PRIMARY KEY,
+      org TEXT NOT NULL DEFAULT '',
+      display_name TEXT,
+      stage TEXT NOT NULL DEFAULT 'prospect',
+      retainer_mrr INTEGER NOT NULL DEFAULT 0,
+      retainer_health TEXT NOT NULL DEFAULT 'none',
+      contract TEXT,
+      deliverables TEXT,
+      blockers TEXT,
+      notes TEXT,
+      updated_at TEXT,
+      source_file TEXT
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_clients_org ON clients(org);
+    CREATE INDEX IF NOT EXISTS idx_clients_stage ON clients(stage);
+
     -- Rate limit table: persists across server restarts so limits survive hot-reloads
     -- and intentional restarts. reset_at is a Unix timestamp in milliseconds.
     CREATE TABLE IF NOT EXISTS rate_limits (
