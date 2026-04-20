@@ -21,6 +21,7 @@ import {
   IconUsers,
   IconMail,
   IconTerminal2,
+  IconPlugConnected,
 } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -50,6 +51,8 @@ const navItems: NavItem[] = [
   { label: 'Workflows', href: '/workflows', icon: IconClock, section: 'ops' },
   { label: 'Strategy', href: '/strategy', icon: IconTarget, section: 'ops' },
   { label: 'Analytics', href: '/analytics', icon: IconChartDots3, section: 'ops' },
+
+  { label: 'MCP', href: '/mcp', icon: IconPlugConnected, section: 'ops' },
 
   // Intelligence
   { label: 'Knowledge Base', href: '/knowledge-base', icon: IconBook2, section: 'intel' },
