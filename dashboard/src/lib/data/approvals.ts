@@ -7,8 +7,8 @@ import type { Approval } from '@/lib/types';
 /**
  * Get pending approvals, newest first.
  */
-export function getPendingApprovals(org?: string): Approval[] {
-  return getApprovalsByStatus('pending', org);
+export function getPendingApprovals(org?: string, category?: string): Approval[] {
+  return getApprovalsByStatus('pending', org, category);
 }
 
 /**
@@ -110,13 +110,17 @@ export function getApprovalById(id: string): Approval | null {
 // Internal helpers
 // ---------------------------------------------------------------------------
 
-function getApprovalsByStatus(status: string, org?: string): Approval[] {
+function getApprovalsByStatus(status: string, org?: string, category?: string): Approval[] {
   const conditions: string[] = ['status = ?'];
   const params: (string | number)[] = [status];
 
   if (org) {
     conditions.push('org = ?');
     params.push(org);
+  }
+  if (category) {
+    conditions.push('category = ?');
+    params.push(category);
   }
 
   const where = `WHERE ${conditions.join(' AND ')}`;

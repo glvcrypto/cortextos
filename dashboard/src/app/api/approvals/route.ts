@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     let approvals;
 
     if (status === 'pending') {
-      approvals = getPendingApprovals(org);
+      approvals = getPendingApprovals(org, category);
     } else if (status === 'resolved') {
       approvals = getResolvedApprovals(org, { agent, category });
     } else if (status === 'all') {
