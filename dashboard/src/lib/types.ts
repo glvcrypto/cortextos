@@ -73,7 +73,7 @@ export interface Task {
 
 // -- Approval Types --
 
-export type ApprovalCategory = 'deployment' | 'cost' | 'access' | 'other';
+export type ApprovalCategory = 'deployment' | 'cost' | 'access' | 'outreach' | 'other';
 export type ApprovalStatus = 'pending' | 'approved' | 'rejected';
 
 export interface Approval {

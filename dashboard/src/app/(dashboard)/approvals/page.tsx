@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { ApprovalCard } from '@/components/approvals/approval-card';
 import { ApprovalDetailDialog } from '@/components/approvals/approval-detail-dialog';
 import { ApprovalHistoryList } from '@/components/approvals/approval-history-list';
-import { IconUser, IconCheck, IconClock } from '@tabler/icons-react';
+import { IconUser, IconCheck, IconClock, IconMail } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { PriorityBadge, TimeAgo } from '@/components/shared';
@@ -16,6 +16,7 @@ export default function ApprovalsPage() {
   const { currentOrg } = useOrg();
 
   const [pending, setPending] = useState<Approval[]>([]);
+  const [outreachPending, setOutreachPending] = useState<Approval[]>([]);
   const [resolved, setResolved] = useState<Approval[]>([]);
   const [humanTasks, setHumanTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,8 +34,9 @@ export default function ApprovalsPage() {
     const orgParam = currentOrg !== 'all' ? `&org=${currentOrg}` : '';
 
     try {
-      const [pendingRes, resolvedRes, humanRes] = await Promise.all([
+      const [pendingRes, outreachRes, resolvedRes, humanRes] = await Promise.all([
         fetch(`/api/approvals?status=pending${orgParam}`),
+        fetch(`/api/approvals?status=pending&category=outreach${orgParam}`),
         fetch(
           `/api/approvals?status=resolved${orgParam}${
             historyFilters.agent !== 'all' ? `&agent=${historyFilters.agent}` : ''
@@ -47,6 +49,9 @@ export default function ApprovalsPage() {
 
       if (pendingRes.ok) {
         setPending(await pendingRes.json());
+      }
+      if (outreachRes.ok) {
+        setOutreachPending(await outreachRes.json());
       }
       if (resolvedRes.ok) {
         setResolved(await resolvedRes.json());
@@ -139,6 +144,15 @@ export default function ApprovalsPage() {
               </span>
             )}
           </TabsTrigger>
+          <TabsTrigger value="outreach">
+            <IconMail size={14} className="mr-1" />
+            Outreach
+            {outreachPending.length > 0 && (
+              <span className="ml-1.5 rounded-full bg-orange-500 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+                {outreachPending.length}
+              </span>
+            )}
+          </TabsTrigger>
           <TabsTrigger value="history">History</TabsTrigger>
         </TabsList>
 
@@ -202,6 +216,56 @@ export default function ApprovalsPage() {
                   approval={approval}
                   onClick={handleApprovalClick}
                 />
+              ))}
+            </div>
+          )}
+        </TabsContent>
+
+        {/* Outreach tab */}
+        <TabsContent value="outreach">
+          {outreachPending.length === 0 ? (
+            <p className="py-12 text-center text-sm text-muted-foreground">
+              No outreach emails waiting for approval.
+            </p>
+          ) : (
+            <div className="grid gap-3 max-w-2xl">
+              {outreachPending.map((approval) => (
+                <Card
+                  key={approval.id}
+                  className="cursor-pointer transition-colors hover:bg-muted/50"
+                  onClick={() => handleApprovalClick(approval)}
+                >
+                  <CardContent className="py-4 space-y-3">
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-sm font-medium leading-snug">{approval.title}</p>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <span className="text-xs text-muted-foreground">{approval.agent}</span>
+                        <TimeAgo date={approval.created_at} className="text-xs text-muted-foreground" />
+                      </div>
+                    </div>
+                    {approval.description && (
+                      <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-sans bg-muted/40 rounded-md p-3 max-h-48 overflow-y-auto border border-border/50">
+                        {approval.description}
+                      </pre>
+                    )}
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        onClick={(e) => { e.stopPropagation(); handleResolve(approval.id, 'approved'); }}
+                      >
+                        <IconCheck size={13} className="mr-1" />
+                        Approve &amp; Send
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={(e) => { e.stopPropagation(); handleApprovalClick(approval); }}
+                      >
+                        Review
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           )}

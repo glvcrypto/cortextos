@@ -22,6 +22,10 @@ const categoryConfig: Record<string, { className: string; label: string }> = {
     className: 'bg-red-500/10 text-red-600 dark:text-red-400',
     label: 'Data Deletion',
   },
+  outreach: {
+    className: 'bg-orange-500/10 text-orange-600 dark:text-orange-400',
+    label: 'Outreach',
+  },
   other: {
     className: 'bg-muted text-muted-foreground',
     label: 'Other',

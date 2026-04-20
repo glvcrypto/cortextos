@@ -12,6 +12,7 @@ import {
   getApprovalDir,
   getEventsDir,
   getHeartbeatPath,
+  getClientsDir,
 } from './config';
 
 // ---------------------------------------------------------------------------
@@ -266,6 +267,62 @@ export function syncHeartbeat(agent: string): boolean {
 }
 
 // ---------------------------------------------------------------------------
+// Client sync
+// ---------------------------------------------------------------------------
+
+export function syncClients(org: string): number {
+  const clientsDir = getClientsDir(org);
+  if (!fs.existsSync(clientsDir)) return 0;
+
+  let synced = 0;
+
+  const upsert = db.prepare(`
+    INSERT OR REPLACE INTO clients
+      (id, org, display_name, stage, retainer_mrr, retainer_health, contract, deliverables, blockers, notes, updated_at, source_file)
+    VALUES
+      (@id, @org, @display_name, @stage, @retainer_mrr, @retainer_health, @contract, @deliverables, @blockers, @notes, @updated_at, @source_file)
+  `);
+
+  const clientDirs = fs.readdirSync(clientsDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name);
+
+  const run = db.transaction(() => {
+    for (const client of clientDirs) {
+      const pipelinePath = path.join(clientsDir, client, 'pipeline.json');
+      if (!fs.existsSync(pipelinePath)) continue;
+      if (!hasFileChanged(pipelinePath)) continue;
+
+      try {
+        const raw = fs.readFileSync(pipelinePath, 'utf-8');
+        const p = JSON.parse(raw);
+        upsert.run({
+          id: p.client ?? client,
+          org,
+          display_name: p.display_name ?? client,
+          stage: p.stage ?? 'prospect',
+          retainer_mrr: p.retainer_mrr ?? 0,
+          retainer_health: p.retainer_health ?? 'none',
+          contract: p.contract ? JSON.stringify(p.contract) : null,
+          deliverables: p.deliverables ? JSON.stringify(p.deliverables) : null,
+          blockers: p.blockers ? JSON.stringify(p.blockers) : null,
+          notes: p.notes ?? null,
+          updated_at: p.updated_at ?? null,
+          source_file: pipelinePath,
+        });
+        markSynced(pipelinePath);
+        synced++;
+      } catch (err) {
+        console.error(`[sync] Failed to sync client ${client}:`, err);
+      }
+    }
+  });
+
+  run();
+  return synced;
+}
+
+// ---------------------------------------------------------------------------
 // Full sync
 // ---------------------------------------------------------------------------
 
@@ -274,15 +331,17 @@ export interface SyncResult {
   approvals: number;
   events: number;
   heartbeats: number;
+  clients: number;
 }
 
 export function syncAll(): SyncResult {
-  const results: SyncResult = { tasks: 0, approvals: 0, events: 0, heartbeats: 0 };
+  const results: SyncResult = { tasks: 0, approvals: 0, events: 0, heartbeats: 0, clients: 0 };
 
   const orgs = getOrgs();
   for (const org of orgs) {
     results.tasks += syncTasks(org);
     results.approvals += syncApprovals(org);
+    results.clients += syncClients(org);
 
     // Scan events directory directly for agent subdirs (agents may not exist in state dir)
     const eventsBaseDir = path.join(CTX_ROOT, 'orgs', org, 'analytics', 'events');
