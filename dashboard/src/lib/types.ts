@@ -175,6 +175,23 @@ export interface Lead {
   outreach_sent_at?: string;
   notes?: string;
   source?: string;
+
+// -- Content Types --
+
+export type ContentStatus = 'draft' | 'scheduled' | 'published' | 'archived';
+export type ContentType = 'blog' | 'social' | 'email' | 'video' | 'other';
+
+export interface ContentItem {
+  id: string;
+  org: string;
+  client_slug?: string;
+  title: string;
+  platform?: string;
+  content_type: ContentType;
+  status: ContentStatus;
+  scheduled_date?: string;
+  published_date?: string;
+  notes?: string;
   created_at: string;
   updated_at?: string;
 }

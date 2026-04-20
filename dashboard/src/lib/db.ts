@@ -180,6 +180,24 @@ function initializeSchema(db: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_leads_org ON leads(org);
     CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
 
+    CREATE TABLE IF NOT EXISTS content_items (
+      id TEXT PRIMARY KEY,
+      org TEXT NOT NULL DEFAULT '',
+      client_slug TEXT,
+      title TEXT NOT NULL,
+      platform TEXT,
+      content_type TEXT DEFAULT 'blog',
+      status TEXT NOT NULL DEFAULT 'draft',
+      scheduled_date TEXT,
+      published_date TEXT,
+      notes TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_content_org ON content_items(org);
+    CREATE INDEX IF NOT EXISTS idx_content_status ON content_items(status);
+    CREATE INDEX IF NOT EXISTS idx_content_client ON content_items(client_slug);
+
     -- Rate limit table: persists across server restarts so limits survive hot-reloads
     -- and intentional restarts. reset_at is a Unix timestamp in milliseconds.
     CREATE TABLE IF NOT EXISTS rate_limits (
