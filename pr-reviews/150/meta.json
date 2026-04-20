@@ -1,0 +1,15 @@
+{
+  "pr": 150,
+  "title": "feat(templates): add security agent template",
+  "author": "ClintMoody",
+  "branch": "feat/security-agent-template",
+  "additions": 4463,
+  "deletions": 0,
+  "changed_files": 43,
+  "risk_tier": "LOW",
+  "touched_modules": ["templates/security/"],
+  "pipeline_start": "2026-04-18T04:19:00Z",
+  "stage1_status": "pass",
+  "stage2_status": "pass",
+  "notes": "Purely additive new template directory. No changes to existing code paths. Static analysis only — LOW risk."
+}

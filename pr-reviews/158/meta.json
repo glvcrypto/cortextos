@@ -1,0 +1,15 @@
+{
+  "pr": 158,
+  "title": "feat(skills): services health check in morning review (Phase 0E)",
+  "author": "ClintMoody",
+  "branch": "feat/morning-review-health-check",
+  "additions": 100,
+  "deletions": 0,
+  "changed_files": 2,
+  "risk_tier": "LOW",
+  "touched_modules": ["community/skills/morning-review/SKILL.md", "templates/orchestrator/.claude/skills/morning-review/SKILL.md"],
+  "pipeline_start": "2026-04-18T04:19:00Z",
+  "stage1_status": "pass",
+  "stage2_status": "pass",
+  "notes": "Skill documentation only. No executable code. Static analysis only — LOW risk."
+}

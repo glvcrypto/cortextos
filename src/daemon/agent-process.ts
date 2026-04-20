@@ -540,7 +540,7 @@ export class AgentProcess {
       const docPath = readFileSync(markerPath, 'utf-8').trim();
       unlinkSync(markerPath);
       if (!docPath || !existsSync(docPath)) return '';
-      return ` CONTEXT HANDOFF: Before restoring crons or checking inbox, read the handoff document at ${docPath} to resume your prior session state.`;
+      return ` CONTEXT HANDOFF: Before restoring crons or checking inbox, read the handoff document at ${docPath} to resume your prior session state. HANDOFF UX: This is a context handoff restart — your memory is intact via the handoff doc. Do NOT send "Booting up... one moment" (skip AGENTS.md step 1 entirely). After restoring crons and reading the handoff, send ONE brief conversational message that picks up naturally — e.g. "back — [what you were just working on]". No cron IDs, no status report, no cold-boot phrasing. CRITICAL: Your first Telegram message MUST explicitly tell the user you are back with full memory of the conversation, then immediately follow with a contextually aware response — either confirm you are continuing the work mid-task, or ask the natural next question if you were waiting on them.`;
     } catch {
       return '';
     }
@@ -687,7 +687,7 @@ export class AgentProcess {
     if (!crons || crons.length === 0) return;
 
     const recurringNames = crons
-      .filter(c => c.type !== 'once')
+      .filter(c => c.type !== 'once' && c.type !== 'disabled')
       .map(c => c.name);
     if (recurringNames.length === 0) return;
 
@@ -712,7 +712,7 @@ export class AgentProcess {
 
     // Only monitor recurring crons with a parseable interval (skip cron expressions)
     const monitorable = crons.filter(
-      c => c.type !== 'once' && c.interval && !isNaN(parseDurationMs(c.interval)),
+      c => c.type !== 'once' && c.type !== 'disabled' && c.interval && !isNaN(parseDurationMs(c.interval)),
     );
     if (monitorable.length === 0) return;
 
