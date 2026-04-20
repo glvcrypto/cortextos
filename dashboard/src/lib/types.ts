@@ -155,6 +155,30 @@ export interface GoalsFile {
   daily_focus_set_at?: string; // ISO timestamp when daily_focus was last updated
 }
 
+// -- Lead Types --
+
+export type LeadStatus = 'scouted' | 'researched' | 'contacted' | 'responded' | 'meeting' | 'client' | 'lost';
+export type LeadPriority = 'critical' | 'urgent' | 'high' | 'normal' | 'low';
+
+export interface Lead {
+  id: string;
+  org: string;
+  business_name: string;
+  contact_name?: string;
+  contact_email?: string;
+  phone?: string;
+  niche?: string;
+  area?: string;
+  province?: string;
+  status: LeadStatus;
+  priority: LeadPriority;
+  outreach_sent_at?: string;
+  notes?: string;
+  source?: string;
+  created_at: string;
+  updated_at?: string;
+}
+
 // -- Cost Types --
 
 export interface CostEntry {
