@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useOrg } from '@/hooks/use-org';
-import { IconMail, IconMessageCircle, IconCalendarCheck, IconBuildingStore } from '@tabler/icons-react';
-import type { OutreachSummaryRow, OutreachEvent } from '@/lib/data/outreach';
+import type { OutreachSummaryRow, OutreachEvent, PipelineStageCount } from '@/lib/data/outreach';
 
 interface OutreachStats {
   total_sent: number;
@@ -12,6 +11,14 @@ interface OutreachStats {
   reply_rate: number;
   cities: number;
   industries: number;
+}
+
+interface PipelineData {
+  stages: PipelineStageCount[];
+  total_active: number;
+  cities: string[];
+  industries: string[];
+  tiers: string[];
 }
 
 function StatCard({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
@@ -24,6 +31,36 @@ function StatCard({ label, value, sub }: { label: string; value: string | number
   );
 }
 
+function FilterSelect({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: string[];
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-xs text-muted-foreground whitespace-nowrap">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="text-xs border rounded px-2 py-1 bg-background text-foreground"
+      >
+        <option value="">All</option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 export default function OutreachPage() {
   const { currentOrg } = useOrg();
   const org = currentOrg !== 'all' ? currentOrg : undefined;
@@ -31,26 +68,44 @@ export default function OutreachPage() {
   const [stats, setStats] = useState<OutreachStats | null>(null);
   const [summary, setSummary] = useState<OutreachSummaryRow[]>([]);
   const [events, setEvents] = useState<OutreachEvent[]>([]);
-  const [tab, setTab] = useState<'summary' | 'log'>('summary');
+  const [pipeline, setPipeline] = useState<PipelineData | null>(null);
+  const [tab, setTab] = useState<'pipeline' | 'summary' | 'log'>('pipeline');
   const [loading, setLoading] = useState(true);
+
+  const [filterCity, setFilterCity] = useState('');
+  const [filterIndustry, setFilterIndustry] = useState('');
+  const [filterTier, setFilterTier] = useState('');
 
   useEffect(() => {
     async function load() {
       setLoading(true);
-      const q = org ? `?org=${encodeURIComponent(org)}` : '';
-      const [statsRes, summaryRes, eventsRes] = await Promise.all([
-        fetch(`/api/outreach?view=stats${org ? `&org=${encodeURIComponent(org)}` : ''}`),
-        fetch(`/api/outreach?view=summary${org ? `&org=${encodeURIComponent(org)}` : ''}`),
-        fetch(`/api/outreach?view=events${org ? `&org=${encodeURIComponent(org)}` : ''}`),
+      const oq = org ? `&org=${encodeURIComponent(org)}` : '';
+      const pq = [
+        filterCity ? `&city=${encodeURIComponent(filterCity)}` : '',
+        filterIndustry ? `&industry=${encodeURIComponent(filterIndustry)}` : '',
+        filterTier ? `&tier=${encodeURIComponent(filterTier)}` : '',
+      ].join('');
+
+      const [statsRes, summaryRes, eventsRes, pipelineRes] = await Promise.all([
+        fetch(`/api/outreach?view=stats${oq}`),
+        fetch(`/api/outreach?view=summary${oq}`),
+        fetch(`/api/outreach?view=events${oq}`),
+        fetch(`/api/outreach?view=pipeline${pq}`),
       ]);
-      const [s, sum, ev] = await Promise.all([statsRes.json(), summaryRes.json(), eventsRes.json()]);
+      const [s, sum, ev, pip] = await Promise.all([
+        statsRes.json(),
+        summaryRes.json(),
+        eventsRes.json(),
+        pipelineRes.json(),
+      ]);
       setStats(s);
       setSummary(Array.isArray(sum) ? sum : []);
       setEvents(Array.isArray(ev) ? ev : []);
+      setPipeline(pip && typeof pip === 'object' ? pip : null);
       setLoading(false);
     }
     load();
-  }, [org]);
+  }, [org, filterCity, filterIndustry, filterTier]);
 
   function formatDate(iso: string) {
     if (!iso) return '—';
@@ -59,12 +114,14 @@ export default function OutreachPage() {
 
   const sentEvents = events.filter((e) => e.type === 'email_sent');
 
+  const maxStageCount = Math.max(1, ...(pipeline?.stages.map((s) => s.count) ?? [1]));
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold">Outreach</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Cold email pipeline — sent by the prospector agent.
+          Cold email pipeline — managed by the prospector agent.
         </p>
       </div>
 
@@ -80,20 +137,110 @@ export default function OutreachPage() {
 
       {/* Tabs */}
       <div className="flex gap-1 border-b">
-        {(['summary', 'log'] as const).map((t) => (
+        {(['pipeline', 'summary', 'log'] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors capitalize ${
+            className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
               tab === t
                 ? 'border-primary text-primary'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            {t === 'summary' ? 'By City / Industry' : 'Email Log'}
+            {t === 'pipeline' ? 'Pipeline' : t === 'summary' ? 'By City / Industry' : 'Email Log'}
           </button>
         ))}
       </div>
+
+      {/* Pipeline tab */}
+      {tab === 'pipeline' && (
+        <div className="space-y-4">
+          {/* Filters */}
+          <div className="flex flex-wrap gap-4 items-center">
+            <FilterSelect
+              label="City"
+              value={filterCity}
+              options={pipeline?.cities ?? []}
+              onChange={setFilterCity}
+            />
+            <FilterSelect
+              label="Industry"
+              value={filterIndustry}
+              options={pipeline?.industries ?? []}
+              onChange={setFilterIndustry}
+            />
+            <FilterSelect
+              label="Tier"
+              value={filterTier}
+              options={pipeline?.tiers ?? ['A', 'B', 'C']}
+              onChange={setFilterTier}
+            />
+            {(filterCity || filterIndustry || filterTier) && (
+              <button
+                onClick={() => { setFilterCity(''); setFilterIndustry(''); setFilterTier(''); }}
+                className="text-xs text-muted-foreground hover:text-foreground underline"
+              >
+                Clear filters
+              </button>
+            )}
+            {pipeline && (
+              <span className="text-xs text-muted-foreground ml-auto">
+                {pipeline.total_active} active prospect{pipeline.total_active !== 1 ? 's' : ''}
+              </span>
+            )}
+          </div>
+
+          {/* Stage funnel */}
+          {loading ? (
+            <div className="text-center text-muted-foreground text-sm py-12">Loading...</div>
+          ) : (
+            <div className="rounded-lg border overflow-hidden">
+              <table className="w-full text-sm">
+                <thead className="bg-muted/40 text-muted-foreground text-xs uppercase tracking-wide">
+                  <tr>
+                    <th className="px-4 py-2.5 text-left font-medium w-36">Stage</th>
+                    <th className="px-4 py-2.5 text-right font-medium w-20">Count</th>
+                    <th className="px-4 py-2.5 text-left font-medium">Progress</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {(pipeline?.stages ?? []).map((stage) => {
+                    const pct = Math.round((stage.count / maxStageCount) * 100);
+                    const isMeeting = stage.stage === 'meeting_booked';
+                    return (
+                      <tr key={stage.stage} className={isMeeting ? 'bg-green-50 dark:bg-green-950/20' : 'hover:bg-muted/20 transition-colors'}>
+                        <td className={`px-4 py-3 font-medium ${isMeeting ? 'text-green-700 dark:text-green-400' : ''}`}>
+                          {stage.label}
+                          {isMeeting && ' ★'}
+                        </td>
+                        <td className={`px-4 py-3 text-right tabular-nums font-semibold ${isMeeting ? 'text-green-700 dark:text-green-400' : ''}`}>
+                          {stage.count}
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                              <div
+                                className={`h-full rounded-full transition-all ${isMeeting ? 'bg-green-500' : 'bg-primary/60'}`}
+                                style={{ width: `${pct}%` }}
+                              />
+                            </div>
+                            <span className="text-xs text-muted-foreground w-8 text-right">{pct}%</span>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              {(pipeline?.stages ?? []).every((s) => s.count === 0) && (
+                <div className="px-4 py-8 text-center text-muted-foreground text-sm">
+                  No prospects in pipeline yet. Registry populates as batch sends go out.
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Summary table */}
       {tab === 'summary' && (

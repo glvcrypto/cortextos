@@ -1,6 +1,8 @@
 // cortextOS Dashboard - Outreach data fetcher
 // Reads email_sent / reply_received / meeting_booked events logged by the prospector agent.
 
+import fs from 'fs';
+import path from 'path';
 import { db } from '@/lib/db';
 
 export interface OutreachEvent {
@@ -123,6 +125,129 @@ export function getOutreachSummary(org?: string): OutreachSummaryRow[] {
       };
     })
     .sort((a, b) => b.last_sent.localeCompare(a.last_sent));
+}
+
+// ── Prospect registry (read from file) ──────────────────────────────────────
+
+const REGISTRY_PATH = path.resolve(
+  process.cwd(),
+  '../orgs/glv/agents/prospector/projects/glv-marketing/outreach/prospect-registry.json'
+);
+
+export type ProspectStatus =
+  | 'researched'
+  | 'shortlisted'
+  | 'drafted'
+  | 'approved'
+  | 'sent'
+  | 'replied'
+  | 'meeting_booked'
+  | 'skipped'
+  | 'do_not_contact';
+
+export interface ProspectRecord {
+  prospect_id: string;
+  business_name: string;
+  contact_name: string | null;
+  email: string | null;
+  phone: string | null;
+  channel: string;
+  industry: string;
+  city: string;
+  tier: 'A' | 'B' | 'C';
+  last_contact_at: string | null;
+  batch_id: string | null;
+  status: ProspectStatus;
+  notes: string | null;
+}
+
+function loadRegistry(): ProspectRecord[] {
+  try {
+    const raw = fs.readFileSync(REGISTRY_PATH, 'utf-8');
+    const obj = JSON.parse(raw) as Record<string, Omit<ProspectRecord, 'prospect_id' | 'tier'> & { tier?: 'A' | 'B' | 'C' }>;
+    return Object.entries(obj).map(([id, rec]) => ({
+      ...rec,
+      prospect_id: id,
+      tier: rec.tier ?? 'A',
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export const PIPELINE_STAGES: ProspectStatus[] = [
+  'researched',
+  'shortlisted',
+  'drafted',
+  'approved',
+  'sent',
+  'replied',
+  'meeting_booked',
+];
+
+export const STAGE_LABELS: Record<ProspectStatus, string> = {
+  researched: 'Researched',
+  shortlisted: 'Shortlisted',
+  drafted: 'Copy Drafted',
+  approved: 'Approved',
+  sent: 'Sent',
+  replied: 'Replied',
+  meeting_booked: 'Meeting Booked',
+  skipped: 'Skipped',
+  do_not_contact: 'DNC',
+};
+
+export interface PipelineStageCount {
+  stage: ProspectStatus;
+  label: string;
+  count: number;
+  is_terminal: boolean;
+}
+
+export interface PipelineFilters {
+  city?: string;
+  industry?: string;
+  tier?: 'A' | 'B' | 'C';
+}
+
+export function getOutreachPipeline(filters?: PipelineFilters): {
+  stages: PipelineStageCount[];
+  total_active: number;
+  cities: string[];
+  industries: string[];
+  tiers: string[];
+} {
+  const prospects = loadRegistry();
+
+  const filtered = prospects.filter((p) => {
+    if (filters?.city && p.city !== filters.city) return false;
+    if (filters?.industry && p.industry !== filters.industry) return false;
+    if (filters?.tier && p.tier !== filters.tier) return false;
+    return true;
+  });
+
+  const counts = new Map<ProspectStatus, number>();
+  for (const p of filtered) {
+    counts.set(p.status, (counts.get(p.status) ?? 0) + 1);
+  }
+
+  const stages: PipelineStageCount[] = PIPELINE_STAGES.map((s) => ({
+    stage: s,
+    label: STAGE_LABELS[s],
+    count: counts.get(s) ?? 0,
+    is_terminal: false,
+  }));
+
+  const active = filtered.filter(
+    (p) => p.status !== 'skipped' && p.status !== 'do_not_contact'
+  );
+
+  const all = loadRegistry();
+  const cities = [...new Set(all.map((p) => p.city).filter(Boolean))].sort();
+  const industries = [...new Set(all.map((p) => p.industry).filter(Boolean))].sort();
+  const tiers = [...new Set(all.map((p) => p.tier).filter(Boolean))].sort();
+
+  return { stages, total_active: active.length, cities, industries, tiers };
 }
 
 export function getOutreachStats(org?: string): {
