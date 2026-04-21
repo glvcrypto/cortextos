@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import Link from 'next/link';
 import { useOrg } from '@/hooks/use-org';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -263,7 +264,7 @@ export default function ClientsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold">Client Pipeline</h1>
+          <h1 className="text-xl font-semibold">Clients</h1>
           <p className="text-sm text-muted-foreground mt-0.5">
             {clients.length} client{clients.length !== 1 ? 's' : ''} · ${totalMrr.toLocaleString()}/mo MRR
           </p>
@@ -275,6 +276,19 @@ export default function ClientsPage() {
           <IconRefresh size={14} />
           Refresh
         </button>
+      </div>
+
+      {/* Per-client tabs */}
+      <div className="flex items-center gap-1 border-b border-border -mb-3">
+        <span className="px-3 py-2 text-sm font-medium border-b-2 border-primary text-primary -mb-px">
+          All Clients
+        </span>
+        <Link
+          href="/clients/reyco-marine"
+          className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          Reyco
+        </Link>
       </div>
 
       {loading && (
