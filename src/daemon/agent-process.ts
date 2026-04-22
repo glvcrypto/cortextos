@@ -748,6 +748,13 @@ export class AgentProcess {
 
     const stateDir = join(this.env.ctxRoot, 'state', this.name);
 
+    // Track when each cron was last nudged so we don't re-fire on every poll cycle.
+    // A nudge is suppressed until the cron's own interval has elapsed since the last
+    // nudge — this gives the agent one full expected period to respond before we ask
+    // again. Without this, a stale cron-state.json causes a nudge every 10 minutes
+    // indefinitely (false-positive storm).
+    const lastNudgedAt = new Map<string, number>();
+
     // Initial wait — give the agent time to boot and register crons before first check
     await sleep(GAP_POLL_MS);
 
@@ -777,6 +784,12 @@ export class AgentProcess {
         const threshold = intervalMs * GAP_MULTIPLIER;
 
         if (gapMs > threshold) {
+          // Suppress repeat nudges: skip if we already nudged within 1x the cron's
+          // own interval. The agent has had that long to respond; nudging every 10min
+          // is noise and masks legitimate gaps behind false-positive fatigue.
+          const nudgedAt = lastNudgedAt.get(cronDef.name) ?? 0;
+          if (now - nudgedAt < intervalMs) continue;
+
           const gapMin = Math.round(gapMs / 60_000);
           const expectedMin = Math.round(intervalMs / 60_000);
           const nudge = `[SYSTEM] Cron gap detected for "${cronDef.name}": last fired ${gapMin} minutes ago (expected every ${expectedMin} minutes). Run CronList to verify the cron is still active. If missing, restore it from config.json: /loop ${cronDef.interval} <cron prompt>.`;
@@ -784,6 +797,7 @@ export class AgentProcess {
           this.log(`Gap nudge: ${cronDef.name} silent ${gapMin}min (threshold: ${Math.round(threshold / 60_000)}min)`);
           if (this.pty && this.status === 'running') {
             injectMessage((data) => this.pty?.write(data), nudge);
+            lastNudgedAt.set(cronDef.name, now);
             // Stagger: wait between nudges so the agent can process each one
             // before the next arrives. Without this, N simultaneous stale crons
             // fire N back-to-back injections, spiking context and triggering
