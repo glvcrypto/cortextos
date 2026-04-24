@@ -85,6 +85,7 @@ export interface Approval {
   agent: string;
   org: string;
   created_at: string;
+  queued_at?: string;
   resolved_at?: string;
   resolved_by?: string;
   resolution_note?: string;

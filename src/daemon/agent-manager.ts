@@ -277,6 +277,37 @@ export class AgentManager {
     // and nudges the agent if any cron has been silent >2x its expected interval.
     agentProcess.scheduleGapDetection();
 
+    // Schedule context watchdog: polls JSONL every 2 min and sends a Telegram
+    // advisory at 55% context fill so the user can trigger /compact early.
+    if (telegramApi && botToken && chatId) {
+      const tgChatId = chatId;
+      const tgBotToken = botToken;
+      const { tickCtxWatchdog } = await import('./ctx-watchdog.js');
+      const { logEvent } = await import('../bus/event.js');
+      const CTX_WATCHDOG_INTERVAL_MS = 2 * 60 * 1000;
+      const ctxWatchdogTimer = setInterval(() => {
+        tickCtxWatchdog(
+          agentProcess.precompactAlertSent,
+          (v) => { agentProcess.precompactAlertSent = v; },
+          {
+            botToken: tgBotToken,
+            chatId: tgChatId,
+            agentName: name,
+            agentDir: env.agentDir,
+            logEventFn: (category, eventName, severity, meta) => {
+              logEvent(paths, name, env.org, category as any, eventName, severity as any, meta);
+            },
+          },
+        ).catch(() => { /* non-fatal */ });
+      }, CTX_WATCHDOG_INTERVAL_MS);
+      // Clear on agent stop so intervals don't leak across restarts
+      agentProcess.onStatusChanged((status) => {
+        if (status.status === 'stopped' || status.status === 'halted') {
+          clearInterval(ctxWatchdogTimer);
+        }
+      });
+    }
+
     // Start fast checker in background
     checker.start().catch(err => {
       console.error(`[${name}] Fast checker error:`, err);

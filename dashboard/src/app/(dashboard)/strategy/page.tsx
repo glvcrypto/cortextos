@@ -6,6 +6,7 @@ import { fetchGoals, fetchGoalHistory } from '@/lib/actions/goals';
 import { BottleneckSection } from '@/components/strategy/bottleneck-section';
 import { GoalsList } from '@/components/strategy/goals-list';
 import { GoalHistory } from '@/components/strategy/goal-history';
+import { ProposalKPICard } from '@/components/strategy/ProposalKPICard';
 import type { Goal } from '@/lib/types';
 
 export default function StrategyPage() {
@@ -105,6 +106,10 @@ export default function StrategyPage() {
         org={effectiveOrg}
         onRefresh={loadData}
       />
+
+      <div className="max-w-sm">
+        <ProposalKPICard />
+      </div>
 
       <GoalHistory events={history} />
     </div>
