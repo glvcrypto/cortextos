@@ -370,6 +370,7 @@ export default function AccountingPage() {
   const [cashOpen, setCashOpen] = useState(false);
   const [cashDismissed, setCashDismissed] = useState(false);
   const [activeTab, setActiveTab] = useState('transactions');
+  const [schedules, setSchedules] = useState<RecurringSchedule[]>([]);
   const [dirFilter, setDirFilter] = useState<'all' | 'expense' | 'income'>('all');
   const [typeFilter, setTypeFilter] = useState<'all' | 'one_time' | 'subscription' | 'invoice'>('all');
 
@@ -380,21 +381,23 @@ export default function AccountingPage() {
     const qs = `org=${encodeURIComponent(org)}`;
     const rangeQs = (from ? `&from=${from}` : '') + (to ? `&to=${to}` : '');
     try {
-      const [sumRes, monthRes, catRes, txnRes, catListRes] = await Promise.all([
+      const [sumRes, monthRes, catRes, txnRes, catListRes, schedRes] = await Promise.all([
         fetch(`/api/expenses?view=summary&${qs}`),
         fetch(`/api/expenses?view=monthly&months=12&${qs}`),
         fetch(`/api/expenses?view=categories&direction=expense&${qs}${rangeQs}`),
         fetch(`/api/expenses?${qs}${rangeQs}&limit=500`),
         fetch(`/api/expenses?view=category-list&${qs}`),
+        fetch(`/api/subscriptions?${qs}`),
       ]);
-      const [sum, mon, cat, txns, catList] = await Promise.all([
-        sumRes.json(), monthRes.json(), catRes.json(), txnRes.json(), catListRes.json(),
+      const [sum, mon, cat, txns, catList, sched] = await Promise.all([
+        sumRes.json(), monthRes.json(), catRes.json(), txnRes.json(), catListRes.json(), schedRes.json(),
       ]);
       setSummary(sum);
       setMonthly(mon.monthly ?? []);
       setCategoryBreakdown(cat.categories ?? []);
       setTransactions(txns.transactions ?? []);
       setCategories(catList.categories ?? []);
+      setSchedules(sched.schedules ?? []);
     } finally {
       setLoading(false);
     }
@@ -593,6 +596,10 @@ export default function AccountingPage() {
               <Badge variant="destructive" className="ml-1.5 text-xs">{outstandingInvoices.length}</Badge>
             )}
           </TabsTrigger>
+          <TabsTrigger value="subscriptions">
+            Subscriptions
+            <Badge variant="secondary" className="ml-1.5 text-xs">{schedules.filter((s) => s.active).length}</Badge>
+          </TabsTrigger>
         </TabsList>
 
         {/* Filters bar */}
@@ -722,6 +729,71 @@ export default function AccountingPage() {
                     </tr>
                   );
                 })}
+              </tbody>
+            </table>
+          </div>
+        </TabsContent>
+
+        {/* Subscriptions tab */}
+        <TabsContent value="subscriptions" className="mt-3">
+          <div className="rounded-lg border overflow-hidden">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-muted/50 text-xs text-muted-foreground">
+                  <th className="text-left p-3 font-medium">Vendor</th>
+                  <th className="text-left p-3 font-medium hidden sm:table-cell">Cadence</th>
+                  <th className="text-left p-3 font-medium hidden md:table-cell">Next bill</th>
+                  <th className="text-left p-3 font-medium hidden md:table-cell">Category</th>
+                  <th className="text-left p-3 font-medium hidden lg:table-cell">Direction</th>
+                  <th className="text-right p-3 font-medium">Amount</th>
+                  <th className="text-right p-3 font-medium hidden sm:table-cell">~/mo</th>
+                  <th className="text-left p-3 font-medium">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loading ? (
+                  <tr><td colSpan={8} className="text-center p-8 text-muted-foreground">Loading…</td></tr>
+                ) : schedules.length === 0 ? (
+                  <tr><td colSpan={8} className="text-center p-8 text-muted-foreground">No recurring schedules</td></tr>
+                ) : schedules.map((s) => (
+                  <tr key={s.id} className="border-t hover:bg-muted/30 transition-colors">
+                    <td className="p-3">
+                      <span className="font-medium">{s.vendor}</span>
+                      {s.description && <p className="text-xs text-muted-foreground truncate max-w-[180px]">{s.description}</p>}
+                    </td>
+                    <td className="p-3 hidden sm:table-cell">
+                      <span className="text-xs capitalize text-muted-foreground">{s.cadence}</span>
+                    </td>
+                    <td className="p-3 hidden md:table-cell tabular-nums text-xs">{s.next_bill_date}</td>
+                    <td className="p-3 hidden md:table-cell">
+                      {(s as RecurringSchedule & { category_name?: string; category_color?: string }).category_name ? (
+                        <span className="flex items-center gap-1.5 text-xs">
+                          {(s as RecurringSchedule & { category_color?: string }).category_color && (
+                            <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: (s as RecurringSchedule & { category_color?: string }).category_color! }} />
+                          )}
+                          {(s as RecurringSchedule & { category_name?: string }).category_name}
+                        </span>
+                      ) : <span className="text-muted-foreground text-xs">—</span>}
+                    </td>
+                    <td className="p-3 hidden lg:table-cell">
+                      <span className={`text-xs capitalize ${s.direction === 'income' ? 'text-emerald-600' : 'text-red-600'}`}>{s.direction}</span>
+                    </td>
+                    <td className="p-3 text-right tabular-nums font-semibold">
+                      {cents(s.amount_cents)}
+                      {s.currency !== 'CAD' && <span className="ml-1 text-xs text-muted-foreground">{s.currency}</span>}
+                    </td>
+                    <td className="p-3 text-right tabular-nums text-xs text-muted-foreground hidden sm:table-cell">
+                      {(s as RecurringSchedule & { monthly_equivalent_cents?: number }).monthly_equivalent_cents != null
+                        ? cents((s as RecurringSchedule & { monthly_equivalent_cents?: number }).monthly_equivalent_cents!)
+                        : '—'}
+                    </td>
+                    <td className="p-3">
+                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${s.active ? 'bg-emerald-100 text-emerald-800' : 'bg-muted text-muted-foreground'}`}>
+                        {s.active ? 'active' : 'inactive'}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
