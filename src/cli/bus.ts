@@ -12,6 +12,7 @@ import { selfRestart, hardRestart, autoCommit, checkGoalStaleness, postActivity 
 import { createExperiment, runExperiment, evaluateExperiment, listExperiments, gatherContext, manageCycle, loadExperimentConfig } from '../bus/experiment.js';
 import { browseCatalog, installCommunityItem, prepareSubmission, submitCommunityItem } from '../bus/catalog.js';
 import { collectMetrics, parseUsageOutput, storeUsageData, checkUpstream, collectTelegramCommands, registerTelegramCommands } from '../bus/metrics.js';
+import { fetchFxRates } from '../bus/fx-fetcher.js';
 import { createApproval, updateApproval } from '../bus/approval.js';
 import { createReminder, listReminders, ackReminder, pruneReminders } from '../bus/reminders.js';
 import { updateCronFire } from '../bus/cron-state.js';
@@ -890,6 +891,22 @@ busCommand
     const env = resolveEnv();
     const report = collectMetrics(env.ctxRoot, env.org || undefined);
     console.log(JSON.stringify(report, null, 2));
+  });
+
+busCommand
+  .command('fetch-fx-rates')
+  .description('Fetch Bank of Canada USD/CAD noon rate and append to analytics/fx_rates.jsonl')
+  .option('--recent <n>', 'Number of recent observations to fetch (default 1)', '1')
+  .action(async (opts: { recent: string }) => {
+    const env = resolveEnv();
+    const recent = Number.parseInt(opts.recent, 10);
+    if (!Number.isFinite(recent) || recent < 1) {
+      console.error(`Invalid --recent value '${opts.recent}'. Must be a positive integer.`);
+      process.exit(1);
+    }
+    const result = await fetchFxRates(env.ctxRoot, { recent });
+    console.log(JSON.stringify(result, null, 2));
+    if (result.status === 'error') process.exit(1);
   });
 
 busCommand
