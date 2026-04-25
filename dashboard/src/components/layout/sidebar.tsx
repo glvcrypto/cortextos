@@ -24,6 +24,7 @@ import {
   IconPlugConnected,
   IconAddressBook,
   IconCalendarEvent,
+  IconReceipt,
 } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -46,6 +47,7 @@ const navItems: NavItem[] = [
 
   // Operations
   { label: 'Clients', href: '/clients', icon: IconUsers, section: 'ops' },
+  { label: 'Expenses', href: '/expenses', icon: IconReceipt, section: 'ops' },
   { label: 'Outreach', href: '/outreach', icon: IconMail, section: 'ops' },
   { label: 'Leads', href: '/leads', icon: IconAddressBook, section: 'ops' },
   { label: 'Content', href: '/content', icon: IconCalendarEvent, section: 'ops' },
