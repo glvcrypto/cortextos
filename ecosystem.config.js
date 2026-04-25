@@ -17,6 +17,7 @@ module.exports = {
         CTX_FRAMEWORK_ROOT: "/home/aiden/cortextos",
         CTX_PROJECT_ROOT: "/home/aiden/cortextos",
         CTX_ORG: process.env.CTX_ORG || "glv",
+        PATH: "/home/aiden/.nvm/versions/node/v20.20.2/bin:" + (process.env.PATH || "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"),
       },
       max_restarts: 50,
       restart_delay: 5000,
@@ -29,6 +30,7 @@ module.exports = {
       cwd: "/home/aiden/cortextos/dashboard",
       env: {
         PORT: process.env.PORT || '3000',
+        PATH: "/home/aiden/.nvm/versions/node/v20.20.2/bin:" + (process.env.PATH || "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"),
       },
       // Dashboard reads its real config from dashboard/.env.local — populated
       // by /onboarding Phase 7. PM2 just supervises the npm process.
