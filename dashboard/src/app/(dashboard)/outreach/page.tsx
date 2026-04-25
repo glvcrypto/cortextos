@@ -37,7 +37,6 @@ export default function OutreachPage() {
   useEffect(() => {
     async function load() {
       setLoading(true);
-      const q = org ? `?org=${encodeURIComponent(org)}` : '';
       const [statsRes, summaryRes, eventsRes] = await Promise.all([
         fetch(`/api/outreach?view=stats${org ? `&org=${encodeURIComponent(org)}` : ''}`),
         fetch(`/api/outreach?view=summary${org ? `&org=${encodeURIComponent(org)}` : ''}`),
@@ -50,6 +49,8 @@ export default function OutreachPage() {
       setLoading(false);
     }
     load();
+    const interval = setInterval(load, 30_000);
+    return () => clearInterval(interval);
   }, [org]);
 
   function formatDate(iso: string) {

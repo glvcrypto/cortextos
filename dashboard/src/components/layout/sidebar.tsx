@@ -18,6 +18,12 @@ import {
   IconClock,
   IconTarget,
   IconMessages,
+  IconUsers,
+  IconMail,
+  IconTerminal2,
+  IconPlugConnected,
+  IconAddressBook,
+  IconCalendarEvent,
 } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -39,11 +45,18 @@ const navItems: NavItem[] = [
   { label: 'Activity', href: '/activity', icon: IconActivity, section: 'core' },
 
   // Operations
+  { label: 'Clients', href: '/clients', icon: IconUsers, section: 'ops' },
+  { label: 'Outreach', href: '/outreach', icon: IconMail, section: 'ops' },
+  { label: 'Leads', href: '/leads', icon: IconAddressBook, section: 'ops' },
+  { label: 'Content', href: '/content', icon: IconCalendarEvent, section: 'ops' },
   { label: 'Comms', href: '/comms', icon: IconMessages, section: 'ops' },
+  { label: 'Commands', href: '/commands', icon: IconTerminal2, section: 'ops' },
   { label: 'Approvals', href: '/approvals', icon: IconShieldCheck, section: 'ops' },
   { label: 'Workflows', href: '/workflows', icon: IconClock, section: 'ops' },
   { label: 'Strategy', href: '/strategy', icon: IconTarget, section: 'ops' },
   { label: 'Analytics', href: '/analytics', icon: IconChartDots3, section: 'ops' },
+
+  { label: 'MCP', href: '/mcp', icon: IconPlugConnected, section: 'ops' },
 
   // Intelligence
   { label: 'Knowledge Base', href: '/knowledge-base', icon: IconBook2, section: 'intel' },
