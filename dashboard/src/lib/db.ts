@@ -58,6 +58,8 @@ function initializeSchema(db: Database.Database): void {
   addCol('ALTER TABLE recurring_schedules ADD COLUMN counterparty_email TEXT');
   addCol('ALTER TABLE receipts ADD COLUMN kind TEXT NOT NULL DEFAULT \'vendor_receipt\'');
   addCol('ALTER TABLE receipts ADD COLUMN recipient_email TEXT');
+  addCol("ALTER TABLE receipts ADD COLUMN org TEXT NOT NULL DEFAULT 'glv'");
+  addCol("ALTER TABLE fx_rates ADD COLUMN org TEXT NOT NULL DEFAULT 'glv'");
 
   db.exec(`
     CREATE TABLE IF NOT EXISTS tasks (
