@@ -32,11 +32,11 @@
 
 | Cluster | Examples |
 |---------|---------|
-| Keyword research | gap check (Jul 3), free tools (Jun 25) |
-| GBP optimization | call tracking (Jun 18), rating vs website (Jul 6) |
+| Keyword research | gap check (Jul 3), free tools (Jun 25), competitor keywords (Jul 9) |
+| GBP optimization | call tracking (Jun 18), rating vs website (Jul 6), GBP checklist (Jul 8), GBP photo category (Jul 13), GBP post strategy (Jul 16) |
 | Citation/NAP | NAP consistency (Jun 26) |
 | Review generation | system (Jul 7), Google rating (Jul 6) |
-| Client reporting | 3-sentence check-in (Jun 19) |
+| Client reporting | 3-sentence check-in (Jun 19), GSC monthly reports (Jul 20) |
 | Agency/pricing | solo agency pricing (Jun 17) |
 | Client vetting | 5 questions (Jun 30) |
 | AI tools | tools I actually use (Jul 2) |
@@ -44,6 +44,11 @@
 | First 30 days | quick wins (Jun 29) |
 | Pre-pitch audit | 10-minute audit (Jun 24) |
 | Citation audit | 2-minute check (Jun 20) |
+| Local landing pages | one page per service+city (Jul 15) |
+| Rank checking | incognito + map pack vs organic (Jul 17) |
+| Schema markup | LocalBusiness @type + Rich Results Test (Jul 21) |
+| Ranking for own name | diagnostic + one-page-per-service fix (Jul 10) |
+| Local SEO audit | 7-check pre-call audit (Jul 14) |
 
 ### CTA keyword map
 
@@ -63,6 +68,14 @@
 | Jul 3 | GAP | manual |
 | Jul 6 | REVIEWS | manual |
 | Jul 7 | REVIEWS | manual |
+| Jul 8 | GBP | manual |
+| Jul 9 | COMPETE | manual |
+| Jul 13 | PHOTO | manual |
+| Jul 14 | AUDIT | manual |
+| Jul 16 | POSTS | manual |
+| Jul 17 | RANK | manual |
+| Jul 20 | GSC | manual |
+| Jul 21 | SCHEMA | manual |
 
 ## Reyco Marine Content
 
