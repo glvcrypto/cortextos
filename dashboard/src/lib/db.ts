@@ -47,6 +47,18 @@ function createDatabase(): Database.Database {
 }
 
 function initializeSchema(db: Database.Database): void {
+  // v1.1 column migrations — run before the full exec so new indexes/views don't fail
+  // ALTER TABLE ADD COLUMN throws "duplicate column" if column exists; we catch and ignore.
+  const addCol = (sql: string) => { try { db.exec(sql); } catch { /* already present */ } };
+  addCol('ALTER TABLE transactions ADD COLUMN paid_at TEXT');
+  addCol('ALTER TABLE transactions ADD COLUMN tax_cents INTEGER');
+  addCol('ALTER TABLE transactions ADD COLUMN tax_rate REAL');
+  addCol('ALTER TABLE transactions ADD COLUMN payment_reference TEXT');
+  addCol('ALTER TABLE transactions ADD COLUMN counterparty_email TEXT');
+  addCol('ALTER TABLE recurring_schedules ADD COLUMN counterparty_email TEXT');
+  addCol('ALTER TABLE receipts ADD COLUMN kind TEXT NOT NULL DEFAULT \'vendor_receipt\'');
+  addCol('ALTER TABLE receipts ADD COLUMN recipient_email TEXT');
+
   db.exec(`
     CREATE TABLE IF NOT EXISTS tasks (
       id TEXT PRIMARY KEY,
