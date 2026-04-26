@@ -442,7 +442,13 @@ export default function AccountingPage() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={() => window.open(`/api/expenses?view=csv&org=${org}`, '_blank')}>
+          <Button variant="outline" size="sm" onClick={() => {
+            const qs = new URLSearchParams({ view: 'csv', org });
+            if (from) qs.set('from', from);
+            if (to) qs.set('to', to);
+            if (dirFilter !== 'all') qs.set('direction', dirFilter);
+            window.open(`/api/expenses?${qs}`, '_blank');
+          }}>
             <IconDownload className="w-4 h-4 mr-1.5" />
             Export CSV
           </Button>

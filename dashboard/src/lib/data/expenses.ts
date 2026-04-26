@@ -450,6 +450,61 @@ export function getLastCashSnapshotAge(org: string): number | null {
   return Math.floor(daysDiff);
 }
 
+export function exportTransactionsCSV(org: string, opts?: { from?: string; to?: string; direction?: 'expense' | 'income' }): string {
+  let sql = `
+    SELECT t.*, c.name AS category_name
+    FROM transactions t
+    LEFT JOIN categories c ON c.id = t.category_id
+    WHERE t.org = ?
+  `;
+  const params: unknown[] = [org];
+  if (opts?.direction) { sql += ' AND t.direction = ?'; params.push(opts.direction); }
+  if (opts?.from) { sql += ' AND t.date >= ?'; params.push(opts.from); }
+  if (opts?.to) { sql += ' AND t.date <= ?'; params.push(opts.to); }
+  sql += ' ORDER BY t.date DESC, t.id DESC';
+
+  const rows = db.prepare(sql).all(...params) as (Record<string, unknown> & { id: number })[];
+
+  const tagMap = new Map<number, string>();
+  if (rows.length > 0) {
+    const ids = rows.map((r) => r.id);
+    const tagRows = db.prepare(`
+      SELECT tt.transaction_id, t.name FROM transaction_tags tt
+      JOIN tags t ON t.id = tt.tag_id
+      WHERE tt.transaction_id IN (${ids.map(() => '?').join(',')})
+    `).all(...ids) as { transaction_id: number; name: string }[];
+    for (const tr of tagRows) {
+      const prev = tagMap.get(tr.transaction_id);
+      tagMap.set(tr.transaction_id, prev ? `${prev};${tr.name}` : tr.name);
+    }
+  }
+
+  const headers = ['id','date','paid_at','direction','transaction_type',
+    'amount','currency','vendor','description','category','status',
+    'payment_method','payment_reference','counterparty_email',
+    'invoice_number','invoice_due_date','notes','tags','source','created_at'];
+
+  const esc = (v: unknown) => {
+    if (v == null) return '';
+    const s = String(v);
+    return s.includes(',') || s.includes('"') || s.includes('\n') ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+
+  const lines = [headers.join(',')];
+  for (const r of rows) {
+    lines.push([
+      r.id, r.date, r.paid_at ?? '', r.direction, r.transaction_type,
+      ((r.amount_cents as number) / 100).toFixed(2), r.currency,
+      r.vendor ?? '', r.description ?? '', r.category_name ?? '',
+      r.status, r.payment_method ?? '', r.payment_reference ?? '',
+      r.counterparty_email ?? '', r.invoice_number ?? '', r.invoice_due_date ?? '',
+      r.notes ?? '', tagMap.get(r.id) ?? '',
+      r.source, r.created_at,
+    ].map(esc).join(','));
+  }
+  return lines.join('\r\n');
+}
+
 export function updateCashBalance(org: string, balance_cents: number, notes?: string): void {
   const today = new Date().toISOString().slice(0, 10);
   db.prepare(`
