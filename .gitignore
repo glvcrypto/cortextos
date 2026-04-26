@@ -10,7 +10,10 @@ dist/
 ecosystem.config.js
 
 # User-created org data (not part of the framework)
-orgs/
+# Use orgs/* (not orgs/) so specific orgs can be un-ignored below
+orgs/*
+# GLV org data is committed in this private fork
+!orgs/glv
 # But community subdirectories ARE part of the framework
 !community/
 !community/**
@@ -23,6 +26,8 @@ templates/*/.env
 
 # Agent runtime data
 orgs/*/agents/*/memory/
+# GLV agent memory IS committed in this private fork
+!orgs/glv/agents/*/memory/
 agents/*/local/
 agents/*/telegram-images/
 agents/*/memory/
