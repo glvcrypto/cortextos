@@ -13,6 +13,7 @@ import {
   getLastCashSnapshotAge,
   updateCashBalance,
   syncFxRates,
+  exportTransactionsCSV,
 } from '@/lib/data/expenses';
 
 export async function GET(req: NextRequest) {
@@ -68,6 +69,20 @@ export async function GET(req: NextRequest) {
   if (view === 'sync-fx') {
     syncFxRates();
     return NextResponse.json({ ok: true });
+  }
+
+  if (view === 'csv') {
+    const direction = searchParams.get('direction') as 'expense' | 'income' | undefined ?? undefined;
+    const from = searchParams.get('from') ?? undefined;
+    const to = searchParams.get('to') ?? undefined;
+    const csv = exportTransactionsCSV(org, { direction, from, to });
+    const filename = `transactions-${org}-${new Date().toISOString().slice(0, 10)}.csv`;
+    return new Response(csv, {
+      headers: {
+        'Content-Type': 'text/csv; charset=utf-8',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+      },
+    });
   }
 
   const direction = searchParams.get('direction') as 'expense' | 'income' | undefined ?? undefined;
