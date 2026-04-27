@@ -66,6 +66,11 @@
 | Seasonal SEO timing | 8-week lead time for new pages, GBP posts for in-season visibility (Aug 21) |
 | Local conversion tracking | 4 free numbers: GBP calls, directions, website clicks, GSC service clicks (Aug 24) |
 | Monthly client report structure | one-page, 6 sections, what to leave off (Aug 25) |
+| SAB local SEO | GBP setup for service area businesses — address hidden, service areas by city (Aug 26) |
+| GBP category strategy | primary vs. secondary selection, competitor research via Google Maps (Aug 27) |
+| Service page writing formula | title tag + H1 + first paragraph formula (Aug 28) |
+| Review generation hierarchy | in-person ask → QR code → same-day text → email (Aug 31) |
+| New client site takeover | 5-check first-session diagnostic: GSC, Manual Actions, indexation, redirect chains, GBP URL (Sep 1) |
 
 ### CTA keyword map
 
@@ -116,6 +121,11 @@
 | Aug 21 | open comment | n/a |
 | Aug 24 | TRACK | manual |
 | Aug 25 | FORMAT | manual |
+| Aug 26 | SAB | manual |
+| Aug 27 | CATEGORY | manual |
+| Aug 28 | open comment | n/a |
+| Aug 31 | ASK | manual |
+| Sep 1 | TAKEOVER | manual |
 
 ## Reyco Marine Content
 
