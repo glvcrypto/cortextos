@@ -61,6 +61,11 @@
 | Local pack vs. organic | two separate ranking systems on one SERP (Aug 14) |
 | Competitor GBP analysis | 3-check gap opportunity framework — reviews, photos, completeness (Aug 17) |
 | Client onboarding workflow | week 1 diagnostic — day-by-day checklist (Aug 18) |
+| GBP offer post conversion | offer post format that drives calls — service + deadline + link (Aug 19) |
+| GSC zero-impressions diagnosis | thin content vs. cannibalisation 5-minute test (Aug 20) |
+| Seasonal SEO timing | 8-week lead time for new pages, GBP posts for in-season visibility (Aug 21) |
+| Local conversion tracking | 4 free numbers: GBP calls, directions, website clicks, GSC service clicks (Aug 24) |
+| Monthly client report structure | one-page, 6 sections, what to leave off (Aug 25) |
 
 ### CTA keyword map
 
@@ -106,6 +111,11 @@
 | Aug 14 | open comment | n/a |
 | Aug 17 | BENCHMARK | manual |
 | Aug 18 | ONBOARD | manual |
+| Aug 19 | OFFER | manual |
+| Aug 20 | IMPRESSIONS | manual |
+| Aug 21 | open comment | n/a |
+| Aug 24 | TRACK | manual |
+| Aug 25 | FORMAT | manual |
 
 ## Reyco Marine Content
 
