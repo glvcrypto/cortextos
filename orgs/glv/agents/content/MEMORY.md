@@ -28,15 +28,15 @@
 - 2× reel (Wed + one other)
 - 1× LinkedIn text + IG static
 
-### Topic clusters covered (as of session 18)
+### Topic clusters covered (as of session 22)
 
 | Cluster | Examples |
 |---------|---------|
 | Keyword research | gap check (Jul 3), free tools (Jun 25), competitor keywords (Jul 9) |
-| GBP optimization | call tracking (Jun 18), rating vs website (Jul 6), GBP checklist (Jul 8), GBP photo category (Jul 13), GBP post strategy (Jul 16) |
+| GBP optimization | call tracking (Jun 18), rating vs website (Jul 6), GBP checklist (Jul 8), GBP photo category (Jul 13), GBP post strategy (Jul 16), GBP Q&A (Jul 22), GBP setup from scratch (Jul 23), GBP suspension recovery (Jul 29) |
 | Citation/NAP | NAP consistency (Jun 26) |
-| Review generation | system (Jul 7), Google rating (Jul 6) |
-| Client reporting | 3-sentence check-in (Jun 19), GSC monthly reports (Jul 20) |
+| Review generation | system (Jul 7), Google rating (Jul 6), review response system (Jul 27) |
+| Client reporting | 3-sentence check-in (Jun 19), GSC monthly reports (Jul 20), metrics that matter vs. metrics to drop (Aug 3) |
 | Agency/pricing | solo agency pricing (Jun 17) |
 | Client vetting | 5 questions (Jun 30) |
 | AI tools | tools I actually use (Jul 2) |
@@ -44,11 +44,13 @@
 | First 30 days | quick wins (Jun 29) |
 | Pre-pitch audit | 10-minute audit (Jun 24) |
 | Citation audit | 2-minute check (Jun 20) |
-| Local landing pages | one page per service+city (Jul 15) |
-| Rank checking | incognito + map pack vs organic (Jul 17) |
+| Local landing pages | one page per service+city (Jul 15, Jul 24), areas-served page (Jul 31) |
+| Rank checking | incognito + map pack vs organic (Jul 17), Google Maps rank check (Aug 4) |
 | Schema markup | LocalBusiness @type + Rich Results Test (Jul 21) |
 | Ranking for own name | diagnostic + one-page-per-service fix (Jul 10) |
 | Local SEO audit | 7-check pre-call audit (Jul 14) |
+| On-page SEO | service page ranking (Jul 24), on-page check (Jul 28) |
+| Technical SEO / site structure | internal linking hub-and-spoke (Jul 30) |
 
 ### CTA keyword map
 
@@ -76,6 +78,14 @@
 | Jul 17 | RANK | manual |
 | Jul 20 | GSC | manual |
 | Jul 21 | SCHEMA | manual |
+| Jul 22 | Q&A | manual |
+| Jul 23 | SETUP | manual |
+| Jul 27 | RESPOND | manual |
+| Jul 28 | ONPAGE | manual |
+| Jul 29 | SUSPEND | manual |
+| Jul 30 | LINKS | manual |
+| Aug 3 | REPORT | manual |
+| Aug 4 | MAPS | manual |
 
 ## Reyco Marine Content
 

@@ -55,7 +55,7 @@ When running as a cloud/remote session (no local daemon):
 8. **Jun 15** → proposals experiment data from Aiden
 9. **Jun 17 Slide 6** → price ranges from Aiden before scheduling
 
-## Calendar Status (as of 2026-04-26, session 18)
+## Calendar Status (as of 2026-04-27, session 22)
 
 | Period | Status |
 |--------|--------|
@@ -64,7 +64,11 @@ When running as a cloud/remote session (no local daemon):
 | Jun 22–23 | Skip |
 | Jun 24–30 | Drafted ✓ |
 | Jul 1–7 | Drafted ✓ |
-| Jul 8+ | Needs ideation |
+| Jul 8–14 | Drafted ✓ |
+| Jul 15–21 | Drafted ✓ |
+| Jul 22–28 | Drafted ✓ |
+| Jul 29–Aug 4 | Drafted ✓ |
+| Aug 5+ | Needs ideation |
 
 ## Repos
 
