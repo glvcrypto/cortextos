@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-04-26_
+_Last updated: 2026-04-27_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -8,10 +8,12 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #19 | feat(accounting): expense tracking dashboard + fx-fetcher CLI | Task #19 — clean cherry-pick, 7 commits. Build clean. |
 | #17 | fix(heartbeat): Option A — add update-cron-fire to template Step 1 | Merge with #14 for full FP elimination |
 | #14 | fix(daemon): Option B — seed cron-state.json at startup | Merge with #17 |
 | #16 | fix(ecosystem): pin node bin dir into PATH | Fleet-verified on 12 agents |
 | #15 | feat: 3 scout specs (approval queue aging, ctx pre-alert, proposal KPI) | User-approved specs |
+| #18 | feat(prospector): n8n Gmail send workflow | active: false until Aiden approves + SPF/DKIM verified |
 
 ## Priority 2 — Active Workstreams
 
@@ -32,9 +34,9 @@ These PRs are complete and tested. Waiting for merge approval.
 | #7 | sync: upstream 17-commit merge | Aiden merge decision |
 | #8 | feat(dashboard): Clients/Reyco tabs | Depends on #7 merge order? |
 | #11 | fix(auto-commit): gate .db + .gitignore (draft) | Sync #7 sequencing |
+| #20 | feat(community): add page-by-page-audit skill | Can merge independently (docs only) |
 | #10 | docs(cron): loop skill cron-fire protocol | Can merge independently |
 | #6 | chore: .gitignore .db artifacts | Can merge independently |
-| #18 | feat(prospector): n8n Gmail send workflow | Active: false until Aiden approves + SPF/DKIM verified |
 
 ## Completed (Recent)
 
