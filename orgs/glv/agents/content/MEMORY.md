@@ -56,6 +56,11 @@
 | Reputation management | negative review response formula (Aug 7) |
 | Zero-budget local SEO | 5-step zero-cost checklist (Aug 10) |
 | GBP messaging / lead gen | messaging setup + qualifying welcome message (Aug 11) |
+| Mobile optimisation | 4-check mobile audit — layout, tel: link, CTA above fold, LCP (Aug 12) |
+| Schema markup (advanced) | FAQ schema + breadcrumb schema beyond LocalBusiness (Aug 13) |
+| Local pack vs. organic | two separate ranking systems on one SERP (Aug 14) |
+| Competitor GBP analysis | 3-check gap opportunity framework — reviews, photos, completeness (Aug 17) |
+| Client onboarding workflow | week 1 diagnostic — day-by-day checklist (Aug 18) |
 
 ### CTA keyword map
 
@@ -96,6 +101,11 @@
 | Aug 7 | open comment | n/a |
 | Aug 10 | BUDGET | manual |
 | Aug 11 | MESSAGE | manual |
+| Aug 12 | MOBILE | manual |
+| Aug 13 | FAQ | manual |
+| Aug 14 | open comment | n/a |
+| Aug 17 | BENCHMARK | manual |
+| Aug 18 | ONBOARD | manual |
 
 ## Reyco Marine Content
 
