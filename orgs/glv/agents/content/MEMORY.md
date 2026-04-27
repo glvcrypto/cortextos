@@ -28,7 +28,7 @@
 - 2× reel (Wed + one other)
 - 1× LinkedIn text + IG static
 
-### Topic clusters covered (as of session 22)
+### Topic clusters covered (as of session 23)
 
 | Cluster | Examples |
 |---------|---------|
@@ -51,6 +51,11 @@
 | Local SEO audit | 7-check pre-call audit (Jul 14) |
 | On-page SEO | service page ranking (Jul 24), on-page check (Jul 28) |
 | Technical SEO / site structure | internal linking hub-and-spoke (Jul 30) |
+| Local backlink building | chamber/BIA + local press + supplier directory (Aug 5) |
+| GBP attributes | service delivery, accessibility, payment, amenities (Aug 6) |
+| Reputation management | negative review response formula (Aug 7) |
+| Zero-budget local SEO | 5-step zero-cost checklist (Aug 10) |
+| GBP messaging / lead gen | messaging setup + qualifying welcome message (Aug 11) |
 
 ### CTA keyword map
 
@@ -86,6 +91,11 @@
 | Jul 30 | LINKS | manual |
 | Aug 3 | REPORT | manual |
 | Aug 4 | MAPS | manual |
+| Aug 5 | BACKLINK | manual |
+| Aug 6 | ATTRIBUTES | manual |
+| Aug 7 | open comment | n/a |
+| Aug 10 | BUDGET | manual |
+| Aug 11 | MESSAGE | manual |
 
 ## Reyco Marine Content
 
