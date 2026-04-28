@@ -34,6 +34,7 @@ export interface GoalStalenessReport {
 
 const BINARY_TEMP_EXTENSIONS = new Set([
   '.log', '.tmp', '.pid', '.pyc', '.pyo', '.class', '.o', '.so', '.dylib',
+  '.db', '.db-shm', '.db-wal', '.sqlite', '.sqlite3',
 ]);
 
 const EXCLUDED_DIR_PREFIXES = [
@@ -182,6 +183,15 @@ export function autoCommit(projectDir: string, dryRun: boolean = false): AutoCom
       } catch {
         // Binary files may throw on utf-8 read - skip credential check
       }
+    }
+
+    // Block files that .gitignore covers but git still reports as untracked/modified
+    try {
+      execFileSync('git', ['check-ignore', '-q', file], { cwd: projectDir, stdio: 'pipe' });
+      blocked.push(`${file}:gitignored`);
+      continue;
+    } catch {
+      // Non-zero exit = not ignored — safe to stage
     }
 
     staged.push(file);
