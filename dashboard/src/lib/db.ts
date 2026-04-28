@@ -47,6 +47,20 @@ function createDatabase(): Database.Database {
 }
 
 function initializeSchema(db: Database.Database): void {
+  // v1.1 column migrations — run before the full exec so new indexes/views don't fail
+  // ALTER TABLE ADD COLUMN throws "duplicate column" if column exists; we catch and ignore.
+  const addCol = (sql: string) => { try { db.exec(sql); } catch { /* already present */ } };
+  addCol('ALTER TABLE transactions ADD COLUMN paid_at TEXT');
+  addCol('ALTER TABLE transactions ADD COLUMN tax_cents INTEGER');
+  addCol('ALTER TABLE transactions ADD COLUMN tax_rate REAL');
+  addCol('ALTER TABLE transactions ADD COLUMN payment_reference TEXT');
+  addCol('ALTER TABLE transactions ADD COLUMN counterparty_email TEXT');
+  addCol('ALTER TABLE recurring_schedules ADD COLUMN counterparty_email TEXT');
+  addCol('ALTER TABLE receipts ADD COLUMN kind TEXT NOT NULL DEFAULT \'vendor_receipt\'');
+  addCol('ALTER TABLE receipts ADD COLUMN recipient_email TEXT');
+  addCol("ALTER TABLE receipts ADD COLUMN org TEXT NOT NULL DEFAULT 'glv'");
+  addCol("ALTER TABLE fx_rates ADD COLUMN org TEXT NOT NULL DEFAULT 'glv'");
+
   db.exec(`
     CREATE TABLE IF NOT EXISTS tasks (
       id TEXT PRIMARY KEY,
@@ -230,7 +244,203 @@ function initializeSchema(db: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_messages_to ON messages(to_agent);
     CREATE INDEX IF NOT EXISTS idx_messages_org ON messages(org);
     CREATE INDEX IF NOT EXISTS idx_messages_timestamp ON messages(timestamp);
+
+    -- ── Accounting / Expense + Income tracking (analyst schema v1.1, 2026-04-25) ──
+
+    CREATE TABLE IF NOT EXISTS categories (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      org TEXT NOT NULL DEFAULT 'glv',
+      name TEXT NOT NULL,
+      cra_t2125_line TEXT,
+      cra_t2125_label TEXT,
+      is_fixed INTEGER NOT NULL DEFAULT 0,
+      color TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      archived_at TEXT,
+      UNIQUE (org, name)
+    );
+
+    CREATE TABLE IF NOT EXISTS tags (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      org TEXT NOT NULL DEFAULT 'glv',
+      name TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      UNIQUE (org, name)
+    );
+
+    CREATE TABLE IF NOT EXISTS recurring_schedules (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      org TEXT NOT NULL DEFAULT 'glv',
+      vendor TEXT NOT NULL,
+      description TEXT,
+      amount_cents INTEGER NOT NULL,
+      currency TEXT NOT NULL DEFAULT 'CAD' CHECK (currency IN ('CAD','USD')),
+      category_id INTEGER REFERENCES categories(id) ON DELETE SET NULL,
+      direction TEXT NOT NULL CHECK (direction IN ('income','expense')),
+      cadence TEXT NOT NULL CHECK (cadence IN ('weekly','monthly','quarterly','annual','custom')),
+      cadence_interval_days INTEGER,
+      start_date TEXT NOT NULL,
+      next_bill_date TEXT NOT NULL,
+      end_date TEXT,
+      active INTEGER NOT NULL DEFAULT 1,
+      payment_method TEXT,
+      counterparty_email TEXT,
+      notes TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS recurring_schedule_tags (
+      schedule_id INTEGER NOT NULL REFERENCES recurring_schedules(id) ON DELETE CASCADE,
+      tag_id INTEGER NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
+      PRIMARY KEY (schedule_id, tag_id)
+    );
+
+    CREATE TABLE IF NOT EXISTS transactions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      org TEXT NOT NULL DEFAULT 'glv',
+      date TEXT NOT NULL,
+      paid_at TEXT,
+      direction TEXT NOT NULL CHECK (direction IN ('income','expense')),
+      transaction_type TEXT NOT NULL CHECK (transaction_type IN ('one_time','subscription','invoice')),
+      amount_cents INTEGER NOT NULL,
+      currency TEXT NOT NULL DEFAULT 'CAD' CHECK (currency IN ('CAD','USD')),
+      tax_cents INTEGER,
+      tax_rate REAL,
+      vendor TEXT,
+      description TEXT,
+      category_id INTEGER REFERENCES categories(id) ON DELETE SET NULL,
+      recurring_schedule_id INTEGER REFERENCES recurring_schedules(id) ON DELETE SET NULL,
+      status TEXT NOT NULL DEFAULT 'paid' CHECK (status IN ('pending','paid','overdue','void')),
+      payment_method TEXT,
+      payment_reference TEXT,
+      counterparty_email TEXT,
+      invoice_number TEXT,
+      invoice_due_date TEXT,
+      notes TEXT,
+      source TEXT NOT NULL DEFAULT 'manual' CHECK (source IN ('manual','email_parser','recurring_materializer','csv_import')),
+      email_message_id TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE UNIQUE INDEX IF NOT EXISTS uq_txn_schedule_date
+      ON transactions(recurring_schedule_id, date)
+      WHERE recurring_schedule_id IS NOT NULL;
+
+    CREATE TABLE IF NOT EXISTS transaction_tags (
+      transaction_id INTEGER NOT NULL REFERENCES transactions(id) ON DELETE CASCADE,
+      tag_id INTEGER NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
+      PRIMARY KEY (transaction_id, tag_id)
+    );
+
+    CREATE TABLE IF NOT EXISTS receipts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      org TEXT NOT NULL DEFAULT 'glv',
+      transaction_id INTEGER NOT NULL REFERENCES transactions(id) ON DELETE CASCADE,
+      kind TEXT NOT NULL DEFAULT 'vendor_receipt' CHECK (kind IN ('vendor_receipt','issued_receipt')),
+      file_path TEXT,
+      file_size_bytes INTEGER,
+      file_mime TEXT,
+      source TEXT NOT NULL DEFAULT 'manual_upload' CHECK (source IN ('manual_upload','email_attachment','manual_paste','generated')),
+      email_message_id TEXT,
+      recipient_email TEXT,
+      parsed_vendor TEXT,
+      parsed_amount_cents INTEGER,
+      parsed_date TEXT,
+      parsed_raw_text TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS cash_balance_snapshots (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      org TEXT NOT NULL DEFAULT 'glv',
+      snapshot_date TEXT NOT NULL,
+      balance_cents INTEGER NOT NULL,
+      currency TEXT NOT NULL DEFAULT 'CAD' CHECK (currency IN ('CAD','USD')),
+      source TEXT NOT NULL DEFAULT 'manual' CHECK (source IN ('manual','bank_csv','plaid_future')),
+      notes TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS fx_rates (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      rate_date TEXT NOT NULL,
+      base_currency TEXT NOT NULL CHECK (base_currency IN ('CAD','USD')),
+      quote_currency TEXT NOT NULL CHECK (quote_currency IN ('CAD','USD')),
+      rate REAL NOT NULL,
+      source TEXT NOT NULL DEFAULT 'boc_noon',
+      fetched_at TEXT NOT NULL DEFAULT (datetime('now')),
+      UNIQUE (rate_date, base_currency, quote_currency)
+    );
+
+    -- Indexes (org-leading for multi-org filtering)
+    CREATE INDEX IF NOT EXISTS idx_categories_org ON categories(org);
+    CREATE INDEX IF NOT EXISTS idx_tags_org ON tags(org);
+    CREATE INDEX IF NOT EXISTS idx_recurring_schedules_org ON recurring_schedules(org);
+    CREATE INDEX IF NOT EXISTS idx_recurring_next_bill ON recurring_schedules(org, next_bill_date, active);
+    CREATE INDEX IF NOT EXISTS idx_transactions_org_date ON transactions(org, date);
+    CREATE INDEX IF NOT EXISTS idx_transactions_org_direction_date ON transactions(org, direction, date);
+    CREATE INDEX IF NOT EXISTS idx_transactions_org_category_date ON transactions(org, category_id, date);
+    CREATE INDEX IF NOT EXISTS idx_transactions_org_type_date ON transactions(org, transaction_type, date);
+    CREATE INDEX IF NOT EXISTS idx_transactions_org_status ON transactions(org, status);
+    CREATE INDEX IF NOT EXISTS idx_transactions_schedule ON transactions(recurring_schedule_id);
+    CREATE INDEX IF NOT EXISTS idx_transactions_counterparty ON transactions(counterparty_email)
+      WHERE counterparty_email IS NOT NULL;
+    CREATE INDEX IF NOT EXISTS idx_receipts_transaction ON receipts(transaction_id);
+    CREATE INDEX IF NOT EXISTS idx_receipts_org_kind ON receipts(org, kind);
+    CREATE INDEX IF NOT EXISTS idx_cash_balance_org_date ON cash_balance_snapshots(org, snapshot_date);
+    CREATE INDEX IF NOT EXISTS idx_fx_rates_date ON fx_rates(rate_date);
+
+    -- Views for reporting
+    CREATE VIEW IF NOT EXISTS v_transactions_cad AS
+    SELECT
+      t.*,
+      CASE
+        WHEN t.currency = 'CAD' THEN t.amount_cents
+        ELSE CAST(t.amount_cents *
+          (SELECT rate FROM fx_rates fx
+           WHERE fx.base_currency = t.currency AND fx.quote_currency = 'CAD'
+           AND fx.rate_date <= t.date
+           ORDER BY fx.rate_date DESC LIMIT 1) AS INTEGER)
+      END AS amount_cents_cad
+    FROM transactions t;
+
+    CREATE VIEW IF NOT EXISTS v_monthly_net AS
+    SELECT
+      strftime('%Y-%m', date) AS month,
+      SUM(CASE WHEN direction='income'  AND status='paid' THEN amount_cents ELSE 0 END) AS income_cents,
+      SUM(CASE WHEN direction='expense' AND status='paid' THEN amount_cents ELSE 0 END) AS expense_cents,
+      SUM(CASE WHEN direction='income'  AND status='paid' THEN amount_cents ELSE 0 END) -
+      SUM(CASE WHEN direction='expense' AND status='paid' THEN amount_cents ELSE 0 END) AS net_cents
+    FROM transactions
+    GROUP BY month;
+
+    CREATE VIEW IF NOT EXISTS v_active_subscription_monthly AS
+    SELECT
+      rs.id, rs.org, rs.vendor, rs.amount_cents, rs.cadence,
+      CASE rs.cadence
+        WHEN 'weekly'    THEN rs.amount_cents * 52 / 12
+        WHEN 'monthly'   THEN rs.amount_cents
+        WHEN 'quarterly' THEN rs.amount_cents / 3
+        WHEN 'annual'    THEN rs.amount_cents / 12
+        WHEN 'custom'    THEN rs.amount_cents * 365 / (rs.cadence_interval_days * 12)
+      END AS monthly_equivalent_cents
+    FROM recurring_schedules rs
+    WHERE rs.active = 1 AND rs.direction = 'expense';
   `);
+
+  // Seed fixed categories (INSERT OR IGNORE — idempotent)
+  const seedCategories = db.prepare(`
+    INSERT OR IGNORE INTO categories (org, name, cra_t2125_line, cra_t2125_label, is_fixed, color)
+    VALUES (?, ?, ?, ?, 1, ?)
+  `);
+  const seedMany = db.transaction(() => {
+    seedCategories.run('glv', 'Software',  '8810', 'Office expenses', '#3b82f6');
+    seedCategories.run('glv', 'Marketing', '8521', 'Advertising',     '#10b981');
+    seedCategories.run('glv', 'Travel',    '9200', 'Travel',          '#f59e0b');
+  });
+  seedMany();
 }
 
 // globalThis singleton survives Next.js hot reload
