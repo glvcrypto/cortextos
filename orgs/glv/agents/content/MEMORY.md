@@ -81,6 +81,11 @@
 | Duplicate GBP listings | find via private browser, claim before remove, process for unclaimed vs. claimed, review consolidation note (Sep 11) |
 | Website speed for local SEO | LCP target under 2.5s, PageSpeed Insights check, 3 fixes: image compression + hosting upgrade + render-blocking scripts (Sep 14) |
 | GBP Products tab | works for services, shows in sidebar, indexed text = extra keyword coverage, add photos per entry (Sep 15) |
+| GBP Insights panel | 5 numbers monthly: searches (28-day baseline), photo+profile+product views, direction request postcodes, calls by day, website clicks vs GA4 cross-check (Sep 16) |
+| Competitive gap analysis | 3 free tools: Maps private browser (category/reviews), GBP profile (services/photos/Q&A/posts), Google brand name (authority/indexed pages/review sites) → 4-gap scorecard (reviews/category/content/activity) → 90-day plan (Sep 17) |
+| Conversion path pre-audit | before starting SEO: "when a customer calls from Google, what happens next?" — maps call answer, response time, follow-up, close rate; flags lead pipeline gaps that SEO alone won't fix (Sep 18) |
+| 5-page local content cluster | anchor (city+service), how-it-works, FAQ (PAA+GBP Q&A), comparison (repair vs replace), areas-served (one H2 per suburb); build anchor first, add one page/month (Sep 21) |
+| GBP special hours | override regular hours for statutory holidays; Google flags listing as "may be closed" without them; 5-min fix in GBP Manager for full year; Canadian holiday list offer (Sep 22) |
 
 ### CTA keyword map
 
@@ -146,6 +151,11 @@
 | Sep 11 | open comment | n/a |
 | Sep 14 | LOAD | manual |
 | Sep 15 | PRODUCTS | manual |
+| Sep 16 | INSIGHTS | manual |
+| Sep 17 | GAP2 | manual |
+| Sep 18 | open comment | n/a |
+| Sep 21 | CLUSTER | manual |
+| Sep 22 | HOURS | manual |
 
 ## Reyco Marine Content
 
