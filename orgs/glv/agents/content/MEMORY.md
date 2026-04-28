@@ -86,6 +86,11 @@
 | Conversion path pre-audit | before starting SEO: "when a customer calls from Google, what happens next?" — maps call answer, response time, follow-up, close rate; flags lead pipeline gaps that SEO alone won't fix (Sep 18) |
 | 5-page local content cluster | anchor (city+service), how-it-works, FAQ (PAA+GBP Q&A), comparison (repair vs replace), areas-served (one H2 per suburb); build anchor first, add one page/month (Sep 21) |
 | GBP special hours | override regular hours for statutory holidays; Google flags listing as "may be closed" without them; 5-min fix in GBP Manager for full year; Canadian holiday list offer (Sep 22) |
+| GBP Services tab | add every service with a one-sentence description (service + city); match customer search language not internal jargon; review quarterly; 10-min audit win (Sep 23) |
+| Local rank grid tools | GBP rank varies by GPS location across service area; rank grids show position at dozens of points; green=top 3, orange=4-10, red=not ranking; Pattern 1: strong core/weak periphery (radius+content fix); Pattern 2: uneven distribution (competitor location advantage); Tools: BrightLocal Local Search Grid, Local Falcon, Whitespark; run at onboarding + every 90-day review (Sep 24) |
+| Bing Places + Apple Maps | Bing feeds Microsoft Copilot local results; Apple Maps feeds Siri near-me queries; both take <1hr combined; Bing import from GBP option; NAP must match GBP exactly; add both in week-1 onboarding; almost no clients have both set up correctly (Sep 25) |
+| GBP access management | Primary Owner = one per profile, full control inc. transfer/delete; Owner = full minus transfer/delete; Manager = day-to-day only; business must always be Primary Owner; vendors/agencies as Manager only; if locked out: ownership request process (7-day response window → Google review); always check Primary Owner on first audit session (Sep 28) |
+| GBP booking/appointment link | Edit profile → Booking → add URL; displays as 'Book appointment' button on mobile listing before website click-through; use contact page if no booking system; check button visible on mobile; takes 3 minutes; commonly missing on new client audits (Sep 29) |
 
 ### CTA keyword map
 
@@ -156,6 +161,11 @@
 | Sep 18 | open comment | n/a |
 | Sep 21 | CLUSTER | manual |
 | Sep 22 | HOURS | manual |
+| Sep 23 | SERVICES | manual |
+| Sep 24 | HEATMAP | manual |
+| Sep 25 | open comment | n/a |
+| Sep 28 | ACCESS | manual |
+| Sep 29 | BOOK | manual |
 
 ## Reyco Marine Content
 
