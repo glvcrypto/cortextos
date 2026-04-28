@@ -58,3 +58,8 @@ BRAINDUMP*.md
 AGENTS.md
 dashboard/screenshots/
 dashboard/test-*.py
+
+# SQLite runtime artifacts
+*.db
+*.db-shm
+*.db-wal
