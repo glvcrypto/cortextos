@@ -71,8 +71,10 @@ When running as a cloud/remote session (no local daemon):
 | Aug 5–11 | Drafted ✓ |
 | Aug 12–18 | Drafted ✓ |
 | Aug 19–25 | Drafted ✓ |
-| **Aug 26–Sep 1** | **Drafted ✓** |
-| Sep 2+ | Needs ideation |
+| Aug 26–Sep 1 | Drafted ✓ |
+| Sep 2–8 | Drafted ✓ |
+| **Sep 9–15** | **Drafted ✓** |
+| Sep 16+ | Needs ideation |
 
 ## Repos
 

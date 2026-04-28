@@ -71,6 +71,16 @@
 | Service page writing formula | title tag + H1 + first paragraph formula (Aug 28) |
 | Review generation hierarchy | in-person ask → QR code → same-day text → email (Aug 31) |
 | New client site takeover | 5-check first-session diagnostic: GSC, Manual Actions, indexation, redirect chains, GBP URL (Sep 1) |
+| Multi-location GBP | separate info per location, reviews don't transfer, weak location B undercuts strong A in search (Sep 2) |
+| GBP photo strategy | At Work as primary category, 6-category guide, 2-4/month cadence, no stock/graphics/blurry, competitor benchmark (Sep 3) |
+| AI tools in local SEO (guardrail framework) | use: copy, FAQs, templates, formatting; won't use: service histories, certs, stats, brand authorisations (Sep 4) |
+| Local link building sources | chamber/BIA (citation + link), supplier dealer directories, local press pitching, non-competing business partnerships (Sep 7) |
+| Inherited GBP audit | fix before optimising: check primary category, outdated info, third-party photos, duplicate listings (Sep 8) |
+| GBP description optimisation | 750 chars, lead with service + city, no promo language/URLs, three elements: services + area + trust signal (Sep 9) |
+| UTM tracking for GBP | add UTM params to GBP website field → GA4 medium=gmb → measure traffic %, landing pages, conversions, seasonal spikes (Sep 10) |
+| Duplicate GBP listings | find via private browser, claim before remove, process for unclaimed vs. claimed, review consolidation note (Sep 11) |
+| Website speed for local SEO | LCP target under 2.5s, PageSpeed Insights check, 3 fixes: image compression + hosting upgrade + render-blocking scripts (Sep 14) |
+| GBP Products tab | works for services, shows in sidebar, indexed text = extra keyword coverage, add photos per entry (Sep 15) |
 
 ### CTA keyword map
 
@@ -126,6 +136,16 @@
 | Aug 28 | open comment | n/a |
 | Aug 31 | ASK | manual |
 | Sep 1 | TAKEOVER | manual |
+| Sep 2 | MULTI | manual |
+| Sep 3 | PHOTOS | manual |
+| Sep 4 | open comment | n/a |
+| Sep 7 | PARTNER | manual |
+| Sep 8 | INHERIT | manual |
+| Sep 9 | DESCRIBE | manual |
+| Sep 10 | UTM | manual |
+| Sep 11 | open comment | n/a |
+| Sep 14 | LOAD | manual |
+| Sep 15 | PRODUCTS | manual |
 
 ## Reyco Marine Content
 
@@ -166,6 +186,7 @@ When running in cloud (no local daemon):
 - Use Slack MCP (channel C0AQWLHQJJC = #internal-reyco) for comms
 - Memory + draft commits can go direct to main; no PR needed for content files
 - Check #internal-reyco for Casey replies and Aiden confirmations at start of each session
+- **CRITICAL: Always verify files exist on disk (`ls` check) before posting Slack status claiming delivery** — session 27 (Apr 27) posted claiming Sep 2–8 drafts written but files were never committed; session 28 caught up by reconstructing from Slack descriptions
 
 ## People Context
 
