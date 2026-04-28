@@ -131,6 +131,7 @@ export interface Approval {
   status: ApprovalStatus;
   description: string;
   created_at: string;
+  queued_at?: string;
   updated_at: string;
   resolved_at: string | null;
   resolved_by: string | null;

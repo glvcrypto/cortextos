@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { PriorityBadge, TimeAgo } from '@/components/shared';
 import type { Approval, Task } from '@/lib/types';
+import { ApprovalsCard } from '@/components/approvals/ApprovalsCard';
 
 export default function ApprovalsPage() {
   const { currentOrg } = useOrg();
@@ -124,6 +125,10 @@ export default function ApprovalsPage() {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-semibold">Approvals</h1>
+
+      <div className="max-w-sm">
+        <ApprovalsCard />
+      </div>
 
       <Tabs defaultValue={humanTasks.length > 0 ? 'human' : 'pending'}>
         <TabsList>

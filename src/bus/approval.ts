@@ -136,6 +136,7 @@ export async function createApproval(
     status: 'pending',
     description: context || '',
     created_at: now,
+    queued_at: now,
     updated_at: now,
     resolved_at: null,
     resolved_by: null,
