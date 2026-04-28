@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-04-27_
+_Last updated: 2026-04-28_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -8,6 +8,10 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #24 | test(pty): 18-case unit suite for redactSecrets | JWT redaction security function. 18/18 pass. Build clean. |
+| #23 | test(utils): atomic + paths + env + random (64 cases) | Completes src/utils/ coverage. 64/64 pass. Build clean. |
+| #22 | test(bus): event + experiment + save-output (56 cases) | Completes src/bus/ coverage. 56/56 pass. Build clean. |
+| #21 | test(bus): heartbeat + metrics (36 cases) | 36/36 pass. Build clean. |
 | #19 | feat(accounting): expense tracking dashboard + fx-fetcher CLI | Task #19 — clean cherry-pick, 7 commits. Build clean. |
 | #17 | fix(heartbeat): Option A — add update-cron-fire to template Step 1 | Merge with #14 for full FP elimination |
 | #14 | fix(daemon): Option B — seed cron-state.json at startup | Merge with #17 |
