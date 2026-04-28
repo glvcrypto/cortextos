@@ -13,7 +13,7 @@ interface SkillInfo {
  * Parse YAML frontmatter from a SKILL.md file.
  * Extracts name and description fields.
  */
-function parseFrontmatter(filePath: string): { name: string; description: string } | null {
+export function parseFrontmatter(filePath: string): { name: string; description: string } | null {
   try {
     const content = readFileSync(filePath, 'utf-8');
     const lines = content.split('\n');
@@ -44,7 +44,7 @@ function parseFrontmatter(filePath: string): { name: string; description: string
 /**
  * Scan a skills directory for SKILL.md files.
  */
-function scanSkillsDir(dir: string, source: string): SkillInfo[] {
+export function scanSkillsDir(dir: string, source: string): SkillInfo[] {
   if (!existsSync(dir)) return [];
 
   const skills: SkillInfo[] = [];
