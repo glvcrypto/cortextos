@@ -96,6 +96,11 @@
 | When local SEO is the wrong answer | Four conversion signals that mean SEO won't fix the business: calls go to voicemail during listed hours, no follow-up on missed calls/form submissions, no appointment confirmation sent, slow mobile site with buried CTA; pre-audit question: "When a customer finds you on Google and calls, what happens?" (Oct 2) |
 | Google review velocity | Velocity (rate of incoming reviews) matters as much as total count; consistent 3–4/month better than 50 once then nothing; three-source system: in-person ask at moment of satisfaction + QR card at checkout + same-day follow-up text; slow-season rule: halve target, don't stop; monitor monthly in client reports (Oct 5) |
 | Seasonal GBP closure checklist | Five steps before last day of season: mark Temporarily Closed (not delete), set Special Hours for closed months, update description with open season dates, seed Q&A "are you open in winter?", draft + schedule spring reopening GBP post now; 20-minute task (Oct 6) |
+| Fake/spam review removal | What Google will remove: spam/fake (no customer relationship), harassment, conflict of interest (competitor-posted), prohibited content; what it won't: honest negatives, verified customer complaints, low ratings without policy violation; flag via GBP Manager → Reviews → three-dot → Report; escalation via GBP Help Community; respond publicly while waiting; removal process for fake reviews — fixing service problems requires different work (Oct 7) |
+| Google Local Services Ads vs GBP organic | LSAs appear above GBP, above paid, above organic; pay-per-lead model; add when: verified GBP + 10+ reviews at 4.0+ + competitive market; hold when: new business (<5 reviews), referral-only, ineligible category; leads screened by Google + disputable; GBP and LSA profile must match (phone, service area, name) (Oct 8) |
+| GBP primary category impact | Primary category = highest-weight single field for local pack ranking; most businesses set at signup and never revisit; check what top 3 competitors in the city are using; changing from broad (e.g. "Contractor") to specific (exact service category) can produce substantial view increases in 30 days; secondary categories unchanged (Oct 9) |
+| GBP short name for review requests | GBP short name = custom URL (g.page/shortname); add /review for direct review link; set in GBP Manager → Edit profile → Add short name (max 32 chars, no spaces); use on: QR review request cards, email signatures, invoice footers, vehicle wrap CTAs, same-day follow-up texts; claim before competitor with similar name; removes friction → more reviews (Oct 12) |
+| New business local SEO order | Five steps in priority order: (1) GBP verified first — anchor before all else; (2) homepage NAP visible + LocalBusiness schema; (3) first 5 reviews — guided ask, not incentivised; (4) three core directories: Bing Places + Apple Maps + one industry-specific (NAP must match GBP exactly); (5) one city+service page live, indexed before adding second; month-three framing: structure first, ranking follows (Oct 13) |
 
 ### CTA keyword map
 
@@ -176,6 +181,11 @@
 | Oct 2 | open comment | n/a |
 | Oct 5 | VELOCITY | manual |
 | Oct 6 | SEASONAL | manual |
+| Oct 7 | FAKE | manual |
+| Oct 8 | open comment | n/a |
+| Oct 9 | PRIMARY | manual |
+| Oct 12 | SHORTNAME | manual |
+| Oct 13 | NEWBIZ | manual |
 
 ## Reyco Marine Content
 
