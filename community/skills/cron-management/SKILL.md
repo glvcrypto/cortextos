@@ -75,8 +75,30 @@ Built-in crons expire after 7 days. Since your session restarts via the daemon, 
 
 ---
 
+## Keeping cron-state.json current (gap-detector health)
+
+The daemon runs a background gap-detector that reads `cron-state.json` to determine when each cron last fired. It injects a nudge if a cron has been silent for >2× its interval. **The file is only updated when you explicitly call `update-cron-fire`** — ScheduleWakeup fires do not write to it automatically.
+
+**At the start of every `/loop` wakeup cycle**, before executing the task, call:
+
+```bash
+cortextos bus update-cron-fire <name> --interval <interval>
+```
+
+Match `<name>` and `<interval>` to the entry in `config.json`. If no matching entry exists (ad-hoc loop, not in config), skip this step.
+
+Example — heartbeat loop wakes up:
+```bash
+cortextos bus update-cron-fire heartbeat --interval 4h
+```
+
+Without this call, `cron-state.json` stays stale and the gap-detector fires false-positive nudges every 10 minutes even for healthy crons.
+
+---
+
 ## Troubleshooting
 
 - Cron not firing after restart: check config.json — the entry may be missing or have an expired fire_at
 - Duplicate crons: always run CronList before recreating; if a cron is already active, skip it
 - One-shot that already fired: if fire_at is in the past and the entry is still in config.json, the reminder was likely missed during a restart — delete the entry, notify the user
+- False-positive gap nudges: you are receiving "[SYSTEM] Cron gap detected" for a cron that is actually firing — start calling `update-cron-fire` at the top of the loop wakeup (see section above)

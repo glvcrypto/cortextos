@@ -119,6 +119,12 @@ Defined in `config.json` under `crons` array. Set up once per session via `/loop
 
 Crons expire after 7 days but are recreated from config on each restart.
 
+**On each loop wakeup:** At the start of every `/loop` cycle (when ScheduleWakeup fires and you receive a `/loop ...` prompt), call:
+```bash
+cortextos bus update-cron-fire <name> --interval <interval>
+```
+where `<name>` and `<interval>` come from the matching entry in `config.json`. This keeps `cron-state.json` current so the daemon's gap-detector does not fire false-positive nudges for healthy crons.
+
 ---
 
 ## Restart
