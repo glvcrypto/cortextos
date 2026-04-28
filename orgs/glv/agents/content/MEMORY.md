@@ -91,6 +91,11 @@
 | Bing Places + Apple Maps | Bing feeds Microsoft Copilot local results; Apple Maps feeds Siri near-me queries; both take <1hr combined; Bing import from GBP option; NAP must match GBP exactly; add both in week-1 onboarding; almost no clients have both set up correctly (Sep 25) |
 | GBP access management | Primary Owner = one per profile, full control inc. transfer/delete; Owner = full minus transfer/delete; Manager = day-to-day only; business must always be Primary Owner; vendors/agencies as Manager only; if locked out: ownership request process (7-day response window → Google review); always check Primary Owner on first audit session (Sep 28) |
 | GBP booking/appointment link | Edit profile → Booking → add URL; displays as 'Book appointment' button on mobile listing before website click-through; use contact page if no booking system; check button visible on mobile; takes 3 minutes; commonly missing on new client audits (Sep 29) |
+| GBP post batching strategy | Write and schedule a full month of GBP posts in one 15-min session; four types: What's New + Offer + seasonal tip + FAQ from Q&A; <300 chars for mobile readability; UTM-tagged service page link on each; one post/week; duplicate doc monthly as template (Sep 30) |
+| First 90-day milestone report | Milestone-based (not metric-based) report for month 3: six sections — GBP optimised, citations corrected, pages live, rank baselines set, traffic benchmarks recorded, next 90 goals; one page; client signs off before monthly reporting begins (Oct 1) |
+| When local SEO is the wrong answer | Four conversion signals that mean SEO won't fix the business: calls go to voicemail during listed hours, no follow-up on missed calls/form submissions, no appointment confirmation sent, slow mobile site with buried CTA; pre-audit question: "When a customer finds you on Google and calls, what happens?" (Oct 2) |
+| Google review velocity | Velocity (rate of incoming reviews) matters as much as total count; consistent 3–4/month better than 50 once then nothing; three-source system: in-person ask at moment of satisfaction + QR card at checkout + same-day follow-up text; slow-season rule: halve target, don't stop; monitor monthly in client reports (Oct 5) |
+| Seasonal GBP closure checklist | Five steps before last day of season: mark Temporarily Closed (not delete), set Special Hours for closed months, update description with open season dates, seed Q&A "are you open in winter?", draft + schedule spring reopening GBP post now; 20-minute task (Oct 6) |
 
 ### CTA keyword map
 
@@ -166,6 +171,11 @@
 | Sep 25 | open comment | n/a |
 | Sep 28 | ACCESS | manual |
 | Sep 29 | BOOK | manual |
+| Sep 30 | BATCH | manual |
+| Oct 1 | MILESTONE | manual |
+| Oct 2 | open comment | n/a |
+| Oct 5 | VELOCITY | manual |
+| Oct 6 | SEASONAL | manual |
 
 ## Reyco Marine Content
 
