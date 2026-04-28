@@ -101,6 +101,11 @@
 | GBP primary category impact | Primary category = highest-weight single field for local pack ranking; most businesses set at signup and never revisit; check what top 3 competitors in the city are using; changing from broad (e.g. "Contractor") to specific (exact service category) can produce substantial view increases in 30 days; secondary categories unchanged (Oct 9) |
 | GBP short name for review requests | GBP short name = custom URL (g.page/shortname); add /review for direct review link; set in GBP Manager → Edit profile → Add short name (max 32 chars, no spaces); use on: QR review request cards, email signatures, invoice footers, vehicle wrap CTAs, same-day follow-up texts; claim before competitor with similar name; removes friction → more reviews (Oct 12) |
 | New business local SEO order | Five steps in priority order: (1) GBP verified first — anchor before all else; (2) homepage NAP visible + LocalBusiness schema; (3) first 5 reviews — guided ask, not incentivised; (4) three core directories: Bing Places + Apple Maps + one industry-specific (NAP must match GBP exactly); (5) one city+service page live, indexed before adding second; month-three framing: structure first, ranking follows (Oct 13) |
+| GSC weekly 5-minute check | Three Monday filters: (1) impressions > 50 + CTR < 3% = title/meta fix needed; (2) zero-impression pages = indexation or wrong intent; (3) position 1–3 with featured snippet = structured answer opportunity; run before any other task; catches indexation bugs, cannibalisation, and title tag issues that rank tracking won't surface (Oct 14) |
+| Spam GBP listings | Four signals: keyword-stuffed name + no website or lead-gen redirect + fake/virtual address + cluster reviews on same day; report via "Suggest an edit" (correct name/address) + three-dot menu → Report a problem; strengthen own listing in parallel (reviews, Services tab, category, GBP post); escalate to GBP Help Community + Business Redressal Complaint Form if no action in 2–3 weeks; document with timestamped screenshots (Oct 15) |
+| Search intent vs social media for local businesses | Transactional intent (search = already decided, ready to buy) vs. brand awareness (social = browsing, not buying); for local service businesses with urgent/short buying windows (trades, health, legal, auto) → Google first; exception: visually-led businesses (restaurants, salons, fitness, interiors) where product is discovered through images → Instagram/Pinterest meaningful; rule: convert on Google first, add social once pipeline works; doing both badly worse than one well (Oct 16) |
+| Call tracking vs NAP consistency (DNI setup) | NAP rule: primary phone number stays unchanged in GBP, website footer, LocalBusiness schema, all directories — never replace with tracking number; Dynamic Number Insertion (DNI): JS snippet swaps number visible to human visitors in page body only, excluding footer and schema; real number in structured data, tracking number in page body CTAs; developer requirements: DNI script excluded from footer/schema/contact page; post-launch audit: GBP number, citation audit (BrightLocal/Whitespark), Rich Results Test; CallRail/WhatConverts have GBP integration — verify settings (Oct 19) |
+| Local keyword intent — navigational vs transactional | Ranking for brand name ≠ ranking for service keyword; GBP Insights → Searches shows which query type drives impressions; if mostly brand/navigational = Google knows business exists but hasn't connected to service category in area; three transactional intent fixes: (1) Services tab — every service with city in description; (2) GBP description — lead with "[service] in [city]" in sentence one; (3) primary category — match competitors' specificity level (Oct 20) |
 
 ### CTA keyword map
 
@@ -186,6 +191,11 @@
 | Oct 9 | PRIMARY | manual |
 | Oct 12 | SHORTNAME | manual |
 | Oct 13 | NEWBIZ | manual |
+| Oct 14 | CLICKS | ⚠️ Aiden to confirm automation |
+| Oct 15 | SPAM | ⚠️ Aiden to confirm automation |
+| Oct 16 | open comment | n/a |
+| Oct 19 | CALLTRACK | manual |
+| Oct 20 | INTENT | manual |
 
 ## Reyco Marine Content
 
