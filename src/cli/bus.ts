@@ -28,7 +28,7 @@ import type { Priority, Task, TaskStatus, EventCategory, EventSeverity, Approval
  * Check if the org requires deliverables and the task has none attached.
  * Returns an error message if the transition should be blocked, or null if allowed.
  */
-function checkDeliverableRequirement(taskId: string, frameworkRoot: string, org: string, taskDir: string): string | null {
+export function checkDeliverableRequirement(taskId: string, frameworkRoot: string, org: string, taskDir: string): string | null {
   // Read org context to check require_deliverables setting
   const contextPath = join(frameworkRoot, 'orgs', org, 'context.json');
   if (!existsSync(contextPath)) return null;
@@ -58,6 +58,21 @@ function checkDeliverableRequirement(taskId: string, frameworkRoot: string, org:
   }
 
   return null;
+}
+
+export function parseDisplayNameFromLines(lines: string[]): string | undefined {
+  const nameIdx = lines.findIndex(l => l.trim() === '## Name');
+  if (nameIdx >= 0) {
+    for (let i = nameIdx + 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line || line.startsWith('<!--')) continue;
+      if (line.startsWith('#')) break;
+      return line;
+    }
+  }
+  const h1 = lines.find(l => l.startsWith('# ') && !l.startsWith('## '));
+  if (h1) return h1.replace(/^#\s+/, '').trim();
+  return undefined;
 }
 
 export const busCommand = new Command('bus')
@@ -432,22 +447,7 @@ busCommand
         if (existsSync(idPath)) {
           try {
             const lines = readFileSync(idPath, 'utf-8').split('\n');
-            // "## Name" section takes priority (user-configured display name)
-            const nameIdx = lines.findIndex(l => l.trim() === '## Name');
-            if (nameIdx >= 0) {
-              for (let i = nameIdx + 1; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (!line || line.startsWith('<!--')) continue;
-                if (line.startsWith('#')) break;
-                displayName = line;
-                break;
-              }
-            }
-            // Fallback: first non-empty, non-comment top-level heading value
-            if (!displayName) {
-              const h1 = lines.find(l => l.startsWith('# ') && !l.startsWith('## '));
-              if (h1) displayName = h1.replace(/^#\s+/, '').trim();
-            }
+            displayName = parseDisplayNameFromLines(lines);
           } catch {
             // Skip
           }
@@ -2122,6 +2122,6 @@ function sleepMs(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function pct(v: number): string {
+export function pct(v: number): string {
   return `${Math.round(v * 100)}%`;
 }
