@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   validateAgentName,
+  validateOrgName,
   validateInstanceId,
   validatePriority,
   validateEventCategory,
@@ -56,6 +57,41 @@ describe('validateAgentName', () => {
     expect(() => validateAgentName('Agent1')).toThrow();
     expect(() => validateAgentName('tally-Bot')).toThrow();
     expect(() => validateAgentName('snake_Case')).toThrow();
+  });
+});
+
+describe('validateOrgName', () => {
+  it('accepts valid org names', () => {
+    expect(() => validateOrgName('glv')).not.toThrow();
+    expect(() => validateOrgName('my-org')).not.toThrow();
+    expect(() => validateOrgName('org_1')).not.toThrow();
+    expect(() => validateOrgName('acme-co')).not.toThrow();
+    expect(() => validateOrgName('org123')).not.toThrow();
+  });
+
+  it('rejects empty string', () => {
+    expect(() => validateOrgName('')).toThrow(/Invalid org name/);
+  });
+
+  it('rejects uppercase letters', () => {
+    expect(() => validateOrgName('MyOrg')).toThrow(/Invalid org name/);
+    expect(() => validateOrgName('GLV')).toThrow(/Invalid org name/);
+    expect(() => validateOrgName('camelOrg')).toThrow(/Invalid org name/);
+  });
+
+  it('rejects spaces', () => {
+    expect(() => validateOrgName('my org')).toThrow(/Invalid org name/);
+    expect(() => validateOrgName(' glv')).toThrow(/Invalid org name/);
+  });
+
+  it('rejects path separators', () => {
+    expect(() => validateOrgName('org/sub')).toThrow(/Invalid org name/);
+    expect(() => validateOrgName('org\\sub')).toThrow(/Invalid org name/);
+  });
+
+  it('rejects path traversal', () => {
+    expect(() => validateOrgName('../evil')).toThrow(/Invalid org name/);
+    expect(() => validateOrgName('..%2Fevil')).toThrow(/Invalid org name/);
   });
 });
 
