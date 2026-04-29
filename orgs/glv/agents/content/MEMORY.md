@@ -111,6 +111,11 @@
 | Site migration SEO checklist | Pre-launch: 301 redirect map for every changed URL, GBP website field updated, LocalBusiness schema updated (URL+phone+address), GSC property verified; post-launch: XML sitemap submitted, GSC Change of Address tool (domain changes only, Settings → Change of Address), 48-hour post-launch monitoring window (GSC Coverage tab, 404 spike, crawl errors); most ranking drops from redesigns are preventable with this list (Oct 23) |
 | Image SEO for local businesses | 4-step prep before every upload: (1) rename file — service + city (not IMG_4521.jpg); (2) alt text — one descriptive sentence with service/location, no keyword stuffing, no blank; (3) compress to under 100KB using Squoosh.app (free, browser-based); (4) WebP format — ~25–50% smaller than JPEG at equivalent quality; bonus for GBP uploads: geo-tag image file with GPS service area coordinates before uploading (Oct 24) |
 | Neighbourhood/suburb landing pages | Beyond city+service: hyper-local pages targeting specific districts within competitive cities; build when: city page indexed + ranking 4–10 for 60+ days AND GSC showing impressions from neighbourhood-level searches or postal codes AND you actually service that area; URL structure: /service/city-neighbourhood/; H1: [Service] in [Neighbourhood]; body 300–500 words with at least one unique local element (housing stock note, specific streets/postal codes, neighbourhood-specific FAQ); thin content trap: don't swap city name in copy-paste — Google identifies near-duplicates; cadence: 2–3 to start, one per month, track at 30/60/90 days with rank grid; 6–12 month play for competitive metros (Oct 25) |
+| GBP cover photo & logo strategy | Two explicitly set images (not picked from general uploads): cover photo = banner across GBP profile + knowledge panel (1080×608px, 16:9, JPG/PNG under 5MB; on-location action shot); logo = circular thumbnail beside business name in Maps list view + local pack (500×500px with padding, centred for circle crop); Google can override cover photo with user-uploaded image if yours underperforms — check quarterly via private browser; 5-min audit: GBP Manager → Photos → By owner, then private browser check on Maps + desktop + mobile (Oct 28) |
+| GBP video | 30-second video in GBP profile — shows on Google Maps before website click-through; specs: under 30s, under 75MB, 720p min, portrait (9:16) or landscape; upload: GBP Manager → Photos → Videos, 24h moderation; content: real-location footage (team at work, shop walkthrough, service in progress — no stock); engagement + trust signal; almost no clients have one set up (Oct 29) |
+| Holiday hours — multi-platform checklist | Six platforms to update before seasonal closure: (1) GBP special hours (not regular hours — set 2 weeks out, takes days to propagate); (2) website contact page/footer/hours widget; (3) Bing Places special hours (doesn't always auto-sync from GBP); (4) Apple Maps Business Connect → Special hours; (5) Facebook page temporary hours; (6) voicemail greeting; distinct from seasonal GBP closure checklist (Oct 6) which covers Temporarily Closed + description + Q&A seeding for seasonal businesses (Oct 30) |
+| AggregateRating schema for organic star snippets | Yellow stars in organic results (not GBP/local pack) come from AggregateRating schema on website; distinct from LocalBusiness schema (Jul 21) and FAQ schema (Aug 13); three required fields: ratingValue, reviewCount (or ratingCount), bestRating; nested inside LocalBusiness schema block; Google policy: must reflect real reviews visible on page — self-assigned ratings or fabricated counts risk manual action; legitimate sources: first-party review widget, third-party widget pulling live data; check with Rich Results Test; service pages qualify at lower rate than product pages (Oct 31) |
+| GTM + GA4 form submission tracking | Contact form conversions from organic search: GTM Form Submission trigger → GA4 Event tag (event name: form_submit) → GA4 Configure → Events → mark as conversion; attribute to organic: GA4 Traffic acquisition → Session source/medium filter → google / organic; optional event params: form_id, page_location; extends local conversion tracking (Aug 24) which covered GBP calls/directions/website clicks — this is the contact form equivalent; unlocks "X form submissions from organic last month" rather than just traffic numbers (Nov 1) |
 
 ### CTA keyword map
 
@@ -206,6 +211,11 @@
 | Oct 23 | MIGRATE | manual |
 | Oct 24 | IMAGE | manual |
 | Oct 25 | SUBURB | manual |
+| Oct 28 | COVER | manual |
+| Oct 29 | VIDEO | manual |
+| Oct 30 | open comment | n/a |
+| Oct 31 | STARS | manual |
+| Nov 1 | FORMS | manual |
 
 ## Reyco Marine Content
 
