@@ -70,10 +70,13 @@ function runCli(cwd: string, args: string[], label: string): boolean {
   return true;
 }
 
+export function buildAgentEnvContent(botToken: string, chatId: string): string {
+  return `BOT_TOKEN=${botToken}\nCHAT_ID=${chatId}\n`;
+}
+
 function writeAgentEnv(agentDir: string, botToken: string, chatId: string): void {
   const envPath = join(agentDir, '.env');
-  const content = `BOT_TOKEN=${botToken}\nCHAT_ID=${chatId}\n`;
-  writeFileSync(envPath, content, 'utf-8');
+  writeFileSync(envPath, buildAgentEnvContent(botToken, chatId), 'utf-8');
   try { chmodSync(envPath, 0o600); } catch { /* ignore on Windows */ }
 }
 
@@ -103,11 +106,11 @@ function fetchChatId(botToken: string): string {
   return '';
 }
 
-function validateAgentName(name: string): boolean {
+export function validateAgentName(name: string): boolean {
   return /^[a-z0-9_-]+$/.test(name);
 }
 
-function validateOrgName(name: string): boolean {
+export function validateOrgName(name: string): boolean {
   return /^[a-z0-9_-]+$/.test(name);
 }
 
