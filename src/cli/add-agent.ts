@@ -253,7 +253,7 @@ export const addAgentCommand = new Command('add-agent')
     console.log(`    3. Start: cortextos start ${name}\n`);
   });
 
-function findTemplateDir(projectRoot: string, template: string): string | null {
+export function findTemplateDir(projectRoot: string, template: string): string | null {
   const frameworkRoot = process.env.CTX_FRAMEWORK_ROOT || projectRoot;
   const candidates = [
     join(projectRoot, 'templates', template),
@@ -269,7 +269,7 @@ function findTemplateDir(projectRoot: string, template: string): string | null {
   return null;
 }
 
-function copyTemplateFiles(templateDir: string, agentDir: string, name: string, org: string): void {
+export function copyTemplateFiles(templateDir: string, agentDir: string, name: string, org: string): void {
   const files = readdirSync(templateDir);
   for (const file of files) {
     const srcPath = join(templateDir, file);
@@ -291,7 +291,7 @@ function copyTemplateFiles(templateDir: string, agentDir: string, name: string, 
   }
 }
 
-function createMinimalAgent(agentDir: string, name: string, org: string, template: string): void {
+export function createMinimalAgent(agentDir: string, name: string, org: string, template: string): void {
   const role = template === 'orchestrator' ? 'Orchestrator'
     : template === 'analyst' ? 'Analyst'
     : 'Agent';
@@ -309,7 +309,7 @@ function createMinimalAgent(agentDir: string, name: string, org: string, templat
   writeFileSync(join(agentDir, 'AGENTS.md'), createAgentsMd(name, org, template));
 }
 
-function createAgentsMd(name: string, org: string, template: string): string {
+export function createAgentsMd(name: string, org: string, template: string): string {
   return `# cortextOS ${template.charAt(0).toUpperCase() + template.slice(1)}
 
 ## BOOTSTRAP PROTOCOL - READ EVERY FILE BEFORE DOING ANYTHING
