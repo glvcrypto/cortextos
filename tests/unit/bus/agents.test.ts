@@ -174,6 +174,130 @@ describe('Agent Discovery', () => {
       expect(agents[0].name).toBe('alice');
       expect(agents[0].enabled).toBe(false);
     });
+
+    it('stale heartbeat (>10 min old) marks running as false', () => {
+      const configDir = join(ctxRoot, 'config');
+      mkdirSync(configDir, { recursive: true });
+      writeFileSync(
+        join(configDir, 'enabled-agents.json'),
+        JSON.stringify({ oldbot: { org: 'acme', enabled: true } }),
+      );
+
+      const staleTimestamp = new Date(Date.now() - 11 * 60 * 1000).toISOString();
+      const hbDir = join(ctxRoot, 'state', 'oldbot');
+      mkdirSync(hbDir, { recursive: true });
+      writeFileSync(join(hbDir, 'heartbeat.json'), JSON.stringify({ last_heartbeat: staleTimestamp }));
+
+      const agents = listAgents(ctxRoot);
+      expect(agents.length).toBe(1);
+      expect(agents[0].running).toBe(false);
+    });
+
+    it('reads current_task and mode from heartbeat', () => {
+      const configDir = join(ctxRoot, 'config');
+      mkdirSync(configDir, { recursive: true });
+      writeFileSync(
+        join(configDir, 'enabled-agents.json'),
+        JSON.stringify({ worker: { org: 'acme', enabled: true } }),
+      );
+
+      const hbDir = join(ctxRoot, 'state', 'worker');
+      mkdirSync(hbDir, { recursive: true });
+      writeFileSync(join(hbDir, 'heartbeat.json'), JSON.stringify({
+        last_heartbeat: new Date().toISOString(),
+        current_task: 'task-42',
+        mode: 'night',
+      }));
+
+      const agents = listAgents(ctxRoot);
+      expect(agents[0].current_task).toBe('task-42');
+      expect(agents[0].mode).toBe('night');
+    });
+
+    it('reads displayName from ## Name section in IDENTITY.md', () => {
+      const frameworkRoot = join(testDir, 'framework');
+      process.env.CTX_FRAMEWORK_ROOT = frameworkRoot;
+
+      const agentDir = join(frameworkRoot, 'orgs', 'acme', 'agents', 'alpha');
+      mkdirSync(agentDir, { recursive: true });
+      writeFileSync(join(agentDir, 'IDENTITY.md'), [
+        '# Alpha Agent',
+        '',
+        '## Name',
+        'Alpha',
+        '',
+        '## Role',
+        'Primary orchestrator',
+      ].join('\n'));
+
+      const configDir = join(ctxRoot, 'config');
+      mkdirSync(configDir, { recursive: true });
+      writeFileSync(
+        join(configDir, 'enabled-agents.json'),
+        JSON.stringify({ alpha: { org: 'acme', enabled: true } }),
+      );
+
+      const agents = listAgents(ctxRoot);
+      expect(agents.length).toBe(1);
+      expect(agents[0].display_name).toBe('Alpha');
+      expect(agents[0].role).toBe('Primary orchestrator');
+    });
+
+    it('config.json enabled: false overrides enabled-agents.json enabled: true', () => {
+      const frameworkRoot = join(testDir, 'framework');
+      process.env.CTX_FRAMEWORK_ROOT = frameworkRoot;
+
+      const agentDir = join(frameworkRoot, 'orgs', 'acme', 'agents', 'worker');
+      mkdirSync(agentDir, { recursive: true });
+      writeFileSync(join(agentDir, 'config.json'), JSON.stringify({ enabled: false }));
+
+      const configDir = join(ctxRoot, 'config');
+      mkdirSync(configDir, { recursive: true });
+      writeFileSync(
+        join(configDir, 'enabled-agents.json'),
+        JSON.stringify({ worker: { org: 'acme', enabled: true } }),
+      );
+
+      const agents = listAgents(ctxRoot);
+      expect(agents.length).toBe(1);
+      expect(agents[0].enabled).toBe(false);
+    });
+
+    it('corrupt enabled-agents.json falls through to dir scan gracefully', () => {
+      const frameworkRoot = join(testDir, 'framework');
+      process.env.CTX_FRAMEWORK_ROOT = frameworkRoot;
+
+      // Write corrupt (non-JSON) enabled-agents.json
+      const configDir = join(ctxRoot, 'config');
+      mkdirSync(configDir, { recursive: true });
+      writeFileSync(join(configDir, 'enabled-agents.json'), 'not-valid-json{{{');
+
+      // Agent exists on disk but not in the corrupt file
+      mkdirSync(join(frameworkRoot, 'orgs', 'acme', 'agents', 'worker'), { recursive: true });
+
+      // Should still discover the agent via dir scan; defaults to enabled: true
+      const agents = listAgents(ctxRoot);
+      expect(agents.map(a => a.name)).toContain('worker');
+      const worker = agents.find(a => a.name === 'worker')!;
+      expect(worker.enabled).toBe(true);
+    });
+
+    it('filters dir-scan agents whose names contain illegal characters', () => {
+      const frameworkRoot = join(testDir, 'framework');
+      process.env.CTX_FRAMEWORK_ROOT = frameworkRoot;
+
+      mkdirSync(join(frameworkRoot, 'orgs', 'acme', 'agents', 'good-agent'), { recursive: true });
+      // Agent name with uppercase and dot — should be skipped by the regex guard
+      mkdirSync(join(frameworkRoot, 'orgs', 'acme', 'agents', 'Bad.Agent'), { recursive: true });
+
+      const configDir = join(ctxRoot, 'config');
+      mkdirSync(configDir, { recursive: true });
+      writeFileSync(join(configDir, 'enabled-agents.json'), JSON.stringify({}));
+
+      const agents = listAgents(ctxRoot);
+      expect(agents.map(a => a.name)).toContain('good-agent');
+      expect(agents.map(a => a.name)).not.toContain('Bad.Agent');
+    });
   });
 
   describe('notifyAgent', () => {

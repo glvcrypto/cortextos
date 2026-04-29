@@ -10,7 +10,7 @@ vi.mock('../../../src/bus/message', () => ({
   sendMessage: vi.fn(),
 }));
 
-import { mkdtempSync, rmSync, readdirSync, readFileSync, existsSync } from 'fs';
+import { mkdtempSync, rmSync, readdirSync, readFileSync, writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
 import { createApproval, updateApproval, listPendingApprovals } from '../../../src/bus/approval';
@@ -232,6 +232,28 @@ describe('createApproval', () => {
   });
 });
 
+describe('updateApproval', () => {
+  it('resolves_by is null when no note is provided', async () => {
+    const id = await createApproval(paths, 'alice', 'TestOrg', 'No-note test', 'deployment', undefined, frameworkRoot);
+    updateApproval(paths, id, 'approved');
+
+    const resolvedFile = join(paths.approvalDir, 'resolved', `${id}.json`);
+    const approval = JSON.parse(readFileSync(resolvedFile, 'utf-8'));
+    expect(approval.resolved_by).toBeNull();
+    expect(approval.status).toBe('approved');
+  });
+
+  it('denied status is written to resolved file', async () => {
+    const id = await createApproval(paths, 'alice', 'TestOrg', 'Deny test', 'other', undefined, frameworkRoot);
+    updateApproval(paths, id, 'denied', 'scope too broad');
+
+    const resolvedFile = join(paths.approvalDir, 'resolved', `${id}.json`);
+    const approval = JSON.parse(readFileSync(resolvedFile, 'utf-8'));
+    expect(approval.status).toBe('denied');
+    expect(approval.resolved_by).toBe('scope too broad');
+  });
+});
+
 describe('updateApproval (regression guard for activity-channel callback path)', () => {
   it('moves the approval file from pending/ to resolved/ with status+note', async () => {
     // The handleActivityCallback path calls updateApproval with an audit
@@ -267,5 +289,51 @@ describe('listPendingApprovals', () => {
     const pending = listPendingApprovals(paths);
     expect(pending).toHaveLength(1);
     expect(pending[0].id).toBe(id1);
+  });
+
+  it('returns empty array when pending dir does not exist', () => {
+    // No approvals created — pending/ dir is absent
+    const result = listPendingApprovals(paths);
+    expect(result).toEqual([]);
+  });
+
+  it('skips corrupt JSON files and returns valid approvals', async () => {
+    const id = await createApproval(paths, 'alice', 'TestOrg', 'Valid', 'deployment', undefined, frameworkRoot);
+
+    // Write a corrupt file alongside the valid one
+    const pendingDir = join(paths.approvalDir, 'pending');
+    writeFileSync(join(pendingDir, 'corrupt_approval.json'), 'not-json{{');
+
+    const result = listPendingApprovals(paths);
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe(id);
+  });
+
+  it('sorts approvals newest-first by created_at', () => {
+    // Write approval JSON files directly with known distinct timestamps to avoid
+    // second-granularity collision in the epoch-based id / created_at.
+    const { mkdirSync: mkdir } = require('fs');
+    const pendingDir = join(paths.approvalDir, 'pending');
+    mkdir(pendingDir, { recursive: true });
+
+    const older = {
+      id: 'approval_older', title: 'Older', requesting_agent: 'alice', org: 'TestOrg',
+      category: 'deployment', status: 'pending', description: '',
+      created_at: '2026-01-01T10:00:00Z', updated_at: '2026-01-01T10:00:00Z',
+      resolved_at: null, resolved_by: null,
+    };
+    const newer = {
+      id: 'approval_newer', title: 'Newer', requesting_agent: 'alice', org: 'TestOrg',
+      category: 'deployment', status: 'pending', description: '',
+      created_at: '2026-01-01T11:00:00Z', updated_at: '2026-01-01T11:00:00Z',
+      resolved_at: null, resolved_by: null,
+    };
+    writeFileSync(join(pendingDir, 'approval_older.json'), JSON.stringify(older));
+    writeFileSync(join(pendingDir, 'approval_newer.json'), JSON.stringify(newer));
+
+    const result = listPendingApprovals(paths);
+    expect(result).toHaveLength(2);
+    expect(result[0].id).toBe('approval_newer');
+    expect(result[1].id).toBe('approval_older');
   });
 });
