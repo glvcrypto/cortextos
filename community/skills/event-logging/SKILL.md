@@ -22,6 +22,8 @@ cortextos bus log-event <category> <event_name> <severity> [--meta '<json>']
 | category | `action` `task` `heartbeat` `message` `approval` `error` `metric` `milestone` |
 | severity | `info` `warning` `error` `critical` |
 
+> **Landmine:** `--severity warn` throws `Invalid severity 'warn'` at runtime. The correct value is `--severity warning`. Validated at `src/utils/validate.ts`.
+
 ---
 
 ## Required Events (log every session)
