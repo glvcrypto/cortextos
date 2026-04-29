@@ -2,6 +2,50 @@ import { Command } from 'commander';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
+export interface ResolvedConfig {
+  timezone: string;
+  day_mode_start: string;
+  day_mode_end: string;
+  communication_style: string;
+  approval_rules: { always_ask: string[]; never_ask: string[] };
+}
+
+export function resolveConfig(
+  orgCtx: Record<string, unknown>,
+  agentCfg: Record<string, unknown>
+): ResolvedConfig {
+  const defaultApprovalCategories = Array.isArray(orgCtx.default_approval_categories)
+    ? orgCtx.default_approval_categories as string[]
+    : ['external-comms', 'financial', 'deployment', 'data-deletion'];
+  return {
+    timezone: (agentCfg.timezone as string) || (orgCtx.timezone as string) || 'UTC',
+    day_mode_start: (agentCfg.day_mode_start as string) || (orgCtx.day_mode_start as string) || '08:00',
+    day_mode_end: (agentCfg.day_mode_end as string) || (orgCtx.day_mode_end as string) || '00:00',
+    communication_style: (agentCfg.communication_style as string) || (orgCtx.communication_style as string) || 'direct and casual',
+    approval_rules: (agentCfg.approval_rules as ResolvedConfig['approval_rules']) || {
+      always_ask: defaultApprovalCategories,
+      never_ask: [],
+    },
+  };
+}
+
+export function formatConfigText(
+  resolved: ResolvedConfig,
+  agentName: string,
+  org: string
+): string {
+  const header = agentName ? `=== Config: ${agentName} (org: ${org}) ===` : `=== Org Config: ${org} ===`;
+  return [
+    header,
+    `Timezone:            ${resolved.timezone}`,
+    `Day Mode:            ${resolved.day_mode_start} – ${resolved.day_mode_end}`,
+    `Night Mode:          ${resolved.day_mode_end} – ${resolved.day_mode_start}`,
+    `Approval Required:   ${resolved.approval_rules.always_ask.join(', ') || '(none)'}`,
+    `Never Need Approval: ${resolved.approval_rules.never_ask.join(', ') || '(none)'}`,
+    `Communication:       ${resolved.communication_style}`,
+  ].join('\n');
+}
+
 export const getConfigCommand = new Command('get-config')
   .description('Show resolved operational config for an agent (org defaults + agent overrides)')
   .option('--agent <name>', 'Agent name')
@@ -19,7 +63,7 @@ export const getConfigCommand = new Command('get-config')
     }
 
     // Read org defaults
-    let orgCtx: Record<string, any> = {};
+    let orgCtx: Record<string, unknown> = {};
     const orgCtxPath = join(frameworkRoot, 'orgs', org, 'context.json');
     if (existsSync(orgCtxPath)) {
       try { orgCtx = JSON.parse(readFileSync(orgCtxPath, 'utf-8')); } catch {}
@@ -28,7 +72,7 @@ export const getConfigCommand = new Command('get-config')
     }
 
     // Read agent overrides
-    let agentCfg: Record<string, any> = {};
+    let agentCfg: Record<string, unknown> = {};
     if (agentName) {
       const agentCfgPath = join(frameworkRoot, 'orgs', org, 'agents', agentName, 'config.json');
       if (existsSync(agentCfgPath)) {
@@ -39,35 +83,12 @@ export const getConfigCommand = new Command('get-config')
       }
     }
 
-    // Validate default_approval_categories — fall back to hardcoded default if not an array
-    const defaultApprovalCategories = Array.isArray(orgCtx.default_approval_categories)
-      ? orgCtx.default_approval_categories
-      : ['external-comms', 'financial', 'deployment', 'data-deletion'];
-
-    // Merge: agent wins over org defaults
-    const resolved = {
-      timezone: agentCfg.timezone || orgCtx.timezone || 'UTC',
-      day_mode_start: agentCfg.day_mode_start || orgCtx.day_mode_start || '08:00',
-      day_mode_end: agentCfg.day_mode_end || orgCtx.day_mode_end || '00:00',
-      communication_style: agentCfg.communication_style || orgCtx.communication_style || 'direct and casual',
-      approval_rules: agentCfg.approval_rules || {
-        always_ask: defaultApprovalCategories,
-        never_ask: [],
-      },
-    };
+    const resolved = resolveConfig(orgCtx, agentCfg);
 
     if (options.format === 'json') {
       console.log(JSON.stringify(resolved, null, 2));
       return;
     }
 
-    // Text format for agents to read
-    const header = agentName ? `=== Config: ${agentName} (org: ${org}) ===` : `=== Org Config: ${org} ===`;
-    console.log(header);
-    console.log(`Timezone:            ${resolved.timezone}`);
-    console.log(`Day Mode:            ${resolved.day_mode_start} – ${resolved.day_mode_end}`);
-    console.log(`Night Mode:          ${resolved.day_mode_end} – ${resolved.day_mode_start}`);
-    console.log(`Approval Required:   ${resolved.approval_rules.always_ask.join(', ') || '(none)'}`);
-    console.log(`Never Need Approval: ${resolved.approval_rules.never_ask.join(', ') || '(none)'}`);
-    console.log(`Communication:       ${resolved.communication_style}`);
+    console.log(formatConfigText(resolved, agentName, org));
   });
