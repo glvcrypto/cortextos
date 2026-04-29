@@ -106,6 +106,11 @@
 | Search intent vs social media for local businesses | Transactional intent (search = already decided, ready to buy) vs. brand awareness (social = browsing, not buying); for local service businesses with urgent/short buying windows (trades, health, legal, auto) → Google first; exception: visually-led businesses (restaurants, salons, fitness, interiors) where product is discovered through images → Instagram/Pinterest meaningful; rule: convert on Google first, add social once pipeline works; doing both badly worse than one well (Oct 16) |
 | Call tracking vs NAP consistency (DNI setup) | NAP rule: primary phone number stays unchanged in GBP, website footer, LocalBusiness schema, all directories — never replace with tracking number; Dynamic Number Insertion (DNI): JS snippet swaps number visible to human visitors in page body only, excluding footer and schema; real number in structured data, tracking number in page body CTAs; developer requirements: DNI script excluded from footer/schema/contact page; post-launch audit: GBP number, citation audit (BrightLocal/Whitespark), Rich Results Test; CallRail/WhatConverts have GBP integration — verify settings (Oct 19) |
 | Local keyword intent — navigational vs transactional | Ranking for brand name ≠ ranking for service keyword; GBP Insights → Searches shows which query type drives impressions; if mostly brand/navigational = Google knows business exists but hasn't connected to service category in area; three transactional intent fixes: (1) Services tab — every service with city in description; (2) GBP description — lead with "[service] in [city]" in sentence one; (3) primary category — match competitors' specificity level (Oct 20) |
+| GBP justifications | Text snippets under listing in local pack (below star rating): "From their website: [phrase]", "In reviews: [phrase]", checkmark services from Services tab; 4 types: website (indexed page copy), reviews (customer review text), services tab (checkmark-style), GBP posts; audit via private browser search; engineer: website = add service+city to H1/first paragraph/meta; reviews = prompt customers to name specific service; services tab = fill out completely with descriptions (Oct 21) |
+| Monthly competitor monitoring cadence | 15-minute first-Monday-of-month check (distinct from initial one-time gap analysis); four deltas: review count (flag burst of 5+), GBP post cadence, services tab additions, rank position for top 2–3 queries; initial audit provides baseline; monthly monitoring catches shifts before they compound (Oct 22) |
+| Site migration SEO checklist | Pre-launch: 301 redirect map for every changed URL, GBP website field updated, LocalBusiness schema updated (URL+phone+address), GSC property verified; post-launch: XML sitemap submitted, GSC Change of Address tool (domain changes only, Settings → Change of Address), 48-hour post-launch monitoring window (GSC Coverage tab, 404 spike, crawl errors); most ranking drops from redesigns are preventable with this list (Oct 23) |
+| Image SEO for local businesses | 4-step prep before every upload: (1) rename file — service + city (not IMG_4521.jpg); (2) alt text — one descriptive sentence with service/location, no keyword stuffing, no blank; (3) compress to under 100KB using Squoosh.app (free, browser-based); (4) WebP format — ~25–50% smaller than JPEG at equivalent quality; bonus for GBP uploads: geo-tag image file with GPS service area coordinates before uploading (Oct 24) |
+| Neighbourhood/suburb landing pages | Beyond city+service: hyper-local pages targeting specific districts within competitive cities; build when: city page indexed + ranking 4–10 for 60+ days AND GSC showing impressions from neighbourhood-level searches or postal codes AND you actually service that area; URL structure: /service/city-neighbourhood/; H1: [Service] in [Neighbourhood]; body 300–500 words with at least one unique local element (housing stock note, specific streets/postal codes, neighbourhood-specific FAQ); thin content trap: don't swap city name in copy-paste — Google identifies near-duplicates; cadence: 2–3 to start, one per month, track at 30/60/90 days with rank grid; 6–12 month play for competitive metros (Oct 25) |
 
 ### CTA keyword map
 
@@ -196,6 +201,11 @@
 | Oct 16 | open comment | n/a |
 | Oct 19 | CALLTRACK | manual |
 | Oct 20 | INTENT | manual |
+| Oct 21 | JUSTIFY | manual |
+| Oct 22 | open comment | n/a |
+| Oct 23 | MIGRATE | manual |
+| Oct 24 | IMAGE | manual |
+| Oct 25 | SUBURB | manual |
 
 ## Reyco Marine Content
 
