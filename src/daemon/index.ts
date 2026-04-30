@@ -4,6 +4,12 @@ import { writeFileSync, existsSync, chmodSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
 import { ensureDir } from '../utils/atomic.js';
+import {
+  recordCrash,
+  resetCrashHistory,
+  CRASH_ALERT_THRESHOLD,
+  sendOperatorAlert,
+} from './crash-handlers.js';
 
 /**
  * cortextOS Daemon - single process managing all agents.
@@ -119,6 +125,37 @@ class Daemon {
 // with TelegramPollers, IPC server, and Claude PTY processes as a side effect.
 // See: https://github.com/grandamenium/cortextos/issues/44
 if (require.main === module) {
+  resetCrashHistory();
+
+  // Crash-storm detection: count unhandled exceptions in a 15-min window.
+  // At CRASH_ALERT_THRESHOLD, send a Telegram operator alert so the team
+  // can intervene before PM2 exhausts max_restarts=10 and gives up.
+  process.on('uncaughtException', async (err) => {
+    console.error('[daemon] Uncaught exception:', err);
+    const count = recordCrash();
+    if (count >= CRASH_ALERT_THRESHOLD) {
+      await sendOperatorAlert(err);
+    }
+    // Do NOT process.exit here — PM2 controls daemon lifecycle.
+    // Logging the exception is enough; let the event loop recover if possible.
+  });
+
+  process.on('unhandledRejection', (reason) => {
+    console.error('[daemon] Unhandled rejection:', reason);
+  });
+
+  // SIGUSR2: dump daemon internals for live debugging without a restart.
+  // Send: `kill -USR2 <daemon-pid>` or `pm2 sendSignal SIGUSR2 cortextos-daemon`.
+  // Only active when CTX_DEBUG_ALLOW_CRASH_TRIGGER=1 (staging only).
+  process.on('SIGUSR2', () => {
+    if (process.env.CTX_DEBUG_ALLOW_CRASH_TRIGGER === '1') {
+      console.log('[daemon] SIGUSR2 — controlled crash trigger (staging debug)');
+      throw new Error('SIGUSR2 debug crash trigger');
+    }
+    console.log('[daemon] SIGUSR2 — debug snapshot (set CTX_DEBUG_ALLOW_CRASH_TRIGGER=1 for crash trigger)');
+    console.log(`[daemon] PID: ${process.pid} | uptime: ${process.uptime().toFixed(1)}s`);
+  });
+
   const daemon = new Daemon();
   daemon.start().catch(err => {
     console.error('[daemon] Fatal error:', err);
