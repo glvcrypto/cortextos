@@ -47,6 +47,21 @@ cat >> "$MEMORY_DIR/$TODAY.md" << MEMORY
 MEMORY
 ```
 
+## Step 5b: Respond to agent heartbeat-staleness pings
+
+If another agent flags a heartbeat-stale alert, check outbound-messages.jsonl **before** treating it as a real silence:
+
+```bash
+# Check last outbound activity timestamp
+stat ~/.cortextos/default/logs/dev/outbound-messages.jsonl 2>/dev/null | grep Modify
+```
+
+**Suppress rule**: if `outbound-messages.jsonl` mtime is within the last cycle-window (≤4h), the session is active — heartbeat lag is /loop cadence, not silence. Reply to dismiss the ping and note the false-positive. Do NOT escalate.
+
+**Fire rule**: if BOTH heartbeat AND outbound-log are stale beyond the cycle-window, the session may be genuinely silent. Investigate and restart if needed.
+
+_Rationale: heartbeat file only updates when the local daemon is running. In cloud sessions, /loop cadence can be wider than the 5h staleness threshold, causing false-positive pings. The outbound log is the authoritative activity signal — it updates on every `cortextos bus send-message` regardless of session type._
+
 ## Step 6: Check Slack #internal-dev for pending items
 
 Use Slack MCP: `mcp__Slack__slack_read_channel` with channel_id `C0APQ0TFS93`.
