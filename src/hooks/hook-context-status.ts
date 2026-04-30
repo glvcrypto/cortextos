@@ -18,7 +18,7 @@ import { join } from 'path';
 import { homedir } from 'os';
 import { atomicWriteSync } from '../utils/atomic.js';
 
-interface StatusLineInput {
+export interface StatusLineInput {
   context_window?: {
     used_percentage?: number | null;
     context_window_size?: number;
@@ -31,6 +31,22 @@ interface StatusLineInput {
     };
   };
   session_id?: string;
+}
+
+/**
+ * Build the JSON payload written to context_status.json.
+ * Caller must ensure data.context_window is defined before calling.
+ */
+export function buildContextStatusPayload(data: StatusLineInput, writtenAt: string): string {
+  const cw = data.context_window!;
+  return JSON.stringify({
+    used_percentage: typeof cw.used_percentage === 'number' ? cw.used_percentage : null,
+    context_window_size: cw.context_window_size ?? null,
+    exceeds_200k_tokens: Boolean(cw.exceeds_200k_tokens),
+    current_usage: cw.current_usage ?? null,
+    session_id: data.session_id ?? null,
+    written_at: writtenAt,
+  });
 }
 
 async function main(): Promise<void> {
@@ -62,17 +78,9 @@ async function main(): Promise<void> {
     data = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
   } catch { return; }
 
-  const cw = data.context_window;
-  if (!cw) return;
+  if (!data.context_window) return;
 
-  const payload = JSON.stringify({
-    used_percentage: typeof cw.used_percentage === 'number' ? cw.used_percentage : null,
-    context_window_size: cw.context_window_size ?? null,
-    exceeds_200k_tokens: Boolean(cw.exceeds_200k_tokens),
-    current_usage: cw.current_usage ?? null,
-    session_id: data.session_id ?? null,
-    written_at: new Date().toISOString(),
-  });
+  const payload = buildContextStatusPayload(data, new Date().toISOString());
 
   mkdirSync(stateDir, { recursive: true });
   atomicWriteSync(outPath, payload);
