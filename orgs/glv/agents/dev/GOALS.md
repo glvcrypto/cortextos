@@ -13,6 +13,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #51 | test(telegram): TelegramAPI method coverage — sendMessage + answerCallbackQuery + editMessageText + sendChatAction + setMyCommands (17 cases) | 17/17 pass. Adds 17 cases to existing 2 in api.test.ts. Covers parse-mode fallback, sanitizeMarkdown, chunking, retry logic, all 5 methods. Build clean. |
 | #50 | test(utils): lock.ts stale-lock + corrupt-PID + releaseLock idempotency (3 cases) | 6/6 pass (3→6 total). Covers dead-PID stale recovery, NaN/corrupt PID, releaseLock no-op. Build clean. |
 | #49 | test(bus): message.ts security + error-recovery gaps (9 cases) | 9/9 pass. HMAC signing/verification paths + corrupt JSON + stale inflight recovery + ackInbox no-match. Build clean. |
 | #48 | test(cli): writeDisableMarker (BUG-036) coverage — 4 cases | 16/16 pass. Additive to existing enable-agent-validation.test.ts. |
