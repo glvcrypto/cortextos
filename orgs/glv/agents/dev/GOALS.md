@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-04-29_
+_Last updated: 2026-04-30_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -8,6 +8,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #45 | test(bus): catalog browseCatalog + prepareSubmission + submitCommunityItem + installCommunityItem gaps (50 cases) | 50/50 pass. Build clean. |
 | #41 | test(cli): setup validators + dashboard env helpers (56 cases) | 56/56 pass. Build clean. |
 | #34 | test(cli): ecosystem buildDashboardBlock + buildEcosystemContent (34 cases) | 34/34 pass. Build clean. |
 | #33 | test(cli): bus.ts pure helpers — parseDisplayNameFromLines + checkDeliverableRequirement + pct (28 cases) | 28/28 pass. Build clean. |
