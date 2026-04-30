@@ -1,0 +1,178 @@
+row_num,name,slug,decision,tier
+514,Accessories,accessories,KEEP,A
+515,ACE NV,ace-nv,DELETE,B
+516,APEX 13,apex-13,DELETE,C
+517,APEX 16,apex-16,DELETE,C
+518,APEX 19,apex-19,DELETE,C
+519,APEX Series,apex-series,DELETE,B
+520,Articulating Hedge Trimmers,articulating-hedge-trimmers,KEEP,A
+521,ATVs,atvs,KEEP,B
+522,B,b,DELETE,C
+523,Blowers,blowers,KEEP,A
+524,Blowers & Vacuums,blowers-vacuums,KEEP,A
+525,Boat,boat,KEEP,A
+526,Boat Lifts,boat-lifts,KEEP,A
+527,Brushcutters,brushcutters,KEEP,A
+528,Cantilever Lifts,cantilever-lifts,KEEP,A
+529,Chainsaws,chainsaws,KEEP,A
+530,Compact Pro Chainsaws,compact-pro-chainsaws,KEEP,A
+531,Cordless Blowers,cordless-blowers,KEEP,A
+532,Cordless Chainsaws,cordless-chainsaws,KEEP,A
+533,Cordless Trimmers,cordless-trimmers,KEEP,A
+534,Crew UTVs,crew-utvs,KEEP,A
+535,CS-2511P,cs-2511p,DELETE,C
+536,CS-2511T,cs-2511t,DELETE,C
+537,CS-271T,cs-271t,DELETE,C
+538,CS-310,cs-310,DELETE,C
+539,CS-3510,cs-3510,DELETE,C
+540,CS-352,cs-352,DELETE,C
+541,CS-355T,cs-355t,DELETE,C
+542,CS-361P,cs-361p,DELETE,C
+543,CS-370F,cs-370f,DELETE,C
+544,CS-4510,cs-4510,DELETE,C
+545,CS-490,cs-490,DELETE,C
+546,CS-4910,cs-4910,DELETE,C
+547,CS-501P,cs-501p,DELETE,C
+548,CS-590,cs-590,DELETE,C
+549,CS-620P,cs-620p,DELETE,C
+550,CS-680,cs-680,DELETE,C
+551,CS-7310P,cs-7310p,DELETE,C
+552,Cub Cadet Challenger 750 MX,cub-cadet-challenger-750-mx,DELETE,B
+553,Cub Cadet UTV,cub-cadet-utv,KEEP,A
+554,Curved Shaft Trimmers,curved-shaft-trimmers,KEEP,A
+555,Cut-Off Saws,cut-off-saws,KEEP,B
+556,DCS-2500T,dcs-2500t,DELETE,C
+557,DCS-5000,dcs-5000,DELETE,C
+558,Deck Boats,deck-boats,KEEP,A
+559,DHC-2300,dhc-2300,DELETE,C
+560,DLM-2100,dlm-2100,DELETE,C
+561,Docks,docks,KEEP,A
+562,Downrigger Accessories,downrigger-accessories,KEEP,A
+563,Downrigger Weights,downrigger-weights,KEEP,A
+564,Downriggers,downriggers,KEEP,B
+565,DPAS Powerheads,dpas-powerheads,KEEP,A
+566,DPB-2500,dpb-2500,DELETE,C
+567,DSRM-2100,dsrm-2100,DELETE,C
+568,DSRM-2600,dsrm-2600,DELETE,C
+569,Easi-Troll,easi-troll,DELETE,B
+570,Edgers,edgers,KEEP,A
+571,Electric Downriggers,electric-downriggers,KEEP,B
+572,Electric Pressure Washers,electric-pressure-washers,KEEP,A
+573,Electric UTVs,electric-utvs,KEEP,A
+574,Extended Reach Hedge Trimmers,extended-reach-hedge-trimmers,KEEP,A
+575,Fish Finders,fish-finders,KEEP,A
+576,Fishing Boats,fishing-boats,KEEP,A
+577,Floating Docks,floating-docks,KEEP,A
+578,Floating Truss Docks,floating-truss-docks,KEEP,A
+579,Forge 400i,forge-400i,DELETE,C
+580,Gas Pressure Washers,gas-pressure-washers,KEEP,A
+581,Golf Carts,golf-carts,KEEP,A
+582,GUARDIAN,guardian,DELETE,B
+583,Handheld Blowers,handheld-blowers,KEEP,A
+584,Heavy Pro Chainsaws,heavy-pro-chainsaws,KEEP,A
+585,Heavy-Duty Trimmers,heavy-duty-trimmers,KEEP,A
+586,Hedge Trimmers,hedge-trimmers,KEEP,A
+587,HELIX Series,helix-series,DELETE,B
+588,Hidden-Beam,hidden-beam,DELETE,B
+589,Homeowner Chainsaws,homeowner-chainsaws,KEEP,A
+590,HS 400,hs-400,DELETE,C
+591,HS 500,hs-500,DELETE,C
+592,HS Series,hs-series,DELETE,B
+593,Hydraulic Lifts,hydraulic-lifts,KEEP,A
+594,Hydraulic PWC Lifts,hydraulic-pwc-lifts,KEEP,A
+595,Hydro Extreme,hydro-extreme,DELETE,B
+596,ICE Electronics,ice-electronics,KEEP,A
+597,Ice Fishing Electronics,ice-fishing-electronics,KEEP,A
+598,ICE XPLORE,ice-xplore,DELETE,B
+599,Kayak Motors,kayak-motors,KEEP,A
+600,Kayak Terrova,kayak-terrova,KEEP,A
+601,Lake-Troll,lake-troll,DELETE,B
+602,Lift Roof Systems,lift-roof-systems,KEEP,A
+603,Lift-Up Docks,lift-up-docks,KEEP,A
+604,Limited Edition,limited-edition,DELETE,B
+605,Live Sonar,live-sonar,KEEP,A
+606,Low-Noise Blowers,low-noise-blowers,KEEP,A
+607,LUX Floating,lux-floating,DELETE,B
+608,Magnum,magnum,DELETE,B
+609,Manual Downriggers,manual-downriggers,KEEP,B
+610,Marine Electronics,marine-electronics,KEEP,A
+611,Marine Electronics Accessories,marine-electronics-accessories,KEEP,A
+612,Marine Railway Systems,marine-railway-systems,KEEP,A
+613,MEGA Live 2,mega-live-2,DELETE,C
+614,Mid Backpack Blowers,mid-backpack-blowers,KEEP,A
+615,Mini-Troll,mini-troll,DELETE,B
+616,MK 230 PCL,mk-230-pcl,DELETE,C
+617,MK 330 PC,mk-330-pc,DELETE,C
+618,MK 345 PCL,mk-345-pcl,DELETE,C
+619,MK 460 PCL,mk-460-pcl,DELETE,C
+620,Modular Docks,modular-docks,KEEP,A
+621,MP9 550R,mp9-550r,DELETE,C
+622,MP9 750R,mp9-750r,DELETE,C
+623,MP9 Series,mp9-series,DELETE,C
+624,MP9 T400,mp9-t400,DELETE,C
+625,Multi-Tool Systems,multi-tool-systems,KEEP,A
+626,Optimum,optimum,DELETE,B
+627,Otter Swim Rafts,otter-swim-rafts,DELETE,B
+628,Outboard Motors,outboard-motors,KEEP,A
+629,PAS Powerheads,pas-powerheads,KEEP,A
+630,Pontoons,pontoons,KEEP,A
+631,Power Pruners,power-pruners,KEEP,A
+632,Precision Chargers,precision-chargers,DELETE,B
+633,Pressure Washers,pressure-washers,KEEP,A
+634,Pro Backpack Blowers,pro-backpack-blowers,KEEP,A
+635,Pro Chainsaws,pro-chainsaws,KEEP,A
+636,Pro Pressure Washers,pro-pressure-washers,KEEP,A
+637,Pro Trimmers,pro-trimmers,KEEP,A
+638,Push Mowers,push-mowers,KEEP,A
+639,PWC Lifts,pwc-lifts,KEEP,A
+640,Riding Mowers,riding-mowers,KEEP,A
+641,Riptide Kayak Terrova,riptide-kayak-terrova,KEEP,A
+642,Riptide Terrova 112,riptide-terrova-112,DELETE,C
+643,Riptide Terrova QUEST,riptide-terrova-quest,DELETE,B
+644,Riptide Terrova QUEST 100,riptide-terrova-quest-100,DELETE,C
+645,Riptide Terrova QUEST 72,riptide-terrova-quest-72,DELETE,C
+646,Riptide Terrova QUEST 87,riptide-terrova-quest-87,DELETE,C
+647,Riptide Terrova Refurbished,riptide-terrova-refurbished,DELETE,B
+648,Sector 250,sector-250,DELETE,C
+649,Sector 550 EPS,sector-550-eps,DELETE,C
+650,Sector 750 Crew,sector-750-crew,DELETE,C
+651,Sector 750 EPS,sector-750-eps,DELETE,C
+652,Sector Series,sector-series,DELETE,B
+653,Single-Stage Snowblowers,single-stage-snowblowers,KEEP,A
+654,Snow Plows,snow-plows,KEEP,A
+655,Sport UTVs,sport-utvs,KEEP,A
+656,Standard Hedge Trimmers,standard-hedge-trimmers,KEEP,A
+657,Straight Shaft Trimmers,straight-shaft-trimmers,KEEP,A
+658,Strike 250R,strike-250r,DELETE,C
+659,Strike 550R,strike-550r,DELETE,C
+660,Strike Series,strike-series,DELETE,B
+661,String Trimmers,string-trimmers,KEEP,A
+662,Stryker 550,stryker-550,DELETE,C
+663,Stryker 750,stryker-750,DELETE,C
+664,Stryker 750 Crew,stryker-750-crew,DELETE,C
+665,Stryker Series,stryker-series,DELETE,B
+666,Tactic,tactic,DELETE,B
+667,Three-Stage Snowblowers,three-stage-snowblowers,KEEP,A
+668,Timber Wolf,timber-wolf,DELETE,B
+669,Top-Handle Chainsaws,top-handle-chainsaws,KEEP,A
+670,Trailers,trailers,KEEP,A
+671,Trimmers,trimmers,KEEP,A
+672,Trolling Motors,trolling-motors,KEEP,B
+673,Truss Pipe Docks,truss-pipe-docks,KEEP,A
+674,Two-Stage Snowblowers,two-stage-snowblowers,KEEP,A
+675,U-Handle,u-handle,DELETE,B
+676,Ultrex 80/45,ultrex-80-45,DELETE,C
+677,Ultrex 80/52,ultrex-80-52,DELETE,C
+678,Ultrex QUEST,ultrex-quest,DELETE,B
+679,Uni-Troll,uni-troll,DELETE,B
+680,Utility UTVs,utility-utvs,KEEP,A
+681,UTVs,utvs,KEEP,A
+682,Vertical Pontoon Lifts,vertical-pontoon-lifts,KEEP,A
+683,Walk-Behind Edgers,walk-behind-edgers,KEEP,A
+684,Wave Armor,wave-armor,DELETE,B
+685,Wave Armour Ports,wave-armour-ports,DELETE,B
+686,WaveX,wavex,DELETE,B
+687,Wet-Slip Lifts,wet-slip-lifts,KEEP,A
+688,X Series Blowers,x-series-blowers,DELETE,B
+689,Youth UTVs,youth-utvs,KEEP,A
+690,Zero-Turn Mowers,zero-turn-mowers,KEEP,A

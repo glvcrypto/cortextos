@@ -1,0 +1,19 @@
+{
+  "approval_required": true,
+  "cycles": [
+    {
+      "name": "first_pass_approval",
+      "agent": "imagegen",
+      "metric": "first_pass_approval_rate",
+      "metric_type": "quantitative",
+      "surface": "/home/aiden/cortextos/orgs/glv/agents/imagegen/memory",
+      "direction": "higher",
+      "window": "4w",
+      "measurement": "count of deliverable batches approved by user without retry / total deliverable batches generated, scanned from daily memory entries (e.g. v1 vs v2 vs v3 in Titan job → 0/3 first-pass for that job)",
+      "loop_interval": "2w",
+      "enabled": true,
+      "created_by": "imagegen",
+      "created_at": "2026-04-28T06:09:11Z"
+    }
+  ]
+}

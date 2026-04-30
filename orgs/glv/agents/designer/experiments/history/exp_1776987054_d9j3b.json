@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776987054_d9j3b",
+  "agent": "designer",
+  "metric": "visual_review_accuracy",
+  "hypothesis": "Adding a mandatory Section 0 (Falsifiable Observation Pre-Flight) at the TOP of the review checklist — separate observation from interpretation, require the 4-probe template before asserting any cause/mechanism — will raise user-agreement rate on flagged issues. Evidence: today (2026-04-23) I was corrected exactly on this pattern (CSS-rationalization from single screenshot). Currently Section 0 exists only in 'Anti-patterns' prose at the bottom; moving it to mandatory first step operationalizes the rule.",
+  "surface": "experiments/surfaces/visual-review-accuracy/current.md",
+  "direction": "higher",
+  "window": "7d",
+  "measurement": "",
+  "status": "running",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-23T23:30:54Z",
+  "started_at": "2026-04-23T23:57:48Z",
+  "completed_at": null,
+  "changes_description": "Promoted proposed.md → current.md: added mandatory Section 0 (Falsifiable Observation Pre-Flight) at top of review checklist with abort condition, UNVERIFIED label + surface-rule prefix, and locked 5-case coding rubric for the metric. Removed now-redundant proposed.md. Anti-patterns section retains reference to Section 0."
+}

@@ -1,0 +1,12 @@
+# Experiment Learnings
+
+## exp_1776808026_b6l68 (keep)
+- **Metric:** deploy_reliability
+- **Hypothesis:** Adding a PHP lint gate (php -l on all changed .php files) before any commit will catch syntax errors that currently reach CI and fail the smoke test. Current surface has no pre-push local validation beyond manual review. Hypothesis: php -l pre-commit check eliminates class of syntax-error CI failures, improving first-push pass rate.
+- **Result:** 86 (baseline: 86)
+- **Learning:** 93 deploy runs since 2026-04-21 experiment start; 80 passed, 13 failed — 86.0% pass rate. Pre-experiment baseline: 0% (2 runs, both failed; repo CI had just launched). The php -l pre-push gate eliminated PHP syntax failures entirely — zero PHP parse errors in CI post-experiment. Remaining 13 failures cluster into: 7 on 2026-04-22 (high-churn day before gate fully embedded; seeding + template runtime errors, not syntax), 1 intentional debug CI run, 2 Playwright layout failures (footer-v2, homepage banner), 1 stale-PR integration, 1 product taxonomy seed failure. The gate demonstrably improved first-push pass rate — KEEP. Next surface: the PHP runtime failure class (seeding failures, undefined method calls, WP hook issues) that php -l does not catch.
+## exp_1777269393_36auc (keep)
+- **Metric:** deploy_reliability
+- **Hypothesis:** Extending the pre-push smoke test from HTTP-200+no-PHP-error to also assert presence of structural HTML/CSS class markers (.site-header, .site-footer, main.site-main) in page responses will catch layout-structure regressions before CI. The 2 Playwright layout failures (footer-v2 grid-template-areas regression, homepage-parity banner) represent the highest remaining addressable failure class post-php-lint-gate. A grep-for-marker smoke pass on changed templates would have caught both before push.
+- **Result:** 100 (baseline: 100)
+- **Learning:** 15 CI runs in the 48h window (2026-04-27T17:07 through 2026-04-29T02:38), all 15 succeeded. 100% pass rate vs 86% baseline. Structural marker check (.site-header, .site-footer, main.site-main, nav.site-nav) caught zero regressions that reached CI — the gate appears to be doing its job as a pre-push filter. Zero layout failures in window vs 2 Playwright layout failures in the equivalent pre-experiment period. Sample is 15 runs (smaller than the 93-run baseline period) but 15 consecutive successes with zero failures is strong signal. KEEP.

@@ -1,0 +1,33 @@
+{
+  "approval_required": true,
+  "cycles": [
+    {
+      "name": "outreach-conversion",
+      "agent": "prospector",
+      "metric": "outreach_conversion",
+      "metric_type": "quantitative",
+      "surface": "experiments/surfaces/outreach-conversion/current.md",
+      "direction": "higher",
+      "window": "72h",
+      "measurement": "Check Google Calendar for new bookings via https://calendar.app.google/5hcxx2tWmVkNvS1c6 (booked meetings) and search Gmail for replies to outreach emails sent in the past 72h. Score = (booked meetings * 10) + (email replies * 1). Higher is better.",
+      "loop_interval": "72h",
+      "enabled": false,
+      "created_by": "prospector",
+      "created_at": "2026-04-19T22:19:03Z"
+    },
+    {
+      "name": "reply_rate_by_hook_structure",
+      "agent": "prospector",
+      "metric": "reply_rate_by_hook_structure",
+      "metric_type": "quantitative",
+      "surface": "experiments/surfaces/reply-rate/current.md",
+      "direction": "higher",
+      "window": "14d",
+      "measurement": "Query event log: reply_received / email_sent grouped by hook_variant x structure_variant, rolling 14d window. Score = reply_rate per cell (0.0-1.0). Higher is better.",
+      "loop_interval": "24h",
+      "enabled": false,
+      "created_by": "prospector",
+      "created_at": "2026-04-20T07:47:44Z"
+    }
+  ]
+}

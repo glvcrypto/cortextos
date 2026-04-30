@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777445790_uqrh5",
+  "agent": "dev",
+  "metric": "deploy_reliability",
+  "hypothesis": "The current structural marker smoke test hits only 3 URLs (homepage, /products/, /services/). A single-product template regression or category archive collapse would pass the gate undetected. Expanding the smoke URL set from 3 to 6 — adding a live single-product URL, a service-detail URL, and a product category archive URL — will catch template-specific regressions on a broader set of WP template files before they reach CI. Basis: both prior keeps (php -l, marker check) targeted identified failure classes with surgical gates; this extends the proven marker-check approach to template types that appeared in the historical failure record (product taxonomy seed failure mapped to product archive templates; homepage-parity banner mapped to homepage template). Adding 3 representative pages triples per-push template coverage at negligible curl cost.",
+  "surface": "experiments/surfaces/deploy-reliability/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "",
+  "status": "running",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-29T06:56:30Z",
+  "started_at": "2026-04-29T06:56:46Z",
+  "completed_at": null,
+  "changes_description": "Expanded structural marker smoke URL set from 3 to 6: added single-product URL (?p=368), service-detail URL (/service/marine/), and product category archive (/product-category/outboard-motors/) to SMOKE_URLS array. All 4 REQUIRED_MARKERS unchanged. Targets template-specific regressions on WP template types not covered by the prior 3-URL set."
+}

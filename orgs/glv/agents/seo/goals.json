@@ -1,0 +1,13 @@
+{
+  "focus": "Reyco launch-eve T-1: final pre-retainer audit + baseline GSC export pre-May 1 + schema markup deploy-ready for post-launch dev handoff",
+  "goals": [
+    "Phase 0 pre-retainer launch audit (Apr-May) — clarify in goals per scout audit; retainer deliverables gated on Reyco domain cutover",
+    "Baseline rankings GSC CSV export — needs Aiden action pre-May 1 (Day-0 anchor for Q3 SEO lift measurement)",
+    "Schema markup deploy: 6 templates ready (LocalBusiness + 5 service pages + Product); needs Aiden geo coords + Casey payment methods, then dev dispatch",
+    "Audit batch 3-5 of 5 — continue page-by-page audit through launch-eve into post-launch sprint",
+    "Task #12 (250 metas) — surface to boss if WC REST key from dev still blocked >48h (cross-agent escalation per scout audit)"
+  ],
+  "bottleneck": "WC REST key from dev (Task #12 cross-agent block >48h); Aiden launch-eve focus elsewhere",
+  "updated_at": "2026-04-29T12:34:40Z",
+  "updated_by": "boss"
+}

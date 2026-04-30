@@ -1,0 +1,21 @@
+# designer-qc-batch-2026-04-23-verdicts.csv
+# FINAL — 14 of 14 rows coded (2026-04-23)
+# Adds qc_verdict + qc_notes to original 14-row designer_qc_edge_case set.
+# qc_verdict values: keep | re_crop | request_replacement
+# Judgment criterion (user): "looks good as in on product pages / carousels" — strict square preferred but flex allowed if tile render works.
+# Source images pulled from live site at orgs/glv/clients/reyco/audit/qc-images/ (via imagegen warm cookie jar, SG YDEX-gated on headless path).
+sku,brand,product_name,aspect_ratio,image_w,image_h,qc_verdict,qc_notes
+EC-CWT7410-26,Echo,Echo CWT-7410 Walk-Behind Cut-Off Saw,1.18:1 landscape,720,610,keep,naturally-landscape subject (wheeled cart + saw + water tank); aspect matches subject shape; clean white BG centered. Lower res (720px) but acceptable at carousel thumb size.
+EC-HC2020-26,Echo,Echo HC-2020 Hedge Trimmer,1.17:1 landscape,1200,1025,keep,elongated subject — engine-on-left + blade extending right across full frame; square crop would cut blade tip. Aspect correct for subject.
+EC-PB265LN-26,Echo,Echo PB-265LN Low-Noise Handheld,1:1.08 portrait,1109,1200,keep,near-square portrait (8% off); clean white BG; backpack blower fills tile with product details visible.
+EC-PB580T-26,Echo,Echo PB-580T Backpack Blower,1.16:1 landscape,1200,1031,keep,blower with tube arcing right; landscape matches natural horizontal extension. Clean white BG.
+EC-PB755ST-26,Echo,Echo PB-755ST Backpack Blower,1:1.07 portrait,1123,1200,keep,minimal portrait (7% off square); standard Echo product shot; centered composition.
+EC-PB9010T-26,Echo,Echo PB-9010T X Series Backpack Blower,1.11:1 landscape,978,881,keep,X-series flagship blower; strong product ID visible (PB-9010T label prominent); well-framed.
+EC-PW3600-26,Echo,Echo PW-3600 Pro Gas Pressure Washer,1.2:1 landscape,1200,1004,keep,largest deviation in batch (20%) but pressure washer is inherently wider than tall; wheels-to-handle fills frame. Clean white BG.
+EC-SRM225-26,Echo,Echo SRM-225 String Trimmer,1.17:1 landscape,1200,1023,keep,diagonal composition of engine-to-trimmer-head spans full landscape; square crop would cut either end. Aspect correct for subject.
+HS-HS400-26,Hisun,Hisun HS 400 Entry ATV,1:1.25 portrait,960,1200,request_replacement,spec sheet as main image per CSV CALIBRATION note — needs Hisun Canada product photo (Casey/dealer ask queued).
+HS-HS500-26,Hisun,Hisun HS 500 — Utility ATV,1:1.25 portrait,960,1200,request_replacement,spec sheet as main image per CSV CALIBRATION note — needs Hisun Canada product photo (Casey/dealer ask queued).
+HS-SEC250-26,Hisun,Hisun Sector 250 Compact Utility UTV,1.07:1 landscape,800,750,keep,standard dealer product shot — 3/4 front angle on white BG; maroon Sector 250; 7% aspect deviation. Note: source_verified_dealer=unknown (provenance flag separate from visual verdict).
+HS-SEC750CREW-26,Hisun,Hisun Sector 750 Crew — 4-Seat Utility UTV,1.13:1 landscape,800,705,keep,crew 4-seat UTV naturally wider than single-row; clean 3/4 front on white BG. Note: source_verified_dealer=unknown.
+HS-STRK250R-26,Hisun,Hisun Strike 250R — Youth Sport UTV,1.07:1 landscape,800,750,keep,blue Strike 250R sport UTV; clean 3/4 front on white BG; near-square. Note: source_verified_dealer=unknown.
+HS-STRK550R-26,Hisun,Hisun Strike 550R — Adult Sport UTV,1.07:1 landscape,800,750,keep,blue Strike 550R more aggressive styling; clean 3/4 front on white BG; near-square. Note: source_verified_dealer=unknown.

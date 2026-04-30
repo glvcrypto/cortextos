@@ -1,0 +1,36 @@
+{
+  "_schema": "1.0",
+  "client": "titan",
+  "display_name": "Titan Tiny Homes",
+  "stage": "active-project",
+  "retainer_mrr": 0,
+  "retainer_health": "yellow",
+  "contract": {
+    "seo": true,
+    "dev": true,
+    "content": true,
+    "ads": false,
+    "automation": false,
+    "custom_ai": false
+  },
+  "deliverables": {
+    "8-pillar-research": "complete",
+    "avatar": "complete",
+    "positioning": "complete",
+    "voice-doc": "complete",
+    "site-audit": "complete",
+    "content-plan": "complete",
+    "kickoff": "complete",
+    "site-build": "complete"
+  },
+  "blockers": [
+    "joseph-has-not-paid (deprioritized, no proactive work)",
+    "no-pricing-page (ranking #1 for 'titan tiny homes price list' with no page to capture)",
+    "contact-page-cannibalization",
+    "zero-backlinks (8th consecutive audit)",
+    "gbp-not-set-up",
+    "sitemap-0-indexed (8+ weeks)"
+  ],
+  "notes": "Family-run tiny home builder (Joseph + Kathryn). Not paying. Light treatment — pipeline visibility only, no Phase-0 gap-fill work dispatched. Case study data (#1 ranking, +64% clicks) kept internal-only per prospector briefing. SEO growing 3rd consecutive week despite no active work.",
+  "updated_at": "2026-04-19T23:35:00Z"
+}

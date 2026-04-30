@@ -1,0 +1,264 @@
+# product-image-audit-2026-04-23.csv
+# Generated per boss dispatch 1776992800688-boss-bx121 (2026-04-23).
+# Source: 2026-04-23_product-image-qc.csv (aggregated by SKU).
+# Thresholds applied:
+#   aspect deviation <5%  -> aspect_1to1_pass=pass, action_needed=none
+#   aspect deviation 5-20% -> aspect_1to1_pass=fail, action_needed=designer_qc_edge_case
+#   aspect deviation >20% -> aspect_1to1_pass=fail, action_needed=re-crop_to_square
+#   no image             -> action_needed=request_from_dealer
+# Dealer-verification heuristic: filename prefix match against known OEM codes
+#   (MM/HS/EC/CN/HB/MK/CC/TORO/PC/BC). All images are WP-hosted on
+#   reyco.glvmarketing.ca; domain alone does not verify dealer source.
+# explicit_permission_on_file: default 'no' for all rows (forward-tracking only,
+#   no retroactive backfill per boss rule).
+sku,current_image_in_WC,current_image_url_or_path,aspect_ratio,aspect_1to1_pass,source_verified_dealer,explicit_permission_on_file,action_needed,image_w,image_h,brand,product_name,notes
+2014-MERCURY-50-ELHP,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2014 Mercury 50 ELHPT 4S EFI,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2021-MERCURY-ME-2-5M,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2021 Mercury ME 2.5MH 4S TMC,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2021-MERCURY-ME-20-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2021 Mercury ME 20 ELHPT 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2021-MERCURY-ME-5-MH,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2021 Mercury ME 5 MH LPG 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-EASY-HAULER-AL-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Easy Hauler,2022 Easy Hauler AL-PTDB2026-TRI,Boat trailers. Source via manufacturer site or Google search.
+2022-MERCURY-ME-15-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2022 Mercury ME 15 ELH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-MERCURY-ME-20-M,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2022 Mercury ME 20 MLH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-MERCURY-ME-30-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2022 Mercury ME 30 ELPT EFI 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-MERCURY-ME-4MH-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2022 Mercury ME 4MH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-MERCURY-ME-5-MX,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2022 Mercury ME 5 MXLHA LPG 4S SAILPOWER,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-MERCURY-ME-60-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2022 Mercury ME 60 ELPT 4S EFI,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-MERCURY-ME-8MH-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2022 Mercury ME 8MH 4S TMC,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-MERCURY-ME-9-9E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2022 Mercury ME 9.9ELH 4S TMC,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2022-TORO-74055,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2022 Toro 74055,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2023-CUB-CADET-17AIE,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2023 Cub Cadet 17AIEACL010,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2023-CUB-CADET-17ARG,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2023 Cub Cadet 17ARGBYEA10,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2023-MERCURY-115-PRO,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury 115 Pro XS,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-60-ELPT,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury 60 ELPT,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-90-EXLP,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury 90 EXLPT CT,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-ME-15-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury ME 15 ELHPT PK 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-ME-20-M,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury ME 20 MLH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-ME-25-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury ME 25 ELPT EFI 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-ME-3-5M,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury ME 3.5MH 4S TMC,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-ME-30-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury ME 30 ELHPT EFI 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-ME-40-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury ME 40 ELHPT 4S EFI,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-ME-6MH,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury ME 6MH,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-MERCURY-ME-9-9E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2023 Mercury ME 9.9ELH 4S TMC,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2023-PRINCECRAFT-SPO,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Princecraft,2023 Princecraft SPORTFISHER 21 2RS,Boats photographed on water — white-BG hero shots available on princecraft.com. Use product hero crop.
+2024-CUB-CADET-17AIE,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2024 Cub Cadet 17AIEAC2A10,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2024-CUB-CADET-17ARG,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2024 Cub Cadet 17ARGBYLA10,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2024-EASY-HAULER-AL-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Easy Hauler,2024 Easy Hauler AL-1610B-YC,Boat trailers. Source via manufacturer site or Google search.
+2024-MERCURY-ME-15-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2024 Mercury ME 15 EH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2024-MERCURY-ME-25-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2024 Mercury ME 25 EH EFI 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2024-MERCURY-ME-4MH-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2024 Mercury ME 4MH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2024-MERCURY-ME-50-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2024 Mercury ME 50 ELPT 4S EFI,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2024-MERCURY-ME-60-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2024 Mercury ME 60 ELPT 4S EFI,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2024-MERCURY-ME-6MLH,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2024 Mercury ME 6MLH,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2024-MERCURY-ME-8EH-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2024 Mercury ME 8EH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2024-PRINCECRAFT-RES,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Princecraft,2024 Princecraft RESORTER 160 BT,Boats photographed on water — white-BG hero shots available on princecraft.com. Use product hero crop.
+2024-TORO-74532,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2024 Toro 74532,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2024-TORO-74532-2,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2024 Toro 74532,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2024-TRAILER-X,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2024 Trailer X,Generic trailer products. Source via Google image search for each model.
+2024-TRAILER-X-2,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2024 Trailer X,Generic trailer products. Source via Google image search for each model.
+2025-CUB-CADET-17ARG,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2025 Cub Cadet 17ARGBYNA10,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2025-EASY-HAULER-125,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Easy Hauler,2025 Easy Hauler 1250# PAINTED TRAILER 480 X 12B E-COAT,Boat trailers. Source via manufacturer site or Google search.
+2025-MERCURY-40-ELPT,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury 40 ELPT,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-75-ELPT,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury 75 ELPT,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-2-5M,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 2.5MH 4S TMC,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-20-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 20 EH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-20-M,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 20 MH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-25-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 25 ELPT EFI 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-50-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 50 ELHPT 4S EFI,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-5MH,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 5MH,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-5MH-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 5MH,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-60-E,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 60 ELHPT CT 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-6MH,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 6MH,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-6MH-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 6MH,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-MERCURY-ME-9-9M,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2025 Mercury ME 9.9MH 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2025-PRINCECRAFT-AMA,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Princecraft,2025 Princecraft AMAROK 166 WS,Boats photographed on water — white-BG hero shots available on princecraft.com. Use product hero crop.
+2025-TORO-77502,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2025 Toro 77502,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2025-TORO-77507,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2025 Toro 77507,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2025-TRAILER-X,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2025 Trailer X,Generic trailer products. Source via Google image search for each model.
+2025-TRAILER-X-2,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2025 Trailer X,Generic trailer products. Source via Google image search for each model.
+2025-TRAILER-X-3,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2025 Trailer X,Generic trailer products. Source via Google image search for each model.
+2025-TRAILER-X-4,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2025 Trailer X,Generic trailer products. Source via Google image search for each model.
+2026-CUB-CADET-13A6A,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2026 Cub Cadet 13A6A9TS596,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2026-CUB-CADET-13APA,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2026 Cub Cadet 13APA1TEA10,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2026-CUB-CADET-13AQA,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2026 Cub Cadet 13AQA1TLA10,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2026-CUB-CADET-13B5A,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2026 Cub Cadet 13B5A2TLA10,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2026-CUB-CADET-13B6A,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cub Cadet,2026 Cub Cadet 13B6A9TTA10,"Riding mowers, zero-turns, accessories. Clean white-BG shots on cubcadet.ca product pages."
+2026-EASY-HAULER-AL-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Easy Hauler,2026 Easy Hauler AL-PTDB2023,Boat trailers. Source via manufacturer site or Google search.
+2026-MERCURY-115-EXL,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2026 Mercury 115 EXLPT PRO XS,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2026-MERCURY-150-XL,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2026 Mercury 150 XL,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2026-MERCURY-40-ELPT,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2026 Mercury 40 ELPT,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2026-MERCURY-50-ELPT,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2026 Mercury 50 ELPT EFI CT,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2026-MERCURY-90-EXLP,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2026 Mercury 90 EXLPT CT,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2026-MERCURY-ME-115X,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,2026 Mercury ME 115XL PXS4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+2026-PRINCECRAFT-VEC,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Princecraft,2026 Princecraft VECTRA 21 RL,Boats photographed on water — white-BG hero shots available on princecraft.com. Use product hero crop.
+2026-TORO-22217,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 22217,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-22217-2,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 22217,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-72504,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 72504,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-75747,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 75747,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-75747-2,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 75747,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-75747-3,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 75747,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-75747-4,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 75747,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-75747-5,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 75747,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-75747-6,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 75747,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-75747-7,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 75747,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-77283,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 77283,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-77283-2,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 77283,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-77283-3,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 77283,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-77404,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 77404,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-77404-2,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 77404,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-77404-3,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 77404,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-77501,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 77501,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TORO-77503,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Toro,2026 Toro 77503,"Zero-turns, push mowers. toro.com has structured product image gallery."
+2026-TRAILER-X,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2026 Trailer X,Generic trailer products. Source via Google image search for each model.
+2026-TRAILER-X-2,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2026 Trailer X,Generic trailer products. Source via Google image search for each model.
+2026-TRAILER-X-3,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2026 Trailer X,Generic trailer products. Source via Google image search for each model.
+2026-TRAILER-X-4,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Trailer,2026 Trailer X,Generic trailer products. Source via Google image search for each model.
+26-MERCURY-ME-90ELPT,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Mercury,26 Mercury ME 90ELPT 4S,Outboards + accessories. Mercury CDN blocks hotlinks; may need download+reupload from mercurymarine.com product pages.
+CAN-EASITROLL-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1901020_Easi-Troll_Hero-1.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Easi-Troll,ok
+CAN-LAKETROLL-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1901250_Lake-Troll_Hero-1.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Lake-Troll,ok
+CAN-MAG10-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1902305_Magnum10_3qRightNew.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Magnum 10,ok
+CAN-MAG10TS-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1902310_Magnum10TS_3qRight.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Magnum 10 TS,ok
+CAN-MAG5-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1902300_Magnum5_3qRight.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Magnum 5,ok
+CAN-MINITROLL-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1901200_Mini-Troll_Hero-1.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Mini-Troll,ok
+CAN-OPTIMUM-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1902335_Optimum_3qRight.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Optimum Downrigger,ok
+CAN-OPTIMUMTS-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1902340_OptimumTS_3qRight-1.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Optimum TS Downrigger,ok
+CAN-UNI10-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1901130_UNI-TROLL-10_Hero-1.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Uni-Troll 10,ok
+CAN-UNI10TS-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1901140_Uni-Troll10TS_Hero-1.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Uni-Troll 10 TS,ok
+CAN-UNI5-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/CN_1901120_Uni-Troll5_Hero-1.webp,1:1,pass,yes,no,none,2048,2048,Cannon,Cannon Uni-Troll 5,ok
+CAN-UNISTACKER-26,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cannon,Cannon Uni-Stacker Release,no_image
+CAN-WT-10LB-26,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cannon,Cannon Downrigger Weight — 10 lb Cannon Ball,no_image
+CAN-WT-4LB-26,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cannon,Cannon Downrigger Weight — 4 lb Cannon Ball,no_image
+CAN-WT-6LB-26,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cannon,Cannon Downrigger Weight — 6 lb Cannon Ball,no_image
+CAN-WT-8LB-26,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Cannon,Cannon Downrigger Weight — 8 lb Cannon Ball,no_image
+CC-CHALL750MX-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/37CYCCPK010_MX750_PFL.jpg,1:1,pass,unknown,no,none,740,740,Cub Cadet UTV,Cub Cadet Challenger 750 MX (Hisun-Built UTV),ok
+EC-CS2511P-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS2511P-26.jpg,1.74:1 landscape,fail,yes,no,re-crop_to_square,1200,688,Echo,Echo CS-2511P Compact Pro Chainsaw,ok
+EC-CS2511T-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS2511T-26.jpg,1.88:1 landscape,fail,yes,no,re-crop_to_square,1200,640,Echo,Echo CS-2511T Top-Handle Chainsaw,ok
+EC-CS271T-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS271T-26.jpg,1.69:1 landscape,fail,yes,no,re-crop_to_square,1200,708,Echo,Echo CS-271T Top-Handle Chainsaw,ok
+EC-CS310-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS310-26.jpg,2.2:1 landscape,fail,yes,no,re-crop_to_square,1200,546,Echo,Echo CS-310 Chainsaw,ok
+EC-CS3510-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS3510-26.jpg,1.85:1 landscape,fail,yes,no,re-crop_to_square,1200,648,Echo,Echo CS-3510 Homeowner Chainsaw,ok
+EC-CS352-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS352-26.jpg,2.2:1 landscape,fail,yes,no,re-crop_to_square,1200,546,Echo,Echo CS-352 Chainsaw,ok
+EC-CS355T-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS355T-26.jpg,1.81:1 landscape,fail,yes,no,re-crop_to_square,1200,664,Echo,Echo CS-355T Top-Handle Chainsaw,ok
+EC-CS361P-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS361P-26.jpg,1.83:1 landscape,fail,yes,no,re-crop_to_square,1200,654,Echo,Echo CS-361P Mid Pro Chainsaw,ok
+EC-CS370F-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS370F-26.jpg,2.51:1 landscape,fail,yes,no,re-crop_to_square,1200,478,Echo,Echo CS-370F Farm/Ranch Chainsaw,ok
+EC-CS4510-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS4510-26.jpg,1:1.5 portrait,fail,yes,no,re-crop_to_square,800,1200,Echo,Echo CS-4510 Mid Homeowner Chainsaw,ok
+EC-CS490-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS490-26.jpg,1.58:1 landscape,fail,yes,no,re-crop_to_square,1200,759,Echo,Echo CS-490 Mid Pro Chainsaw,ok
+EC-CS4910-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS4910-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,800,Echo,Echo CS-4910 Pro Chainsaw,ok
+EC-CS501P-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS501P-26.jpg,1.64:1 landscape,fail,yes,no,re-crop_to_square,1200,732,Echo,Echo CS-501P Pro Chainsaw,ok
+EC-CS590-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS590-26.jpg,1:1.5 portrait,fail,yes,no,re-crop_to_square,800,1200,Echo,Echo CS-590 Timber Wolf Chainsaw,ok
+EC-CS620P-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS620P-26.jpg,1:1.5 portrait,fail,yes,no,re-crop_to_square,800,1200,Echo,Echo CS-620P Pro Chainsaw,ok
+EC-CS680-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS680-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,800,Echo,Echo CS-680 Chainsaw,ok
+EC-CS7310P-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CS7310P-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,800,Echo,Echo CS-7310P Heavy Production Chainsaw,ok
+EC-CSG7410-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CSG7410-26.jpg,1:1.74 portrait,fail,yes,no,re-crop_to_square,689,1200,Echo,Echo CSG-7410 Handheld Cut-Off Saw,ok
+EC-CWT7410-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CWT7410-26.jpg,1.18:1 landscape,fail,yes,no,designer_qc_edge_case,720,610,Echo,Echo CWT-7410 Walk-Behind Cut-Off Saw,ok
+EC-DCS2500T-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DCS2500T-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DCS-2500T Cordless Top-Handle Chainsaw,ok
+EC-DCS5000-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DCS5000-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DCS-5000 — 56V Cordless Chainsaw,ok
+EC-DHC2300-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DHC2300-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DHC-2300 Cordless Hedge Trimmer,ok
+EC-DLM2100-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DLM2100-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DLM-2100 Cordless Push Mower,ok
+EC-DLM2100SP-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DLM2100SP-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,800,Echo,Echo DLM-2100SP Cordless Self-Propelled Mower,ok
+EC-DPAS2100-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DPAS2100-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DPAS-2100 Cordless PAS Powerhead,ok
+EC-DPAS2600-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DPAS2600-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DPAS-2600 Cordless PAS Pro Powerhead,ok
+EC-DPB2500-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DPB2500-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DPB-2500 Cordless Handheld Blower,ok
+EC-DPB2500LE-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DPB2500LE-26.jpg,1:1.5 portrait,fail,yes,no,re-crop_to_square,800,1200,Echo,Echo DPB-2500LE Limited Edition Pink Blower,ok
+EC-DSRM2100-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DSRM2100-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DSRM-2100 Cordless String Trimmer,ok
+EC-DSRM2600-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DSRM2600-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,800,Echo,Echo DSRM-2600 Cordless String Trimmer,ok
+EC-DSRM2600U-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-DSRM2600U-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo DSRM-2600U Cordless U-Handle Brushcutter,ok
+EC-ES250-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-ES250-26.jpg,1.91:1 landscape,fail,yes,no,re-crop_to_square,1200,628,Echo,Echo ES-250 Handheld Shred/Vac,ok
+EC-GT225-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-GT225-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,801,Echo,Echo GT-225 Curved-Shaft Trimmer,CALIBRATION: Currently lifestyle shot. Replace with Echo StaticShot2 white-BG product photo.
+EC-HC155-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-HC155-26.jpg,2.93:1 landscape,fail,yes,no,re-crop_to_square,1200,410,Echo,Echo HC-155 Single-Sided Hedge Trimmer,ok
+EC-HC2020-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-HC2020-26.jpg,1.17:1 landscape,fail,yes,no,designer_qc_edge_case,1200,1025,Echo,Echo HC-2020 Hedge Trimmer,ok
+EC-HC2210-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-HC2210-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,800,Echo,Echo HC-2210 Double-Sided Hedge Trimmer,ok
+EC-HC2810-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-HC2810-26.jpg,2.39:1 landscape,fail,yes,no,re-crop_to_square,1052,441,Echo,Echo HC-2810 Heavy Double-Sided Hedge Trimmer,ok
+EC-HCA2620-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-HCA2620-26.jpg,1.66:1 landscape,fail,yes,no,re-crop_to_square,1200,722,Echo,Echo HCA-2620 Articulating Extended-Reach,ok
+EC-HCA2620S-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-HCA2620S-26.jpg,1.97:1 landscape,fail,yes,no,re-crop_to_square,1200,609,Echo,Echo HCA-2620S Articulating Extended-Reach (S),ok
+EC-PAS225-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PAS225-26.jpg,1:1.67 portrait,fail,yes,no,re-crop_to_square,719,1200,Echo,Echo PAS-225 Homeowner Powerhead,ok
+EC-PAS2620-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PAS2620-26.jpg,2.05:1 landscape,fail,yes,no,re-crop_to_square,1200,585,Echo,Echo PAS-2620 Pro Powerhead,ok
+EC-PB2520-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB2520-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,800,Echo,Echo PB-2520 Handheld Blower,ok
+EC-PB255LN-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB255LN-26.jpg,2.31:1 landscape,fail,yes,no,re-crop_to_square,1200,519,Echo,Echo PB-255LN Low-Noise Handheld,ok
+EC-PB2620-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB2620-26.jpg,1.78:1 landscape,fail,yes,no,re-crop_to_square,1200,675,Echo,Echo PB-2620 Handheld Blower,ok
+EC-PB265LN-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB265LN-26.jpg,1:1.08 portrait,fail,yes,no,designer_qc_edge_case,1109,1200,Echo,Echo PB-265LN Low-Noise Handheld,ok
+EC-PB580T-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB580T-26.jpg,1.16:1 landscape,fail,yes,no,designer_qc_edge_case,1200,1031,Echo,Echo PB-580T Backpack Blower,ok
+EC-PB755ST-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB755ST-26.jpg,1:1.07 portrait,fail,yes,no,designer_qc_edge_case,1123,1200,Echo,Echo PB-755ST Backpack Blower,ok
+EC-PB760LNT-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/v2_ECHO_Blowers_PB-760LNT_StaticShot2.jpg,1.33:1 landscape,fail,unknown,no,re-crop_to_square,900,675,Echo,Echo PB-760LNT Low-Noise Backpack (Tube),ok
+EC-PB770-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB770-26.jpg,1:1.48 portrait,fail,yes,no,re-crop_to_square,813,1200,Echo,Echo PB-770 Pro Backpack Blower,ok
+EC-PB8010-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB8010-26.jpg,1.34:1 landscape,fail,yes,no,re-crop_to_square,1200,898,Echo,Echo PB-8010 X Series Backpack Blower,ok
+EC-PB9010T-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB9010T-26.jpg,1.11:1 landscape,fail,yes,no,designer_qc_edge_case,978,881,Echo,Echo PB-9010T X Series Backpack Blower,ok
+EC-PE2620-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PE2620-26.jpg,1:1.7 portrait,fail,yes,no,re-crop_to_square,705,1200,Echo,Echo PE-2620 Walk-Behind Edger,ok
+EC-PW3100-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PW3100-26.jpg,1:1.5 portrait,fail,yes,no,re-crop_to_square,800,1200,Echo,Echo PW-3100 Gas Pressure Washer,ok
+EC-PW3200-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PW3200-26.jpg,1.33:1 landscape,fail,yes,no,re-crop_to_square,1200,899,Echo,Echo PW-3200 Gas Pressure Washer,ok
+EC-PW3600-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PW3600-26.jpg,1.2:1 landscape,fail,yes,no,designer_qc_edge_case,1200,1004,Echo,Echo PW-3600 Pro Gas Pressure Washer,ok
+EC-PW4200-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PW4200-26.jpg,1:1.5 portrait,fail,yes,no,re-crop_to_square,800,1200,Echo,Echo PW-4200 Flagship Pro Pressure Washer,ok
+EC-PWE1800-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PWE1800-26.jpg,1:1.79 portrait,fail,yes,no,re-crop_to_square,670,1200,Echo,Echo PWE-1800 Electric Pressure Washer,ok
+EC-SHC225-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/v2_ECHO_Hedge-Trimmers_SHC-225_StaticShot2.jpg,1.33:1 landscape,fail,unknown,no,re-crop_to_square,900,675,Echo,Echo SHC-225 Shafted Hedge Trimmer,ok
+EC-SHC225S-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/v2_ECHO_Hedge-Trimmers_SHC-225S_StaticShot2.jpg,1.33:1 landscape,fail,unknown,no,re-crop_to_square,900,675,Echo,Echo SHC-225S Shafted Hedge Trimmer (S),ok
+EC-SHC2620-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SHC2620-26.jpg,2.59:1 landscape,fail,yes,no,re-crop_to_square,1200,463,Echo,Echo SHC-2620 Pro Shafted Hedge Trimmer,ok
+EC-SHC2620S-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SHC2620S-26.jpg,2.36:1 landscape,fail,yes,no,re-crop_to_square,1200,509,Echo,Echo SHC-2620S Pro Shafted (S),ok
+EC-SRM225-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SRM225-26.jpg,1.17:1 landscape,fail,yes,no,designer_qc_edge_case,1200,1023,Echo,Echo SRM-225 String Trimmer,ok
+EC-SRM2320-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SRM2320-26.jpg,1:2.93 portrait,fail,yes,no,re-crop_to_square,409,1200,Echo,Echo SRM-2320 Straight-Shaft Trimmer,wrong_crop
+EC-SRM2620-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SRM2620-26.jpg,1:2.39 portrait,fail,yes,no,re-crop_to_square,503,1200,Echo,Echo SRM-2620 Trimmer,wrong_crop
+EC-SRM2620U-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SRM2620U-26.jpg,1.5:1 landscape,fail,yes,no,re-crop_to_square,1200,800,Echo,Echo SRM-2620U U-Handle Brushcutter,CALIBRATION: Currently lifestyle shot. Replace with Echo StaticShot2 white-BG product photo.
+EC-SRM266-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SRM266-26.jpg,1:1.34 portrait,fail,yes,no,re-crop_to_square,898,1200,Echo,Echo SRM-266 Pro-Grade Trimmer,ok
+EC-SRM3020-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SRM3020-26.jpg,1:2.16 portrait,fail,yes,no,re-crop_to_square,556,1200,Echo,Echo SRM-3020 Heavy-Duty Trimmer,wrong_crop
+EC-SRM410-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SRM410-26.jpg,1.6:1 landscape,fail,yes,no,re-crop_to_square,1200,748,Echo,Echo SRM-410 Pro Trimmer,ok
+HB-APEX13-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_411470-1VX_APEX_VX_13_alt1.webp,1:1,pass,yes,no,none,1600,1600,Humminbird,Humminbird APEX 13 MEGA SI+ Chartplotter,ok
+HB-APEX13-CHO-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_411470-1VX_APEX_VX_13_alt1-2.webp,1:1,pass,yes,no,none,1600,1600,Humminbird,Humminbird APEX 13 MEGA SI+ Chartplotter (CHO),ok
+HB-APEX16-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_411500-1VX_APEXVX_16_alt1-1.webp,1:1,pass,yes,no,none,1600,1600,Humminbird,Humminbird APEX 16 MEGA SI+ Chartplotter,ok
+HB-APEX16-CHO-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_411500-1VX_APEXVX_16_alt1-3.webp,1:1,pass,yes,no,none,1600,1600,Humminbird,Humminbird APEX 16 MEGA SI+ Chartplotter (CHO),ok
+HB-APEX19-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_411470-1VX_APEX_VX_13_alt1-4.webp,1:1,pass,yes,no,none,1600,1600,Humminbird,Humminbird APEX 19 MEGA SI+ Chartplotter,ok
+HB-APEX19-CHO-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_411470-1VX_APEX_VX_13_alt1-6.webp,1:1,pass,yes,no,none,1600,1600,Humminbird,Humminbird APEX 19 MEGA SI+ Chartplotter (CHO),ok
+HB-ICELIVE2-PM-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_ICE_XPLORE9_CHO_ML2_Alt2.webp,1:1,pass,yes,no,none,640,640,Humminbird,Humminbird ICE MEGA Live 2 Compact Pole-Mount,ok
+HB-ICELIVE2-PWR-26,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Humminbird,Humminbird ICE MEGA Live 2 Power Cable,no_image
+HB-ICELIVE2-SAE-26,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Humminbird,Humminbird ICE MEGA Live 2 SAE Power Cable,no_image
+HB-MEGALIVE2-FWD-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_710310-1_MEGA_Live_2_alt1-1.webp,1:1,pass,yes,no,none,640,640,Humminbird,Humminbird MEGA Live 2 Forward-Facing Sonar,ok
+HB-MEGALIVE2-TM-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_ML2_Transom_Mount_Alt1.webp,1:1,pass,yes,no,none,640,640,Humminbird,Humminbird MEGA Live 2 Transom-Mount Sonar,ok
+HB-XPLORE-KIT-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HB_XPLORE_9_alt1.webp,1:1,pass,yes,no,none,640,640,Humminbird,Humminbird ICE XPLORE Shuttle Conversion Kit,ok
+HB-XPLORE-PWR-26,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Humminbird,Humminbird ICE XPLORE Power Cable,no_image
+HS-ACENV-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_aceblue-112942.png,1.49:1 landscape,fail,unknown,no,re-crop_to_square,800,538,Hisun,Hisun ACE NV — Electric Golf Cart,ok
+HS-FORGE400I-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HS-FORGE400I-26.jpg,1.01:1 landscape,pass,yes,no,none,1200,1183,Hisun,Hisun Forge 400i — Sport-Utility ATV,ok
+HS-GUARDIAN-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_gray-guardian-400-105238.png,1:1,pass,unknown,no,none,800,800,Hisun,Hisun GUARDIAN Utility ATV,ok
+HS-HS400-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HS-HS400-26.jpg,1:1.25 portrait,fail,yes,no,designer_qc_edge_case,960,1200,Hisun,Hisun HS 400 Entry ATV,CALIBRATION: Currently spec sheet as main image. Replace with Hisun Canada product photo (verify white-BG before applying).
+HS-HS500-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HS-HS500-26.jpg,1:1.25 portrait,fail,yes,no,designer_qc_edge_case,960,1200,Hisun,Hisun HS 500 — Utility ATV,CALIBRATION: Currently spec sheet as main image. Replace with Hisun Canada product photo (verify white-BG before applying).
+HS-MP9550R-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_mp9-400-front-angle-red-no-winch-web-105838.png,1:1,pass,unknown,no,none,800,800,Hisun,Hisun MP9 550R — Sport Trail UTV,ok
+HS-MP9750R-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_mp9-400-front-angle-red-no-winch-web-105838-1.png,1:1,pass,unknown,no,none,800,800,Hisun,Hisun MP9 750R Sport UTV,ok
+HS-MP9T400-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_mp9-400-front-angle-red-no-winch-web-105838-2.png,1:1,pass,unknown,no,none,800,800,Hisun,Hisun MP9T400 Entry Sport UTV,ok
+HS-SEC-E1-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_e1-green-152808.png,1.33:1 landscape,fail,unknown,no,re-crop_to_square,800,600,Hisun,Hisun Sector E1 — Electric UTV,ok
+HS-SEC250-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_sector250-085013.png,1.07:1 landscape,fail,unknown,no,designer_qc_edge_case,800,750,Hisun,Hisun Sector 250 Compact Utility UTV,ok
+HS-SEC550EPS-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_sector550red-102158.png,1.01:1 landscape,pass,unknown,no,none,800,789,Hisun,Hisun Sector 550 EPS — Utility UTV,ok
+HS-SEC750CREW-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_sector750crewred-104342.png,1.13:1 landscape,fail,unknown,no,designer_qc_edge_case,800,705,Hisun,Hisun Sector 750 Crew — 4-Seat Utility UTV,ok
+HS-SEC750EPS-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_sector-750-hisun-red-110632.png,1:1,pass,unknown,no,none,800,800,Hisun,Hisun Sector 750 EPS,ok
+HS-STRK250R-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_stike250blue-110557.png,1.07:1 landscape,fail,unknown,no,designer_qc_edge_case,800,750,Hisun,Hisun Strike 250R — Youth Sport UTV,ok
+HS-STRK550R-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_strike550blue-110937.png,1.07:1 landscape,fail,unknown,no,designer_qc_edge_case,800,750,Hisun,Hisun Strike 550R — Adult Sport UTV,ok
+HS-STRY550-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_stryker-550x-front-angle-nardo-grey-w-vents-102239.png,1:1,pass,unknown,no,none,800,800,Hisun,Hisun Stryker 550X Sport-Trail UTV,ok
+HS-STRY750CREW-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_750xc-gray-crew-front-angle-165515.png,1.5:1 landscape,fail,unknown,no,re-crop_to_square,800,534,Hisun,Hisun Stryker 750 Crew (4-Seat Sport),ok
+HS-STRY750X-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_stryker-red-750x-front-angle-w-vents-102322.png,1:1,pass,unknown,no,none,800,800,Hisun,Hisun Stryker 750X — Sport-Trail UTV,ok
+HS-TACTIC-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_tactic400blue-113644.png,1:1,pass,unknown,no,none,800,800,Hisun,Hisun Tactic Utility ATV,ok
+MINNKOTA-TERROVA-80-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,Minnkota,Minnkota Terrova 80,no_image
+MK-EC15-BULK-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_1820089_MK-EC-15_hero.webp,1:1,pass,yes,no,none,640,640,Minnkota,Minn Kota Battery Charger Extension Cable MK-EC-15 (Bulk),ok
+MK-KTRV55-FW-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_KayakTerrova_HeroAlt.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Kayak Terrova 55 lb — Freshwater,ok
+MK-MK230PCL-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_1832304_MK-230PCL_3q.webp,1:1,pass,yes,no,none,640,640,Minnkota,Minn Kota Precision Charger MK 230 PCL — 2 Bank × 15 Amp,ok
+MK-MK330PC-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_1833300_MK-330PC_3q2.webp,1:1,pass,yes,no,none,1600,1600,Minnkota,Minn Kota Precision Charger MK 330 PC — 3 Bank × 10 Amp,ok
+MK-MK345PCL-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_1833454_MK-345PCL_3q.webp,1:1,pass,yes,no,none,640,640,Minnkota,Minn Kota Precision Charger MK 345 PCL — 3 Bank × 15 Amp,ok
+MK-MK460PCL-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_1834604_MK-460PCL_3q-1.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Precision Charger MK 460 PCL — 4 Bank × 15 Amp,ok
+MK-MKR30-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_1865130_MKR-30_RemotePowerSwitch_Main.webp,1:1,pass,yes,no,none,640,640,Minnkota,Minn Kota Remote Power Switch MKR-30,ok
+MK-RT112-87-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_RiptideTerrova_QUEST_HeroAlt-7.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Riptide Terrova 112 lb — 87&#8243; Shaft,ok
+MK-RT80-60-REFURB,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_RiptideTerrova_QUEST_HeroAlt-9.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Riptide Terrova 80 lb Refurb — 60&#8243;,ok
+MK-RTKAYAK55-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_KayakTerrova_HeroAlt-2.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Riptide Kayak Terrova 55 lb — Saltwater,ok
+MK-RTQUEST9115-100-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_RiptideTerrova_QUEST_HeroAlt-5.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Riptide Terrova QUEST 90/115 — 100&#8243;,ok
+MK-RTQUEST9115-72-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_RiptideTerrova_QUEST_HeroAlt-1.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Riptide Terrova QUEST 90/115 — 72&#8243;,ok
+MK-RTQUEST9115-87-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_RiptideTerrova_QUEST_HeroAlt-3.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Riptide Terrova QUEST 90/115 — 87&#8243;,ok
+MK-ULT80-45-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_Ultrex_QUEST_HeroAlt.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Ultrex 80 lb — 45&#8243; Shaft,ok
+MK-ULT80-52-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_Ultrex_QUEST_HeroAlt-1.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Ultrex 80 lb — 52&#8243; Shaft,ok
+MK-ULTQUEST9115-45-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/MK_Ultrex_QUEST_HeroAlt-2.webp,1:1,pass,yes,no,none,2048,2048,Minnkota,Minn Kota Ultrex QUEST 90/115 lb — Dual Spectrum CHIRP,ok
+RJ-BOAT-LIFT-ROOF-SY,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Boat Lift Roof System,no_image
+RJ-CANTILEVER-BOAT-L,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Cantilever Boat Lift,no_image
+RJ-FLOATING-TRUSS-DO,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Floating Truss Dock,no_image
+RJ-HIDDEN-BEAM-WET-S,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Hidden-Beam Wet-Slip Lift,no_image
+RJ-HYDRAULIC-BOAT-LI,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Hydraulic Boat Lift,no_image
+RJ-HYDRAULIC-PWC-LIF,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Hydraulic PWC Lift,no_image
+RJ-HYDRO-EXTREME-BOA,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Hydro Extreme Boat Lift,no_image
+RJ-LIFT-UP-STEP-DOCK,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Lift-Up Step Dock,no_image
+RJ-LUX-FLOATING-DOCK,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J LUX Floating Dock System,no_image
+RJ-MARINE-RAILWAY-SY,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Marine Railway System,no_image
+RJ-TRUSS-PIPE-DOCK-A,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Truss Pipe Dock — Aluminum,no_image
+RJ-VERTICAL-PONTOON-,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J Vertical Pontoon Boat Lift,no_image
+RJ-WAVEX-MODULAR-DOC,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,R&amp;J WaveX Modular Dock System,no_image
+WAVE-ARMOR-OTTER-SWI,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,Wave Armor Otter Swim Raft 8&#8217;x10&#8242;,no_image
+WAVE-ARMOUR-PWC-WAVE,no,,n/a,n/a,n/a,no,request_from_dealer,0,0,R&J Machine,Wave Armour PWC Wave Port,no_image

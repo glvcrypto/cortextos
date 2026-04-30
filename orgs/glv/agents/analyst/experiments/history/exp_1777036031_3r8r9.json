@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777036031_3r8r9",
+  "agent": "analyst",
+  "metric": "phantom_endpoint_fp_per_day",
+  "hypothesis": "Option B daemon-side writer patch (src/daemon/agent-process.ts at cron-injection site) + upstream #184 bundle reduces phantom-endpoint detector-orphan FP rate by >=90% fleet-wide within 24h of merge. Pre-patch baseline: 10,836 session-cumulative 'Cron gap detected' stdout emissions across 12 agents (high: seo 1702, analyst 1678, prospector 1557). Success: post-patch rate <1 FP/agent/day. Discard threshold: <50% reduction.",
+  "surface": "orgs/glv/agents/analyst/notes/exp3-phantom-fp-baseline-2026-04-24.md",
+  "direction": "lower",
+  "window": "24h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 0,
+  "result_value": 0,
+  "decision": "discard",
+  "learning": "Window expired without measurement. Discarded per cycle-7 hygiene pass.\n\nLEARNING: Gate-dependency-blocking-experiment with no decay path. Exp #3 fired Apr 24 with 24h window contingent on Option B daemon-side writer + #184 bundle landing within window. Option B writer remains ABSENT in upstream/main per Apr 26 verification (b85cb69 verification note); window expired Apr 25 with no measurement opportunity. Experiment ran 4 days past window in stale-running state.\n\nDECAY PATH PROPOSAL: experiments gated on external dependencies should auto-discard at window-close with re-fire trigger queued (event-based, not time-based). Pattern adjacent to GATED-not-stale prospector cycle from cycle-4 evaluate. Re-fire when Option B writer lands in upstream/main OR when local Option B patch lands on top.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-24T13:07:11Z",
+  "started_at": "2026-04-24T14:33:46Z",
+  "completed_at": "2026-04-28T06:08:29Z",
+  "changes_description": null
+}

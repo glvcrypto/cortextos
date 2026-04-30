@@ -1,0 +1,57 @@
+{
+  "agent_name": "prospector",
+  "enabled": true,
+  "startup_delay": 0,
+  "max_session_seconds": 255600,
+  "max_crashes_per_day": 10,
+  "working_directory": "",
+  "timezone": "America/Toronto",
+  "crons": [
+    {
+      "name": "heartbeat",
+      "type": "recurring",
+      "interval": "4h",
+      "prompt": "Read HEARTBEAT.md and follow its instructions. Update your heartbeat, check inbox, and work on your highest priority task."
+    },
+    {
+      "name": "experiment-outreach-conversion",
+      "type": "recurring",
+      "interval": "72h",
+      "prompt": "Read .claude/skills/autoresearch/SKILL.md and execute the experiment loop for the outreach-conversion cycle."
+    },
+    {
+      "name": "reply-rate-experiment-loop",
+      "type": "recurring",
+      "interval": "24h",
+      "prompt": "Read .claude/skills/autoresearch/SKILL.md and execute the experiment loop for cycle reply_rate_by_hook_structure. Measure rolling 14d reply_received / email_sent per hook_variant \u00d7 structure_variant. Log keep/discard decisions."
+    },
+    {
+      "name": "internal-email-poll",
+      "type": "recurring",
+      "interval": "1h",
+      "prompt": "Check #internal-email (C0AUBAL58RK) for feedback on the current batch of 5 leads. If feedback posted: implement changes, delete old 5 Gmail drafts, create revised 5 drafts for same leads, repost to #internal-email. If ship signal (user says good/send/ship for the batch): send those 5 emails, then pick 5 fresh leads, create new drafts, post to #internal-email. If auto-send activation (user posts turn it on in channel): activate auto-send for all future batches. If no new messages: note check and wait. SSM excluded from lead pool."
+    }
+  ],
+  "ecosystem": {
+    "local_version_control": {
+      "enabled": true
+    }
+  },
+  "day_mode_start": "08:00",
+  "day_mode_end": "23:00",
+  "communication_style": "technical",
+  "approval_rules": {
+    "always_ask": [
+      "external-comms",
+      "financial",
+      "deployment",
+      "data-deletion",
+      "image-generation"
+    ],
+    "never_ask": []
+  },
+  "model": "claude-opus-4-7",
+  "rate_limits": {
+    "emails_per_utc_day": 100
+  }
+}

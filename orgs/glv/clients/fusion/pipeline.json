@@ -1,0 +1,35 @@
+{
+  "_schema": "1.0",
+  "client": "fusion",
+  "display_name": "Fusion Financial / Tax Titan",
+  "stage": "active-project",
+  "retainer_mrr": 0,
+  "retainer_health": "yellow",
+  "contract": {
+    "seo": true,
+    "dev": true,
+    "content": true,
+    "ads": true,
+    "automation": false,
+    "custom_ai": false
+  },
+  "deliverables": {
+    "8-pillar-research": "pending",
+    "avatar": "pending",
+    "positioning": "pending",
+    "voice-doc": "pending",
+    "site-audit": "complete",
+    "content-plan": "in-progress",
+    "kickoff": "complete",
+    "site-build": "complete"
+  },
+  "blockers": [
+    "spa-pre-rendering-needed (33 blog posts may be invisible to crawlers)",
+    "gbp-case-overdue (Case #0-2218000041049, past Mar 18 ETA)",
+    "gsc-indexing-batch (15 URLs queued, 37+ days overdue)",
+    "zero-dofollow-backlinks",
+    "impressions-declining-4wk (114→68→65→48)"
+  ],
+  "notes": "Favour engagement (JB/Tony). Not paying. Light treatment — pipeline visibility only, no Phase-0 gap-fill work dispatched. Meta ads end Apr 30 (needs final perf report). Noindex bug fixed Apr 11, but SPA pre-rendering still needed.",
+  "updated_at": "2026-04-19T23:35:00Z"
+}

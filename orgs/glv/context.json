@@ -1,0 +1,18 @@
+{
+  "name": "glv",
+  "description": "GLV Marketing — digital marketing, automation, and custom-AI agency headquartered in Sault Ste. Marie, Ontario. Three-pillar model: (1) Marketing — local SEO/GEO, Google + Meta ads, custom-coded sites, lead generation, branding, CRO, email, GBP, content. (2) Automation — business process, CRM, e-commerce workflows, reporting dashboards, API integrations. (3) Custom AI — chatbots, AI agents, industry-specific AI. Solo operator (Aiden Glave) formally co-founded with Ben Pelta (input-only, Mexico-based). Pre-scale: one signed recurring retainer (Reyco Marine, $5K setup + $2K/mo), two active smaller clients (Fusion Financial, Titan Tiny Homes), one test sandbox (Soo Sackers), active prospecting pipeline across Northern Ontario. Aiden holds a day job at Body & Science (BNS) winding down to backend-only.",
+  "industry": "Digital marketing / automation / custom AI agency",
+  "icp": "Local small-to-mid businesses in Northern Ontario — Sault Ste. Marie, Sudbury, Thunder Bay, North Bay. Remote-friendly across Ontario and Canada as a fallback. Buyers are owner-operators who want enterprise-grade systems (SEO, ads, automation, AI) at small-business pricing.",
+  "value_prop": "Unlike most Canadian agencies, GLV owns all three layers in-house — marketing, automation, and custom AI — with no outsourcing, no templates, and Northern Ontario local-market fluency that big-city competitors do not have, so clients get enterprise-grade systems at small-business pricing.",
+  "timezone": "America/Toronto",
+  "orchestrator": "boss",
+  "day_mode_start": "08:00",
+  "day_mode_end": "23:00",
+  "default_approval_categories": [
+    "external-comms",
+    "financial",
+    "deployment",
+    "data-deletion"
+  ],
+  "communication_style": "technical"
+}

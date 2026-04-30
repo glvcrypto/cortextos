@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776637239_chjam",
+  "agent": "prospector",
+  "metric": "outreach_conversion",
+  "hypothesis": "First experiment — establish baseline. Hypothesis: the current hook-why-what structure from life-OS v4 underperforms because hooks are too observational and not specific enough to the pain the owner actually feels right now. Test: rewrite the hook to lead with a concrete consequence (lost customers/revenue in plain language) rather than a neutral observation. Keep structure identical — only change the hook framing.",
+  "surface": "experiments/surfaces/outreach-conversion/current.md",
+  "direction": "higher",
+  "window": "72h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 0,
+  "result_value": 0,
+  "decision": "discard",
+  "learning": "WITHDRAWN — hypothesis contained loss framing ('lost customers/revenue') which violates the positive-only emotional copy rule. Resubmitting with upside framing.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-19T22:20:39Z",
+  "started_at": "2026-04-19T22:23:39Z",
+  "completed_at": "2026-04-19T22:26:55Z",
+  "changes_description": "Baseline test: hook leads with concrete upside consequence in plain language (positive framing only — no fear). Same hook-why-what structure, only hook framing changes."
+}

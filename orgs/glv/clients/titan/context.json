@@ -1,0 +1,78 @@
+{
+  "client": "titan",
+  "business_name": "Titan Tiny Homes",
+  "description": "Canadian tiny home builder run by Joseph & Kathryn. Family-run tiny home building business in Ontario.",
+  "website": "https://titantinyhomes.ca",
+  "domain": "titantinyhomes.ca",
+  "status": "active (favour engagement, not paying — deprioritized)",
+  "started": "2026",
+  "goal": "Humanize the brand, present craftsmanship story, modern clean website. Position as premium, not hobbyist. Build lead pipeline through realtor partnership.",
+  "key_people": [
+    {"name": "Joey (Joseph) Rattan", "role": "Owner", "phone": "(249) 525-6576", "email": "joeyrattan@titantinyhomes.ca", "notes": "Primary contact, decision maker"},
+    {"name": "Kathryn", "role": "Co-owner", "notes": "Family business with Joseph"},
+    {"name": "Trisha", "role": "Realtor (potential partner)", "phone": "705-542-0167", "notes": "Connected through Joseph"}
+  ],
+  "current_focus": [
+    "SEO growing — 3rd consecutive week of gains",
+    "Clicks +64% WoW (11 → 18), impressions +63% (163 → 265)",
+    "'titan tiny homes price list' ranking #1 — no pricing page exists",
+    "Realtor partnership (Joey + Trisha) — NDA drafted, follow-up needed",
+    "All images replaced Apr 10 with NB2-generated AI photos",
+    "12 ad concepts + competitor research ready",
+    "GBP NOT yet set up",
+    "Joseph has NOT paid — deprioritize, no proactive work"
+  ],
+  "seo_status_apr5": {
+    "audit_number": 9,
+    "health_score": "30/100",
+    "trend": "improving",
+    "clicks_7d": 18,
+    "impressions_7d": 265,
+    "ctr": "6.8%",
+    "avg_position": 18.3,
+    "clicks_28d": 59,
+    "impressions_28d": 633,
+    "semrush_organic_keywords": 18,
+    "ca_domain_rank": 3880089,
+    "backlinks": 0,
+    "sitemap_indexed": 0
+  },
+  "tech_stack": {
+    "cms": "Lovable (React SPA)",
+    "hosting": "SiteGround GrowBig (migrated from Cloudflare Pages Apr 10)",
+    "github": "https://github.com/glvcrypto/titantinyhomes",
+    "cloudflare_zone": "titantinyhomes.ca"
+  },
+  "seo_config": {
+    "domain": "titantinyhomes.ca",
+    "gsc_property": "sc-domain:titantinyhomes.ca",
+    "ga4_property_id": "524826894",
+    "semrush_project": "titantinyhomes.ca"
+  },
+  "brand": {
+    "primary_colour": "#2D5A3D"
+  },
+  "content_assets_ready": {
+    "keyword_opportunities": 142,
+    "topic_clusters": 8,
+    "ad_concepts": 12,
+    "content_pillars": 4,
+    "article_roadmap": "20 articles across 4 phases",
+    "competitor_analysis": "8 Canadian/US competitors",
+    "partnership_assets": ["realtor one-pager", "partnership landing page prompt", "pricing page prompt"]
+  },
+  "project_rules": [
+    "Avoid AI tone in all copy",
+    "Don't overcomplicate the story",
+    "Maintain authenticity and warmth",
+    "Proper branding consistency",
+    "Position as premium craftsmanship, not hobby/DIY",
+    "Reference Canadian building codes and Ontario regulations",
+    "Use 'tiny home' not 'tiny house' (warmer)"
+  ],
+  "sponsorship": "TTH Chef Masterclass in-kind sponsorship — $1,000 graphics, Joseph Rattan contact",
+  "case_study_status": "internal-use-only — NOT cleared for cold outbound reference (prospector briefed 2026-04-19)",
+  "source": "life-os projects/titan-tiny-homes/CONTEXT.md",
+  "last_updated_source": "2026-04-15",
+  "ported_to_cortextos": "2026-04-19T23:35:00Z"
+}

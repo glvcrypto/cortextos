@@ -1,0 +1,12 @@
+# Experiment Learnings
+
+## exp_1776751714_6rnco (keep)
+- **Metric:** digest_items_adopted_per_7d
+- **Hypothesis:** Baseline agent-to-agent digest format (no Slack) produces >= 3 natural adoptions per scan cycle, as evidenced by boss routing findings to agents, referencing items in morning brief, and creating tasks from digest signals
+- **Result:** 6 (baseline: 6)
+- **Learning:** Counted 6 natural adoption signals across Apr 18-21 (only Apr 20-21 had active scan output — Apr 18-19 were onboarding days with no formal digest): (1) Boss escalated Reyco Apr 25 go-live finding to dev immediately, explicitly crediting scout; (2) Opus 4.7 surfaced as decision item E in morning review; (3) PIPEDA/Mythos/Glasswing/transcript-summarizer deliverables surfaced in morning brief; (4) Boss backfilled ecosystem scan (Opus 4.7, Managed Agents, 12 patterns) to #internal-agents; (5) Deterministic Lifecycle Hooks queued for analyst theta wave; (6) Managed Agents flagged as fleet architecture decision. All 6 were boss-initiated without scout prompting. KEEP threshold >= 3 — result is 6. Strong KEEP.
+## exp_1776851259_hwb7k (keep)
+- **Metric:** digest_items_adopted_per_7d
+- **Hypothesis:** Classifying digest items as actionable-now / actionable-within-30d / watch-only (leading with actionability rather than novelty) will increase boss-initiated natural adoptions per 7d above the baseline of 6. Evidence: analyst validated this framing Apr 21; architecture/cost items (2x uptake in cycle 1) share the trait of being immediately actionable. Hypothesis: the label itself primes recipients to act faster on the right items rather than treating all findings as equally time-sensitive.
+- **Result:** 9 (baseline: 9)
+- **Learning:** Counted 9 boss-initiated natural adoptions across Apr 22-29 window (vs baseline 6): (1) Opus 4.7 HOLD decision, (2) VILA-Lab task #11 assigned, (3) ENABLE_PROMPT_CACHING_1H to dev eval, (4) last30days-skill user gate, (5) approval queue aging spec to dev, (6) context compaction pre-alert to dev, (7) Caveman Mode to user approval gate, (8) Markitdown to dev, (9) claude-context MCP to dev. Result is above baseline of 6 — KEEP. Critical confound: Reyco launch sprint filter (active Apr 25+) redirected general findings to overnight-proposals rather than immediate triage, suppressing at least 3-4 potential adoptions that would have occurred without the sprint mode. The actionable-now/30d/watch-only classification may have higher true impact than 9 vs 6 suggests in a non-sprint week.

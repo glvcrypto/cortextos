@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776751714_6rnco",
+  "agent": "scout",
+  "metric": "digest_items_adopted_per_7d",
+  "hypothesis": "Baseline agent-to-agent digest format (no Slack) produces >= 3 natural adoptions per scan cycle, as evidenced by boss routing findings to agents, referencing items in morning brief, and creating tasks from digest signals",
+  "surface": "experiments/surfaces/ecosystem_scan_adoption/current.md",
+  "direction": "higher",
+  "window": "7d",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 6,
+  "result_value": 6,
+  "decision": "keep",
+  "learning": "Counted 6 natural adoption signals across Apr 18-21 (only Apr 20-21 had active scan output — Apr 18-19 were onboarding days with no formal digest): (1) Boss escalated Reyco Apr 25 go-live finding to dev immediately, explicitly crediting scout; (2) Opus 4.7 surfaced as decision item E in morning review; (3) PIPEDA/Mythos/Glasswing/transcript-summarizer deliverables surfaced in morning brief; (4) Boss backfilled ecosystem scan (Opus 4.7, Managed Agents, 12 patterns) to #internal-agents; (5) Deterministic Lifecycle Hooks queued for analyst theta wave; (6) Managed Agents flagged as fleet architecture decision. All 6 were boss-initiated without scout prompting. KEEP threshold >= 3 — result is 6. Strong KEEP.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-21T06:08:34Z",
+  "started_at": "2026-04-21T06:09:10Z",
+  "completed_at": "2026-04-21T06:09:28Z",
+  "changes_description": "Baseline: agent-to-agent digest format (numbered findings, per-recipient targeting, no Slack post pre-Apr-21). Measuring natural adoption signals from Apr 18-21 scan outputs."
+}

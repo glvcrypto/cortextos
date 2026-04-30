@@ -1,0 +1,67 @@
+{
+  "approval_required": true,
+  "monitoring": {
+    "priorities": [
+      "prospecting_pipeline_throughput",
+      "client_health_and_wellness",
+      "pending_task_completion",
+      "new_leads_meetings_comms"
+    ],
+    "alert_rules": {
+      "immediate_ping": [
+        "new_lead_detected",
+        "meeting_scheduled_or_changed",
+        "client_communication_received",
+        "client_health_anomaly",
+        "revenue_impacting_event"
+      ],
+      "daily_digest": [
+        "agent_uptime_summary",
+        "task_completion_rate",
+        "pipeline_throughput",
+        "integration_health_rollup"
+      ],
+      "agent_stale_minutes": 300,
+      "error_rate_pct": 5,
+      "task_queue_max": 20
+    },
+    "reporting": {
+      "style": "daily_digest_plus_immediate",
+      "report_to": [
+        "user",
+        "boss"
+      ],
+      "user_chat_id": "1582763943"
+    },
+    "heartbeat": {
+      "interval": "2h",
+      "agent_silent_flag_hours": 5,
+      "agent_silent_alert_hours": 8
+    }
+  },
+  "theta_wave": {
+    "enabled": true,
+    "interval": "24h",
+    "metric": "system_effectiveness",
+    "metric_type": "qualitative_compound",
+    "direction": "higher",
+    "auto_create_agent_cycles": false,
+    "auto_modify_agent_cycles": false
+  },
+  "cycles": [
+    {
+      "name": "override_retrospective_match_rate",
+      "agent": "analyst",
+      "metric": "override_retrospective_match_rate",
+      "metric_type": "qualitative",
+      "surface": "orgs/glv/agents/analyst/GUARDRAILS.md",
+      "direction": "higher",
+      "window": "2w",
+      "measurement": "Per override event, log {pentester_reject_ts, user_override_ts, reason_enum, override_scope}. At 30d post-event per override, retro review: was override right (yes/no/mixed)? Aggregate match rate = keep score. Target >=80% = protocol calibrated; <60% = re-tune at cycle N+5. Sample-size rule: N<3 at 2wk window → roll forward another 2wk rather than conclude early.",
+      "loop_interval": "2w",
+      "enabled": true,
+      "created_by": "analyst",
+      "created_at": "2026-04-24T13:01:51Z"
+    }
+  ]
+}

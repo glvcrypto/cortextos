@@ -1,0 +1,36 @@
+{
+  "_schema": "1.0",
+  "client": "reyco",
+  "display_name": "Reyco Marine & Small Engine Ltd.",
+  "stage": "active-retainer",
+  "retainer_mrr": 2000,
+  "retainer_health": "green",
+  "contract": {
+    "seo": true,
+    "dev": true,
+    "content": false,
+    "ads": false,
+    "automation": false,
+    "custom_ai": false
+  },
+  "deliverables": {
+    "8-pillar-research": "complete",
+    "avatar": "complete",
+    "positioning": "pending",
+    "voice-doc": "complete",
+    "site-audit": "complete",
+    "content-plan": "complete",
+    "kickoff": "complete",
+    "site-build": "in-progress"
+  },
+  "blockers": [
+    "domain-transfer-pending (waiting on Charlene for EPP code from Dealer Spike)",
+    "web-products-pending (only 3 of 207 Lightspeed units flagged as web products)",
+    "jak-photos-pending (full Drive folder not fully integrated)",
+    "mobile-optimization-not-done",
+    "gsc-ga4-not-configured",
+    "google-workspace-migration-not-started"
+  ],
+  "notes": "Only paying GLV client. $5K setup (PAID Mar 27) + $2K/mo SEO starting May 2026. Alpha live at reyco.glvmarketing.ca. 52 pages built, Lightspeed DMS API connected Apr 14. Positioning doc is the remaining Reyco-standard Phase-0 gap.",
+  "updated_at": "2026-04-19T23:35:00Z"
+}

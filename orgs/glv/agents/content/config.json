@@ -1,0 +1,50 @@
+{
+  "agent_name": "content",
+  "enabled": true,
+  "startup_delay": 0,
+  "max_session_seconds": 255600,
+  "max_crashes_per_day": 10,
+  "working_directory": "",
+  "timezone": "America/Toronto",
+  "crons": [
+    {
+      "name": "heartbeat",
+      "type": "recurring",
+      "interval": "4h",
+      "prompt": "Read HEARTBEAT.md and follow its instructions. Update your heartbeat, check inbox, and work on your highest priority task."
+    },
+    {
+      "name": "weekly-content-plan",
+      "type": "recurring",
+      "interval": "7d",
+      "prompt": "It's weekly content planning time. Check GOALS.md and MEMORY.md for the @glvbuilds strategy. Draft a 1-week content calendar for Instagram/TikTok/YouTube/LinkedIn — at least 5 posts covering the 4 content pillars. Save to memory/YYYY-MM-DD-content-calendar.md and send Aiden a Telegram summary for approval."
+    },
+    {
+      "name": "experiment-content-quality",
+      "type": "recurring",
+      "interval": "48h",
+      "prompt": "Read .claude/skills/autoresearch/SKILL.md and execute the experiment loop for the content-quality cycle."
+    }
+  ],
+  "ecosystem": {
+    "local_version_control": {
+      "enabled": true
+    }
+  },
+  "day_mode_start": "08:00",
+  "day_mode_end": "23:00",
+  "communication_style": "technical",
+  "approval_rules": {
+    "always_ask": [
+      "external-comms",
+      "financial",
+      "deployment",
+      "data-deletion",
+      "image-generation",
+      "website-updates",
+      "client-deliverables"
+    ],
+    "never_ask": []
+  },
+  "model": "claude-sonnet-4-6"
+}

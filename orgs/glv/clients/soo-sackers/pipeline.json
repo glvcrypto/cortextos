@@ -1,0 +1,33 @@
+{
+  "_schema": "1.0",
+  "client": "soo-sackers",
+  "display_name": "Soo Sackers",
+  "stage": "sandbox",
+  "retainer_mrr": 0,
+  "retainer_health": "green",
+  "contract": {
+    "seo": true,
+    "dev": true,
+    "content": false,
+    "ads": false,
+    "automation": false,
+    "custom_ai": false
+  },
+  "deliverables": {
+    "8-pillar-research": "skipped",
+    "avatar": "skipped",
+    "positioning": "skipped",
+    "voice-doc": "skipped",
+    "site-audit": "complete",
+    "content-plan": "skipped",
+    "kickoff": "complete",
+    "site-build": "complete"
+  },
+  "blockers": [
+    "breadcrumb-schema-missing",
+    "csp-blocking-analytics (GA4 + Shopify)",
+    "inner-pages-not-indexed (1 of 7)"
+  ],
+  "notes": "Brother Kurtis's softball team. Testing ground for AI/web experiments before applying to paying clients. No formal Phase-0 docs needed — stage=sandbox. Noindex fix proven here Apr 4 (homepage indexed), should be replicated on Fusion.",
+  "updated_at": "2026-04-19T23:35:00Z"
+}

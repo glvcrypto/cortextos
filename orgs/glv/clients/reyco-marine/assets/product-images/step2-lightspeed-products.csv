@@ -1,0 +1,77 @@
+sku,make,model,product_title,code,unit_count,img_family,already_in_seed,status,sample_ls_id
+CC-13A6A9TS596-LS,Cub Cadet,13A6A9TS596,Cub Cadet XT1 LT42 42-in. 547cc Riding Lawn Mower,XT1 LT42 42-in. 547cc Riding Lawn Mower,7,cubcadet-13a6a9ts596,no,needs-scrape,57647
+CC-13APA1TEA10-LS,Cub Cadet,13APA1TEA10,Cub Cadet XT2 LX42 42-in. 20 HP,XT2 LX42 42-in. 20 HP,8,cubcadet-13apa1tea10,no,needs-scrape,57675
+CC-13APA1TNA10-LS,Cub Cadet,13APA1TNA10,Cub Cadet XT2 LX46 46-in. 22 HP,XT2 LX46 46-in. 22 HP,4,cubcadet-13apa1tna10,no,needs-scrape,57683
+CC-13APA9TTA10-LS,Cub Cadet,13APA9TTA10,Cub Cadet XT1 LT46 46-in. 22 HP* Riding Lawn Mower,XT1 LT46 46-in. 22 HP* Riding Lawn Mower,5,cubcadet-13apa9tta10,no,needs-scrape,57692
+CC-13AQA1TLA10-LS,Cub Cadet,13AQA1TLA10,Cub Cadet XT1 LT50 50-in. 24 HP* Riding Lawn Mower,XT1 LT50 50-in. 24 HP* Riding Lawn Mower,2,cubcadet-13aqa1tla10,no,needs-scrape,57800
+CC-13B5A2TLA10-LS,Cub Cadet,13B5A2TLA10,Cub Cadet NX 15 SLX50,NX 15 SLX50,1,cubcadet-13b5a2tla10,no,needs-scrape,58405
+CC-13B6A9TTA10-LS,Cub Cadet,13B6A9TTA10,Cub Cadet XT1 LT46 46-in. 547cc,XT1 LT46 46-in. 547cc,4,cubcadet-13b6a9tta10,no,needs-scrape,57689
+CC-13CC1JD596-LS,Cub Cadet,13CC1JD596,Cub Cadet CC30H,CC30H,1,cubcadet-13cc1jd596,no,needs-scrape,57258
+CC-ACSRY:RZTL:50-54-60--LS,Cub Cadet,ACSRY:RZTL:50 54 60 DK TRI BAG,Cub Cadet 50 54 60 DK TRI BAGGER,50 54 60 DK TRI BAGGER,1,cubcadet-acsry:rztl:50-5,no,needs-scrape,55126
+CC-SLX50-LS,Cub Cadet,SLX50,Cub Cadet XT2 SLX50,XT2 SLX50,1,cubcadet-slx50,no,needs-scrape,55097
+EASY-1250#-PAINTED-T-LS,Easy Hauler,1250# PAINTED TRAILER 480 X 12B E-COAT,Easy Hauler 1250# PAINTED TRAILER 480 X 12B E-COAT,,1,skip,no,skip,54208
+EASY-AL-1610B-YC-LS,Easy Hauler,AL-1610B-YC,Easy Hauler AL-1610B-YC,1000# BUNK TRAILER 480 X 12B E-COAT BLACK,1,skip,no,skip,54204
+EASY-AL-PTDB2023-LS,Easy Hauler,AL-PTDB2023,Easy Hauler AL-PTDB2023,DRIVE ON BUNK BLACK,4,skip,no,skip,54211
+EASY-AL-PTDB2026-TRI-LS,Easy Hauler,AL-PTDB2026-TRI,Easy Hauler AL-PTDB2026-TRI,DRIVE ON BUNK TRI TRAILER 20' 2600#- BLACK,5,skip,no,skip,54212
+MERC-115HP-115EXLPTPR-LS,Mercury,115 EXLPT PRO XS,Mercury 115 HP Outboard Motor Pro XS,,3,mercury-115hp,no,needs-scrape,34474
+MERC-115HP-115PROXS-LS,Mercury,115 Pro XS,Mercury 115 HP Outboard Motor Pro XS,,2,mercury-115hp,no,needs-scrape,34500
+MERC-150HP-150XL-LS,Mercury,150 XL,Mercury 150 HP Outboard Motor,,1,mercury-150hp,no,needs-scrape,34468
+MERC-40HP-40ELPT-LS,Mercury,40 ELPT,Mercury 40 HP Outboard Motor,,2,mercury-40hp,no,needs-scrape,34455
+MERC-50HP-50ELHPT4SE-LS,Mercury,50 ELHPT 4S EFI,Mercury 50 HP Outboard Motor EFI,1A25411BK,1,mercury-50hp,no,needs-scrape,34079
+MERC-50HP-50ELPTEFIC-LS,Mercury,50 ELPT EFI CT,Mercury 50 HP Outboard Motor EFI,,2,mercury-50hp,no,needs-scrape,34437
+MERC-60HP-60ELPT-LS,Mercury,60 ELPT,Mercury 60 HP Outboard Motor,,1,mercury-60hp,no,needs-scrape,34496
+MERC-75HP-75ELPT-LS,Mercury,75 ELPT,Mercury 75 HP Outboard Motor,,2,mercury-75hp,no,needs-scrape,34524
+MERC-90HP-90EXLPTCT-LS,Mercury,90 EXLPT CT,Mercury 90 HP Outboard Motor,,3,mercury-90hp,no,needs-scrape,34490
+MERC-115HP-ME115XLPXS-LS,Mercury,ME 115XL PXS4S,Mercury 115 HP Outboard Motor Pro XS,MERCURY 115 HP PRO XS XL,5,mercury-115hp,no,needs-scrape,54280
+MERC-15HP-ME15EH4S-LS,Mercury,ME 15 EH 4S,Mercury 15 HP Mid-Range Outboard,1A15301LK,1,mercury-15hp,no,needs-scrape,34036
+MERC-15HP-ME15ELH4S-LS,Mercury,ME 15 ELH 4S,Mercury 15 HP Mid-Range Outboard,1A15311LK,1,mercury-15hp,no,needs-scrape,34039
+MERC-15HP-ME15ELHPTP-LS,Mercury,ME 15 ELHPT PK 4S,Mercury 15 HP Mid-Range Outboard,1A15451BK,1,mercury-15hp,no,needs-scrape,34041
+MERC-15HP-ME15ELPHPT-LS,Mercury,ME 15 ELPHPT PK 4S,Mercury 15 HP Mid-Range Outboard,1A15451BK,2,mercury-15hp,no,needs-scrape,34047
+MERC-15HP-ME15ELPT4S-LS,Mercury,ME 15 ELPT 4S,Mercury 15 HP Mid-Range Outboard,1A15412LK,1,mercury-15hp,no,needs-scrape,34044
+MERC-25HP-ME25MH4STM-LS,Mercury,ME 2.5MH 4S TMC,Mercury 2.5 HP Portable Outboard,1F02201KK,18,mercury-25hp,no,needs-scrape,33914
+MERC-20HP-ME20EH4S-LS,Mercury,ME 20 EH 4S,Mercury 20 HP Mid-Range Outboard,1A20301LK,2,mercury-20hp,no,needs-scrape,34064
+MERC-20HP-ME20ELHPT4-LS,Mercury,ME 20 ELHPT 4S,Mercury 20 HP Mid-Range Outboard,1A20411LK,1,mercury-20hp,no,needs-scrape,34097
+MERC-20HP-ME20MH4S-LS,Mercury,ME 20 MH 4S,Mercury 20 HP Mid-Range Outboard,1A20201LK,1,mercury-20hp,no,needs-scrape,34067
+MERC-20HP-ME20MLH4S-LS,Mercury,ME 20 MLH 4S,Mercury 20 HP Mid-Range Outboard,1A20211LK,4,mercury-20hp,no,needs-scrape,34055
+MERC-25HP-ME25EHEFI4-LS,Mercury,ME 25 EH EFI 4S,Mercury 25 HP Outboard Motor EFI,1A25301BK,1,mercury-25hp,no,needs-scrape,34091
+MERC-25HP-ME25ELHPTE-LS,Mercury,ME 25 ELHPT EFI 4S,Mercury 25 HP Outboard Motor EFI,1A25411BK,2,mercury-25hp,no,needs-scrape,34082
+MERC-25HP-ME25ELPTEF-LS,Mercury,ME 25 ELPT EFI 4S,Mercury 25 HP Outboard Motor EFI,1A25413BK,2,mercury-25hp,no,needs-scrape,34088
+MERC-35HP-ME35MH4STM-LS,Mercury,ME 3.5MH 4S TMC,Mercury 3.5 HP Portable Outboard,1F03201KK,5,mercury-35hp,no,needs-scrape,33939
+MERC-30HP-ME30ELHPTE-LS,Mercury,ME 30 ELHPT EFI 4S,Mercury 30 HP Outboard Motor EFI,1A30411BK,5,mercury-30hp,no,needs-scrape,34098
+MERC-30HP-ME30ELPTEF-LS,Mercury,ME 30 ELPT EFI 4S,Mercury 30 HP Outboard Motor EFI,1A30413BK,2,mercury-30hp,no,needs-scrape,34102
+MERC-40HP-ME40ELHPT4-LS,Mercury,ME 40 ELHPT 4S EFI,Mercury 40 HP Outboard Motor EFI,1F4041TJZ,1,mercury-40hp,no,needs-scrape,34095
+MERC-4HP-ME4MH4S-LS,Mercury,ME 4MH 4S,Mercury 4 HP Portable Outboard,1F04201KK,2,mercury-4hp,no,needs-scrape,33943
+MERC-5HP-ME5MHLPG4S-LS,Mercury,ME 5 MH LPG 4S,Mercury 5 HP Portable Outboard,1FX5201KK,2,mercury-5hp,no,needs-scrape,34058
+MERC-UNKHP-ME5MXLHALP-LS,Mercury,ME 5 MXLHA LPG 4S SAILPOWER,Mercury ME 5 MXLHA LPG 4S SAILPOWER Outboard Motor,ME 5 MXLHA LPG 4S SAILPOWER,1,mercury-me5mxlha,no,needs-scrape,34060
+MERC-50HP-ME50ELHPT4-LS,Mercury,ME 50 ELHPT 4S EFI,Mercury 50 HP Outboard Motor EFI,1F5141TJZ,1,mercury-50hp,no,needs-scrape,34008
+MERC-50HP-ME50ELPT4S-LS,Mercury,ME 50 ELPT 4S EFI,Mercury 50 HP Outboard Motor EFI,1F51413GZ,4,mercury-50hp,no,needs-scrape,34014
+MERC-50HP-ME50ELPTCT-LS,Mercury,ME 50 ELPT CT 4S EFI,Mercury 50 HP Outboard Motor EFI,1F51453GZ,1,mercury-50hp,no,needs-scrape,34011
+MERC-5HP-ME5MH-LS,Mercury,ME 5MH,Mercury 5 HP Portable Outboard,1FX5201KK,4,mercury-5hp,no,needs-scrape,33968
+MERC-60HP-ME60ELHPTC-LS,Mercury,ME 60 ELHPT CT 4S,Mercury 60 HP Outboard Motor,1F6045TJZ,2,mercury-60hp,no,needs-scrape,34076
+MERC-60HP-ME60ELPT4S-LS,Mercury,ME 60 ELPT 4S EFI,Mercury 60 HP Outboard Motor EFI,1F60413GZ,2,mercury-60hp,no,needs-scrape,34023
+MERC-60HP-ME60ELPTCT-LS,Mercury,ME 60 ELPT CT 4S EFI,Mercury 60 HP Outboard Motor EFI,1F60453GZ,1,mercury-60hp,no,needs-scrape,34073
+MERC-6HP-ME6MH-LS,Mercury,ME 6MH,Mercury 6 HP Portable Outboard,1FX6201KK,11,mercury-6hp,no,needs-scrape,33958
+MERC-6HP-ME6MLH-LS,Mercury,ME 6MLH,Mercury 6 HP Portable Outboard,1FX6211KK,4,mercury-6hp,no,needs-scrape,33955
+MERC-8HP-ME8EH4S-LS,Mercury,ME 8EH 4S,Mercury 8 HP Mid-Range Outboard,1A08301LK,1,mercury-8hp,no,needs-scrape,34005
+MERC-8HP-ME8MH4STMC-LS,Mercury,ME 8MH 4S TMC,Mercury 8 HP Mid-Range Outboard,1A08201LK,2,mercury-8hp,no,needs-scrape,34004
+MERC-99HP-ME99ELH4ST-LS,Mercury,ME 9.9ELH 4S TMC,Mercury 9.9 HP Mid-Range Outboard,1A10211LK,3,mercury-99hp,no,needs-scrape,33996
+MERC-99HP-ME99MH4S-LS,Mercury,ME 9.9MH 4S,Mercury 9.9 HP Mid-Range Outboard,1A10201LK,7,mercury-99hp,no,needs-scrape,33986
+MERC-90HP-ME90ELPT4S-LS,Mercury,ME 90ELPT 4S,Mercury 90 HP Outboard Motor,ME 90ELPT 4S,4,mercury-90hp,no,needs-scrape,55835
+PC-AMAROK-166-WS-LS,Princecraft,AMAROK 166 WS,Princecraft AMAROK 166 WS,,1,princecraft-amarok-166-ws,no,needs-scrape,34521
+PC-RESORTER-160-BT-LS,Princecraft,RESORTER 160 BT,Princecraft RESORTER 160 BT,,1,princecraft-resorter-160-bt,no,needs-scrape,34512
+PC-SPORTFISHER-21-2RS-LS,Princecraft,SPORTFISHER 21 2RS,Princecraft SPORTFISHER 21 2RS,,1,princecraft-sportfisher-21-,no,needs-scrape,34487
+PC-SPORTFISHER-23-2RS-LS,Princecraft,SPORTFISHER 23 2RS,Princecraft SPORTFISHER 23 2RS,,1,princecraft-sportfisher-23-,no,needs-scrape,34499
+PC-VECTRA-21-RL-LS,Princecraft,VECTRA 21 RL,Princecraft VECTRA 21 RL,,1,princecraft-vectra-21-rl,no,needs-scrape,34459
+TORO-72504-LS,Toro,72504,Toro GrandStand® 48 in. Turbo Force Deck(122 cm) 22 hp  Kaw 726cc,GrandStand® 48 in. Turbo Force Deck(122 cm) 22 hp  Kaw 726cc,1,toro-72504,no,needs-scrape,56752
+TORO-74532-LS,Toro,74532,Toro GRANDSTAND HDM 32 IN KAWI 18.5HP,GRANDSTAND HDM 32 IN KAWI 18.5HP,2,toro-74532,no,needs-scrape,54911
+TORO-75747-LS,Toro,75747,Toro 42 in. (107 cm) TimeCutter® MyRIDE® Zero Turn Mower,42 in. (107 cm) TimeCutter® MyRIDE® Zero Turn Mower,7,toro-75747,no,needs-scrape,56397
+TORO-76501-LS,Toro,76501,Toro 54 in. (137 cm) TITAN Zero Turn Mower,54 in. (137 cm) TITAN Zero Turn Mower,1,toro-76501,no,needs-scrape,54934
+TORO-77283-LS,Toro,77283,Toro 52' 2000 Z MASTER TF2 DECK 24.5 HP TORO V TWIN,52' 2000 Z MASTER TF2 DECK 24.5 HP TORO V TWIN,3,toro-77283,no,needs-scrape,56759
+TORO-77404-LS,Toro,77404,Toro ZT TIMECUTTER 42IN FAB DECK V-TWIN BRIGGS,ZT TIMECUTTER 42IN FAB DECK V-TWIN BRIGGS,1,toro-77404,no,needs-scrape,54502
+TORO-77501-LS,Toro,77501,Toro 50 IN TC FAB 23HP KAWI V-TWIN,50 IN TC FAB 23HP KAWI V-TWIN,1,toro-77501,no,needs-scrape,54503
+TORO-77502-LS,Toro,77502,Toro 50 in. (127 cm) TimeCutter® Max MyRide® Zero Turn Mower 50 in. (127 cm) TimeCutter® Max MyRide® Zero Turn Mower 54 inch TimeCutter Max Zero Turn Mower 23 hp Kawasaki 726cc V-Twin Engine IronForged Deck - Fabricated 10 gauge steel Pro DNA - proven by pros. Built for you MyRide Suspension &#45; save your back with comfort 4-point hanging system - step up deck that doesn't flinch 20 inch rear tires - featuring aggressive treads 5-gallon fuel tank - get the job done in one go Protective fenders shield from tire spray TimeCutter-Video.jpg toro-myride-suspension-system-video-thumbnail_2k.jpg  50 in. (127 cm) TimeCutter® Max MyRide® Zero Turn Mower,50 in. (127 cm) TimeCutter® Max MyRide® Zero Turn Mower 50 in. (127 cm) TimeCutter® Max MyRide® Zero Turn Mower 54 inch TimeCutter Max Zero Turn Mower 23 hp Kawasaki 726cc V-Twin Engine IronForged Deck - Fabricated 10 gauge steel Pro DNA - proven by pros. Built for you MyRide Suspension &#45; save your back with comfort 4-point hanging system - step up deck that doesn't flinch 20 inch rear tires - featuring aggressive treads 5-gallon fuel tank - get the job done in one go Protective fenders shield from tire spray TimeCutter-Video.jpg toro-myride-suspension-system-video-thumbnail_2k.jpg  50 in. (127 cm) TimeCutter® Max MyRide® Zero Turn Mower,1,toro-77502,no,needs-scrape,54458
+TORO-77503-LS,Toro,77503,Toro TimeCutter MyRIDE 54in Zero Turn Riding Mower Kaw 23HP Fabricated,TimeCutter MyRIDE 54in Zero Turn Riding Mower Kaw 23HP Fabricated,1,toro-77503,no,needs-scrape,54501
+TORO-77507-LS,Toro,77507,"Toro 54"" KAW 23HP HAVOC FAB DECK","54"" KAW 23HP HAVOC FAB DECK",1,toro-77507,no,needs-scrape,54932
+TRAI-100162-Wheel-Ki-LS,Trailer,100162 Wheel Kit Pair Lift Dock,Trailer 100162 Wheel Kit Pair Lift Dock,100162 Wheel Kit Pair Lift Dock,1,skip,no,skip,56223
+TRAI-Vertical-PT-Lif-LS,Trailer,Vertical PT Lift,Trailer Vertical PT Lift,,1,skip,no,skip,55607
+TRAI-X-LS,Trailer,X,Trailer X,,10,skip,no,skip,34509

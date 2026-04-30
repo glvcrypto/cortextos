@@ -1,0 +1,32 @@
+[
+  {
+    "product_id": 731,
+    "title": "2022 Mercury ME 60 ELPT 4S EFI",
+    "refused": true,
+    "refusal_msg": "Could not generate images with the given prompts and images. Please try again with different inputs."
+  },
+  {
+    "product_id": 536,
+    "title": "2026 Mercury 50 ELPT EFI CT",
+    "refused": true,
+    "refusal_msg": "Could not generate images with the given prompts and images. Please try again with different inputs."
+  },
+  {
+    "product_id": 545,
+    "title": "2024 Mercury ME 50 ELPT 4S EFI",
+    "refused": true,
+    "refusal_msg": "Could not generate images with the given prompts and images. Please try again with different inputs."
+  },
+  {
+    "product_id": 497,
+    "title": "2025 Mercury ME 50 ELPT CT 4S EFI",
+    "refused": true,
+    "refusal_msg": "Could not generate images with the given prompts and images. Please try again with different inputs."
+  },
+  {
+    "product_id": 496,
+    "title": "2025 Mercury ME 60 ELHPT CT 4S",
+    "refused": true,
+    "refusal_msg": "Could not generate images with the given prompts and images. Please try again with different inputs."
+  }
+]

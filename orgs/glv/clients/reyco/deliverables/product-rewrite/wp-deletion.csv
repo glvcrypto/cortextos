@@ -1,0 +1,4 @@
+ID,Name,SKU,reason,merged_into_keep_id,vin,use_case_absorbed
+489,2025 Trailer X — Property-Cleanup Utility Trailer,,VIN-duplicate of keep-row; copy merged via use-case sentence into keep-row description.,453,2REA2S7A5S2158650,spring property cleanups
+537,2024 Trailer X — Dump-Run Utility Trailer,,VIN-duplicate of keep-row; copy merged via use-case sentence into keep-row description.,425,2REA2S7A5R2155242,dump-run hauling
+558,2025 Trailer X — All-Season Utility Trailer,,VIN-duplicate of keep-row; copy merged via use-case sentence into keep-row description.,414,2REA2S7A5S2159460,all-season property runs

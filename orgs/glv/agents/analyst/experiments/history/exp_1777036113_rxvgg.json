@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777036113_rxvgg",
+  "agent": "analyst",
+  "metric": "median_agent_inbox_read_latency_seconds",
+  "hypothesis": "Agent-bus routing latency varies by >5min median across fleet; high-priority messages do NOT empirically jump the queue (priority is cosmetic tag, not reorder). 48h rollup reveals which agents need heartbeat tune + whether priority-semantic is load-bearing. Success: identify >=1 agent with >5min median read-latency + establish priority-speedup pct.",
+  "surface": "orgs/glv/agents/analyst/notes/exp4-routing-latency-instrumentation-2026-04-24.md",
+  "direction": "lower",
+  "window": "48h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 0,
+  "result_value": 0,
+  "decision": "discard",
+  "learning": "Primary criterion FAILED: hypothesis required >=1 agent with median >5min (300s); fleet max median is imagegen 85s (n=4 too small to act on). All other agent medians under 50s. Secondary criterion FAILED: priority=high produced no >30% speedup in 6/7 agents with sample. Original mtime/ctime instrumentation was structurally invalid (renameSync preserves mtime); pivoted mid-experiment to reply-link round-trip latency proxy. Boss pushback caught fleet-saturation cluster contamination (Apr 25 16:00Z-Apr 26 01:00Z, 9h); cluster-exclusion methodology revealed boss/pentester tail was 100% saturation-event, not agent-perf. Net wins: (a) reply-link round-trip + steady-state cluster partition banked as canonical agent-bus latency methodology in MEMORY.md; (b) meta-learning category 'instrumentation-self-invalidation-detected' established with 2 instances (renameSync pivot + cluster exclusion); (c) two-regime reframe Exp #4b proposed for AM brief — steady-state tune candidates dev p90=389s, designer p90=236s vs coordination-saturation surface boss/pentester (different fix class). Pentester 44343s outlier (12.3h dead-session) filed as separate cycle-3 framework gap probe.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-24T13:08:33Z",
+  "started_at": "2026-04-24T14:34:01Z",
+  "completed_at": "2026-04-26T14:40:16Z",
+  "changes_description": null
+}

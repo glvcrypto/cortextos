@@ -1,0 +1,19 @@
+{
+  "approval_required": true,
+  "cycles": [
+    {
+      "name": "ecosystem_scan_adoption",
+      "agent": "scout",
+      "metric": "digest_items_adopted_per_7d",
+      "metric_type": "quantitative",
+      "surface": "experiments/surfaces/ecosystem_scan_adoption/current.md",
+      "direction": "higher",
+      "window": "7d",
+      "measurement": "Manual count: review boss outbound Telegram + agent message logs for natural adoptions (boss tags in morning brief, agent task references, agent citations of digest items)",
+      "loop_interval": "7d",
+      "enabled": true,
+      "created_by": "scout",
+      "created_at": "2026-04-21T06:08:24Z"
+    }
+  ]
+}

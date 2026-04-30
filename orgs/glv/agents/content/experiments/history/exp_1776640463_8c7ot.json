@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776640463_8c7ot",
+  "agent": "content",
+  "metric": "content-quality",
+  "hypothesis": "Baseline: GLV brand voice rules applied as written. Hypothesis: strict adherence to blog-config.md banned phrase list + Canadian English + short paragraphs produces drafts that need minimal revision from Aiden.",
+  "surface": "experiments/surfaces/content-quality/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 7,
+  "result_value": 7,
+  "decision": "keep",
+  "learning": "Baseline GLV brand voice adherence produced solid, correct drafts. Canadian English, no banned phrases, no em-dashes, short paragraphs, and local Northern Ontario geography (St. Marys River, Goulais Bay, SSM lake-effect snow) all consistently applied. CTAs clear with verified contact info. Weakness: opening hooks were product-description style with no deliberate emotional engineering — reader identity and seasonal context were introduced mid-body rather than leading. Score 7/10: technically compliant, locally grounded, but opening paragraphs leave engagement on the table.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-19T23:14:23Z",
+  "started_at": "2026-04-19T23:14:33Z",
+  "completed_at": "2026-04-21T22:28:44Z",
+  "changes_description": "Baseline run: strict GLV brand voice adherence — Canadian English, no banned phrases, short paragraphs, local Northern Ontario context, clear CTA. No deliberate hook engineering."
+}

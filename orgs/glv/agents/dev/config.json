@@ -1,0 +1,74 @@
+{
+  "agent_name": "dev",
+  "enabled": true,
+  "startup_delay": 0,
+  "max_session_seconds": 255600,
+  "max_crashes_per_day": 10,
+  "working_directory": "",
+  "timezone": "America/Toronto",
+  "crons": [
+    {
+      "name": "heartbeat",
+      "type": "recurring",
+      "interval": "4h",
+      "prompt": "Read HEARTBEAT.md and follow its instructions. Update your heartbeat, check inbox, and work on your highest priority task."
+    },
+    {
+      "name": "github-pr-monitor",
+      "type": "recurring",
+      "interval": "2h",
+      "prompt": "Check GitHub org glvcrypto for open PRs on client repos (reyco-marine, titantinyhomes, fusionfinancial, glvmarketing). Flag any PRs that have been open >24h or need review. Report findings via cortextos bus send-telegram $CTX_TELEGRAM_CHAT_ID."
+    },
+    {
+      "name": "site-uptime-check",
+      "type": "recurring",
+      "interval": "24h",
+      "prompt": "Run daily site uptime check for GLV client domains. SiteGround serves HTTP 202 (bot challenge) on homepage requests — check static assets instead to avoid false positives. For each domain, curl a known static file: reyco.glvmarketing.ca → /wp-content/themes/reyco-marine/assets/images/logo-reyco.png; glvmarketing.ca → /favicon.ico; soosackers.com → /favicon.ico. Alert via cortextos bus send-telegram $CTX_TELEGRAM_CHAT_ID only if response is 4xx or 5xx (not 202)."
+    },
+    {
+      "name": "weekly-backlog-sweep",
+      "type": "recurring",
+      "interval": "7d",
+      "prompt": "Weekly dev backlog sweep: list all pending and in-progress tasks for agent dev via cortextos bus list-tasks. Flag anything stale (in_progress >48h), deprioritized, or blocked. Send a summary via cortextos bus send-telegram $CTX_TELEGRAM_CHAT_ID with task counts and any items needing attention."
+    },
+    {
+      "name": "email-semrush-gsc-monitor",
+      "type": "recurring",
+      "interval": "24h",
+      "prompt": "Check Gmail for Semrush site audit alerts and Google Search Console notifications for GLV client sites. For each alert found: (1) parse the issue type, (2) determine if it's a technical fix I can apply (broken links, redirect chains, missing meta, schema errors), (3) create a task via cortextos bus create-task, (4) if auto-fixable and under 30 min, fix it directly on the relevant repo and request deploy approval. Send a summary via cortextos bus send-telegram $CTX_TELEGRAM_CHAT_ID."
+    },
+    {
+      "name": "context7-weekly-update",
+      "type": "recurring",
+      "interval": "7d",
+      "prompt": "Weekly Context7 best practices update. For each technology in the GLV dev stack (WordPress, Tailwind CSS, WooCommerce, PHP, Cloudflare Workers, GitHub Actions), fetch the latest docs and best practices using web search. Summarize any breaking changes, deprecations, or new patterns relevant to active client builds (reyco-marine, fusionfinancial, titantinyhomes). Save findings to memory and ingest to KB. Send a brief summary via cortextos bus send-telegram $CTX_TELEGRAM_CHAT_ID if anything actionable found."
+    },
+    {
+      "name": "experiment-deploy-reliability",
+      "type": "recurring",
+      "interval": "48h",
+      "prompt": "Read .claude/skills/autoresearch/SKILL.md and execute the experiment loop for the deploy-reliability cycle."
+    }
+  ],
+  "ecosystem": {
+    "local_version_control": {
+      "enabled": true
+    }
+  },
+  "day_mode_start": "08:00",
+  "day_mode_end": "23:00",
+  "communication_style": "technical",
+  "approval_rules": {
+    "always_ask": [
+      "external-comms",
+      "financial",
+      "deployment",
+      "data-deletion",
+      "image-generation",
+      "website-updates",
+      "client-deliverables"
+    ],
+    "never_ask": []
+  },
+  "model": "claude-sonnet-4-6"
+}

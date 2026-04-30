@@ -1,0 +1,73 @@
+{
+  "agent_name": "analyst",
+  "enabled": true,
+  "startup_delay": 0,
+  "max_session_seconds": 255600,
+  "max_crashes_per_day": 10,
+  "working_directory": "",
+  "timezone": "America/Toronto",
+  "day_mode_start": "08:00",
+  "day_mode_end": "23:00",
+  "communication_style": "technical",
+  "approval_rules": {
+    "always_ask": [
+      "external-comms",
+      "financial",
+      "deployment",
+      "data-deletion"
+    ],
+    "never_ask": []
+  },
+  "crons": [
+    {
+      "name": "heartbeat",
+      "type": "recurring",
+      "interval": "2h",
+      "prompt": "Read HEARTBEAT.md and follow its instructions. Update your heartbeat, check inbox, and work on your highest priority task."
+    },
+    {
+      "name": "nightly-metrics",
+      "type": "recurring",
+      "interval": "24h",
+      "prompt": "Run nightly metrics collection: cortextos bus collect-metrics. Review the output and report any anomalies via Telegram to the orchestrator."
+    },
+    {
+      "name": "auto-commit",
+      "type": "recurring",
+      "interval": "24h",
+      "prompt": "Read .claude/skills/local-version-control/SKILL.md and execute the daily version control workflow. Stage, review, and commit changes."
+    },
+    {
+      "name": "check-upstream",
+      "type": "recurring",
+      "interval": "24h",
+      "prompt": "Read .claude/skills/upstream-sync/SKILL.md and execute the upstream sync workflow. Check for framework updates and report to the orchestrator."
+    },
+    {
+      "name": "catalog-browse",
+      "type": "recurring",
+      "interval": "7d",
+      "prompt": "Read .claude/skills/catalog-browse/SKILL.md and execute the catalog browse workflow. Check for new community skills and recommend useful ones."
+    },
+    {
+      "name": "theta-wave",
+      "type": "recurring",
+      "cron": "33 1 * * *",
+      "prompt": "Read .claude/skills/theta-wave/SKILL.md. Initiate the theta wave cycle. First action: message the orchestrator that theta wave is starting and share your initial system scan."
+    }
+  ],
+  "ecosystem": {
+    "local_version_control": {
+      "enabled": true
+    },
+    "upstream_sync": {
+      "enabled": true
+    },
+    "catalog_browse": {
+      "enabled": true
+    },
+    "community_publish": {
+      "enabled": false
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "client": "fusion",
+  "business_name": "Fusion Financial / Tax Titan",
+  "description": "Corporate bookkeeping service with Tax Titan subsidiary. Bookkeeping and tax services business run by JB (son) and Tony (father).",
+  "website": "https://fusionfinancialssm.com",
+  "domain": "fusionfinancialssm.com",
+  "status": "active (favour engagement, not paying)",
+  "started": "2026",
+  "goal": "Modernize look, strengthen local positioning, seasonal tax ad push, improve SEO. Generate leads through Meta ads during peak tax season (Jan-Apr).",
+  "key_people": [
+    {"name": "JB", "role": "Primary contact (son)", "phone": "(705) 254-4001", "notes": "Main point of contact for day-to-day"},
+    {"name": "Tony", "role": "Owner (father)", "notes": "Weekly contact, co-runs with JB"}
+  ],
+  "current_focus": [
+    "Noindex bug FIXED Apr 11 (hostname check in SEO.tsx)",
+    "SPA pre-rendering still needed for full crawlability",
+    "Meta Ads ACTIVE — 2 ads, $15/day, ends Apr 30",
+    "GBP Case #0-2218000041049 OVERDUE (ETA Mar 18)",
+    "Blog: 33 published posts",
+    "5 service sub-pages live: bookkeeping, financial-reporting, payroll, hst-gst-filing, year-end-preparation",
+    "Internal linking complete: 28/29 posts have Related Services links",
+    "Supabase migrated Apr 6 to GLV org (new ID: ymzrzuknmckblxzjqhhi, from Lovable icbgwnstsxotknqinlnz)",
+    "Hosting migrated to SiteGround GrowBig Apr 10"
+  ],
+  "seo_status_apr5": {
+    "audit_number": 9,
+    "health_score": "50/100",
+    "trend": "declining",
+    "clicks_7d": 15,
+    "impressions_7d": 48,
+    "ctr": "31.3%",
+    "avg_position": 3.8,
+    "clicks_28d": 97,
+    "impressions_28d": 340,
+    "blog_posts_indexed": "0 of 33",
+    "sitemap_indexed": "0 of 45",
+    "non_branded_traffic": "0% (9th consecutive audit)",
+    "dofollow_backlinks": 0,
+    "total_backlinks": 19,
+    "authority_score": 2
+  },
+  "gbp": {
+    "status": "stuck in processing — support case overdue",
+    "case_number": "0-2218000041049",
+    "rep": "Matilda",
+    "eta": "Was 5 business days from Mar 11 — long overdue"
+  },
+  "meta_ads": {
+    "status": "ACTIVE",
+    "ads_running": 2,
+    "daily_spend_cad": 15,
+    "end_date": "2026-04-30",
+    "campaign_rebuild_doc": "deliverables/ads/meta-campaign-rebuild-mar2026.md"
+  },
+  "tech_stack": {
+    "cms": "React SPA (Lovable)",
+    "hosting": "SiteGround GrowBig (migrated from Cloudflare Pages Apr 10)",
+    "deploy": "GitHub Actions auto-deploy via FTP",
+    "github": "https://github.com/glvcrypto/fusionfinancial",
+    "local_clone": "C:/Users/joshu/Desktop/Agentic Workspace/fusionfinancial-audit/",
+    "supabase_project_id": "ymzrzuknmckblxzjqhhi",
+    "cloudflare_zone": "fusionfinancialssm.com"
+  },
+  "seo_config": {
+    "domain": "fusionfinancialssm.com",
+    "gsc_property": "sc-domain:fusionfinancialssm.com",
+    "ga4_property_id": "524807522",
+    "semrush_project": "fusionfinancialssm.com"
+  },
+  "brand": {
+    "primary_colour": "#1A3A5C"
+  },
+  "project_rules": [
+    "Avoid generic accounting website feel",
+    "Tone down aggressive lead capture",
+    "Consider small-city ecosystem competition",
+    "Canadian regulations (CRA, HST) awareness",
+    "Build avatars for local ads",
+    "Tax season (Jan-Apr) is the peak lead gen window"
+  ],
+  "source": "life-os projects/fusion-financial/CONTEXT.md",
+  "last_updated_source": "2026-04-15",
+  "ported_to_cortextos": "2026-04-19T23:35:00Z"
+}

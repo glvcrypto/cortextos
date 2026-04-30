@@ -1,0 +1,126 @@
+{
+  "client": "reyco",
+  "business_name": "Reyco Marine & Small Engine Ltd.",
+  "parent_group": "Reyco Supply Group",
+  "owner": "Casey Davieaux",
+  "website": "reycomarine.com",
+  "phone": "705-253-7828",
+  "email": "parts@reycomarine.com",
+  "address": "11 White Oak Drive East, Sault Ste Marie, ON P6B 4J7",
+  "industry": "Marine dealer, outdoor power equipment, small engine repair",
+  "signed_date": "2026-03-23",
+  "first_invoice": "2026-05-01",
+  "deal": {
+    "setup_fee_cad": 5000,
+    "setup_paid": true,
+    "setup_paid_date": "2026-03-27",
+    "monthly_retainer_cad": 2000,
+    "scope": "SEO only (no email, no paid ads)"
+  },
+  "hours": {
+    "mon_fri": "8:00 AM - 5:00 PM",
+    "saturday": "9:00 AM - 1:00 PM",
+    "sunday": "Closed"
+  },
+  "staff": [
+    {"name": "Casey Davieaux", "role": "Owner (decision maker)"},
+    {"name": "Charlene", "role": "Fastest responder"},
+    {"name": "Jack (Jak)", "role": "Photos contact"},
+    {"name": "Aaron", "role": "Staff"},
+    {"name": "Mike", "role": "Staff"},
+    {"name": "Lynn", "role": "Staff"},
+    {"name": "Ron", "role": "Staff"}
+  ],
+  "brands_carried": {
+    "boats": ["Princecraft"],
+    "motors": ["Mercury", "Minnkota"],
+    "outdoor_power": ["Cub Cadet", "Toro"],
+    "handheld_power": ["Echo"],
+    "accessories": ["Humminbird", "Bercomac"]
+  },
+  "services_offered": [
+    "Marine service and repair (certified technicians)",
+    "Small engine repair",
+    "Winterisation / spring commissioning",
+    "Parts and accessories"
+  ],
+  "key_context": [
+    "Part of Reyco Supply Group (also owns NAPA Auto Parts at same location — separate entity, Ben says NO to bundling)",
+    "Acquired Superior Marine & Small Engine in Nov 2023",
+    "27,000 sq ft combined facility",
+    "Strong seasonal business: marine peaks spring-summer, snowblowers fall-winter",
+    "Serves Northern Ontario market (Algoma District)",
+    "Competes with local marine dealers and big-box retailers (Canadian Tire)",
+    "'small engine repair near me' (3,600/mo, KD 8) = biggest quick SEO win"
+  ],
+  "tech_stack": {
+    "cms": "WordPress + Tailwind v4.2.2 + custom PHP theme (no page builder, no ACF)",
+    "dev_env": "Local by Flywheel (reyco-marine.local)",
+    "hosting": "SiteGround GrowBig (alpha live at reyco.glvmarketing.ca)",
+    "crm": "React/Supabase at crm.reycomarine.com",
+    "github": "github.com/glvcrypto/reyco-marine (private)",
+    "branch": "master",
+    "local_clone": "c:/Users/joshu/Desktop/Agentic Workspace/reyco-marine/"
+  },
+  "seo_config": {
+    "domain": "reycomarine.com",
+    "gsc_property": null,
+    "ga4_property": null,
+    "semrush_project": null,
+    "strategy": "62 content funnels, 60+ directories, 28 PR opportunities",
+    "top_quick_win": "small engine repair near me (3,600/mo, KD 8)"
+  },
+  "supabase": {
+    "project_id": "rotcgmrxoosyoruzzxad",
+    "region": "ca-central-1",
+    "tables": 45
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/reycomarine/",
+    "instagram": "https://www.instagram.com/reycomarineandsmallengine/"
+  },
+  "files": {
+    "jak_photos_drive": "https://drive.google.com/drive/folders/1gdacIfsw5uumoTA8Wp72a2UTZ3gv9VxH",
+    "local_repo": "c:/Users/joshu/Desktop/Agentic Workspace/reyco-marine/"
+  },
+  "build_status_apr15": {
+    "templates": 11,
+    "pages": 52,
+    "posts": 36,
+    "products": 12,
+    "internal_links": 360,
+    "photos": 59,
+    "lightspeed_connected": true,
+    "lightspeed_cmf": "800769",
+    "lightspeed_total_units": 207,
+    "lightspeed_web_flagged": 3
+  },
+  "build_status_apr19_audit": {
+    "_note": "Corrected via dev agent ground-truth audit 2026-04-19. life-os CONTEXT.md was outdated at port time. cortextOS is now source of truth.",
+    "php_template_files": 53,
+    "php_template_breakdown": {
+      "root_templates": 14,
+      "page_templates": 15,
+      "template_parts": 24
+    },
+    "pages_created_via_setup_pages": "83+",
+    "products_seeded_catalogue": 148,
+    "products_seeded_breakdown": {
+      "seed_products_php_initial": "~20",
+      "seed_products_catalogue_php": 70,
+      "seed_products_echo_php": 58
+    },
+    "lightspeed_live_units": 3,
+    "smoke_test_apr19": "21/21 pages return HTTP 200, zero PHP errors",
+    "live_domain": "reyco.glvmarketing.ca (staging)",
+    "prod_domain_pending": "reycomarine.com (EPP code blocked at DealerSpike, B6)"
+  },
+  "nap_audit_apr11": {
+    "directories_audited": 19,
+    "critical_mismatches": 8,
+    "status": "email sent to Charlene requesting directory logins to fix"
+  },
+  "source": "life-os projects/reyco-marine/CONTEXT.md",
+  "last_updated_source": "2026-04-15",
+  "ported_to_cortextos": "2026-04-19T23:35:00Z"
+}

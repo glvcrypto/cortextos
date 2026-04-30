@@ -1,0 +1,18 @@
+{
+  "audit_id": "reyco-page-audit-2026-04-26",
+  "started_at": "2026-04-26T22:30:00Z",
+  "sheet_id": "1_gVMWTMOUUvb_CPAYUAke6PmgFRzDTceWg1Igq-4z5U",
+  "total_rows": 689,
+  "completed_rows": [
+    {"row": 2, "url": "https://reyco.glvmarketing.ca/about/meet-the-team/", "ai_check": "Design Issue", "completed_at": "2026-04-26T22:51:00Z", "agents_responded": ["designer", "dev", "web-copy"], "agents_pending": ["seo"]}
+  ],
+  "in_flight": {
+    "row": 3,
+    "url": "https://reyco.glvmarketing.ca/service/atv-utv-repair/",
+    "dispatched_at": "2026-04-26T22:52:00Z",
+    "agents_dispatched": ["seo", "designer", "dev", "web-copy"]
+  },
+  "prefetched_rows": [4, 5, 6, 7, 8, 9],
+  "telegram_pings_to_aiden": 0,
+  "next_telegram_batch_at_row": 10
+}

@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777036229_h3fhb",
+  "agent": "analyst",
+  "metric": "cross_agent_qc_keep_criterion_met",
+  "hypothesis": "Analyst QCs dev's next 3 PRs before merge. Keep-criterion: cycle-time degradation <=20% AND post-merge bugs trend down OR no change. Pilot run #1 = cortextos PR #14 (Option B daemon patch) reviewed 2026-04-24T13:13Z, APPROVE with 2 non-blocking notes. Friction captured both sides. Rollup at 2026-05-01 or PR #3 merge, whichever first.",
+  "surface": "orgs/glv/agents/analyst/notes/exp7-qc-pilot-dev-2026-04-24.md",
+  "direction": "higher",
+  "window": "7d",
+  "measurement": "",
+  "status": "running",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-24T13:10:29Z",
+  "started_at": "2026-04-24T14:34:05Z",
+  "completed_at": null,
+  "changes_description": null
+}

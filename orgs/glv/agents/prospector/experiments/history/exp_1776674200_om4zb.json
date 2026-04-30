@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776674200_om4zb",
+  "agent": "prospector",
+  "metric": "reply_rate_by_hook_structure",
+  "hypothesis": "Baseline cell: H2-curiosity x S1-validate-opportunity-diagnostic. Hypothesis: H2-curiosity (specific concrete observation) paired with S1 (validate-opportunity-diagnostic structure) will outperform H1-pride x S1 as the baseline cell because concrete specific findings lower guard on first cold contact more effectively than pride/legacy frames. No copy changes in this experiment — establishing the measurement framework and tracking the default dispatch configuration. n=0 across all cells at experiment start. Window: 14d. First statistical readout expected day 17-21.",
+  "surface": "experiments/surfaces/reply-rate/current.md",
+  "direction": "higher",
+  "window": "14d",
+  "measurement": "",
+  "status": "running",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-20T08:36:40Z",
+  "started_at": "2026-04-20T09:06:37Z",
+  "completed_at": null,
+  "changes_description": "Baseline measurement framework established. No copy changes. Tracking H2-curiosity x S1-validate-opportunity-diagnostic as default dispatch cell. n=0 at start. Will measure reply_received/email_sent per hook_variant x structure_variant as emails flow through the pipeline."
+}

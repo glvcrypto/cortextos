@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776851259_hwb7k",
+  "agent": "scout",
+  "metric": "digest_items_adopted_per_7d",
+  "hypothesis": "Classifying digest items as actionable-now / actionable-within-30d / watch-only (leading with actionability rather than novelty) will increase boss-initiated natural adoptions per 7d above the baseline of 6. Evidence: analyst validated this framing Apr 21; architecture/cost items (2x uptake in cycle 1) share the trait of being immediately actionable. Hypothesis: the label itself primes recipients to act faster on the right items rather than treating all findings as equally time-sensitive.",
+  "surface": "experiments/surfaces/ecosystem_scan_adoption/current.md",
+  "direction": "higher",
+  "window": "7d",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 9,
+  "result_value": 9,
+  "decision": "keep",
+  "learning": "Counted 9 boss-initiated natural adoptions across Apr 22-29 window (vs baseline 6): (1) Opus 4.7 HOLD decision, (2) VILA-Lab task #11 assigned, (3) ENABLE_PROMPT_CACHING_1H to dev eval, (4) last30days-skill user gate, (5) approval queue aging spec to dev, (6) context compaction pre-alert to dev, (7) Caveman Mode to user approval gate, (8) Markitdown to dev, (9) claude-context MCP to dev. Result is above baseline of 6 — KEEP. Critical confound: Reyco launch sprint filter (active Apr 25+) redirected general findings to overnight-proposals rather than immediate triage, suppressing at least 3-4 potential adoptions that would have occurred without the sprint mode. The actionable-now/30d/watch-only classification may have higher true impact than 9 vs 6 suggests in a non-sprint week.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-22T09:47:39Z",
+  "started_at": "2026-04-22T20:13:00Z",
+  "completed_at": "2026-04-29T04:42:22Z",
+  "changes_description": "Updated digest surface to cycle 3 format: actionable-now / actionable-within-30d / watch-only classification added to experiments/surfaces/ecosystem_scan_adoption/current.md. Format already live in Apr 21 and Apr 22 ecosystem scans. Experiment window: 7 days from now (~2026-04-29). Measurement: manual count of boss-initiated natural adoptions from agent message logs, morning brief, and task activity."
+}

@@ -1,0 +1,74 @@
+{
+  "agent_name": "scout",
+  "enabled": true,
+  "startup_delay": 0,
+  "max_session_seconds": 255600,
+  "max_crashes_per_day": 10,
+  "working_directory": "",
+  "timezone": "America/Toronto",
+  "crons": [
+    {
+      "name": "heartbeat",
+      "type": "recurring",
+      "interval": "4h",
+      "prompt": "Read HEARTBEAT.md and follow its instructions. Update your heartbeat, check inbox, and work on your highest priority task."
+    },
+    {
+      "name": "ecosystem-scan",
+      "type": "recurring",
+      "interval": "24h",
+      "prompt": "Run daily ecosystem scan. Check: (1) Anthropic news/blog for new Claude models, prompt techniques, Claude Code features, (2) popular agentic repos (GitHub trending for Claude/agent keywords, HN front page AI items, r/ClaudeAI top posts), (3) cortextOS community catalog for new skills. Log findings as dashboard event `action ecosystem_scan info` with meta summary. If you find something directly upgrade-worthy, message the relevant specialist with a suggestion + link."
+    },
+    {
+      "name": "domain-scan",
+      "type": "recurring",
+      "interval": "7d",
+      "prompt": "Weekly per-specialist domain scan. For each specialist (seo, content, dev, prospector, ads): surface 1-2 concrete, credible tactic/tool/framework updates from their domain (SEO: Search Engine Journal, Moz, Ahrefs blog; content: copywriting blogs, creator growth cases; dev: WP dev best practices, CTA/CRO research; prospector: cold outreach playbooks; ads: Google/Meta/TikTok ad platform changes). Send each specialist one upgrade suggestion message. Log `action domain_scan info` with meta {specialist, suggestion_count}."
+    },
+    {
+      "name": "experiment-ecosystem_scan_adoption",
+      "type": "recurring",
+      "interval": "7d",
+      "prompt": "Read .claude/skills/autoresearch/SKILL.md and execute the experiment loop for ecosystem_scan_adoption cycle. Measure digest adoption per the cycle spec."
+    },
+    {
+      "name": "weekly-agent-audit",
+      "type": "recurring",
+      "interval": "7d",
+      "prompt": "Run weekly agent audit. For each specialist, read their goals.json + skills/* + last 7 days of their activity log. Produce an audit report: (a) what they did well, (b) drift from their goals, (c) concrete skill gaps to close, (d) recommended goal/config changes. Send report to boss as an agent message, not the user directly — boss decides what to route up."
+    },
+    {
+      "name": "phantom-endpoint-scan",
+      "type": "recurring",
+      "interval": "7d",
+      "prompt": "Read .claude/skills/phantom-endpoint-scan/SKILL.md and execute the weekly phantom-endpoint sweep. Surface any new phantoms to analyst with full producer/consumer evidence. Log events per the skill spec."
+    },
+    {
+      "name": "daily-upgrade-proposal",
+      "type": "recurring",
+      "interval": "24h",
+      "prompt": "Generate and post 1 new system upgrade proposal to #overnight-proposals (Slack channel C0ATHEL5VJL). Scope: cortextos code/features, agent skills, daemon behavior, fleet coordination, observability, dashboard, KPI tracking, onboarding flow, developer experience. Format: target surface, hypothesis (what the upgrade does + why it matters), expected impact, user-review hook (approve/modify/reject). Raw ideas are fine — no pre-vetting needed. Log dashboard event action upgrade_proposal info with meta summary."
+    }
+  ],
+  "ecosystem": {
+    "local_version_control": {
+      "enabled": true
+    }
+  },
+  "day_mode_start": "08:00",
+  "day_mode_end": "23:00",
+  "communication_style": "technical",
+  "approval_rules": {
+    "always_ask": [
+      "external-comms",
+      "financial",
+      "deployment",
+      "data-deletion",
+      "image-generation",
+      "website-updates",
+      "client-deliverables"
+    ],
+    "never_ask": []
+  },
+  "model": "claude-sonnet-4-6"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776665201_toiv0",
+  "agent": "analyst",
+  "metric": "cron_gap_warnings_per_24h",
+  "hypothesis": ">90% drop in cron-gap warning echoes within 24h after merging upstream commit 113d2e7 (daemon gap-nudge stagger + cron verifier guard)",
+  "surface": "src/daemon/agent-process.ts",
+  "direction": "lower",
+  "window": "24h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 0,
+  "result_value": 4,
+  "decision": "discard",
+  "learning": "Window 2026-04-20T08:07Z to 2026-04-21T08:07Z. Measured ~40 cron-gap warnings over 24h (running counter trajectory: #34 at 05:30Z, #41 at 06:25Z, #48 by 08:37Z post-window). Baseline extrapolated to 24h from the pre-merge 24-per-12h rate = ~48 warnings. Drop ~17%. Hypothesis was >=90% drop — measured drop far below threshold. DISCARD. Learning: the 113d2e7 check-approvals false-positive fix was real but was NOT the primary driver of gap-echo volume in this session. The orphaned-detector-state bug (detector claims stale even seconds after cortextos bus update-heartbeat fires) is the dominant cause, separate from check-approvals logic. Queued upstream daemon commits (PTY guard + watchdog persistence) are the likely real fix — natural follow-on A/B when user greenlights the daemon merge subset at AM brief.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-20T06:06:41Z",
+  "started_at": "2026-04-20T06:07:34Z",
+  "completed_at": "2026-04-21T08:38:32Z",
+  "changes_description": "Fires at 08:07Z when 113d2e7 merges. Baseline: 24 cron-gap warnings in the 12h leading to merge (05:30Z scan shows 23+). Measurement: count cron_gap system warnings 08:07Z to 08:07Z+24h (2026-04-21T08:07Z). Evaluate via evaluate-experiment when window closes."
+}

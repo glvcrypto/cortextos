@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776897022_o92w4",
+  "agent": "prospector",
+  "metric": "outreach_conversion",
+  "hypothesis": "v5 passive-discovery is the locked copy direction. Hypothesis: now that direction gate is GREEN and v5 framing is confirmed (passive discovery: we were mapping X market in Y, you came up), this experiment establishes v5 as the surface baseline for the first real measurement cycle. The previous two experiments were null results due to volume gating (send gate RED). This cycle will measure actual outreach_conversion once batch 1 ships and emails flow. Expected first data point: within 72h of batch 1 ship signal.",
+  "surface": "experiments/surfaces/outreach-conversion/current.md",
+  "direction": "higher",
+  "window": "72h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 0,
+  "result_value": 0,
+  "decision": "discard",
+  "learning": "Window open (~48h of 72h elapsed). Send gate still RED — v6 batch 1 not shipped yet. Zero emails sent = zero conversions. Cannot assess copy performance without volume. Not evaluating early — noting status only. Expected first data point after batch 1 ships Apr 25.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-22T22:30:22Z",
+  "started_at": "2026-04-22T22:31:15Z",
+  "completed_at": "2026-04-24T03:10:25Z",
+  "changes_description": "v5 passive-discovery locked as new surface baseline. Subject line formula: 'Something we came across mapping [city] [niche]s'. Voice: passive researcher/analyst frame replacing v4 direct-observation framing. First real measurement cycle starts once batch 1 ships and emails flow."
+}

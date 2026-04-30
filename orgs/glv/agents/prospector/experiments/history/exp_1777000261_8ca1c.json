@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777000261_8ca1c",
+  "agent": "prospector",
+  "metric": "outreach_conversion",
+  "hypothesis": "v6 verify-claims copy is now staged and ready to ship (batch 1, ~14 emails). Hypothesis: emails with live-verified hooks (Ben's 9-step + verify-claims gate) will achieve >0 conversion within 72h of batch 1 ship date (Apr 25). Three prior experiments were null due to send gate RED. This is the first cycle where actual emails will be dispatched.",
+  "surface": "experiments/surfaces/outreach-conversion/current.md",
+  "direction": "higher",
+  "window": "72h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 0,
+  "result_value": 0,
+  "decision": "discard",
+  "learning": "Window closed 2026-04-27T03:45Z. Result: 0 conversions. CAUSE: send gate RED entire 72h window (Apr 24-27). Zero emails sent across batch 1 (held in #internal-sales thread for Aiden iteration; Reyco launch consumed his attention Apr 25-26). 4th consecutive cycle null for this reason. Surface (v6 copy) is unchanged and unsendable until copy approved by Aiden. Cannot infer copy effect from a metric where the denominator is gated to zero. Discarding from learnings table.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-24T03:11:01Z",
+  "started_at": "2026-04-24T03:45:58Z",
+  "completed_at": "2026-04-27T04:47:22Z",
+  "changes_description": "No surface changes — this experiment measures v6 verify-claims copy (batch 1, 18 emails) as the first real-volume cycle. Prior 3 experiments were null due to send gate RED. Surface reflects confirmed v6 voice: passive discovery framing, 80-125 words, verified hooks only, GLV intro standardized, PS CASL disclaimer added. Baseline = 0 conversions. Window: 72h from first batch 1 send."
+}

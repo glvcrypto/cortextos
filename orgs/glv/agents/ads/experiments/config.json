@@ -1,0 +1,19 @@
+{
+  "approval_required": true,
+  "cycles": [
+    {
+      "name": "cpl",
+      "agent": "ads",
+      "metric": "cpl",
+      "metric_type": "quantitative",
+      "surface": "orgs/glv/clients/titan/deliverables/campaigns/2026-04-titan-ssm-leadgen-plan.md",
+      "direction": "lower",
+      "window": "4w",
+      "measurement": "Pull CPL from Meta Ads Manager CSV export after each 4-week reporting period; log actuals vs target (5-40 CAD) in campaign report file; if CPL > 0 for 2 consecutive weeks, flag creative rotation",
+      "loop_interval": "4w",
+      "enabled": true,
+      "created_by": "ads",
+      "created_at": "2026-04-28T06:09:01Z"
+    }
+  ]
+}

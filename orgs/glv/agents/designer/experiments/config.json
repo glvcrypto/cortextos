@@ -1,0 +1,19 @@
+{
+  "approval_required": true,
+  "cycles": [
+    {
+      "name": "visual-review-accuracy",
+      "agent": "designer",
+      "metric": "visual_review_accuracy",
+      "metric_type": "quantitative",
+      "surface": "experiments/surfaces/visual-review-accuracy/current.md",
+      "direction": "higher",
+      "window": "7d",
+      "measurement": "per PR review, binary: user agreed with my call (1) vs user corrected my call (0); aggregated as % over 7-day rolling window",
+      "loop_interval": "7d",
+      "enabled": true,
+      "created_by": "designer",
+      "created_at": "2026-04-23T22:39:30Z"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "client": "soo-sackers",
+  "business_name": "Soo Sackers",
+  "description": "Brother Kurtis's softball team website. Passion project and testing ground for AI/web experiments before applying to real clients.",
+  "website": "https://soosackers.com",
+  "domain": "soosackers.com",
+  "status": "active (testing ground / sandbox)",
+  "started": "2025",
+  "goal": "Testing ground for all AI and web experiments before applying to real clients.",
+  "key_people": [
+    {"name": "Kurtis", "role": "Brother / team owner", "notes": "Soo Sackers softball team"}
+  ],
+  "current_focus": [
+    "Noindex RESOLVED Apr 4 — homepage indexed",
+    "Awaiting first organic impressions (expected Apr 12 audit)",
+    "Breadcrumb schema recurring GSC alert",
+    "CSP blocking GA4 + Shopify API calls",
+    "7 pages, only 1 confirmed indexed",
+    "12 backlinks (all nofollow, 0 dofollow)",
+    "Authority Score: 2"
+  ],
+  "seo_status_apr5": {
+    "audit_number": 8,
+    "health_score": "35/100",
+    "indexation": "1/7 pages",
+    "clicks_7d": 0,
+    "impressions_7d": 0,
+    "semrush_domain_rank": "not found (too new)",
+    "organic_keywords": 0,
+    "authority_score": 2,
+    "total_backlinks": 12,
+    "dofollow_backlinks": 0,
+    "referring_domains_approx": 8
+  },
+  "tech_stack": {
+    "cms": "Lovable (React SPA)",
+    "hosting": "SiteGround GrowBig (migrated from Cloudflare Pages Apr 10)",
+    "github": "https://github.com/glvcrypto/soosackers",
+    "ga4_property_id": "526317476",
+    "cloudflare_zone": "soosackers.com"
+  },
+  "seo_config": {
+    "domain": "soosackers.com",
+    "gsc_property": "sc-domain:soosackers.com",
+    "ga4_property_id": "526317476",
+    "semrush_project": "soosackers.com"
+  },
+  "brand": {
+    "primary_colour": "#B22222"
+  },
+  "test_history": [
+    {"date": "2026-02-26", "what": "LovableHTML prerendering", "result": "Deployed", "applied_to": "All Lovable sites"},
+    {"date": "2026-03-07", "what": "Quick SEO audit (8 recommendations)", "result": "Completed", "applied_to": "Reference for client audits"},
+    {"date": "2026-03-07", "what": "foundingDate schema fix", "result": "Fixed in Index.tsx", "applied_to": "Schema validation process"},
+    {"date": "2026-04-04", "what": "Noindex SPA fix", "result": "CONFIRMED WORKING (homepage indexed)", "applied_to": "Should apply to Fusion Financial"}
+  ],
+  "project_rules": [
+    "This is a testing ground. Experiment freely.",
+    "Document what works before applying to client sites",
+    "Keep it functional but don't over-invest in polish",
+    "Deploy new techniques here FIRST, validate, then roll out to GLV/Titan/Fusion"
+  ],
+  "source": "life-os projects/soo-sackers/CONTEXT.md",
+  "last_updated_source": "2026-04-15",
+  "ported_to_cortextos": "2026-04-19T23:35:00Z"
+}

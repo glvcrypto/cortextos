@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777437788_shf0p",
+  "agent": "scout",
+  "metric": "digest_items_adopted_per_7d",
+  "hypothesis": "Adding a '→ [agent]' routing suggestion to each actionable-now finding (e.g., '→ dev', '→ seo', '→ analyst', '→ boss-decision') eliminates boss's triage overhead and increases adoptions above 9/week. Evidence: Cycle 3 KEEP (9 adoptions) confirmed tier classification primes action; the remaining friction is boss deciding which agent receives each item. Pre-routing removes that decision step. Cycle 4 runs post-Reyco sprint in a cleaner operational tempo, removing the sprint-mode confound from Cycle 3.",
+  "surface": "experiments/surfaces/ecosystem_scan_adoption/current.md",
+  "direction": "higher",
+  "window": "7d",
+  "measurement": "",
+  "status": "running",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-29T04:43:08Z",
+  "started_at": "2026-04-29T14:41:12Z",
+  "completed_at": null,
+  "changes_description": "Updated ecosystem_scan_adoption surface to cycle 4 format: added explicit → [agent] routing tags to each actionable-now finding (→ dev, → seo, → analyst, → boss-decision). Boss receives fleet-level digest; specialists receive targeted send-message per domain finding. Channel post mirrors tiered classification for paper trail. Change from cycle 3: routing destination now pre-specified per item, eliminating boss triage overhead of deciding which agent receives each signal."
+}

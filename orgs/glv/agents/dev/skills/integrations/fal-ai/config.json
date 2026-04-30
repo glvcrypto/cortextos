@@ -1,0 +1,51 @@
+{
+  "name": "fal-ai",
+  "description": "AI media generation API - images, video, 3D. 600+ models, pay-per-use.",
+  "type": "custom",
+  "transport": "rest-api",
+  "base_url": "https://queue.fal.run",
+  "sync_url": "https://fal.run",
+  "auth": {
+    "type": "api-key",
+    "header": "Authorization",
+    "prefix": "Key ",
+    "env_var": "FAL_KEY"
+  },
+  "env": {
+    "FAL_KEY": "${FAL_KEY}"
+  },
+  "setup": {
+    "requirements": ["fal.ai account", "API key from fal.ai/dashboard/keys"],
+    "pricing": "Pay-per-use. Images ~$0.04-0.15/image. Video ~$0.04-0.40/second."
+  },
+  "capabilities": {
+    "categories": ["image-generation", "video-generation", "image-to-video", "text-to-image"]
+  },
+  "models": {
+    "image": {
+      "nano-banana-pro": "fal-ai/nano-banana-pro",
+      "recraft-v4": "fal-ai/recraft/v4",
+      "flux-2-pro": "fal-ai/flux-2-pro",
+      "gpt-image-1": "fal-ai/gpt-image-1"
+    },
+    "video-t2v": {
+      "kling-3-pro": "fal-ai/kling-video/v3/pro/text-to-video",
+      "veo-3": "fal-ai/veo3",
+      "wan-2.6": "fal-ai/wan-25-preview/text-to-video",
+      "minimax-01": "fal-ai/minimax/video-01-live",
+      "hunyuan": "fal-ai/hunyuan-video"
+    },
+    "video-i2v": {
+      "kling-2.6-pro": "fal-ai/kling-video/v2.6/pro/image-to-video",
+      "veo-2": "fal-ai/veo2/image-to-video",
+      "pixverse-4.5": "fal-ai/pixverse/v4.5/image-to-video",
+      "luma-dream": "fal-ai/luma-dream-machine/image-to-video"
+    }
+  },
+  "source": {
+    "docs": "https://docs.fal.ai/model-apis",
+    "pricing": "https://fal.ai/pricing",
+    "dashboard": "https://fal.ai/dashboard",
+    "models": "https://fal.ai/explore/models"
+  }
+}

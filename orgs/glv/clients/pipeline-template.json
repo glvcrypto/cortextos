@@ -1,0 +1,30 @@
+{
+  "_schema": "1.0",
+  "_note": "Copy this file to orgs/glv/clients/{slug}/pipeline.json and fill in values. Agents write to this file — do not edit deliverables manually if an agent owns that field.",
+  "client": "slug",
+  "display_name": "Client Display Name",
+  "stage": "prospect",
+  "retainer_mrr": 0,
+  "retainer_health": "none",
+  "contract": {
+    "seo": false,
+    "dev": false,
+    "content": false,
+    "ads": false,
+    "automation": false,
+    "custom_ai": false
+  },
+  "deliverables": {
+    "8-pillar-research": "pending",
+    "avatar": "pending",
+    "positioning": "pending",
+    "voice-doc": "pending",
+    "site-audit": "pending",
+    "content-plan": "pending",
+    "kickoff": "pending",
+    "site-build": "pending"
+  },
+  "blockers": [],
+  "notes": "",
+  "updated_at": "2026-04-19T00:00:00Z"
+}

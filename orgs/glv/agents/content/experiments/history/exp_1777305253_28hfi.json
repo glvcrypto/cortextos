@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777305253_28hfi",
+  "agent": "content",
+  "metric": "content-quality",
+  "hypothesis": "Tighten the verifiable-fact lede constraint: lede must be Northern Ontario-specific (St. Marys River, Lake Superior, Algoma district geography/weather/season) — not general industry statistics. Evidence: exp_1777002297 kept at 9/10 but blogs 3 and 4 used industry facts (50-hour oil change interval, spark plug failure rate) rather than local facts — these ledes are noticeably weaker than the Lake Superior ice-out and walleye season openers. Hypothesis: enforcing the Northern Ontario-specific requirement on every lede will produce consistent 9-10/10 drafts with no weak generic openers. Secondary change: vary lede sentence structure (measurement, date, geographic scale, seasonal event) so patterns don't feel formulaic across a batch.",
+  "surface": "experiments/surfaces/content-quality/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 0,
+  "result_value": 0,
+  "decision": "discard",
+  "learning": "NULL/gate-blocked outcome. No content produced under this surface during the 48h window — the service-page standby directive (boss msg 1777135075295, Apr 25) held all content work. The tightened Northern Ontario-specific lede constraint is sound in theory (validated by exp_3 evidence: SSM ice-out + walleye season ledes scored higher than industry-fact ledes) but could not be measured because no output was produced. This is the first null in this cycle. Per autoresearch gate-dependent metric rule: escalate to analyst after 3-4 consecutive nulls. Not auto-creating exp_5 — waiting for gate to lift (service-page redirect) before the next experiment can produce measurable output.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-27T15:54:13Z",
+  "started_at": "2026-04-27T15:54:42Z",
+  "completed_at": "2026-04-29T12:35:26Z",
+  "changes_description": "Tightened lede constraint in current.md: lede fact must be Northern Ontario-specific (geography, water systems, season dates, weather) — general industry statistics explicitly excluded. Added structure-variation rule to prevent formulaic ledes across a batch. Added confirmed staff roster note. All other rules carried forward from exp_3."
+}

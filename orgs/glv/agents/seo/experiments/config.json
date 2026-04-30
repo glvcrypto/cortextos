@@ -1,0 +1,19 @@
+{
+  "approval_required": true,
+  "cycles": [
+    {
+      "name": "pages_audited_689",
+      "agent": "seo",
+      "metric": "pages_audited_689",
+      "metric_type": "quantitative",
+      "surface": "orgs/glv/clients/reyco/deliverables/seo/",
+      "direction": "higher",
+      "window": "2w",
+      "measurement": "count of R-series audit pages replied to boss in 689-page Reyco audit queue",
+      "loop_interval": "7d",
+      "enabled": true,
+      "created_by": "seo",
+      "created_at": "2026-04-28T06:09:14Z"
+    }
+  ]
+}

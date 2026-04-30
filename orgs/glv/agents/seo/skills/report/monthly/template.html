@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{CLIENT_NAME}} - Monthly Performance Report | GLV Marketing</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Base */
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #222222;
+      background: #FFFFFF;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 32px;
+    }
+
+    /* Page header */
+    .report-header {
+      border-bottom: 3px solid #000000;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .report-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .report-header .subtitle {
+      font-size: 18px;
+      font-weight: 600;
+      color: {{ACCENT_COLOUR}};
+      margin-bottom: 16px;
+    }
+    .report-header .meta {
+      font-size: 14px;
+      color: #555555;
+      line-height: 1.8;
+    }
+    .report-header .meta strong {
+      color: #333333;
+    }
+
+    /* Part headers (PART 1, PART 2, etc.) */
+    .part-header {
+      background: #000000;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+    }
+
+    /* Section headings */
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000000;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #E0E0E0;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #000000;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    /* Paragraphs */
+    p {
+      margin-bottom: 12px;
+    }
+
+    /* Bold list header (e.g., "What we've built:") */
+    p strong {
+      color: #000000;
+    }
+
+    /* Ordered + unordered lists */
+    ul, ol {
+      margin: 8px 0 16px 24px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Callout box (executive summary highlights, key notes) */
+    .callout {
+      background: #FAFAFA;
+      border-left: 4px solid {{ACCENT_COLOUR}};
+      padding: 16px 20px;
+      margin: 16px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .callout p {
+      margin-bottom: 8px;
+    }
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px 0;
+      font-size: 14px;
+    }
+    thead th {
+      background: #000000;
+      color: #FFFFFF;
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid #000000;
+    }
+    tbody td {
+      padding: 10px 14px;
+      border: 1px solid #E0E0E0;
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) {
+      background: #F5F5F5;
+    }
+    tbody tr:hover {
+      background: #EFEFEF;
+    }
+
+    /* Highlight row (for key metrics or wins) */
+    tbody tr.highlight {
+      background: #FFF8F6;
+      border-left: 3px solid {{ACCENT_COLOUR}};
+    }
+    tbody tr.highlight td:first-child {
+      font-weight: 600;
+    }
+
+    /* Status indicators */
+    .status-active { color: #1B7A1B; font-weight: 600; }
+    .status-pending { color: #B8860B; font-weight: 600; }
+    .status-issue { color: #CC0000; font-weight: 600; }
+
+    /* Directional indicators */
+    .trend-up { color: #1B7A1B; font-weight: 600; }
+    .trend-down { color: #CC0000; font-weight: 600; }
+    .trend-stable { color: #555555; }
+    .trend-new { color: {{ACCENT_COLOUR}}; font-weight: 600; }
+
+    /* Checkmark list (for "What's Working Well" sections) */
+    .check-list {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+    .check-list li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 10px;
+    }
+    .check-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: {{ACCENT_COLOUR}};
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    /* Numbered improvements list */
+    .improvements ol {
+      counter-reset: improvement;
+      list-style: none;
+      padding-left: 0;
+    }
+    .improvements ol li {
+      counter-increment: improvement;
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 16px;
+    }
+    .improvements ol li::before {
+      content: counter(improvement);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      background: {{ACCENT_COLOUR}};
+      color: #FFFFFF;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 24px;
+    }
+    .improvements ol li strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Performance targets table */
+    .targets-table thead th {
+      background: #000000;
+    }
+    .targets-table .target-met {
+      background: #E8F5E8;
+    }
+    .targets-table .target-behind {
+      background: #FFF3E0;
+    }
+
+    /* 90-day plan completed items */
+    .completed-items li {
+      text-decoration: none;
+      color: #555555;
+    }
+    .completed-items li::marker {
+      color: {{ACCENT_COLOUR}};
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid #E0E0E0;
+      margin: 32px 0;
+    }
+
+    /* Footer */
+    .report-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 3px solid #000000;
+      text-align: centre;
+      font-size: 14px;
+      color: #555555;
+    }
+    .report-footer .glv-brand {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 4px;
+    }
+    .report-footer .glv-contact {
+      margin-bottom: 8px;
+    }
+    .report-footer .glv-contact a {
+      color: {{ACCENT_COLOUR}};
+      text-decoration: none;
+    }
+    .report-footer .cta {
+      font-style: italic;
+      margin-top: 12px;
+    }
+
+    /* Print styles */
+    @media print {
+      body { padding: 20px; font-size: 13px; }
+      .part-header { break-before: page; }
+      table { page-break-inside: avoid; }
+      .report-footer { break-before: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Report Header -->
+  <div class="report-header">
+    <h1>{{CLIENT_NAME}}</h1>
+    <div class="subtitle">Digital Performance Report</div>
+    <div class="meta">
+      <strong>Prepared by:</strong> GLV Marketing<br>
+      <strong>Date:</strong> {{REPORT_DATE}}<br>
+      <strong>Domain:</strong> {{CLIENT_DOMAIN}}<br>
+      <strong>Data period:</strong> {{DATA_PERIOD}}
+    </div>
+  </div>
+
+  <!-- Dynamic Sections -->
+  {{SECTIONS}}
+
+  <!-- Footer -->
+  <div class="report-footer">
+    <div class="glv-brand">GLV Marketing</div>
+    <div class="glv-contact">
+      <a href="mailto:info@glvmarketing.ca">info@glvmarketing.ca</a> |
+      <a href="tel:7059750579">705-975-0579</a> |
+      <a href="https://www.glvmarketing.ca">www.glvmarketing.ca</a>
+    </div>
+    <div class="cta">Questions about anything in this report? Reach out anytime.</div>
+  </div>
+
+</body>
+</html>

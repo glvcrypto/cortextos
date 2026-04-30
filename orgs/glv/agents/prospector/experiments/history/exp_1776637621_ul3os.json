@@ -1,0 +1,21 @@
+{
+  "id": "exp_1776637621_ul3os",
+  "agent": "prospector",
+  "metric": "outreach_conversion",
+  "hypothesis": "Baseline experiment — upside framing. Hypothesis: the current life-OS v4 hook (neutral observation) underperforms because it states what we found without connecting to what the owner could gain. Test: rewrite the hook to lead with the specific local opportunity they are positioned to capture (e.g. customers actively searching for their service in their city right now), framed as aspiration or curiosity, not loss. Keep hook-why-what structure identical — only change the hook from neutral observation to opportunity/aspiration frame.",
+  "surface": "experiments/surfaces/outreach-conversion/current.md",
+  "direction": "higher",
+  "window": "72h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 0,
+  "result_value": 0,
+  "decision": "discard",
+  "learning": "Null result — send gate was RED throughout entire 72h window. Zero emails sent during experiment period. Not a copy failure — this was a volume gating issue. Cannot assess upside-framed hook vs neutral baseline with zero sends. v5 passive-discovery direction was locked before this window opened and is confirmed by Aiden/boss directive. Upside framing (H2-curiosity, H3-aspiration) is already embedded in v5 voice — this experiment cannot be separately evaluated.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-19T22:27:01Z",
+  "started_at": "2026-04-19T22:27:51Z",
+  "completed_at": "2026-04-22T22:28:32Z",
+  "changes_description": "Applied upside-framed hook: leads with specific local opportunity the owner is positioned to capture, framed as aspiration or curiosity. No loss language. All hooks reference H2-curiosity or H3-aspiration variants from outreach-variants skill. Structure stays hook-why-what (S1). This establishes the positive-framing baseline."
+}

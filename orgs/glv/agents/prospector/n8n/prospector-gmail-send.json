@@ -1,0 +1,142 @@
+{
+  "name": "Prospector Gmail Send — A1 Gap 1",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "nodes": [
+    {
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Webhook — Receive Send Request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [0, 0],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "prospector-gmail-send",
+        "options": {
+          "responseMode": "lastNode"
+        }
+      },
+      "webhookId": "prospector-gmail-send-v1"
+    },
+    {
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Validate + Gate (time, cap, stagger)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [240, 0],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ─── Prospector Gmail Send Gate ────────────────────────────────────────────\n// Enforces: payload validation, time window, daily cap, 5-min stagger.\n// Static data persists across executions in the same workflow.\n\nconst DAILY_CAP = 30;           // Conservative warm-up cap. Override via N8N_GLV_DAILY_CAP env.\nconst STAGGER_MINUTES = 5;      // Min minutes between sends.\nconst TZ_OFFSET_ET = -4;        // EDT (UTC-4). Adjust to -5 in EST winter.\nconst SEND_WINDOW_START = 9;    // 9am ET\nconst SEND_WINDOW_END = 18;     // 6pm ET\nconst SEND_DAYS = [1,2,3,4,5];  // Mon-Fri (0=Sun)\n\nconst body = $input.first().json.body ?? $input.first().json;\nconst { to, subject, body_html, metadata = {} } = body;\n\n// ── 1. Payload validation ──────────────────────────────────────────────────\nif (!to || !subject || !body_html) {\n  return [{ json: { proceed: false, reason: 'missing_fields', detail: 'to, subject, and body_html are required', metadata } }];\n}\nif (typeof to !== 'string' || !to.includes('@')) {\n  return [{ json: { proceed: false, reason: 'invalid_to', detail: 'to must be a valid email address', metadata } }];\n}\n\n// ── 2. Time window gate (9am–6pm ET, Mon–Fri) ─────────────────────────────\nconst now = new Date();\nconst etHour = (now.getUTCHours() + 24 + TZ_OFFSET_ET) % 24;\nconst etDay = new Date(now.getTime() + TZ_OFFSET_ET * 3600000).getUTCDay();\nconst inWindow = SEND_DAYS.includes(etDay) && etHour >= SEND_WINDOW_START && etHour < SEND_WINDOW_END;\nif (!inWindow) {\n  const nextMonday = etDay === 0 ? 1 : etDay === 6 ? 2 : 0; // rough next open slot\n  return [{ json: { proceed: false, reason: 'outside_send_window', detail: `Current ET hour: ${etHour}, day: ${etDay}. Window: 9am–6pm ET Mon–Fri.`, queued_suggestion: 'Retry after next send window opens.', metadata } }];\n}\n\n// ── 3. Daily cap check ────────────────────────────────────────────────────\nconst staticData = $getWorkflowStaticData('global');\nconst todayDate = now.toISOString().slice(0, 10);\nif (staticData.dailySends?.date !== todayDate) {\n  staticData.dailySends = { date: todayDate, count: 0 };\n}\nconst effectiveCap = parseInt(process.env.N8N_GLV_DAILY_CAP ?? String(DAILY_CAP));\nif (staticData.dailySends.count >= effectiveCap) {\n  return [{ json: { proceed: false, reason: 'daily_cap_reached', detail: `${staticData.dailySends.count}/${effectiveCap} emails sent today. Cap resets tomorrow.`, metadata } }];\n}\n\n// ── 4. Stagger check (5 min between sends) ────────────────────────────────\nconst lastSendMs = staticData.lastSendMs ?? 0;\nconst msSinceLast = now.getTime() - lastSendMs;\nconst staggerMs = STAGGER_MINUTES * 60 * 1000;\nif (msSinceLast < staggerMs) {\n  const waitSec = Math.ceil((staggerMs - msSinceLast) / 1000);\n  return [{ json: { proceed: false, reason: 'stagger_wait', detail: `Last send was ${Math.round(msSinceLast/1000)}s ago. Min stagger: ${STAGGER_MINUTES}min. Retry in ${waitSec}s.`, retry_after_seconds: waitSec, metadata } }];\n}\n\n// ── All gates passed ──────────────────────────────────────────────────────\nreturn [{ json: { proceed: true, to, subject, body_html, metadata, et_hour: etHour, daily_count: staticData.dailySends.count, cap: effectiveCap } }];\n"
+      }
+    },
+    {
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Gate Passed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [480, 0],
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            {
+              "id": "gate-check",
+              "leftValue": "={{ $json.proceed }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "equals" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "Send via Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [720, -100],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "toList": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "message": "={{ $json.body_html }}",
+        "options": {
+          "sendAs": "info@glvmarketing.ca",
+          "appendAttribution": false,
+          "replyTo": "info@glvmarketing.ca"
+        }
+      },
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_GMAIL_CREDENTIAL_ID",
+          "name": "GLV Gmail (info@glvmarketing.ca)"
+        }
+      }
+    },
+    {
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "Update Static Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, -100],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Update stagger + daily count after successful send.\nconst staticData = $getWorkflowStaticData('global');\nconst todayDate = new Date().toISOString().slice(0, 10);\nif (staticData.dailySends?.date !== todayDate) {\n  staticData.dailySends = { date: todayDate, count: 0 };\n}\nstaticData.dailySends.count += 1;\nstaticData.lastSendMs = Date.now();\n\n// Pass through Gmail node output + enrich\nconst gmailOut = $input.first().json;\nreturn [{ json: {\n  status: 'sent',\n  message_id: gmailOut.id ?? gmailOut.messageId ?? null,\n  thread_id: gmailOut.threadId ?? null,\n  sent_at: new Date().toISOString(),\n  daily_count: staticData.dailySends.count,\n  metadata: $('Validate + Gate (time, cap, stagger)').first().json.metadata ?? {}\n}}];\n"
+      }
+    },
+    {
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "Respond — Sent",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [1200, -100],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": { "responseCode": 200 }
+      }
+    },
+    {
+      "id": "a1b2c3d4-0007-4000-8000-000000000007",
+      "name": "Respond — Rejected",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [720, 120],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": { "responseCode": 422 }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook — Receive Send Request": {
+      "main": [[{ "node": "Validate + Gate (time, cap, stagger)", "type": "main", "index": 0 }]]
+    },
+    "Validate + Gate (time, cap, stagger)": {
+      "main": [[{ "node": "Gate Passed?", "type": "main", "index": 0 }]]
+    },
+    "Gate Passed?": {
+      "main": [
+        [{ "node": "Send via Gmail", "type": "main", "index": 0 }],
+        [{ "node": "Respond — Rejected", "type": "main", "index": 0 }]
+      ]
+    },
+    "Send via Gmail": {
+      "main": [[{ "node": "Update Static Data", "type": "main", "index": 0 }]]
+    },
+    "Update Static Data": {
+      "main": [[{ "node": "Respond — Sent", "type": "main", "index": 0 }]]
+    }
+  },
+  "tags": ["prospector", "gmail", "a1-gap1"]
+}

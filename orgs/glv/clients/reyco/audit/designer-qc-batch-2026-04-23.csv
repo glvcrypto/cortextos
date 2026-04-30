@@ -1,0 +1,18 @@
+# designer-qc-batch-2026-04-23.csv
+# 14 designer_qc_edge_case + 20 request_from_dealer (unknown source) = 34 rows
+# User criterion: "looks good on product pages / carousels" (aspect ratio flex allowed)
+sku,current_image_in_WC,current_image_url_or_path,aspect_ratio,aspect_1to1_pass,source_verified_dealer,explicit_permission_on_file,action_needed,image_w,image_h,brand,product_name,notes
+EC-CWT7410-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-CWT7410-26.jpg,1.18:1 landscape,fail,yes,no,designer_qc_edge_case,720,610,Echo,Echo CWT-7410 Walk-Behind Cut-Off Saw,ok
+EC-HC2020-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-HC2020-26.jpg,1.17:1 landscape,fail,yes,no,designer_qc_edge_case,1200,1025,Echo,Echo HC-2020 Hedge Trimmer,ok
+EC-PB265LN-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB265LN-26.jpg,1:1.08 portrait,fail,yes,no,designer_qc_edge_case,1109,1200,Echo,Echo PB-265LN Low-Noise Handheld,ok
+EC-PB580T-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB580T-26.jpg,1.16:1 landscape,fail,yes,no,designer_qc_edge_case,1200,1031,Echo,Echo PB-580T Backpack Blower,ok
+EC-PB755ST-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB755ST-26.jpg,1:1.07 portrait,fail,yes,no,designer_qc_edge_case,1123,1200,Echo,Echo PB-755ST Backpack Blower,ok
+EC-PB9010T-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PB9010T-26.jpg,1.11:1 landscape,fail,yes,no,designer_qc_edge_case,978,881,Echo,Echo PB-9010T X Series Backpack Blower,ok
+EC-PW3600-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-PW3600-26.jpg,1.2:1 landscape,fail,yes,no,designer_qc_edge_case,1200,1004,Echo,Echo PW-3600 Pro Gas Pressure Washer,ok
+EC-SRM225-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/EC-SRM225-26.jpg,1.17:1 landscape,fail,yes,no,designer_qc_edge_case,1200,1023,Echo,Echo SRM-225 String Trimmer,ok
+HS-HS400-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HS-HS400-26.jpg,1:1.25 portrait,fail,yes,no,designer_qc_edge_case,960,1200,Hisun,Hisun HS 400 Entry ATV,CALIBRATION: Currently spec sheet as main image. Replace with Hisun Canada product photo (verify white-BG before applying).
+HS-HS500-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/HS-HS500-26.jpg,1:1.25 portrait,fail,yes,no,designer_qc_edge_case,960,1200,Hisun,Hisun HS 500 — Utility ATV,CALIBRATION: Currently spec sheet as main image. Replace with Hisun Canada product photo (verify white-BG before applying).
+HS-SEC250-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_sector250-085013.png,1.07:1 landscape,fail,unknown,no,designer_qc_edge_case,800,750,Hisun,Hisun Sector 250 Compact Utility UTV,ok
+HS-SEC750CREW-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_sector750crewred-104342.png,1.13:1 landscape,fail,unknown,no,designer_qc_edge_case,800,705,Hisun,Hisun Sector 750 Crew — 4-Seat Utility UTV,ok
+HS-STRK250R-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_stike250blue-110557.png,1.07:1 landscape,fail,unknown,no,designer_qc_edge_case,800,750,Hisun,Hisun Strike 250R — Youth Sport UTV,ok
+HS-STRK550R-26,yes,https://reyco.glvmarketing.ca/wp-content/uploads/2026/04/800_strike550blue-110937.png,1.07:1 landscape,fail,unknown,no,designer_qc_edge_case,800,750,Hisun,Hisun Strike 550R — Adult Sport UTV,ok

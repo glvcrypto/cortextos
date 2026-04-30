@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777002297_w9e4z",
+  "agent": "content",
+  "metric": "content-quality",
+  "hypothesis": "Exploit the identity-first hook pattern but add a single verifiable local fact as the lede sentence. Evidence: exp_1776810532 kept at 8/10 — identity-first hooks work, but the evaluator noted 'could be even more specific — a single verifiable local fact (snowfall figure, ice-out date, water depth) would sharpen further.' Hypothesis: opening with one concrete, verifiable Northern Ontario fact (e.g. 'Sault Ste. Marie averages 290 cm of snow a year.' / 'The St. Marys River drops 6.4 metres over 1.5 km.' / 'Ice goes out on Lake Superior in early May most years.') before the identity statement will score 9/10 by creating immediate reader credibility and local recognition. Constraint: fact must be publicly verifiable — no invented stats.",
+  "surface": "experiments/surfaces/content-quality/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 9,
+  "result_value": 9,
+  "decision": "keep",
+  "learning": "6 blogs produced under this surface. Northern Ontario-specific fact ledes (blogs 1/5/6: Lake Superior ice-out, walleye season opener, Lake Superior depth+temperature) are clearly stronger than exp_2 identity-first hooks — immediate local credibility, reader recognition. Blogs 3 and 4 partially deviated using general industry facts (50-hour oil change recommendation, spark plug failure rate) rather than geographic/seasonal Northern Ontario facts — these ledes are noticeably weaker. Overall quality above exp_2 (8/10). Score 9/10: pattern validated, remaining gap is constraint enforcement — lede facts must be Northern Ontario-specific geography/season data, not general industry stats.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-04-24T03:44:57Z",
+  "started_at": "2026-04-24T03:45:12Z",
+  "completed_at": "2026-04-27T15:54:04Z",
+  "changes_description": "Updated surface to require a single verifiable local fact as the lede sentence before the identity/seasonal hook. Lede must be a specific number, date, or measurement from Northern Ontario geography or weather data — publicly verifiable. Identity/seasonal hook from Experiment 2 becomes the second sentence. Product introduced only after both are established. Constraint: no invented stats."
+}
