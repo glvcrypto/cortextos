@@ -6,9 +6,17 @@ _Last updated: 2026-04-30_
 
 These PRs are complete and tested. Waiting for merge approval.
 
+> ⚠️ CONFLICT ALERT (flagged to Aiden via Telegram + #internal-dev 2026-04-30):
+> - #46 (metrics) + #47 (experiment) duplicate coverage already in upstream #21 + #22 → **close #46 and #47 after #21/#22 merge**
+> - #43 contains 12 production source-file changes alongside tests — **needs proper code review before merge**
+> - Safe merge order: review/split #43 → merge #21 + #22 → close #46 + #47 → clear rest of queue
+
 | PR | Title | Notes |
 |----|-------|-------|
+| #47 | test(bus): experiment.ts coverage — 27 tests | ⚠️ SUPERSEDED by #22. Close after #22 merges. |
+| #46 | test(bus): metrics.ts coverage — parseUsageOutput + storeUsageData + collectMetrics (21 cases) | ⚠️ SUPERSEDED by #21. Close after #21 merges. |
 | #45 | test(bus): catalog browseCatalog + prepareSubmission + submitCommunityItem + installCommunityItem gaps (50 cases) | 50/50 pass. Build clean. |
+| #44 | test(bus): fill coverage gaps in agents + approval modules | Adds 6 agents tests + 7 approval tests. Build clean. |
 | #41 | test(cli): setup validators + dashboard env helpers (56 cases) | 56/56 pass. Build clean. |
 | #34 | test(cli): ecosystem buildDashboardBlock + buildEcosystemContent (34 cases) | 34/34 pass. Build clean. |
 | #33 | test(cli): bus.ts pure helpers — parseDisplayNameFromLines + checkDeliverableRequirement + pct (28 cases) | 28/28 pass. Build clean. |
