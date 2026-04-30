@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { mkdtempSync, rmSync } from 'fs';
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
+import { spawnSync } from 'child_process';
 import { acquireLock, releaseLock } from '../../../src/utils/lock';
 
 describe('mkdir-based locking', () => {
@@ -35,5 +36,31 @@ describe('mkdir-based locking', () => {
     releaseLock(testDir);
     expect(acquireLock(testDir)).toBe(true);
     releaseLock(testDir);
+  });
+
+  it('recovers a stale lock left by a dead process', () => {
+    // Spawn a short-lived Node process; spawnSync waits until it exits, so
+    // its PID is guaranteed dead by the time we read it.
+    const { pid: deadPid } = spawnSync(process.execPath, ['-e', ''], { stdio: 'ignore' });
+    const lockDir = join(testDir, '.lock.d');
+    mkdirSync(lockDir);
+    writeFileSync(join(lockDir, 'pid'), String(deadPid ?? 9999999));
+    // The stale lock should be removed and a fresh one acquired.
+    expect(acquireLock(testDir)).toBe(true);
+    releaseLock(testDir);
+  });
+
+  it('recovers a lock whose PID file contains garbage (non-numeric)', () => {
+    const lockDir = join(testDir, '.lock.d');
+    mkdirSync(lockDir);
+    writeFileSync(join(lockDir, 'pid'), 'not-a-pid');
+    // Corrupt PID → NaN → rmSync + retry should succeed.
+    expect(acquireLock(testDir)).toBe(true);
+    releaseLock(testDir);
+  });
+
+  it('releaseLock is a no-op when no lock is held', () => {
+    // Must not throw — callers may call release defensively.
+    expect(() => releaseLock(testDir)).not.toThrow();
   });
 });
