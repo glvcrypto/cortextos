@@ -22,6 +22,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #56 | test(dashboard): markdown-parser pure helpers — parseMarkdown + Identity/Soul/Goals (38 cases) | 38/38 pass. First coverage for dashboard/src/lib/. Covers parseMarkdown/serializeMarkdown round-trip safety, parseIdentityMd/parseSoulMd/parseGoalsMd + serializers, case-insensitive section matching, heading alias resolution. 672 pass full suite + 8 pre-existing. Build clean. |
 | #55 | fix(daemon): ecosystem max_restarts 50→10 + crash-storm circuit breaker (a803002) | 2 commits. Commit 1: max_restarts 50→10 daemon+dashboard, CTX_DEBUG_ALLOW_CRASH_TRIGGER slot. Commit 2: crash-handlers.ts (new), uncaughtException/unhandledRejection + Telegram alert at 3 crashes/15min, PTY null-write guard (worker-process.ts), deferred-Enter try/catch (inject.ts), daemon-crashed hook variant. 17 new cases (651 pass + 8 pre-existing). Build clean. |
 | #54 | test(hooks): findMostRecentPlan + readPlanContent + buildContextStatusPayload (25 cases) | 25/25 pass. Exports 2 helpers from hook-planmode-telegram.ts + extracts payload builder from hook-context-status.ts. Covers mtime-sort, empty/missing dirs, readdirSync error, line-truncation, all null-coercion branches. Build clean. |
 | #53 | fix(heartbeat): Step 5b outbound-log staleness filter — cloud session false-positive suppression | Docs-only. Adds suppress/fire truth table to HEARTBEAT.md. Analyst-calibrated 2026-04-30. |
