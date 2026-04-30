@@ -131,6 +131,11 @@
 | Google algorithm updates — response framework | How to handle ranking drops from algo updates: (1) check Semrush Sensor / Search Engine Roundtable to confirm broad update; (2) scope — site-wide vs page-specific; (3) competitor comparison — did they move too?; (4) document before state in GSC; (5) wait 2 weeks before changing anything — reactive changes mid-rollout usually make things worse; after 2 weeks review E-E-A-T, thin content, GSC Coverage. New topic. (Nov 20) |
 | Google Merchant Center — free local listings | Free tier of Google Merchant Center surfaces in-store inventory in Google Shopping "near me" searches with no ad spend. 4-step setup: create Merchant Center account → link GBP profile → verify/claim website → upload product feed (spreadsheet or WooCommerce/Shopify plugin). Feed fields: title (brand + model + attributes), description, price (must match site), availability, condition, image. Retail businesses with physical inventory only — not service businesses. New topic. (Nov 21) |
 | GSC URL inspection — post-change check | After any page change: GSC → URL Inspection → paste URL. Check: (1) indexed or not; (2) canonical Google sees (must match URL edited); (3) mobile usability flags; (4) click Request Indexing. 30-second check every update. Distinct from Oct 14 weekly GSC check (site-wide scan) and Jul 20 monthly report — this is single-page post-change confirmation. (Nov 22) |
+| "Near me" ranking signals | "Near me" keyword in title tags/copy does not drive near me rankings. Three real signals: (1) Proximity — verified GBP address vs searcher GPS; (2) Category relevance — primary GBP category must match query type; (3) Prominence — reviews, profile completeness, post activity. One legitimate "near me" content opportunity: customer review justifications that mention neighbourhood. Fix the signals, not the phrase. (Nov 25) |
+| GSC gap-finder for next local pages | Internal gap finder using GSC Performance → Queries: filter service keyword → find service+city queries with impressions + position 20+ + zero clicks → check if dedicated page exists → write missing page or optimise existing. Distinct from Jul 3 (external keyword gap tools), Sep 17 (competitor gap analysis). Demand confirmed via impressions signal. (Nov 26) |
+| Review gating — Google ToS violation | Review gating = asking customers for sentiment privately, then sending only happy customers to Google. Violates Google's "selective solicitation" prohibition. Consequences: review feature loss, profile warning, potential suspension. Three compliant alternatives: ask everyone consistently, respond publicly to negatives, build consistent review velocity. New topic. (Nov 27) |
+| Google AI Overviews in local search | AI Overviews trigger for informational queries (cost, comparison, how-to) not transactional "near me" searches. Four content types pulled: FAQ sections, service page first paragraphs, GBP Services tab descriptions, specific customer review text. Three actions: add FAQ block to every service page, make first paragraphs specific and informational, fill GBP Services tab descriptions with service+city+one detail. Builds on FAQ schema (Aug 13), GBP Services tab (Sep 23). New topic. (Nov 28) |
+| High impressions, low CTR — title tag fix | Pattern: page ranking 4–10 with significant impressions but near-zero clicks = title tag problem. Workflow: (1) verify position is 4–10 (not 20+ which is a ranking problem, different fix); (2) audit title tag — generic, over 60 chars, leads with business name?; (3) rewrite formula: [Service] in [City] | [Differentiator], under 60 chars; (4) Request Indexing; check CTR in 2–3 weeks. Distinct from Oct 14 weekly GSC check (pattern identification) — this is the single-page title tag repair. (Nov 29) |
 
 ### CTA keyword map
 
@@ -246,6 +251,11 @@
 | Nov 20 | open comment | n/a |
 | Nov 21 | MERCHANT | manual |
 | Nov 22 | INSPECT | manual |
+| Nov 25 | NEARME | manual |
+| Nov 26 | NEXTPAGE | manual |
+| Nov 27 | open comment | n/a |
+| Nov 28 | AILOCAL | manual |
+| Nov 29 | CTR | manual |
 
 ## Reyco Marine Content
 
