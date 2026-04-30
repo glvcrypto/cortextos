@@ -136,6 +136,11 @@
 | Review gating — Google ToS violation | Review gating = asking customers for sentiment privately, then sending only happy customers to Google. Violates Google's "selective solicitation" prohibition. Consequences: review feature loss, profile warning, potential suspension. Three compliant alternatives: ask everyone consistently, respond publicly to negatives, build consistent review velocity. New topic. (Nov 27) |
 | Google AI Overviews in local search | AI Overviews trigger for informational queries (cost, comparison, how-to) not transactional "near me" searches. Four content types pulled: FAQ sections, service page first paragraphs, GBP Services tab descriptions, specific customer review text. Three actions: add FAQ block to every service page, make first paragraphs specific and informational, fill GBP Services tab descriptions with service+city+one detail. Builds on FAQ schema (Aug 13), GBP Services tab (Sep 23). New topic. (Nov 28) |
 | High impressions, low CTR — title tag fix | Pattern: page ranking 4–10 with significant impressions but near-zero clicks = title tag problem. Workflow: (1) verify position is 4–10 (not 20+ which is a ranking problem, different fix); (2) audit title tag — generic, over 60 chars, leads with business name?; (3) rewrite formula: [Service] in [City] | [Differentiator], under 60 chars; (4) Request Indexing; check CTR in 2–3 weeks. Distinct from Oct 14 weekly GSC check (pattern identification) — this is the single-page title tag repair. (Nov 29) |
+| Google Autocomplete for local keyword discovery | Autocomplete predictions = real search volume, not estimated — open incognito, type [service]+[city] and stop, write every suggestion; try service+near, service+for, service+problem, service+qualifier; maps to page types: service+city = dedicated landing page, problem = FAQ answer, qualifier = title tag addition; seasonal variation: same search Oct vs. March returns different suggestions. Distinct from Jul 3 (external gap tools), Jun 25 (free keyword tools), Sep 17 (competitor gap analysis). (Dec 1) |
+| GSC Coverage report — error statuses | Four statuses: Error (not indexed, Google hit a problem — fix these first), Warning (indexed but issue — investigate), Valid with warning (usually fine, monitor), Excluded (Google chose not to index — often correct). Top Error to fix: "Submitted URL not found (404)" = indexed URL returning 404; Second: "Redirect error" = chain redirect; "Crawled, currently not indexed" = thin content signal, check quarterly. Extends Oct 14 weekly check (Performance tab) and Nov 22 URL Inspection (single-page) — this is Coverage tab error triage. (Dec 2) |
+| Social proof / CRO for local service pages | Five conversion elements above fold: (1) review count + star rating widget visible before scroll; (2) named testimonial — full name + specific service, not "Anonymous"; (3) concrete trust anchor — founding year, local landmark, job count (not vague "years of experience"); (4) real team photo not stock; (5) accreditation/certification logo near top, not on About page. CRO angle distinct from Nov 11 E-E-A-T (editorial quality), review generation posts (Jul 6/7, Aug 31). (Dec 3) |
+| People Also Ask (PAA) for local content planning | PAA boxes = real customer questions with confirmed search volume. Research: incognito + [service]+[city] → find PAA box → click to expand → write all relevant questions. Four patterns: cost, process, comparison, qualification. Answer format: direct answer in first sentence, 40–60 words, follow-up paragraph for context; H3 per question; FAQPage schema. Feeds both PAA rankings and AI Overviews. Extends Aug 13 (FAQ schema markup) and Nov 28 (AI Overviews) — distinct research workflow angle. (Dec 4) |
+| Unlinked brand mentions — find and convert | Google reads business name mentions without links as brand signals; unclaimed link opportunity. Find: Google "Business Name" -site:yourdomain.com. Prioritise: local press + industry directories + supplier/manufacturer pages; skip comment threads. Request: one-sentence email — "noticed you mentioned us in [article], can you add a link to [URL]?" Most say yes in 5 minutes. Extends Aug 5 (local backlink building sources) — specific tactic for converting existing mentions vs. building new relationships. (Dec 5) |
 
 ### CTA keyword map
 
@@ -256,6 +261,11 @@
 | Nov 27 | open comment | n/a |
 | Nov 28 | AILOCAL | manual |
 | Nov 29 | CTR | manual |
+| Dec 1 | AUTOCOMPLETE | manual |
+| Dec 2 | ERRORS | manual |
+| Dec 3 | open comment | n/a |
+| Dec 4 | PAA | manual |
+| Dec 5 | MENTIONS | manual |
 
 ## Reyco Marine Content
 
