@@ -4,17 +4,17 @@
 > To regenerate: `cortextos goals generate-md --agent seo --org glv`
 
 ## Focus
-Reyco launch-eve T-1: final pre-retainer audit + baseline GSC export pre-May 1 + schema markup deploy-ready for post-launch dev handoff
+Phase 0 audit DONE; pivot to (a) 586-page audit unblock spec for dev, (b) cross-client tactical wins (Fusion GSC indexing batch + Titan contact-page cannibalization + Soo Sackers post-deploy GSC verify), (c) May 1 retainer launch readiness — Person schema readiness map + GSC integration plan + NAP audit prep
 
 ## Goals
-1. Phase 0 pre-retainer launch audit (Apr-May) — clarify in goals per scout audit; retainer deliverables gated on Reyco domain cutover
-2. Baseline rankings GSC CSV export — needs Aiden action pre-May 1 (Day-0 anchor for Q3 SEO lift measurement)
-3. Schema markup deploy: 6 templates ready (LocalBusiness + 5 service pages + Product); needs Aiden geo coords + Casey payment methods, then dev dispatch
-4. Audit batch 3-5 of 5 — continue page-by-page audit through launch-eve into post-launch sprint
-5. Task #12 (250 metas) — surface to boss if WC REST key from dev still blocked >48h (cross-agent escalation per scout audit)
+1. Reyco 586-page audit unblock — write a precise dev-handoff spec for HTML export/scrape pattern that bypasses SiteGround WAF (server-side render, bulk product/category/blog HTML to disk, scout pattern). Surface as systemic dev ticket. Goal: unblock the 374 WC products + 35 blog + 177 WC categories in one dev sprint.
+2. Cross-client tactical wins (idle-bandwidth use): (a) Fusion GSC indexing batch — 44 days overdue from life-os, 15 URLs ready, request indexing for each + post status note. (b) Titan contact-page cannibalization — flagged Apr 21, audit + propose canonical/redirect fix. (c) Soo Sackers — when dev's breadcrumb fix lands, run post-deploy GSC verify + close any residual schema warnings.
+3. May 1 retainer launch readiness — Person schema readiness map (which Reyco staff have public bios ready vs need Casey input), GSC integration plan (what data flows we need from reycomarine.com GSC once domain cuts over), NAP audit prep (canonical NAP locked vs directory drift expected).
+4. Page-by-page audit batches R19+ — continue existing pattern as time allows; defer to dev unblock if audit-batch HTML-export ticket lands first. Banked: skill page-by-page-audit codified for cross-client reuse (Fusion/Titan/Soo when they reach maturity).
+5. Cross-agent escalation reflex — if a deliverable is gated on another agent's input >48h, surface to boss as a systemic block (pattern from Task #12 WC REST key delay).
 
 ## Bottleneck
-WC REST key from dev (Task #12 cross-agent block >48h); Aiden launch-eve focus elsewhere
+Reyco domain cutover still pending (DealerSpike transfer); GSC export from Aiden pre-May 1 still queued; cloud cred routing for cross-client tactical work not yet established
 
 ## Updated
-2026-04-29T12:34:40Z (by boss)
+2026-04-30T16:45:00Z (by boss)
