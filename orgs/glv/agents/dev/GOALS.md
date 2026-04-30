@@ -7,12 +7,17 @@ _Last updated: 2026-04-30_
 These PRs are complete and tested. Waiting for merge approval.
 
 > ⚠️ CONFLICT ALERT (flagged to Aiden via Telegram + #internal-dev 2026-04-30):
+>
+> **Upstream drift (NEW — discovered Apr 30):**
+> - 7 upstream commits not in origin/main AND not in PR #7: `3420b5b fix(test)`, `a803002 fix(daemon): guard worker PTY null-write`, `a38ef7a fix(bus): hard-restart IPC`, `b6e4515 fix(daemon): CronCreate on boot`, `5f1943e fix(telegram): HTML parse mode`, `b85cb69 fix(daemon): cron-expression gap detection`, `eb119a9 fix(telegram): validate BOT_TOKEN`
+> - Cherry-pick to origin/main CONFLICTS on `ecosystem.config.js` (max_restarts: 50 vs 10; variable names vs hardcoded paths) — **needs Aiden resolution before sync**
+> - PR #7 is also stale — opened Apr 21, these 7 commits landed after it was cut. Recommend: update PR #7 to include all upstream changes, OR close #7 and open a fresh sync PR.
+>
+> **Test PR queue conflicts:**
 > - #46 (metrics) + #47 (experiment) duplicate coverage already in upstream #21 + #22 → **close #46 and #47 after #21/#22 merge**
-> - PRs #35–#43 ALL carry 5 shared production source-file changes (`src/bus/cron-state.ts`, `src/cli/bus.ts`, `src/cli/enable-agent.ts`, `src/cli/setup.ts`, `src/daemon/agent-process.ts`) — these appear to be upstream changes rebased onto the test branches; each needs review or test-only extraction before merge
-> - PR #42 (message HMAC) overlaps PR #49 (message security gaps) — likely superseded by #49
-> - PR #43 test content (event + heartbeat + save-output) overlaps PRs #21 + #22 — likely superseded
-> - PR #35 test content (133 cases) overlaps PR #23 (utils, 64 cases) — #35 is a superset but has the src changes issue
-> - Safe merge order: audit src changes in #35–#43 → merge #21 + #22 → close superseded PRs → clear rest of queue
+> - PRs #35–#43 ALL carry those same 7 upstream src changes rebased in — safe to merge ONLY after upstream sync lands on origin/main and branches are rebased
+> - PR #42 (message HMAC) likely superseded by #49; PR #43 test content superseded by #21+#22
+> - Safe merge order: resolve upstream sync (#7 or fresh PR) → rebase #35–#43 → merge #21+#22 → close superseded PRs
 
 | PR | Title | Notes |
 |----|-------|-------|
