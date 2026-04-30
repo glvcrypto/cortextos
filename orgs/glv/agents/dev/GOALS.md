@@ -8,10 +8,11 @@ These PRs are complete and tested. Waiting for merge approval.
 
 > ⚠️ CONFLICT ALERT (flagged to Aiden via Telegram + #internal-dev 2026-04-30):
 >
-> **Upstream drift (NEW — discovered Apr 30):**
-> - 7 upstream commits not in origin/main AND not in PR #7: `3420b5b fix(test)`, `a803002 fix(daemon): guard worker PTY null-write`, `a38ef7a fix(bus): hard-restart IPC`, `b6e4515 fix(daemon): CronCreate on boot`, `5f1943e fix(telegram): HTML parse mode`, `b85cb69 fix(daemon): cron-expression gap detection`, `eb119a9 fix(telegram): validate BOT_TOKEN`
-> - Cherry-pick to origin/main CONFLICTS on `ecosystem.config.js` (max_restarts: 50 vs 10; variable names vs hardcoded paths) — **needs Aiden resolution before sync**
-> - PR #7 is also stale — opened Apr 21, these 7 commits landed after it was cut. Recommend: update PR #7 to include all upstream changes, OR close #7 and open a fresh sync PR.
+> **Upstream drift (PARTIALLY RESOLVED — Apr 30):**
+> - `a803002 fix(daemon): guard worker PTY null-write` → **RESOLVED by PR #55** (ecosystem max_restarts + crash-storm circuit breaker)
+> - `3420b5b fix(test)` + 5 remaining commits NOT yet in origin/main: `a38ef7a fix(bus): hard-restart IPC`, `b6e4515 fix(daemon): CronCreate on boot`, `5f1943e fix(telegram): HTML parse mode`, `b85cb69 fix(daemon): cron-expression gap detection`, `eb119a9 fix(telegram): validate BOT_TOKEN`
+> - `ecosystem.config.js` conflict **RESOLVED** — PR #55 fixes the generator (max_restarts 10, CTX_DEBUG_ALLOW_CRASH_TRIGGER passthrough)
+> - PR #7 still stale — 5 remaining upstream commits still need Aiden decision: update PR #7 to include them, OR close #7 and open a fresh sync PR.
 >
 > **Test PR queue conflicts:**
 > - #46 (metrics) + #47 (experiment) duplicate coverage already in upstream #21 + #22 → **close #46 and #47 after #21/#22 merge**
