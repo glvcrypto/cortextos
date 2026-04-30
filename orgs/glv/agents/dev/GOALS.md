@@ -21,6 +21,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #54 | test(hooks): findMostRecentPlan + readPlanContent + buildContextStatusPayload (25 cases) | 25/25 pass. Exports 2 helpers from hook-planmode-telegram.ts + extracts payload builder from hook-context-status.ts. Covers mtime-sort, empty/missing dirs, readdirSync error, line-truncation, all null-coercion branches. Build clean. |
 | #53 | fix(heartbeat): Step 5b outbound-log staleness filter — cloud session false-positive suppression | Docs-only. Adds suppress/fire truth table to HEARTBEAT.md. Analyst-calibrated 2026-04-30. |
 | #52 | test(hooks): generateId + waitForResponseFile + cleanupResponseFile coverage (8 cases) | 8/8 pass. Covers hex-format check, uniqueness, file-pre-exists, fs.watch late-write, timeout→null, delete, no-op, idempotent. Build clean. |
 | #51 | test(telegram): TelegramAPI method coverage — sendMessage + answerCallbackQuery + editMessageText + sendChatAction + setMyCommands (17 cases) | 17/17 pass. Adds 17 cases to existing 2 in api.test.ts. Covers parse-mode fallback, sanitizeMarkdown, chunking, retry logic, all 5 methods. Build clean. |
