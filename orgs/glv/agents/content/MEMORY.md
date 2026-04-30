@@ -141,6 +141,11 @@
 | Social proof / CRO for local service pages | Five conversion elements above fold: (1) review count + star rating widget visible before scroll; (2) named testimonial — full name + specific service, not "Anonymous"; (3) concrete trust anchor — founding year, local landmark, job count (not vague "years of experience"); (4) real team photo not stock; (5) accreditation/certification logo near top, not on About page. CRO angle distinct from Nov 11 E-E-A-T (editorial quality), review generation posts (Jul 6/7, Aug 31). (Dec 3) |
 | People Also Ask (PAA) for local content planning | PAA boxes = real customer questions with confirmed search volume. Research: incognito + [service]+[city] → find PAA box → click to expand → write all relevant questions. Four patterns: cost, process, comparison, qualification. Answer format: direct answer in first sentence, 40–60 words, follow-up paragraph for context; H3 per question; FAQPage schema. Feeds both PAA rankings and AI Overviews. Extends Aug 13 (FAQ schema markup) and Nov 28 (AI Overviews) — distinct research workflow angle. (Dec 4) |
 | Unlinked brand mentions — find and convert | Google reads business name mentions without links as brand signals; unclaimed link opportunity. Find: Google "Business Name" -site:yourdomain.com. Prioritise: local press + industry directories + supplier/manufacturer pages; skip comment threads. Request: one-sentence email — "noticed you mentioned us in [article], can you add a link to [URL]?" Most say yes in 5 minutes. Extends Aug 5 (local backlink building sources) — specific tactic for converting existing mentions vs. building new relationships. (Dec 5) |
+| Blog content strategy for local SEO | Blog after foundation (GBP → service pages indexed → citations) — not before; four formats that work: city-specific roundup, PAA answer post, before/after case study, seasonal guide; topic sourcing: GBP Q&A + GSC queries with impressions + review text + PAA boxes; avoid: thin generic posts, no local angle, blogging before service pages rank; structure: specific H1 + direct first para + one PAA block + internal link + one real example; cadence: one/month minimum, track GSC at 30/60/90 days. New cluster. (Dec 8) |
+| site: operator — indexation gut-check | Public search-operator check: site:yourdomain.com/page in incognito; three outcomes: (1) one result = indexed (check title tag Google renders); (2) two or more = cannibalisation signal; (3) nothing = not indexed (go to URL Inspection). Run before any on-page work. Distinct from Nov 22 (GSC URL Inspection) and Oct 14 (GSC weekly Performance check) — no tools needed. (Dec 9) |
+| Explaining local SEO ROI with no historical baseline | Zero-data client protocol: (1) build manual baseline day one before any changes — GBP Insights 28-day screenshot + GSC impressions + rough call count estimate; (2) use ratios not absolutes ("up 40% since we started"); (3) three-source truth for calls: GBP Insights + GSC service page clicks + client records; (4) set 90-day milestone expectation upfront. Distinct from reporting cluster (Jun 19, Jul 20, Aug 25, Oct 1) — addresses zero-data scenario specifically. (Dec 10) |
+| Event schema for local businesses | Google Events rich results for businesses running open houses, seasonal sales, workshops, classes. Four required JSON-LD fields: name, startDate (ISO 8601), location (Place block with address), eventStatus. Recommended: endDate, description, image (1200×675px min), offers with priceCurrency CAD. Implementation: create dedicated event page → JSON-LD schema block → Rich Results Test → GBP event post in parallel. Remove or update eventStatus after date passes — stale upcoming-event schema signals lower quality. New cluster distinct from Jul 21 (LocalBusiness), Aug 13 (FAQ), Oct 31 (AggregateRating). (Dec 11) |
+| Organic lead quality vs. paid | Organic search leads for local services tend to close at a higher rate than paid — intent difference: paid = comparison mode, organic = decision mode. Local service short buying windows amplify the gap. Tracking: close rate by lead source in a simple spreadsheet (date, source, outcome) over 90 days. ROI framing: close rate as a better metric than cost-per-lead alone. Defensible language — no fabricated statistics. Distinct from Oct 8 (LSAs) and Oct 16 (search intent vs. social). (Dec 12) |
 
 ### CTA keyword map
 
@@ -266,6 +271,11 @@
 | Dec 3 | open comment | n/a |
 | Dec 4 | PAA | manual |
 | Dec 5 | MENTIONS | manual |
+| Dec 8 | BLOG | manual |
+| Dec 9 | INDEXED | manual |
+| Dec 10 | open comment | n/a |
+| Dec 11 | EVENTS | manual |
+| Dec 12 | ORGANIC | manual |
 
 ## Reyco Marine Content
 
