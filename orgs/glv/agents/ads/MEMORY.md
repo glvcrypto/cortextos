@@ -94,6 +94,19 @@ Key implication: "give us a URL and a budget" is now a real client pitch, not a 
 New metric tracking users who spend 10+ seconds on site after clicking an ad — no pixel required.
 More meaningful quality signal than raw CTR. Watch this over CTR for any future TikTok campaigns.
 
+## Platform Updates (from scout 2026-05-01 — UNVERIFIED, secondary sources only)
+
+### Google AI Max Copy Restrictions (unverified — almcorp.com aggregator)
+Reportedly 25 term exclusions + 40 messaging restrictions enforced globally as of late April 2026.
+Cited stat: 27% performance lift when copy aligns to new rules.
+**Action when confirmed:** Run Performance Max copy audit for prohibited terms before any Google campaign build.
+**Action now:** Cross-check against Google Ads policy emails or official blog before acting.
+
+### Meta WhatsApp Unified Campaigns (unverified — swipeinsight.app aggregator)
+Reportedly Meta launched centralized WhatsApp campaign creation in Ads Manager — same creative assets + unified budget across FB/IG/Threads/WhatsApp simultaneously.
+**Action when confirmed:** Opens cross-platform budget testing without duplicating creative setups.
+**Relevance:** Low priority now (no clients with WhatsApp presence). Flag when Titan or future client has WhatsApp lead channel.
+
 ## Platform Updates (from scout 2026-04-29)
 
 ### Meta Format Consolidation (Apr 16, 2026)
