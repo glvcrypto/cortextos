@@ -1,13 +1,13 @@
 {
-  "focus": "Phase 0 audit DONE; pivot to (a) 586-page audit unblock spec for dev, (b) cross-client tactical wins (Fusion GSC indexing batch + Titan contact-page cannibalization + Soo Sackers post-deploy GSC verify), (c) May 1 retainer launch readiness — Person schema readiness map + GSC integration plan + NAP audit prep",
+  "focus": "May 1 nighttime mode — execute: (a) R19+ page audit batches against the 587-URL list (own pace, no Aiden-gate), (b) Tier 1 audit when products-export.json deploys (fire-and-report), (c) Person schema map polish to ready-to-deploy state — DO NOT deploy until domain cuts over, (d) backlog tactical work (Fusion title-fix gating freshness re-verify, Titan retainer-gated polish, Soo Sackers post-breadcrumb-deploy verify when PR #6 lands)",
   "goals": [
-    "Reyco 586-page audit unblock — write a precise dev-handoff spec for HTML export/scrape pattern that bypasses SiteGround WAF (server-side render, bulk product/category/blog HTML to disk, scout pattern). Surface as systemic dev ticket. Goal: unblock the 374 WC products + 35 blog + 177 WC categories in one dev sprint.",
-    "Cross-client tactical wins (idle-bandwidth use): (a) Fusion GSC indexing batch — 44 days overdue from life-os, 15 URLs ready, request indexing for each + post status note. (b) Titan contact-page cannibalization — flagged Apr 21, audit + propose canonical/redirect fix. (c) Soo Sackers — when dev's breadcrumb fix lands, run post-deploy GSC verify + close any residual schema warnings.",
-    "May 1 retainer launch readiness — Person schema readiness map (which Reyco staff have public bios ready vs need Casey input), GSC integration plan (what data flows we need from reycomarine.com GSC once domain cuts over), NAP audit prep (canonical NAP locked vs directory drift expected).",
-    "Page-by-page audit batches R19+ — continue existing pattern as time allows; defer to dev unblock if audit-batch HTML-export ticket lands first. Banked: skill page-by-page-audit codified for cross-client reuse (Fusion/Titan/Soo when they reach maturity).",
-    "Cross-agent escalation reflex — if a deliverable is gated on another agent's input >48h, surface to boss as a systemic block (pattern from Task #12 WC REST key delay)."
+    "R19+ page-by-page audit — continue against the urls.csv 587-URL list. Standalone work, no external gates. Target 50-100 pages overnight. Surface systemic findings as single dev tickets when >50% of a batch hits same issue (existing pattern).",
+    "Tier 1 WC products audit — when reyco-marine PR #124 (admin-trigger product JSON export) deploys + JSON file lands on production filesystem, fire `python3 tools/product-json-audit.py <path>` for 60-sec turnaround. Output severity-ranked findings CSV + summary MD. Note: PR #124 is OPEN but NOT YET DEPLOYED (verified via SSH). Standby until deploy.",
+    "Person schema map → ready-to-deploy state — finalize the staff schema stubs for the 6 Person blocks (Casey/Aaron/Lynn/Ron/Kory/Lee/Damian roster per memory). Stage as deploy-ready files. DO NOT push to production until domain cutover lands. Casey bio data still gated 8+ days.",
+    "Backlog tactical: (a) Fusion GSC queue — RE-VERIFY freshness on the 4 generic-title-blocked blog URLs once their fix is dispatched (don't submit until titles are unique). (b) Titan cannibalization — already filed and retainer-gated, no further work. (c) Soo Sackers — when PR #6 deploys, run gsc-verify-protocol.md (already staged).",
+    "Cross-agent escalation reflex — Goal 5 from prior cycle. Continue surfacing >48h gates as systemic blocks. Casey + Charlene 8+ day silence already escalated to boss this cycle."
   ],
-  "bottleneck": "Reyco domain cutover still pending (DealerSpike transfer); GSC export from Aiden pre-May 1 still queued; cloud cred routing for cross-client tactical work not yet established",
-  "updated_at": "2026-04-30T16:45:00Z",
+  "bottleneck": "PR #124 (products-export.json) auto-merge + GHA deploy state UNKNOWN — boss's GITHUB_TOKEN still 401 in WSL post-Aiden-refresh (daemon needs restart to inherit), so PR state can only be checked via Aiden Windows-side. Casey/Charlene 8+ day silence blocking schema markup + tag mapping v4. Reyco domain cutover still pending DealerSpike.",
+  "updated_at": "2026-05-01T03:38:00Z",
   "updated_by": "boss"
 }
