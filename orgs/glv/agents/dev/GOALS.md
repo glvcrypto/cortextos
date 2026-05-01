@@ -22,6 +22,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #62 | test(dashboard): api routes batch 6 — agents/[name] sub-routes (27 cases) | 4 files, 27/27 pass. GET /api/agents/[name]/logs (6) + GET /api/agents/[name]/typing (5) + GET+PATCH /api/agents/[name]/goals (10) + GET /api/agents/[name]/memory (6). 696 pass full suite + 1 pre-existing. Build clean. |
 | #61 | test(dashboard): api routes batch 5 — analytics + tasks/[id] + leads/[id] + content/[id] (40 cases) | 4 files, 40/40 pass. GET /api/analytics/overview (6) + GET/DELETE/PUT/PATCH /api/tasks/[id] (20) + GET/PATCH/DELETE /api/leads/[id] (7) + GET/PATCH/DELETE /api/content/[id] (7). 709 pass full suite + 1 pre-existing. Build clean. |
 | #60 | test(dashboard): api routes batch 4 — org/config + settings + clients (29 cases) | 4 files, 29/29 pass. GET+PATCH /api/org/config (12) + GET+PUT /api/settings/system (7) + GET /api/settings/telegram (5) + GET /api/clients (5). 698 pass + 1 pre-existing. Build clean. |
 | #59 | test(dashboard): api routes batch 3 — experiments + skills + sync + agents (35 cases) | 4 files, 35/35 pass. GET /api/experiments (9) + GET/POST/DELETE /api/skills (14) + GET+POST /api/sync (2) + GET /api/agents + POST validation (10). 704 pass full suite + 1 pre-existing (comms timestamp). Build clean. |
