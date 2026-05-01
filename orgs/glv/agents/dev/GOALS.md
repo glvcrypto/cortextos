@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-01 (batch 12)_
+_Last updated: 2026-05-01 (heartbeat audit — upstream sync file analysis)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -14,11 +14,38 @@ These PRs are complete and tested. Waiting for merge approval.
 > - `ecosystem.config.js` conflict **RESOLVED** — PR #55 fixes the generator (max_restarts 10, CTX_DEBUG_ALLOW_CRASH_TRIGGER passthrough)
 > - PR #7 still stale — 5 remaining upstream commits still need Aiden decision: update PR #7 to include them, OR close #7 and open a fresh sync PR.
 >
+> **Upstream Sync Audit (2026-05-01) — file-level findings from PR #35/#36 diff:**
+> PRs #35–#43 carry these 12 production src files from the 5 upstream commits:
+>
+> | File | Upstream change | Also in PR #55? |
+> |------|-----------------|----------------|
+> | `ecosystem.config.js` | CTX_DEBUG_ALLOW_CRASH_TRIGGER + max_restarts:10 | ✅ YES (duplicate — skip) |
+> | `src/daemon/index.ts` | Crash-loop detection + Telegram alert (~+230 lines) | ✅ YES (PR #55 uses crash-handlers.ts; different approach, same outcome) |
+> | `src/daemon/worker-process.ts` | PTY null guard (`this.pty!` → `this.pty?.`) | ✅ YES |
+> | `src/pty/inject.ts` | Deferred-Enter try/catch | ✅ YES |
+> | `src/hooks/hook-crash-alert.ts` | `.daemon-crashed` marker + message | ✅ YES |
+> | `src/bus/cron-state.ts` | `cronExpressionMinIntervalMs()` — cron-expr gap detection | ❌ UNIQUE — not in any clean PR |
+> | `src/cli/bus.ts` | `hard-restart` now sends IPC restart-agent to daemon | ❌ UNIQUE — not in any clean PR |
+> | `src/cli/enable-agent.ts` | BOT_TOKEN + CHAT_ID pre-validation before registering | ❌ UNIQUE — not in any clean PR |
+> | `src/cli/setup.ts` | Interactive Telegram cred validation in setup wizard | ❌ UNIQUE — not in any clean PR |
+> | `src/daemon/agent-process.ts` | Boot prompt: CronCreate vs /loop + cron-expr gap | ❌ UNIQUE — not in any clean PR |
+> | `src/telegram/api.ts` | HTML parse mode changes (+308/-74) | ❌ UNIQUE — not in any clean PR |
+> | `src/telegram/logging.ts` | Logging tweaks (+4/-13) | ❌ UNIQUE — not in any clean PR |
+>
+> **Recommended action (Aiden decision needed):**
+> 1. **Merge PR #55 first** (crash-storm fix, cleanest approach, passes all tests)
+> 2. **Close PRs #35–#43** — test content superseded by cleaner PRs; crash-storm src covered by #55
+> 3. **Open fresh `sync/upstream-remaining-5-commits`** with ONLY the 6 unique upstream files above — dev agent can create this when Aiden confirms
+>
+> **Immediate safe merges (no upstream sequencing needed):**
+> - Docs/config only: PR #6 (.gitignore), PR #10 (cron docs), PR #20 (community skill)
+> - Clean test PRs (no production src changes): #21–#34, #44–#54, #56–#68
+> - Fixes: PR #55 (crash-storm), PR #16 (ecosystem PATH), PR #17 (heartbeat cron-fire)
+>
 > **Test PR queue conflicts:**
 > - #46 (metrics) + #47 (experiment) duplicate coverage already in upstream #21 + #22 → **close #46 and #47 after #21/#22 merge**
-> - PRs #35–#43 ALL carry those same 7 upstream src changes rebased in — safe to merge ONLY after upstream sync lands on origin/main and branches are rebased
-> - PR #42 (message HMAC) likely superseded by #49; PR #43 test content superseded by #21+#22
-> - Safe merge order: resolve upstream sync (#7 or fresh PR) → rebase #35–#43 → merge #21+#22 → close superseded PRs
+> - PRs #35–#43 ALL carry those 5 upstream src changes rebased in → **recommend closing** (see audit above)
+> - PR #42 (message HMAC) superseded by #49; PR #43 test content superseded by #21+#22
 
 | PR | Title | Notes |
 |----|-------|-------|
