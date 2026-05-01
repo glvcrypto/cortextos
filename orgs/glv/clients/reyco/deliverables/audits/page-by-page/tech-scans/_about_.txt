@@ -1,0 +1,18 @@
+FILE: /tmp/page-_about_-v2.html
+BYTES: 202815
+TITLE: About Us – Reyco Marine &amp; Small Engine Ltd.
+META_DESC: Meet the team at Reyco Marine. Family-owned marine dealer and outdoor power equipment specialist in Sault Ste. Marie since decades. Honest service, expert repair.
+META_DESC_LEN: 162 (OK)
+H1_COUNT: 1
+H1_TEXT: About Reyco Marine &amp; Small Engine
+H2_COUNT: 11
+SCHEMA_BLOCKS: 1
+CANONICAL: rel="canonical" href="https://reyco.glvmarketing.ca/about/"
+BROKEN_IMG: 0
+ALT_EMPTY: 2
+ALT_TOTAL: 8
+EXT_LINKS: 4
+INT_LINKS: 284
+TEL_LINKS: 6
+PHP_ERR: 0
+EMPTY_STATE_FIRES: 0

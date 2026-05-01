@@ -1,0 +1,18 @@
+FILE: /tmp/page-_why_i_bet_everything_on_a_marine_dealership_in_2023_-v2.html
+BYTES: 210659
+TITLE: Why I Bet Everything on a Marine Dealership in 2023 – Reyco Marine &amp; Small Engine Ltd.
+META_DESC: I get this question at least once a week. Usually at the parts counter, sometimes at the Tim Hortons on Great Northern. “Casey, why would...
+META_DESC_LEN: 140 (OK)
+H1_COUNT: 1
+H1_TEXT: Why I Bet Everything on a Marine Dealership in 2023
+H2_COUNT: 7
+SCHEMA_BLOCKS: 2
+CANONICAL: rel="canonical" href="https://reyco.glvmarketing.ca/why-i-bet-everything-on-a-marine-dealership-in-2023/"
+BROKEN_IMG: 0
+ALT_EMPTY: 3
+ALT_TOTAL: 9
+EXT_LINKS: 3
+INT_LINKS: 300
+TEL_LINKS: 5
+PHP_ERR: 0
+EMPTY_STATE_FIRES: 0

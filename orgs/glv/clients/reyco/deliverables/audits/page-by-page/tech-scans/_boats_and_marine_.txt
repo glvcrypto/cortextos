@@ -1,0 +1,18 @@
+FILE: /tmp/page-_boats_and_marine_-v2.html
+BYTES: 209210
+TITLE: Boats and Marine – Reyco Marine &amp; Small Engine Ltd.
+META_DESC: Shop Princecraft boats, Mercury outboard motors, and marine electronics at Reyco Marine. Sault Ste. Marie's marine-first dealer.
+META_DESC_LEN: 128 (OK)
+H1_COUNT: 1
+H1_TEXT: 
+H2_COUNT: 12
+SCHEMA_BLOCKS: 1
+CANONICAL: rel="canonical" href="https://reyco.glvmarketing.ca/boats-and-marine/"
+BROKEN_IMG: 0
+ALT_EMPTY: 1
+ALT_TOTAL: 12
+EXT_LINKS: 3
+INT_LINKS: 282
+TEL_LINKS: 12
+PHP_ERR: 0
+EMPTY_STATE_FIRES: 7

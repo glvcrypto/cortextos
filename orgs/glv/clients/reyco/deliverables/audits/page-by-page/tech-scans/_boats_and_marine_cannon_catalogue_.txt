@@ -1,0 +1,18 @@
+FILE: /tmp/page-_boats_and_marine_cannon_catalogue_-v2.html
+BYTES: 156990
+TITLE: Cannon Downriggers – Reyco Marine &amp; Small Engine Ltd.
+META_DESC: Reyco Marine &amp; Small Engine Ltd. — boats, motors, lawn and snow equipment sales and service in Sault Ste. Marie, Ontario.
+META_DESC_LEN: 125 (OK)
+H1_COUNT: 1
+H1_TEXT: 
+H2_COUNT: 1
+SCHEMA_BLOCKS: 1
+CANONICAL: rel="canonical" href="https://reyco.glvmarketing.ca/boats-and-marine/cannon-catalogue/"
+BROKEN_IMG: 0
+ALT_EMPTY: 0
+ALT_TOTAL: 4
+EXT_LINKS: 3
+INT_LINKS: 263
+TEL_LINKS: 4
+PHP_ERR: 0
+EMPTY_STATE_FIRES: 0

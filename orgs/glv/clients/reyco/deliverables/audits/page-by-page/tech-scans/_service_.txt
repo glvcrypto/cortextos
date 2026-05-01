@@ -1,0 +1,18 @@
+FILE: /tmp/page-_service_-v2.html
+BYTES: 189074
+TITLE: Service &amp; Parts – Reyco Marine &amp; Small Engine Ltd.
+META_DESC: Full-service marine and small engine repair in Sault Ste. Marie. Winterization, spring commissioning, tune-ups, and warranty work. Factory-trained technicians.
+META_DESC_LEN: 159 (OK)
+H1_COUNT: 1
+H1_TEXT: Service &amp; Parts
+H2_COUNT: 6
+SCHEMA_BLOCKS: 1
+CANONICAL: rel="canonical" href="https://reyco.glvmarketing.ca/service/"
+BROKEN_IMG: 0
+ALT_EMPTY: 0
+ALT_TOTAL: 9
+EXT_LINKS: 3
+INT_LINKS: 277
+TEL_LINKS: 5
+PHP_ERR: 0
+EMPTY_STATE_FIRES: 0

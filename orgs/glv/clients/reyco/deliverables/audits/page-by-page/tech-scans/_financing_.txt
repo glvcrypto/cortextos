@@ -1,0 +1,18 @@
+FILE: /tmp/page-_financing_-v2.html
+BYTES: 173229
+TITLE: Financing – Reyco Marine &amp; Small Engine Ltd.
+META_DESC: Flexible financing options for boats, motors, and outdoor power equipment at Reyco Marine. Easy application, competitive rates.
+META_DESC_LEN: 127 (OK)
+H1_COUNT: 1
+H1_TEXT: 
+H2_COUNT: 5
+SCHEMA_BLOCKS: 1
+CANONICAL: rel="canonical" href="https://reyco.glvmarketing.ca/financing/"
+BROKEN_IMG: 0
+ALT_EMPTY: 0
+ALT_TOTAL: 8
+EXT_LINKS: 4
+INT_LINKS: 265
+TEL_LINKS: 3
+PHP_ERR: 0
+EMPTY_STATE_FIRES: 0

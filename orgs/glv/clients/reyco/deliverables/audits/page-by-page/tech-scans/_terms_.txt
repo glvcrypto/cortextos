@@ -1,0 +1,18 @@
+FILE: /tmp/page-_terms_-v2.html
+BYTES: 162740
+TITLE: Terms of Service – Reyco Marine &amp; Small Engine Ltd.
+META_DESC: Reyco Marine &amp; Small Engine Ltd. — boats, motors, lawn and snow equipment sales and service in Sault Ste. Marie, Ontario.
+META_DESC_LEN: 125 (OK)
+H1_COUNT: 1
+H1_TEXT: Terms of Service
+H2_COUNT: 16
+SCHEMA_BLOCKS: 1
+CANONICAL: rel="canonical" href="https://reyco.glvmarketing.ca/terms/"
+BROKEN_IMG: 0
+ALT_EMPTY: 0
+ALT_TOTAL: 3
+EXT_LINKS: 3
+INT_LINKS: 262
+TEL_LINKS: 6
+PHP_ERR: 0
+EMPTY_STATE_FIRES: 0
