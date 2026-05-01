@@ -1,2 +1,7 @@
 # Experiment Learnings
 
+## exp_1776987054_d9j3b (keep)
+- **Metric:** visual_review_accuracy
+- **Hypothesis:** Adding a mandatory Section 0 (Falsifiable Observation Pre-Flight) at the TOP of the review checklist — separate observation from interpretation, require the 4-probe template before asserting any cause/mechanism — will raise user-agreement rate on flagged issues. Evidence: today (2026-04-23) I was corrected exactly on this pattern (CSS-rationalization from single screenshot). Currently Section 0 exists only in 'Anti-patterns' prose at the bottom; moving it to mandatory first step operationalizes the rule.
+- **Result:** 0.925 (baseline: 0.925)
+- **Learning:** Bootstrap-complete framing per cycle-1-outcome.md + analyst lock msg 1777357896596. Bootstrap walk: n=3 visual-quality corrections / ~40 visual calls = accuracy_post ≈ 92.5% over Apr 23-28 corpus. Sample insufficient for effect-size detection (binomial CI very wide at n=3) vs hypothetical pre-Section-0 baseline (structurally n_pre=0: designer agent did not exist before 2026-04-23). Cycle-1 produced 3 load-bearing outputs: (1) sample-size baseline, (2) taxonomy validation across 3 distinct correction buckets, (3) instrumentation gap surfacing across 3 emit paths. These drive cycle-2 architecture (Path C + C1, two-metric reporting). Outcome classification: INSTRUMENTATION-BOOTSTRAP COMPLETE — not pass/fail on the Section 0 hypothesis. Cycle-2 prospective forward-measurement is the actual hypothesis test.

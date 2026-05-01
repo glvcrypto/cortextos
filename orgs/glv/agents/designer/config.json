@@ -18,6 +18,12 @@
       "type": "recurring",
       "interval": "7d",
       "prompt": "Read .claude/skills/autoresearch/SKILL.md and execute the experiment loop for cycle visual-review-accuracy."
+    },
+    {
+      "name": "cycle-2-status-ping-analyst",
+      "type": "once",
+      "fire_at": "2026-05-08T13:17:00Z",
+      "prompt": "Per analyst lock msg 1777621495599: ping analyst with \"still gated\" status note for cycle-2 visual-review-accuracy if Reyco launch hasn't landed and fleet-wide receiver emit hooks haven't deployed. If launch HAS landed, instead proceed directly to fleet-hook rollout coordination + cycle-2 create-experiment + activate."
     }
   ],
   "ecosystem": {
