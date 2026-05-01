@@ -11,6 +11,9 @@ export default defineConfig({
       // from dashboard/node_modules, because root's package.json does not
       // depend on Next.js.
       'next/server': path.resolve(__dirname, 'dashboard/node_modules/next/server.js'),
+      // next.js dynamic-route dirs (brackets) can't appear in static import paths;
+      // map to a stable alias so tests can resolve them.
+      '@api-media-route': path.resolve(__dirname, 'dashboard/src/app/api/media/[...filepath]/route'),
     },
   },
   test: {
