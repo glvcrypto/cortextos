@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-01 (batch 11)_
+_Last updated: 2026-05-01 (batch 12)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -22,6 +22,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #68 | test(dashboard): api routes batch 12 — knowledge/search alias + SSE guard paths (10 cases) | 3 files, 10/10 pass. GET /api/knowledge/search (2) + GET /api/events/stream (3) + GET /api/messages/stream/[agent] (5). Completes non-auth API route coverage sprint. vitest.config.ts: restore @api-media-route + add @api-messages-stream-route. 679 pass + 1 pre-existing. Build clean. |
 | #67 | test(dashboard): api routes batch 11 — kb/search + messages/upload + media (21 cases) | 3 files, 21/21 pass. GET /api/kb/search (9) + POST /api/messages/upload (7) + GET /api/media/[...filepath] (5). vitest.config.ts: @api-media-route alias for bracket-dir import. 690 pass full suite + 1 pre-existing. Build clean. |
 | #66 | test(dashboard): api routes batch 10 — lifecycle + comms/channel + comms/upload + kb (30 cases) | 4 files, 30/30 pass. POST+DELETE /api/agents/[name]/lifecycle (13) + GET /api/comms/channel/[pair] (7) + POST /api/comms/upload (5) + GET /api/kb/collections (5). 699 pass full suite + 1 pre-existing. Build clean. |
 | #65 | test(dashboard): api routes batch 9 — auth/mobile + mcp/restart + comms (25 cases) | 4 files, 25/25 pass. POST /api/auth/mobile (7) + POST /api/mcp/restart (7) + GET /api/comms/channels (5) + GET /api/comms/feed (6). 694 pass full suite + 1 pre-existing. Build clean. |
