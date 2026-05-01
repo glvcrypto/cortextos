@@ -22,6 +22,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #66 | test(dashboard): api routes batch 10 — lifecycle + comms/channel + comms/upload + kb (30 cases) | 4 files, 30/30 pass. POST+DELETE /api/agents/[name]/lifecycle (13) + GET /api/comms/channel/[pair] (7) + POST /api/comms/upload (5) + GET /api/kb/collections (5). 699 pass full suite + 1 pre-existing. Build clean. |
 | #65 | test(dashboard): api routes batch 9 — auth/mobile + mcp/restart + comms (25 cases) | 4 files, 25/25 pass. POST /api/auth/mobile (7) + POST /api/mcp/restart (7) + GET /api/comms/channels (5) + GET /api/comms/feed (6). 694 pass full suite + 1 pre-existing. Build clean. |
 | #64 | test(dashboard): api routes batch 8 — messages/send + messages/history + notifications/register + mcp (30 cases) | 4 files, 30/30 pass. POST /api/messages/send (7) + GET /api/messages/history/[agent] (7) + POST /api/notifications/register (6) + GET+POST+DELETE /api/mcp (10). 702 pass full suite + 1 pre-existing. Build clean. |
 | #63 | test(dashboard): api routes batch 7 — agents/[name] main + crons + config + settings/users + commands (49 cases) | 5 files, 49/49 pass. GET+PATCH /api/agents/[name] (9) + GET+PUT /api/agents/[name]/crons (12) + GET+PATCH /api/agents/[name]/config (13) + GET+POST+DELETE /api/settings/users (9) + GET /api/commands (6). 718 pass full suite + 1 pre-existing. Build clean. |
