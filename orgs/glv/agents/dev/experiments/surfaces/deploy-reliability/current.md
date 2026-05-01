@@ -1,4 +1,4 @@
-# Deploy Reliability Surface — PHP Lint + Expanded Structural Marker Smoke Gate
+# Deploy Reliability Surface — PHP Lint + Expanded Structural Marker Smoke Gate + WP Runtime Error Body Scan
 
 ## Current Approach
 
@@ -36,14 +36,29 @@ Before pushing any code:
    - `/service/marine/` — service detail page (service-detail.php template)
    - `/product-category/outboard-motors/` — category archive (archive-product.php template)
 
-4. Run HTTP smoke test: curl 14 key URLs, check HTTP 200 + no PHP error strings in body
-5. Check CI output after GitHub Actions push
+4. **Run WP runtime error body scan — same 6 URLs, scan response bodies for error strings:**
+   ```bash
+   WP_ERROR_PATTERNS=("Fatal error" "Parse error" "There has been a critical error" "Call to undefined" "Call to a member function" "class not found" "wp-die")
+   for url in "${SMOKE_URLS[@]}"; do
+     html=$(curl -s "$url")
+     for pattern in "${WP_ERROR_PATTERNS[@]}"; do
+       if echo "$html" | grep -qi "$pattern"; then
+         echo "FAIL: WP runtime error '$pattern' found in $url" && exit 1
+       fi
+     done
+   done
+   echo "WP runtime error scan: PASS"
+   ```
+   Catches: PHP fatals/notices that WP renders into styled error pages (which PASS the structural marker check but signal a broken deploy). Historical class: the 2026-04-22 seeding failures, undefined method calls, WP hook issues — all runtime, not syntax.
+
+5. Run HTTP smoke test: curl 14 key URLs, check HTTP 200 + no PHP error strings in body
+6. Check CI output after GitHub Actions push
 
 ## Hypothesis Being Tested
 
-The prior structural marker check (3 URLs) was kept at 100% pass rate over 15 runs. The current 3-URL set covers homepage, products archive, and services parent — but leaves single-product.php, service-detail.php, and product category archive templates unvalidated. A regression in any of those templates (e.g. from category restructure work, service template changes, or product import) would pass the current gate. Adding 3 representative URLs triples per-push template coverage. Both prior failure classes (layout regressions + PHP syntax) are now gated; this targets the residual template-specific failure class.
+Three consecutive gate-layer keeps: php -l (syntax), structural markers (layout), expanded URLs (template breadth). The remaining unaddressed failure class is WP runtime errors. WP renders fatal/undefined-function errors into styled pages that include site-header, site-footer, main.site-main, nav.site-nav — so these PASS the structural marker check while signaling a broken site. A body error-string scan on the same 6 URLs after the marker check targets this exact gap. Historical basis: 7 failures on 2026-04-22 were all runtime class (seeding, undefined method calls, missing hooks) — php -l did not and cannot catch these.
 
 ## Known gaps
 - php -l catches syntax errors only, not logic errors or missing function calls
-- Structural marker check requires staging URL to be live and cacheable (post-commit, SG Dynamic Cache may serve stale on first hit)
-- No WP runtime error detection (undefined functions, missing hooks) — next experiment candidate if this keeps
+- Structural marker + error scan requires live staging URL (SG Dynamic Cache may serve stale HTML on first hit post-commit)
+- Error string patterns are English-only; WP fatal templates in other locales would not match (not applicable for Reyco Marine — en-CA)
