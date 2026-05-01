@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-01_
+_Last updated: 2026-05-01 (08:25 UTC)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -22,6 +22,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #67 | test(dashboard): api routes batch 11 — kb/search + media + messages/upload (25 cases) | 3 files, 25/25 pass. GET /api/kb/search (9) + GET /api/knowledge/search alias (1) + GET /api/media/[...filepath] (7) + POST /api/messages/upload (8). 686 pass full suite + 9 pre-existing (8 git-signing + 1 comms). Build clean. |
 | #66 | test(dashboard): api routes batch 10 — lifecycle + comms/channel + comms/upload + kb (30 cases) | 4 files, 30/30 pass. POST+DELETE /api/agents/[name]/lifecycle (13) + GET /api/comms/channel/[pair] (7) + POST /api/comms/upload (5) + GET /api/kb/collections (5). 699 pass full suite + 1 pre-existing. Build clean. |
 | #65 | test(dashboard): api routes batch 9 — auth/mobile + mcp/restart + comms (25 cases) | 4 files, 25/25 pass. POST /api/auth/mobile (7) + POST /api/mcp/restart (7) + GET /api/comms/channels (5) + GET /api/comms/feed (6). 694 pass full suite + 1 pre-existing. Build clean. |
 | #64 | test(dashboard): api routes batch 8 — messages/send + messages/history + notifications/register + mcp (30 cases) | 4 files, 30/30 pass. POST /api/messages/send (7) + GET /api/messages/history/[agent] (7) + POST /api/notifications/register (6) + GET+POST+DELETE /api/mcp (10). 702 pass full suite + 1 pre-existing. Build clean. |
