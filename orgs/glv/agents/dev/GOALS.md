@@ -128,7 +128,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 ## Completed (Recent)
 
-- reyco-marine PR #124 (opened 2026-04-30) — feat(seo): WC products JSON export for SEO audit; auto-merge eligible
+- reyco-marine PR #124 (merged 2026-05-01) — feat(seo): WC products JSON export for SEO audit; squash-merged `cada21d`
 - reyco-marine PRs #121/#122/#123 (merged 2026-04-30) — hero images auto-merged under Reyco policy
 - soosackers PR #6 (opened 2026-04-30) — fix(seo): Teams breadcrumb missing item URL + SchedulePage JSON-LD; needs Aiden review
 - PR #12 (merged) — outreach tab auto-refresh 30s poll
