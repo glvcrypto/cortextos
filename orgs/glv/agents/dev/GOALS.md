@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-04-30_
+_Last updated: 2026-05-01_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -22,6 +22,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #63 | test(dashboard): api routes batch 7 — agents/[name] main + crons + config + settings/users + commands (49 cases) | 5 files, 49/49 pass. GET+PATCH /api/agents/[name] (9) + GET+PUT /api/agents/[name]/crons (12) + GET+PATCH /api/agents/[name]/config (13) + GET+POST+DELETE /api/settings/users (9) + GET /api/commands (6). 718 pass full suite + 1 pre-existing. Build clean. |
 | #62 | test(dashboard): api routes batch 6 — agents/[name] sub-routes (27 cases) | 4 files, 27/27 pass. GET /api/agents/[name]/logs (6) + GET /api/agents/[name]/typing (5) + GET+PATCH /api/agents/[name]/goals (10) + GET /api/agents/[name]/memory (6). 696 pass full suite + 1 pre-existing. Build clean. |
 | #61 | test(dashboard): api routes batch 5 — analytics + tasks/[id] + leads/[id] + content/[id] (40 cases) | 4 files, 40/40 pass. GET /api/analytics/overview (6) + GET/DELETE/PUT/PATCH /api/tasks/[id] (20) + GET/PATCH/DELETE /api/leads/[id] (7) + GET/PATCH/DELETE /api/content/[id] (7). 709 pass full suite + 1 pre-existing. Build clean. |
 | #60 | test(dashboard): api routes batch 4 — org/config + settings + clients (29 cases) | 4 files, 29/29 pass. GET+PATCH /api/org/config (12) + GET+PUT /api/settings/system (7) + GET /api/settings/telegram (5) + GET /api/clients (5). 698 pass + 1 pre-existing. Build clean. |
