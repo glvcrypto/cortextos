@@ -55,7 +55,7 @@ When running as a cloud/remote session (no local daemon):
 8. **Jun 15** → proposals experiment data from Aiden
 9. **Jun 17 Slide 6** → price ranges from Aiden before scheduling
 
-## Calendar Status (as of 2026-05-01, session 46)
+## Calendar Status (as of 2026-05-01, session 47)
 
 | Period | Status |
 |--------|--------|
@@ -100,7 +100,9 @@ When running as a cloud/remote session (no local daemon):
 | **Dec 22–24** | **Drafted ✓** |
 | Dec 25–26 | Skip (Christmas Day / Boxing Day) |
 | Dec 27–28 | Skip (Sat/Sun) |
-| Dec 29+ | Needs ideation |
+| **Dec 29–31** | **Drafted ✓** |
+| Jan 1 | Skip (New Year's Day) |
+| Jan 2+ | Needs ideation |
 
 ## Repos
 
