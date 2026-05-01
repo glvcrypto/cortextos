@@ -105,7 +105,10 @@ When running as a cloud/remote session (no local daemon):
 | **Jan 2** | **Drafted ✓** |
 | Jan 3–4 | Skip (Sat/Sun) |
 | **Jan 5–9** | **Drafted ✓** |
-| Jan 10+ | Needs ideation |
+| Jan 10–11 | Skip (Sat/Sun) |
+| **Jan 12–16** | **Drafted ✓** |
+| Jan 17–18 | Skip (Sat/Sun) |
+| Jan 19+ | Needs ideation |
 
 ## Repos
 
