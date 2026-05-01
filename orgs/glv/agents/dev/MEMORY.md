@@ -43,6 +43,7 @@ When running in cloud (no local daemon):
 - Use Slack MCP (channel C0APQ0TFS93) for #internal-dev updates
 - Use GitHub MCP + git for all code/PR work
 - Memory-only commits can go direct to main; code changes need PR
+- **`npm test` and `npm run build` DO NOT WORK in cloud sessions** — `node_modules` is not installed in the repo checkout. Do not attempt to run tests or build; log as infeasible. All build/test verification must be done locally before PRs are opened.
 
 ## n8n Workflow Notes
 
