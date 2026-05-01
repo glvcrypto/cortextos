@@ -22,6 +22,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #64 | test(dashboard): api routes batch 8 — messages/send + messages/history + notifications/register + mcp (30 cases) | 4 files, 30/30 pass. POST /api/messages/send (7) + GET /api/messages/history/[agent] (7) + POST /api/notifications/register (6) + GET+POST+DELETE /api/mcp (10). 702 pass full suite + 1 pre-existing. Build clean. |
 | #63 | test(dashboard): api routes batch 7 — agents/[name] main + crons + config + settings/users + commands (49 cases) | 5 files, 49/49 pass. GET+PATCH /api/agents/[name] (9) + GET+PUT /api/agents/[name]/crons (12) + GET+PATCH /api/agents/[name]/config (13) + GET+POST+DELETE /api/settings/users (9) + GET /api/commands (6). 718 pass full suite + 1 pre-existing. Build clean. |
 | #62 | test(dashboard): api routes batch 6 — agents/[name] sub-routes (27 cases) | 4 files, 27/27 pass. GET /api/agents/[name]/logs (6) + GET /api/agents/[name]/typing (5) + GET+PATCH /api/agents/[name]/goals (10) + GET /api/agents/[name]/memory (6). 696 pass full suite + 1 pre-existing. Build clean. |
 | #61 | test(dashboard): api routes batch 5 — analytics + tasks/[id] + leads/[id] + content/[id] (40 cases) | 4 files, 40/40 pass. GET /api/analytics/overview (6) + GET/DELETE/PUT/PATCH /api/tasks/[id] (20) + GET/PATCH/DELETE /api/leads/[id] (7) + GET/PATCH/DELETE /api/content/[id] (7). 709 pass full suite + 1 pre-existing. Build clean. |
