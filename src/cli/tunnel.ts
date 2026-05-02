@@ -18,21 +18,21 @@ interface TunnelConfig {
   createdAt?: string;
 }
 
-function getTunnelConfigPath(instance: string): string {
-  return join(homedir(), '.cortextos', instance, 'tunnel.json');
+export function getTunnelConfigPath(instance: string, rootDir?: string): string {
+  return join(rootDir ?? homedir(), '.cortextos', instance, 'tunnel.json');
 }
 
-function readTunnelConfig(instance: string): TunnelConfig {
+export function readTunnelConfig(instance: string, rootDir?: string): TunnelConfig {
   try {
-    return JSON.parse(readFileSync(getTunnelConfigPath(instance), 'utf-8'));
+    return JSON.parse(readFileSync(getTunnelConfigPath(instance, rootDir), 'utf-8'));
   } catch {
     return {};
   }
 }
 
-function writeTunnelConfig(instance: string, config: TunnelConfig): void {
-  const configPath = getTunnelConfigPath(instance);
-  mkdirSync(join(homedir(), '.cortextos', instance), { recursive: true });
+export function writeTunnelConfig(instance: string, config: TunnelConfig, rootDir?: string): void {
+  const configPath = getTunnelConfigPath(instance, rootDir);
+  mkdirSync(join(rootDir ?? homedir(), '.cortextos', instance), { recursive: true });
   writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n', 'utf-8');
 }
 
