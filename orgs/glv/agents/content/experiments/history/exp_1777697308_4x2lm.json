@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777697308_4x2lm",
+  "agent": "content",
+  "metric": "content-quality",
+  "hypothesis": "Anchoring the CTA stage to a specific Northern Ontario seasonal date will push draft quality from 9 toward 10/10. Evidence: all 3 kept experiments gained score by adding NO-specific context at each stage (lede, then hook, then lede fact). The CMI body structure CTA step (exp_5 addition) prescribes a real timeline but leaves urgency vague. Hypothesis: naming a specific Northern Ontario seasonal date in or near the CTA (e.g. walleye opener May 17, ice-out late April, fall freeze-up November, snowblower season October) creates a time-bounded reason to act that is both locally credible and conversion-relevant. This is the same NO-specificity principle applied to the CTA layer. Note: this is null #3 candidate — if gate-blocked again, escalate to analyst per feedback_autoresearch_gate_dependent_metric.md.",
+  "surface": "experiments/surfaces/content-quality/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "",
+  "status": "running",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-05-02T04:48:28Z",
+  "started_at": "2026-05-02T04:48:41Z",
+  "completed_at": null,
+  "changes_description": "Added seasonal CTA rule to surface: CTA must name a specific Northern Ontario seasonal date/deadline (walleye opener, ice-out, snowblower season, etc.) tied to the product topic. Replaces generic CTAs with time-bounded urgency. Builds on exp_3 lede (NO-specific fact) + exp_5 CMI body structure. Null #3 candidate — will escalate to analyst if gate-blocked again."
+}
