@@ -43,7 +43,7 @@ When running as a cloud/remote session (no local daemon):
 - Long-term memory: `orgs/glv/agents/content/MEMORY.md` — update when patterns or decisions are locked
 - Memory + draft commits go directly to main (low-risk content files)
 
-## Current Blockers (standing as of 2026-05-02, session 54 — 29 open)
+## Current Blockers (standing as of 2026-05-02, session 55 — 31 open)
 
 1. **PIPEDA flags A–E** → Apr 26 post locked
 2. **[CLIENT NAME] swap** (7+ drafts) → Aiden to confirm "Reyco" is OK to name publicly
@@ -55,7 +55,7 @@ When running as a cloud/remote session (no local daemon):
 8. **Jun 15** → proposals experiment data from Aiden
 9. **Jun 17 Slide 6** → price ranges from Aiden before scheduling
 
-## Calendar Status (as of 2026-05-02, session 54)
+## Calendar Status (as of 2026-05-02, session 55)
 
 | Period | Status |
 |--------|--------|
@@ -118,7 +118,9 @@ When running as a cloud/remote session (no local daemon):
 | Feb 14–15 | Skip (Sat/Sun) |
 | **Feb 16–20** | **Drafted ✓** |
 | Feb 21–22 | Skip (Sat/Sun) |
-| Feb 23+ | Needs ideation |
+| **Feb 23–27** | **Drafted ✓** |
+| Feb 28–Mar 1 | Skip (Sat/Sun) |
+| Mar 2+ | Needs ideation |
 
 ## Repos
 
