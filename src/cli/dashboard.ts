@@ -6,7 +6,7 @@ import { randomBytes } from 'crypto';
 
 const IS_WINDOWS = platform() === 'win32';
 
-function parseEnvFile(filePath: string): Record<string, string> {
+export function parseEnvFile(filePath: string): Record<string, string> {
   const result: Record<string, string> = {};
   try {
     for (const line of readFileSync(filePath, 'utf-8').split('\n')) {
