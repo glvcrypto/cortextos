@@ -44,15 +44,11 @@ function makePtyImpl(opts: { output?: string; exitCode?: number } = {}) {
   const { output = 'pty-ok\r\n', exitCode = 0 } = opts;
   return () => {
     let onDataCb: ((d: string) => void) | undefined;
-    let onExitCb: ((a: { exitCode: number }) => void) | undefined;
     return {
       onData: (cb: (d: string) => void) => { onDataCb = cb; },
       onExit: (cb: (a: { exitCode: number }) => void) => {
-        onExitCb = cb;
-        setImmediate(() => {
-          if (output) onDataCb?.(output);
-          onExitCb?.({ exitCode });
-        });
+        if (output) onDataCb?.(output);
+        cb({ exitCode });
       },
     };
   };
@@ -195,7 +191,7 @@ describe('doctorCommand', () => {
       setupExecSync({ 'pm2 --version': new Error('command not found: pm2') });
       await doctorCommand.parseAsync(['node', 'cli']);
       expect(output()).toMatch(/\[WARN\]\s+PM2/);
-      expect(output()).toContain('Fix: npm install -g pm2');
+      expect(output()).toContain('Fix: Install with: npm install -g pm2');
       expect(exitSpy).not.toHaveBeenCalled();
     });
 
