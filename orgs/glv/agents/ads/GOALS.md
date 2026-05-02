@@ -4,16 +4,17 @@
 > To regenerate: `cortextos goals generate-md --agent ads --org glv`
 
 ## Focus
-Fusion Meta ads end-of-campaign report HARD DEADLINE today/Apr 30 — final data pull window; Titan Stage 4 gated on Meta BM+pixel; CPL autoresearch cycle-1 active
+May 2 post-Reyco-cutover state — Fusion Meta ads ENDED Apr 30, post-mortem template ready for 30-min completion when Aiden delivers CSV; Titan Stage 4 still gated on Meta BM+pixel; CPL null-recovery proposal staged with industry proxy baseline + 5 hypotheses pre-loaded.
 
 ## Goals
-1. Surface Fusion data-pull options to boss/Aiden TODAY: (1) wait for Aiden creds → manual pull, (2) Aiden self-pull + paste, (3) post-deadline best-effort archive scrape — last chance before Apr 30 EOD
-2. Titan Tiny Homes Meta BM + pixel setup gated on Aiden Meta account confirm — surface to AM brief
-3. CPL autoresearch cycle-1 closes 2026-04-30T23:57Z — measurement window discipline maintained
-4. Add conversion-tracking-setup as pre-campaign skill (port from life-OS if exists) per scout audit recommendation
+1. Standby for Fusion CSV — when Aiden delivers (queued in his AM brief 9-decision queue, item #5), fire campaign-post-mortem-template.md against data, deliver report to JB within 30 min. All template sections pre-built.
+2. Standby for Titan Stage 4 — Meta BM + pixel access pending Aiden Meta-account confirm. When unlocked, fire Stage 4 setup per existing campaign plan.
+3. CPL null-recovery proposal MAINTAIN-READY — 5 pre-loaded hypotheses (H1-H5) + proxy baseline (Scaledon + Wordstream + Ontario Tier 2 adjustment) at experiments/cpl-null-recovery-proposal.md. When first real campaign launches, fire H1 baseline measurement + cycle-2 framework operating.
+4. Cycle-12 sift contribution candidate (May 2-4 fire window) — surface 'pre-load hypothesis under credential block so first signal validates immediately, not researches from scratch' as cycle-11 May 1 banked observation. Independent surface to analyst per stand-down rule pattern.
+5. Idle-bandwidth use — if any genuinely standalone tactical work surfaces (e.g. weekly Meta ad benchmark scrape for industry proxy update), document at experiments/ for future deployment. Don't manufacture make-work.
 
 ## Bottleneck
-Fusion credential dependency unresolved >48h (boss-routed); Aiden launch-day attention conflicts with Fusion deadline same day
+Two unchanged external gates: Aiden Fusion CSV pull from Meta Ads Manager (item #5 in AM brief queue, 13+ hours pending) + Titan Meta BM/pixel access. Both surface in current AM brief queue — no path forward without Aiden action. Reyco cutover landed today but doesn't unblock ads (Reyco isn't a paid-ads client).
 
 ## Updated
-2026-04-29T12:34:40Z (by boss)
+2026-05-02T19:45:00Z (by boss)

@@ -21,6 +21,7 @@ Read this file on every session start. Full reference: `.claude/skills/guardrail
 |---------|-----------------|-----------------|
 | About to send a broadcast and I asked boss "your call" | "Autonomy rules cover ecosystem scans, I can send now" | STOP. "Your call" = blocking wait for boss reply. Do NOT send in parallel. No autonomy-fallback after N seconds. |
 | Boss has not replied to a routing question | "I'll just proceed, it's within my autonomy" | Wait for the reply. Routing decisions that were explicitly handed to boss are NOT autonomous. |
+| About to route an ecosystem/domain signal to a specialist | "This just surfaced in today's scan, route it" | Check `memory/triaged-signals.json` first. If the signal key is present and resurface_after is in the future: DEDUP SILENTLY. If re-surfacing for a genuine delta (new release, security incident, major version), reframe as "RE-SURFACE — change since prior triage: [delta]". |
 
 ## Specialist Agent Patterns
 

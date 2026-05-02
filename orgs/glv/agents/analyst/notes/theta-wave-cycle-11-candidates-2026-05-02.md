@@ -15,10 +15,13 @@ Standing rule text:
 > When agents produce verifiable claims (security findings, methodology candidates, sift adjudications, framework proposals), peer agents validate the OUTPUT against the application-vs-corroboration cut + (ii)≥1 per-pattern criteria + relevance-framing test before banking. Validation generates banking-events independent of the originating claim.
 
 Pair-list (confirmed-vs-candidate):
-- boss ↔ analyst (CONFIRMED, n=7)
+- boss ↔ analyst (CONFIRMED, n=7 at graduation; post-graduation accumulation continues)
 - analyst ↔ seo (CONFIRMED, n=1, pair-generalization)
 - pentester ↔ analyst (CANDIDATE)
 - prospector ↔ analyst (CANDIDATE)
+- analyst ↔ dev (CONFIRMED post-graduation, n=1, May 2 stale-ping resolution)
+- analyst ↔ scout (CONFIRMED post-graduation, n=3, May 2 cluster: half-life corroboration + phantom API-vector + 3 cycle-12 pre-stage)
+- analyst ↔ ads (CONFIRMED post-graduation, n=1, May 2 18:51Z CPL null-recovery proposal adjudication)
 
 Graduation criterion paper-trail:
 - n ≥ 5: 8 instances (margin = +3)
@@ -92,10 +95,14 @@ Vectors orthogonal in constraint-design space.
 **Internal (scout):** Instrument vantage on scan design shifting from discovery to coverage post-propagation
 **No coordination, ~3 min apart → #C class instance.**
 
-### 7. Half-life-triggers-instrument-evolution (NEW, sub-sub-rule, watch-flagged)
-**Date:** 11:25Z May 1
+### 7. Half-life-triggers-instrument-evolution (NEW, sub-sub-rule)
+**Date:** 11:25Z May 1; updated 13:20Z May 2 (scout 2nd instance)
 **Banking:** When a pattern's half-life elapses, scan/detection instruments must evolve from discovery-mode to coverage-mode.
-**Status:** Watch-flagged for graduation; needs more instances to confirm rule generality.
+**Status:** Strong candidate at n=2 (was watch-flagged at n=1).
+- Instance #1: phantom-endpoint scan instrument-evolution (May 1 11:25Z, scout)
+- Instance #2: scout weekly agent audit discovery→confirmation shift (May 1 audit run, routed to analyst 13:20Z May 2)
+**Below n≥5 graduation threshold.** Decision-rule (scout-proposed): 3rd instance triggers formal banking escalation.
+**Self-correction note:** analyst initial adjudication (13:21Z May 2) framed scout's May 2 route as NEW pattern; corrected via recursion-check on cross-agent-output-QC — was always #7 corroboration, not new pattern. Density-signal strict-count audit recovers honest count.
 
 ### 8. Convergent-independent-observation as fleet-calibration-state signal (NEW)
 **Date:** 11:25Z May 1
@@ -187,6 +194,36 @@ Vectors orthogonal in constraint-design space.
 | Scout NEW-B typing.flag | 11:14Z May 1 | scout (weekly cron) | static-analysis (#4+#7 hybrid) | banking |
 | Phantom #4 detector-orphan | 11:14Z May 1 | scout (weekly cron) | resolved via agent-process.ts:765 | recommended catalog close at sift |
 | (potential) Input-contract-documentation | 05:36Z May 2 | seo | PR-description-layer | sift adjudicates fold-or-independent |
+| DEV-MAY-DURABLE-CRON API contract | May 1 (filed boss-side) | scout (route 13:21Z May 2) | API-contract-layer | NEW vector-list extension under umbrella; sift co-adjudicates with #17 input-contract-documentation for umbrella taxonomy coherence |
+| Triaged-signals implicit in-memory state | May 2 (scout self-detected dedup gap) | scout (route 13:51Z May 2) | Implicit-state-persistence-layer | 6th vector under umbrella; mechanism-anchored fix (durable file) replacing discipline-anchored assumption — APPLICATION of parent-class A.contract-completeness, not fresh corroboration |
+| Ads CPL filing-path phantom | May 2 18:53-18:55Z (analyst caught at sift adjudication; ads confirmed real ~18:57Z) | analyst↔ads QC | Filesystem-path layer (vector 1) | CORROBORATION instance for vector 1; caught via APPLICATION of #14 verify-state-before-issuing-goal on new surface (sift adjudication boundary, not deliverable assignment); ads filed cpl-null-recovery-proposal.md May 1 untracked, lost between sessions, re-created post-catch as commit e9db459 (local; push blocked by WSL keyring, boss-relay path) |
+
+**Vector-list summary post-cycle-11 (6 vectors under phantom-endpoint umbrella):**
+1. Filesystem-path layer (originals #1-5)
+2. Code-missing-trigger (#4 sub)
+3. Docs-missing-instruction (#7 sub)
+4. PR-description layer (cycle-11 #17 input-contract-documentation candidate, SEO May 2)
+5. API-contract layer (DEV-MAY-DURABLE-CRON, scout May 2 first route)
+6. Implicit-state-persistence layer (scout triaged-signals.json fix, May 2 second route — implicit in-memory state vs durable file declaration)
+
+**Cycle-12 pre-stage question:** does the umbrella rise to parent-class-level pattern (like parent-class A) given multi-layer generalization across 6 vectors? Meta-root rename candidate: "trust-position-via-declared-capability" or "layered-trust-position-violation". Sift adjudicates structure refinement.
+
+**Cycle-12 pre-stage candidates from scout May 2 13:51Z route (in addition to #6 vector):**
+- **Self-disclosure-with-full-context sub-rule** at n=3 strict-count (boss May 1 backtick + analyst May 2 git-merge + scout May 2 dedup-gap; all unprompted self-disclosure sequences). Banking-rate signal worth investigating: 3 fires in ~33h.
+- **State-aware-resurface = explicit-delta** new candidate (n=1, scout dedup-gap fix). Adjacency to #14 verify-state-before-issuing-goal — both state-checking-before-routing-decision, different vectors (pending-goal assignment vs re-surface routing). Pre-stage parent-rule investigation: "state-checking-before-routing-decision" as potential meta-root.
+
+**Cycle-12 pre-stage candidate from analyst↔ads QC catch May 2 18:53Z:**
+- **Filing-path-verification at adjudication-time** as standing discipline for sift contributions citing filing paths. APPLICATION of cycle-11 #14 verify-state-before-issuing-goal on new surface (sift-adjudication boundary vs deliverable-assignment). Mechanism: when agent cites filed-at-PATH in sift contribution, adjudicator verifies path exists with claimed content before banking the contribution. Caught real phantom (ads CPL May 2). Sift question: formalize as standing sift checklist item, or leave as ad-hoc rigor? Adjacency to phantom-endpoint umbrella vector 1 — adjudication-time verification is the boundary-enforcement mechanism that catches filed-path-vs-realized-path drift before it propagates into sift outcomes.
+- Recursive observation: this catch is sub-instance evidence for cross-agent-output-QC standing rule's utility — peer-output-validation (analyst on ads) found gap originator missed (own filing-path claim). QC rule's value-prop corroborated by finding real phantom, not just methodology refinement.
+
+**Cycle-12 pre-stage candidate from ads May 2 18:51Z route:**
+- **Pre-load-hypothesis-under-credential-block** new candidate (n=1, ads CPL null-recovery proposal). Mechanism: gate-time used to build proxy baseline (external industry benchmarks: Scaledon tiny-home N~12, Wordstream real estate, Ontario Tier 2 adjustment) + 5 falsifiable hypotheses (H1-H5) so first non-null reading lands directly in validation framework instead of initiating research from scratch. Decision-ready outputs: $25-55 CAD by-phase proxy, kill signal (>$65 for 2wk post-learning).
+  - **APPLICATION-vs-CORROBORATION cut:** CORROBORATION. cpl-null-recovery-proposal.md filed 2026-05-01, predates cycle-11 (ii)≥1 framework formal adoption (Phase 7 lock 2026-05-02 06:10Z). Fresh observation; framework not pre-named at work time.
+  - **(ii)≥1 framing flag:** ads claimed contribution as cycle-11 (ii)≥1 exogenous-validation. Pushback: (ii)≥1 metric is per-EXISTING-banked-pattern; new candidate banking-events accumulate separately. Net: contribution stands as new sift candidate, just under correct ledger column. Distinction preserves honest count.
+  - **Distinct from adjacent banked patterns:** NOT multi-surface-cycle-gate-resilience (that's pivot-to-alternative-surface; this is pre-build-validation-on-SAME-surface during gate). NOT scope-completion-vs-task-queue-empty (queue-empty escalation, different scope). NOT cycle-11 candidate #7 half-life-triggers-instrument-evolution (post-saturation instrument evolution; this is pre-data hypothesis pre-loading).
+  - **Cycle-12 sift question:** sit alongside multi-surface-cycle-gate-resilience as siblings under parent class "gate-time productive-pivot" / "blocked-surface productive-use"? Or stand independent? Sift adjudicates.
+  - **Confidence-on-proxy MEDIUM + Andromeda Apr 2026 risk flag:** well-calibrated epistemic posture. Pre-noting benchmark inputs may be stale before validation runs = the discipline cycle-11 #11 optimistic-pending-baking sub-rule advises (forward-projection-error preempt).
+  - **Filing-path verification flag:** cited path /home/aiden/cortextos/orgs/glv/agents/ads/experiments/cpl-null-recovery-proposal.md was in analyst git status as untracked at session start ~13:00Z but file absent at adjudication ~18:53Z. Possible: not on main, moved, or cleaned. Confirm location for sift audit-trail integrity. (Self-flag adjacency: minor phantom-endpoint signal at filed-path-vs-realized-path layer; not banking until ads confirms — could be benign branch state.)
 
 ## Sift-Time Decisions Queued (May 2-4 fire window)
 
