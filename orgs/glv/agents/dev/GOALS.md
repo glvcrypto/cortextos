@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-01 (heartbeat audit — upstream sync file analysis)_
+_Last updated: 2026-05-02 (added PRs #69–#78 — test coverage sprint complete)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -49,6 +49,16 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #78 | test(dashboard): maskToken + normalizeFsPath + parseSkillMd coverage — 14 cases | Exports 3 pure helpers from dashboard actions. 14/14 pass. Build clean. |
+| #77 | test(cli,dashboard): commandExists + categorizeFilePath coverage — 13 cases | SAFE_CMD regex (2) + commandExists (6, injectable spawnSync+isWindows) + categorizeFilePath (5-branch watcher classifier). 13/13 pass. Build clean. |
+| #76 | test(hooks): sendCompactNotification + buildPermissionMessage coverage — 14 cases | Exports sendCompactNotification(env, fetch?) + buildPermissionMessage(agentName, toolName, summary). 14/14 pass. Build clean. |
+| #75 | test(cli): list-agents + get-config + goals coverage — 25 cases | list-agents (8) + get-config (8, fixes CTX_ORG/CTX_AGENT_NAME env leakage) + goals (9, path-traversal guard). 25/25 pass. Build clean. |
+| #74 | test(pty): AgentPTY coverage — 18 cases | Pre-spawn state (5) + getBinaryName (1) + buildClaudeArgs (12). vi.mock node-pty. 18/18 pass. Build clean. |
+| #73 | test(cli): tunnel config helpers coverage — 8 cases | getTunnelConfigPath (2) + readTunnelConfig (3) + writeTunnelConfig (3). 8/8 pass. Build clean. |
+| #72 | test(cli,hooks): workers + notify-agent + idle-flag coverage — 17 cases | spawn/terminate/list/inject-worker IPC paths (9) + notify-agent routing (4) + writeIdleFlag (4). 17/17 pass. Build clean. |
+| #71 | test(cli): parseEnvFile + fixSpawnHelper coverage — 19 cases | parseEnvFile (10, dashboard.ts) + fixSpawnHelper (9, install.ts). 19/19 pass. Build clean. |
+| #70 | test(cli): uninstall command coverage — 15 cases | Early-exit (3) + full uninstall (3) + --keep-state (4) + PM2 cleanup (5). 15/15 pass. Build clean. |
+| #69 | test(cli): doctor command coverage — 28 cases | [OK]/[WARN]/[FAIL] output (7) + PM2/Claude CLI/PTY/gh/state-dir checks + --instance option. 28/28 pass. Build clean. |
 | #68 | test(dashboard): api routes batch 12 — knowledge/search alias + SSE guard paths (10 cases) | 3 files, 10/10 pass. GET /api/knowledge/search (2) + GET /api/events/stream (3) + GET /api/messages/stream/[agent] (5). Completes non-auth API route coverage sprint. vitest.config.ts: restore @api-media-route + add @api-messages-stream-route. 679 pass + 1 pre-existing. Build clean. |
 | #67 | test(dashboard): api routes batch 11 — kb/search + messages/upload + media (21 cases) | 3 files, 21/21 pass. GET /api/kb/search (9) + POST /api/messages/upload (7) + GET /api/media/[...filepath] (5). vitest.config.ts: @api-media-route alias for bracket-dir import. 690 pass full suite + 1 pre-existing. Build clean. |
 | #66 | test(dashboard): api routes batch 10 — lifecycle + comms/channel + comms/upload + kb (30 cases) | 4 files, 30/30 pass. POST+DELETE /api/agents/[name]/lifecycle (13) + GET /api/comms/channel/[pair] (7) + POST /api/comms/upload (5) + GET /api/kb/collections (5). 699 pass full suite + 1 pre-existing. Build clean. |
