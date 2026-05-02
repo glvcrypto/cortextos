@@ -13,9 +13,10 @@
 
 import { loadEnv } from './index.js';
 
-async function main(): Promise<void> {
-  const env = loadEnv();
-
+export async function sendCompactNotification(
+  env: { botToken?: string; chatId?: string; agentName?: string },
+  _fetch: typeof globalThis.fetch = globalThis.fetch,
+): Promise<void> {
   if (!env.botToken || !env.chatId) return;
 
   const agentName = env.agentName || 'agent';
@@ -25,7 +26,7 @@ async function main(): Promise<void> {
 
   try {
     const url = `https://api.telegram.org/bot${env.botToken}/sendMessage`;
-    await fetch(url, {
+    await _fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -39,6 +40,11 @@ async function main(): Promise<void> {
   } finally {
     clearTimeout(timer);
   }
+}
+
+async function main(): Promise<void> {
+  const env = loadEnv();
+  await sendCompactNotification(env);
 }
 
 main().catch(() => process.exit(0));
