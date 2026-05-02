@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-02 (added PRs #69–#78 — test coverage sprint complete)_
+_Last updated: 2026-05-02 (added PRs #69–#78 test sprint + reyco-marine #126/#127/#128 completions)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -138,6 +138,9 @@ These PRs are complete and tested. Waiting for merge approval.
 
 ## Completed (Recent)
 
+- reyco-marine PR #128 (merged 2026-05-02) — fix(carousel): hide empty carousel sections site-wide; sha `586a873a`
+- reyco-marine PR #127 (merged 2026-05-02) — fix(homepage): product spotlight Princecraft placeholder → Vectra 21 + footer Reyco logo inline style; sha `493ba68d`
+- reyco-marine PR #126 (merged 2026-05-02) — fix(footer): GLV logo oversized — replaced uncompiled Tailwind h-[108px] with inline style; sha `2d453a0`
 - reyco-marine PR #124 (merged 2026-05-01) — feat(seo): WC products JSON export for SEO audit; squash-merged `cada21d`
 - reyco-marine PRs #121/#122/#123 (merged 2026-04-30) — hero images auto-merged under Reyco policy
 - soosackers PR #6 (opened 2026-04-30) — fix(seo): Teams breadcrumb missing item URL + SchedulePage JSON-LD; needs Aiden review
