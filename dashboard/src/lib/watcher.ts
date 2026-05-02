@@ -51,7 +51,7 @@ function getWatchPaths(): string[] {
 // File change handler
 // ---------------------------------------------------------------------------
 
-function categorizeFilePath(filePath: string): SSEEvent['type'] {
+export function categorizeFilePath(filePath: string): SSEEvent['type'] {
   if (filePath.includes('/tasks/')) return 'task';
   if (filePath.includes('/approvals/')) return 'approval';
   if (filePath.includes('/heartbeat.json')) return 'heartbeat';
