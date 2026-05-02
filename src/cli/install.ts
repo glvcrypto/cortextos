@@ -384,7 +384,7 @@ export const installCommand = new Command('install')
  * which causes posix_spawnp to fail on macOS/Linux.
  * Scans all prebuild directories and ensures spawn-helper is executable.
  */
-function fixSpawnHelper(projectRoot: string): boolean {
+export function fixSpawnHelper(projectRoot: string): boolean {
   const prebuildsDir = join(projectRoot, 'node_modules', 'node-pty', 'prebuilds');
   const buildRelease = join(projectRoot, 'node_modules', 'node-pty', 'build', 'Release');
   let fixed = false;
