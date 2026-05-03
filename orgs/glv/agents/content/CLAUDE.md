@@ -43,7 +43,7 @@ When running as a cloud/remote session (no local daemon):
 - Long-term memory: `orgs/glv/agents/content/MEMORY.md` — update when patterns or decisions are locked
 - Memory + draft commits go directly to main (low-risk content files)
 
-## Current Blockers (standing as of 2026-05-03, session 56 — 33 open)
+## Current Blockers (standing as of 2026-05-03, session 57 — 35 open)
 
 1. **PIPEDA flags A–E** → Apr 26 post locked
 2. **[CLIENT NAME] swap** (7+ drafts) → Aiden to confirm "Reyco" is OK to name publicly
@@ -54,8 +54,10 @@ When running as a cloud/remote session (no local daemon):
 7. **Jun 12** → legal review (G1–G3) needed
 8. **Jun 15** → proposals experiment data from Aiden
 9. **Jun 17 Slide 6** → price ranges from Aiden before scheduling
-32. **DENTAL CTA** (Mar 2) → new this session; Aiden to confirm automation or manual DM
-33. **INVENTORY CTA** (Mar 5) → new this session; Aiden to confirm automation or manual DM
+32. **DENTAL CTA** (Mar 2) → Aiden to confirm automation or manual DM
+33. **INVENTORY CTA** (Mar 5) → Aiden to confirm automation or manual DM
+34. **GYM CTA** (Mar 9) → new this session; Aiden to confirm automation or manual DM
+35. **AUTOREPAIR CTA** (Mar 12) → new this session; Aiden to confirm automation or manual DM
 
 ## Calendar Status (as of 2026-05-03, session 56)
 
@@ -124,7 +126,9 @@ When running as a cloud/remote session (no local daemon):
 | Feb 28–Mar 1 | Skip (Sat/Sun) |
 | **Mar 2–6** | **Drafted ✓** |
 | Mar 7–8 | Skip (Sat/Sun) |
-| Mar 9+ | Needs ideation |
+| **Mar 9–13** | **Drafted ✓** |
+| Mar 14–15 | Skip (Sat/Sun) |
+| Mar 16+ | Needs ideation |
 
 ## Repos
 
