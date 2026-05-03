@@ -1,21 +1,21 @@
 {
-  "id": "exp_1777646980_othgh",
+  "id": "exp_1777768046_php8g",
   "agent": "dev",
   "metric": "deploy_reliability",
-  "hypothesis": "PHP syntax errors and layout structure regressions are now gated by prior keeps. The remaining unaddressed failure class is WP runtime errors: undefined functions, missing hooks, and PHP fatals that WP renders as styled error pages. These PASS the current structural marker check (header/footer/main/nav are still present in WP's critical-error template) while signaling a broken deploy. Adding a body error-string scan on all 6 smoke URLs will catch: 'Fatal error', 'Parse error', 'There has been a critical error', 'Call to undefined', 'Call to a member function', 'class not found'. Basis: the 7 failures on 2026-04-22 were runtime class (seeding failures, undefined method calls, WP hook issues) — php -l missed them; structural marker check also misses them since WP error pages render layout. This is the explicit next-candidate gap noted in the current surface. Both prior gate-layers were surgical one-class fixes that kept at 100%; this follows the same pattern for the next identified class.",
+  "hypothesis": "The current gate stack (php -l, structural markers, expanded URLs, WP runtime scan) covers syntax, layout regressions, template breadth, and PHP runtime errors. The unaddressed failure class entering May 2026 is PHP version incompatibility: deprecated/removed PHP 7.4→8.x patterns that php -l does not flag (e.g. named argument syntax conflicts, deprecated dynamic properties, removed each()/create_function(), nullable-return edge cases, string interpolation changes). SiteGround drops PHP 7.4 on May 20, 2026 — any file with 8.x-breaking patterns will hard-fail after the upgrade. A grep-based PHP 8.x compatibility scan run on all changed .php files before push will catch introduced 8.x-breaking patterns during the migration window. Patterns to gate: `each(`, `create_function(`, `(real)`, `${`, old-style ctors (`function ClassName(`), and PHP 8.0 named-argument collisions. This is surgical: targets exactly the failure class that emerges when the host upgrades mid-sprint.",
   "surface": "experiments/surfaces/deploy-reliability/current.md",
   "direction": "higher",
   "window": "48h",
   "measurement": "",
   "status": "running",
-  "baseline_value": 0,
+  "baseline_value": 100,
   "result_value": null,
   "decision": null,
   "learning": "",
   "experiment_commit": null,
   "tracking_commit": null,
-  "created_at": "2026-05-01T14:49:40Z",
-  "started_at": "2026-05-01T14:50:11Z",
+  "created_at": "2026-05-03T00:27:26Z",
+  "started_at": "2026-05-03T00:27:26Z",
   "completed_at": null,
-  "changes_description": "Added WP runtime error body scan (step 4) to the pre-push checklist. Scans all 6 SMOKE_URLS for 7 error string patterns: 'Fatal error', 'Parse error', 'There has been a critical error', 'Call to undefined', 'Call to a member function', 'class not found', 'wp-die'. Inserted between structural marker check (step 3) and HTTP smoke test (step 5). Surface title updated. Known gaps section updated to reflect current state."
+  "changes_description": "Added PHP 8.x compatibility grep gate (step 4.5) to the pre-push checklist. Runs on all changed .php files. Blocks push if any file contains PHP 7.4-removed/deprecated patterns: each(, create_function(, (real), ${ string interpolation, old-style constructors (function ClassName with no visibility), ereg/eregi/split. Inserted between WP runtime error body scan (step 4) and HTTP smoke test (step 5). Surface title updated. Known gaps section updated."
 }

@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-02 (added PRs #69–#78 test sprint + reyco-marine #126/#127/#128 completions)_
+_Last updated: 2026-05-03 (exp_othgh KEEP + PHP 8.x gate experiment started; PHP 7.4 migration task added to Priority 2)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -117,6 +117,12 @@ These PRs are complete and tested. Waiting for merge approval.
 
 ### Reyco Marine
 
+- **⚠️ PHP 7.4 → 8.x migration — DEADLINE May 20, 2026 (17 days)** — SiteGround drops PHP 7.4 support site-wide. Reyco Marine custom theme must be PHP 8.x-compatible before then.
+  - Files to audit: `functions.php`, `header.php`, `footer.php`, `single-product.php`, `service-detail.php`, `inc/class-resend-mailer.php`, `front-page.php`, `subcategory-section.php`
+  - Key patterns to check: `each(`, `create_function(`, `(real)` cast, old-style constructors, `${` string interpolation, `ereg`/`split`
+  - Recommended action: run PHPCompatibility scan on dev machine checkout + test staging against PHP 8.1
+  - Requires: reyco-marine checkout (not available in cloud sessions — local agent must run)
+  - Experiment `exp_1777768046_php8g` adds a PHP 8.x grep gate to the pre-push checklist as a running experiment (48h, started 2026-05-03T00:27Z)
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
 - **Visual regression CI** — design doc on branch `feat/playwright-visual-regression-design`. Awaiting user ACK on 4 open questions (Git LFS, fixture DB, threshold, block vs warn).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
