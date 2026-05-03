@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-03 (exp_othgh KEEP + PHP 8.x gate experiment started; PHP 7.4 migration task added to Priority 2)_
+_Last updated: 2026-05-03 (exp_othgh KEEP + PHP 8.x gate experiment started; PHP 7.4 migration task added to Priority 2; cloud grep scan complete — master branch clean)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -120,8 +120,9 @@ These PRs are complete and tested. Waiting for merge approval.
 - **⚠️ PHP 7.4 → 8.x migration — DEADLINE May 20, 2026 (17 days)** — SiteGround drops PHP 7.4 support site-wide. Reyco Marine custom theme must be PHP 8.x-compatible before then.
   - Files to audit: `functions.php`, `header.php`, `footer.php`, `single-product.php`, `service-detail.php`, `inc/class-resend-mailer.php`, `front-page.php`, `subcategory-section.php`
   - Key patterns to check: `each(`, `create_function(`, `(real)` cast, old-style constructors, `${` string interpolation, `ereg`/`split`
-  - Recommended action: run PHPCompatibility scan on dev machine checkout + test staging against PHP 8.1
-  - Requires: reyco-marine checkout (not available in cloud sessions — local agent must run)
+  - **✅ Cloud grep scan (2026-05-03 ~08:00 UTC)**: GitHub code search across master branch — zero hits on all critical PHP 7.4→8.x removed/deprecated patterns: `each(`, `create_function(`, `(real)`, `ereg`/`split(`, `${` interpolation, `mysql_*`, old-style constructors, `function match` keyword conflict. Master branch is clean on grep-level checks. `Reyco_Resend_Mailer` (PR #130) not yet on master — verify when merged.
+  - Recommended action: run full PHPCompatibility PHPCS scan on dev machine checkout + test staging against PHP 8.1 for behavioral-change coverage (null coercion, match keyword, dynamic properties). Cloud grep scan reduces risk but doesn't substitute for full tool scan.
+  - Requires: reyco-marine checkout for full scan (not available in cloud sessions — local agent must run before May 10)
   - Experiment `exp_1777768046_php8g` adds a PHP 8.x grep gate to the pre-push checklist as a running experiment (48h, started 2026-05-03T00:27Z)
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
 - **Visual regression CI** — design doc on branch `feat/playwright-visual-regression-design`. Awaiting user ACK on 4 open questions (Git LFS, fixture DB, threshold, block vs warn).
