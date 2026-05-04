@@ -126,7 +126,7 @@ These PRs are complete and tested. Waiting for merge approval.
   - Experiment `exp_1777768046_php8g` — **DECIDED: KEEP** (2026-05-04T20:18Z). Zero PHP deploys in 48h window; gate correct; master branch clean. Closed.
   - Experiment `exp_1777925922_phpc` — **RUNNING** (started 2026-05-04T20:18Z, closes 2026-05-06T20:18Z). PHPCompatibility PHPCS gate targeting behavioral PHP 8.x changes. **⚠️ PENDING LOCAL IMPLEMENTATION** — local agent must `composer global require phpcompatibility/php-compatibility` + add step 4.75 to pre-push checklist **before May 10**.
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
-- **Visual regression CI** — design doc on branch `feat/playwright-visual-regression-design`. Awaiting user ACK on 4 open questions (Git LFS, fixture DB, threshold, block vs warn).
+- **Visual regression CI** — PR #75 closed 2026-05-04 (no Playwright CI planned at this time).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
 
 ### WC Pricing Sweep
@@ -146,6 +146,15 @@ These PRs are complete and tested. Waiting for merge approval.
 
 ## Completed (Recent)
 
+- reyco-marine PR #134 (merged 2026-05-04) — fix(home): adventure-tabs grid cols 5→4 after snow hide
+- reyco-marine PR #133 (merged 2026-05-04) — fix(visibility): hide snow equipment carousels + megamenu (no scope yet)
+- reyco-marine PR #132 (merged 2026-05-04) — fix(nav): megamenu hover = orange box over white text + bump font 2pt
+- reyco-marine PR #131 (merged 2026-05-04) — fix(nav): megamenu dropdowns blue+white+orange hover
+- reyco-marine PR #130 (merged 2026-05-04) — feat(forms): Resend SMTP relay (all wp_mail() calls); needs `REYCO_RESEND_API_KEY` in wp-config.php + reycomarine.com domain verified in Resend to go live
+- reyco-marine PR #129 (merged 2026-05-04) — fix(nav): bold weight + orange underline hover on desktop nav
+- reyco-marine PR #125 (merged 2026-05-04) — feat(seo): admin-trigger batch write handler for meta descriptions + image alt
+- reyco-marine PR #75 (closed 2026-05-04) — docs(ci): Playwright visual regression design doc (no CI planned)
+- reyco-marine PR #25 (closed 2026-05-04) — feat(email): Resend scaffold (superseded by #130)
 - reyco-marine PR #128 (merged 2026-05-02) — fix(carousel): hide empty carousel sections site-wide; sha `586a873a`
 - reyco-marine PR #127 (merged 2026-05-02) — fix(homepage): product spotlight Princecraft placeholder → Vectra 21 + footer Reyco logo inline style; sha `493ba68d`
 - reyco-marine PR #126 (merged 2026-05-02) — fix(footer): GLV logo oversized — replaced uncompiled Tailwind h-[108px] with inline style; sha `2d453a0`
