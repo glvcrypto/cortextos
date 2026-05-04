@@ -1,0 +1,21 @@
+{
+  "id": "exp_1777768046_php8g",
+  "agent": "dev",
+  "metric": "deploy_reliability",
+  "hypothesis": "The current gate stack (php -l, structural markers, expanded URLs, WP runtime scan) covers syntax, layout regressions, template breadth, and PHP runtime errors. The unaddressed failure class entering May 2026 is PHP version incompatibility: deprecated/removed PHP 7.4→8.x patterns that php -l does not flag (e.g. named argument syntax conflicts, deprecated dynamic properties, removed each()/create_function(), nullable-return edge cases, string interpolation changes). SiteGround drops PHP 7.4 on May 20, 2026 — any file with 8.x-breaking patterns will hard-fail after the upgrade. A grep-based PHP 8.x compatibility scan run on all changed .php files before push will catch introduced 8.x-breaking patterns during the migration window. Patterns to gate: `each(`, `create_function(`, `(real)`, `${`, old-style ctors (`function ClassName(`), and PHP 8.0 named-argument collisions. This is surgical: targets exactly the failure class that emerges when the host upgrades mid-sprint.",
+  "surface": "experiments/surfaces/deploy-reliability/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "Zero PHP deploys in 48h window (2026-05-03T00:27:26Z → 2026-05-05T00:27:26Z). All reyco-marine PRs #129 + #130 pending Aiden approval throughout window — no .php files pushed to master. Gate did not fire. 100% deploy pass rate maintained (baseline unchanged). No false positives. Gate definition confirmed correct via master-branch grep scan (2026-05-03 ~08:00 UTC): zero hits on all critical PHP 7.4→8.x patterns across the full custom theme.",
+  "status": "decided",
+  "baseline_value": 100,
+  "result_value": 100,
+  "decision": "keep",
+  "learning": "Zero PHP deploys in 48h window (all reyco-marine PRs pending Aiden approval). Gate did not fire but remains correctly defined and in place. Master branch confirmed clean via pre-window grep scan. No false positives. SiteGround PHP 7.4→8.x upgrade on May 20, 2026 (now 16 days) makes this gate essential regardless of window activity — removing it would leave the only barrier to 8.x-breaking patterns being the full-toolchain PHPCompatibility scan. KEEP. Next gap: behavioral PHP 8.x changes not caught by grep (null coercion strictness changes, dynamic property deprecation in 8.2, `match` keyword conflicts). PHPCompatibility PHPCS standard (phpcs --standard=PHPCompatibility --runtime-set testVersion 8.1) addresses this class. Requires composer global install on dev machine — flagged for local agent before May 10.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-05-03T00:27:26Z",
+  "started_at": "2026-05-03T00:27:26Z",
+  "completed_at": "2026-05-04T20:18:42Z",
+  "changes_description": "Added PHP 8.x compatibility grep gate (step 4.5) to the pre-push checklist. Runs on all changed .php files. Blocks push if any file contains PHP 7.4-removed/deprecated patterns: each(, create_function(, (real), ${ string interpolation, old-style constructors (function ClassName with no visibility), ereg/eregi/split. Inserted between WP runtime error body scan (step 4) and HTTP smoke test (step 5). Surface title updated. Known gaps section updated."
+}

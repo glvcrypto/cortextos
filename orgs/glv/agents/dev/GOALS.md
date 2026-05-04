@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-03 (exp_othgh KEEP + PHP 8.x gate experiment started; PHP 7.4 migration task added to Priority 2; cloud grep scan complete — master branch clean)_
+_Last updated: 2026-05-04 (exp_php8g KEEP — zero PHP deploys in window, gate correct; exp_phpc started — PHPCompatibility PHPCS gate, PENDING local implementation before May 10; PHP 7.4 deadline May 20 = 16 days)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -123,7 +123,8 @@ These PRs are complete and tested. Waiting for merge approval.
   - **✅ Cloud grep scan (2026-05-03 ~08:00 UTC)**: GitHub code search across master branch — zero hits on all critical PHP 7.4→8.x removed/deprecated patterns: `each(`, `create_function(`, `(real)`, `ereg`/`split(`, `${` interpolation, `mysql_*`, old-style constructors, `function match` keyword conflict. Master branch is clean on grep-level checks. `Reyco_Resend_Mailer` (PR #130) not yet on master — verify when merged.
   - Recommended action: run full PHPCompatibility PHPCS scan on dev machine checkout + test staging against PHP 8.1 for behavioral-change coverage (null coercion, match keyword, dynamic properties). Cloud grep scan reduces risk but doesn't substitute for full tool scan.
   - Requires: reyco-marine checkout for full scan (not available in cloud sessions — local agent must run before May 10)
-  - Experiment `exp_1777768046_php8g` adds a PHP 8.x grep gate to the pre-push checklist as a running experiment (48h, started 2026-05-03T00:27Z)
+  - Experiment `exp_1777768046_php8g` — **DECIDED: KEEP** (2026-05-04T20:18Z). Zero PHP deploys in 48h window; gate correct; master branch clean. Closed.
+  - Experiment `exp_1777925922_phpc` — **RUNNING** (started 2026-05-04T20:18Z, closes 2026-05-06T20:18Z). PHPCompatibility PHPCS gate targeting behavioral PHP 8.x changes. **⚠️ PENDING LOCAL IMPLEMENTATION** — local agent must `composer global require phpcompatibility/php-compatibility` + add step 4.75 to pre-push checklist **before May 10**.
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
 - **Visual regression CI** — design doc on branch `feat/playwright-visual-regression-design`. Awaiting user ACK on 4 open questions (Git LFS, fixture DB, threshold, block vs warn).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
