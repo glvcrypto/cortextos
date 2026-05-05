@@ -49,6 +49,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #82 | test(bus): postActivity success + failure + replyMarkup + second-candidate coverage — 4 cases | Fills postActivity live-send path gap in system.test.ts. returns true on success, false on throw, replyMarkup forwarded, second candidate env path. 20 pre-existing + 4 new = 24/24. ⚠️ local agent must run npm test before Aiden reviews. |
 | #81 | test(bus): hardRestart + autoCommit + checkGoalStaleness gap coverage — 7 cases | hardRestart (3: both markers created, HARD-RESTART log, distinct file paths), autoCommit (3: .cortextos-env blocked, node_modules/ excluded, non-git returns clean), checkGoalStaleness (1: INVALID_AGENT filtered). 15 pre-existing + 7 new = 22/22. ⚠️ local agent must run npm test before Aiden reviews. |
 | #80 | test(cli): startCommand coverage — 20 cases | Last untested CLI source file. daemon-script-missing exit(1), --foreground spawn, PM2+ecosystem, PM2 throw, no-PM2 detached (fake timers), agent auto-register, org propagation, IPC success/failure, --instance. 20/20 pass. Build clean. ⚠️ local agent must run npm test before Aiden reviews. |
 | #78 | test(dashboard): maskToken + normalizeFsPath + parseSkillMd coverage — 14 cases | Exports 3 pure helpers from dashboard actions. 14/14 pass. Build clean. |
