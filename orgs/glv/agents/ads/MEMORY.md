@@ -94,6 +94,30 @@ Key implication: "give us a URL and a budget" is now a real client pitch, not a 
 New metric tracking users who spend 10+ seconds on site after clicking an ad — no pixel required.
 More meaningful quality signal than raw CTR. Watch this over CTR for any future TikTok campaigns.
 
+## Platform Updates (from scout 2026-05-05 — verified findings)
+
+### Meta CTR Attribution Overhaul (Q1 2026) — CRITICAL FOR BENCHMARKS
+Meta now counts only real link clicks (not reactions/comments/shares) in CTR metrics.
+**Impact:** Historical CTR baselines drop ~15-30% on apples-to-apples comparison.
+**Action:** Revise all CTR kill-signal thresholds downward by 15-30% before Stage 4 Titan launch. Old target ≥1.0-1.5% CTR → new realistic target ≥0.7-1.1% CTR. Do not kill ads based on pre-Q1-2026 CTR benchmarks.
+
+### Meta "Sponsored" → "Ad" Label (Q1 2026)
+All placements now show "Ad" instead of "Sponsored." Minor visual shift — note for creative design review.
+
+### Meta UGC Content Preference (Q1 2026)
+Creator-filmed, unpolished content getting preferential organic distribution. Phone-shot, direct-to-camera outperforms produced assets in CPM.
+**Action:** Confirms Joey UGC-first creative strategy for Titan. No change needed — direction validated.
+
+### "Maximize Interactions" New Objective
+Replaces "Post Engagement." Optimizes for comments/shares, not likes. Not relevant for lead gen campaigns.
+
+### GA4 Native Meta + TikTok Cost Import (Q1 2026)
+GA4 now natively imports Meta and TikTok cost data — no manual CSVs or third-party connectors needed.
+**Action:** Enable when Titan pixel goes live for unified ROAS view without manual exports.
+
+### TikTok Search Ads (keyword-targeted)
+New surface for product-intent queries. Low priority — no current TikTok clients.
+
 ## Platform Updates (from scout 2026-05-01 — UNVERIFIED, secondary sources only)
 
 ### Google AI Max Copy Restrictions (unverified — almcorp.com aggregator)

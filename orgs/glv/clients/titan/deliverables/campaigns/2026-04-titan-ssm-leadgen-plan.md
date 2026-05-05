@@ -133,22 +133,24 @@ Full creative bundle in: `orgs/glv/clients/titan/deliverables/campaigns/2026-04-
 | Metric | Conservative | Target | Strong |
 |--------|-------------|--------|--------|
 | Leads | 10 | 17 | 22 |
-| CPL | $50 | $30 | $23 |
-| CTR | 0.8% | 1.5% | 2.5% |
+| CPL | $70 | $50 | $40 |
+| CTR | 0.6% | 1.0% | 1.8% |
 | Lead form CVR | 5% | 8% | 12% |
 | Impressions | 15,000 | 28,000 | 45,000 |
 | Frequency | < 2.5 | < 2.0 | < 1.5 |
 
 *Month 1 is data collection, not scale. CPL will be higher weeks 1–2 as algorithm learns. Do not kill campaigns in the first 7 days based on CPL alone.*
 
+*CTR targets revised May 2026: Meta attribution change (Q1 2026) now counts only real link clicks, not reactions/comments/shares — reduces reported CTR ~15-30% vs historical baselines. CPL targets revised upward based on SuperAds.ai Canada-specific data (Dec 2025 endpoint ~$87 CAD real estate). See experiments/ontario-tier2-meta-benchmarks-2025-2026.md.*
+
 ### Month 2+ (Post-Learning)
 
 | Metric | Target |
 |--------|--------|
-| CPL | $25–35 CAD |
-| Leads/month | 15–22 |
-| Quote requests (20% of leads) | 3–4/month |
-| Cost per qualified opportunity | $125–165 CAD |
+| CPL | $40–70 CAD |
+| Leads/month | 10–20 |
+| Quote requests (20% of leads) | 2–4/month |
+| Cost per qualified opportunity | $175–250 CAD |
 
 ---
 
@@ -156,7 +158,7 @@ Full creative bundle in: `orgs/glv/clients/titan/deliverables/campaigns/2026-04-
 
 ### Kill a specific ad:
 - After $40 spend AND 0 leads, OR
-- After 7 days with CTR consistently below 0.8%
+- After 7 days with CTR consistently below 0.6% *(revised from 0.8% — Meta Q1 2026 attribution change counts real link clicks only)*
 
 ### Kill Ad Set B (Downsizer):
 - After $100 spend AND CPL is 25%+ higher than Ad Set A
@@ -167,8 +169,8 @@ Full creative bundle in: `orgs/glv/clients/titan/deliverables/campaigns/2026-04-
 - Audience settings
 
 ### Scale a budget:
-- After 3 consecutive days with CPL below $28 CAD: increase daily budget by 20%
-- After 30 days with CPL below $30 AND leads > 15/month: increase to $700/mo
+- After 3 consecutive days with CPL below $45 CAD: increase daily budget by 20% *(revised from $28 — Canada-specific benchmark update)*
+- After 30 days with CPL below $50 AND leads > 10/month: increase to $700/mo *(revised from $30/15)*
 
 ### Graduate to Ontario-wide + retargeting (Phase 2):
 - After 100 cumulative lead form completions (sufficient for lookalike seed)
