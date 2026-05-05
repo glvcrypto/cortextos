@@ -8,7 +8,7 @@ import { MessageDedup, injectMessage } from '../pty/inject.js';
 import { ensureDir } from '../utils/atomic.js';
 import { writeCortextosEnv } from '../utils/env.js';
 import { getOverdueReminders } from '../bus/reminders.js';
-import { readCronState, parseDurationMs } from '../bus/cron-state.js';
+import { readCronState, updateCronFire, parseDurationMs } from '../bus/cron-state.js';
 import { resolvePaths } from '../utils/paths.js';
 
 type LogFn = (msg: string) => void;
@@ -721,6 +721,7 @@ export class AgentProcess {
    * Fire-and-forget: errors are logged but never propagated.
    */
   scheduleGapDetection(): void {
+    if (this.config.runtime === 'hermes') return;
     const crons = this.config.crons;
     if (!crons || crons.length === 0) return;
 
@@ -729,6 +730,20 @@ export class AgentProcess {
       c => c.type !== 'once' && c.type !== 'disabled' && c.interval && !isNaN(parseDurationMs(c.interval)),
     );
     if (monitorable.length === 0) return;
+
+    // Seed cron-state.json with last_fire = now for any cron that has no existing
+    // record. This prevents the detector from false-positiving on cold starts:
+    // without a seed, the fallback is loopStartedAt (a static in-memory value)
+    // which produces identical gap readings for all crons and never improves
+    // across restarts until an agent actually calls update-cron-fire.
+    const stateDir = join(this.env.ctxRoot, 'state', this.name);
+    const existingState = readCronState(stateDir);
+    for (const cron of monitorable) {
+      const hasRecord = existingState.crons.some(r => r.name === cron.name);
+      if (!hasRecord) {
+        updateCronFire(stateDir, cron.name, cron.interval);
+      }
+    }
 
     const generation = this.lifecycleGeneration;
     const loopStartedAt = Date.now();
