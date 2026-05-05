@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-04 (exp_php8g KEEP — zero PHP deploys in window, gate correct; exp_phpc started — PHPCompatibility PHPCS gate, PENDING local implementation before May 10; PHP 7.4 deadline May 20 = 16 days)_
+_Last updated: 2026-05-05 (PR #83 opened — chore(ci): Node 20→22 LTS, June 2 deadline; WC 10.7 HPOS scan clean; exp_phpc RUNNING closes 2026-05-06T20:18Z; PHP 7.4 deadline May 20 = 15 days)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -49,6 +49,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #83 | chore(ci): bump Node.js 20 → 22 LTS across all CI jobs | Single-file change (.github/workflows/ci.yml). Node 20 EOL Apr 2026; GitHub Actions forces Node 24 default June 2 (28 days). No src changes — CI verifies on merge. |
 | #82 | test(bus): postActivity success + failure + replyMarkup + second-candidate coverage — 4 cases | Fills postActivity live-send path gap in system.test.ts. returns true on success, false on throw, replyMarkup forwarded, second candidate env path. 20 pre-existing + 4 new = 24/24. ⚠️ local agent must run npm test before Aiden reviews. |
 | #81 | test(bus): hardRestart + autoCommit + checkGoalStaleness gap coverage — 7 cases | hardRestart (3: both markers created, HARD-RESTART log, distinct file paths), autoCommit (3: .cortextos-env blocked, node_modules/ excluded, non-git returns clean), checkGoalStaleness (1: INVALID_AGENT filtered). 15 pre-existing + 7 new = 22/22. ⚠️ local agent must run npm test before Aiden reviews. |
 | #80 | test(cli): startCommand coverage — 20 cases | Last untested CLI source file. daemon-script-missing exit(1), --foreground spawn, PM2+ecosystem, PM2 throw, no-PM2 detached (fake timers), agent auto-register, org propagation, IPC success/failure, --instance. 20/20 pass. Build clean. ⚠️ local agent must run npm test before Aiden reviews. |
@@ -126,6 +127,7 @@ These PRs are complete and tested. Waiting for merge approval.
   - **✅ Cloud grep scan (2026-05-03 ~08:00 UTC)**: GitHub code search across master branch — zero hits on all critical PHP 7.4→8.x removed/deprecated patterns: `each(`, `create_function(`, `(real)`, `ereg`/`split(`, `${` interpolation, `mysql_*`, old-style constructors, `function match` keyword conflict. Master branch is clean on grep-level checks. `Reyco_Resend_Mailer` (PR #130) not yet on master — verify when merged.
   - Recommended action: run full PHPCompatibility PHPCS scan on dev machine checkout + test staging against PHP 8.1 for behavioral-change coverage (null coercion, match keyword, dynamic properties). Cloud grep scan reduces risk but doesn't substitute for full tool scan.
   - Requires: reyco-marine checkout for full scan (not available in cloud sessions — local agent must run before May 10)
+- **WC 10.7 HPOS audit** — cloud GitHub code search (2026-05-05): zero hits on `wp_postmeta`, `get_post_meta`, `update_post_meta`, `get_posts`, and WC REST v1/v2/v3 across master branch. Theme is a display layer only — no custom order-management code. Low HPOS risk. Recommend local agent run `WP_DEBUG=true` smoke test after WC 10.7 upgrade to catch any runtime surprises.
   - Experiment `exp_1777768046_php8g` — **DECIDED: KEEP** (2026-05-04T20:18Z). Zero PHP deploys in 48h window; gate correct; master branch clean. Closed.
   - Experiment `exp_1777925922_phpc` — **RUNNING** (started 2026-05-04T20:18Z, closes 2026-05-06T20:18Z). PHPCompatibility PHPCS gate targeting behavioral PHP 8.x changes. **⚠️ PENDING LOCAL IMPLEMENTATION** — local agent must `composer global require phpcompatibility/php-compatibility` + add step 4.75 to pre-push checklist **before May 10**.
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
