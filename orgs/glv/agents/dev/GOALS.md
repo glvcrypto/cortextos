@@ -49,6 +49,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
+| #80 | test(cli): startCommand coverage — 20 cases | Last untested CLI source file. daemon-script-missing exit(1), --foreground spawn, PM2+ecosystem, PM2 throw, no-PM2 detached (fake timers), agent auto-register, org propagation, IPC success/failure, --instance. 20/20 pass. Build clean. ⚠️ local agent must run npm test before Aiden reviews. |
 | #78 | test(dashboard): maskToken + normalizeFsPath + parseSkillMd coverage — 14 cases | Exports 3 pure helpers from dashboard actions. 14/14 pass. Build clean. |
 | #77 | test(cli,dashboard): commandExists + categorizeFilePath coverage — 13 cases | SAFE_CMD regex (2) + commandExists (6, injectable spawnSync+isWindows) + categorizeFilePath (5-branch watcher classifier). 13/13 pass. Build clean. |
 | #76 | test(hooks): sendCompactNotification + buildPermissionMessage coverage — 14 cases | Exports sendCompactNotification(env, fetch?) + buildPermissionMessage(agentName, toolName, summary). 14/14 pass. Build clean. |
