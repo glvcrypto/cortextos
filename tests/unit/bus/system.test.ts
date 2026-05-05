@@ -1,9 +1,10 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mkdtempSync, rmSync, existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
 import { execSync } from 'child_process';
 import { selfRestart, autoCommit, checkGoalStaleness, postActivity } from '../../../src/bus/system';
+import { TelegramAPI } from '../../../src/telegram/api';
 import type { BusPaths } from '../../../src/types';
 
 function makePaths(testDir: string, agent: string = 'test-agent'): BusPaths {
@@ -265,6 +266,58 @@ describe('Bus System', () => {
 
       const result = await postActivity(orgDir, testDir, 'myorg', 'hello');
       expect(result).toBe(false);
+    });
+
+    describe('Telegram send paths', () => {
+      let orgDir: string;
+
+      beforeEach(() => {
+        orgDir = join(testDir, 'orgdir-send');
+        mkdirSync(orgDir, { recursive: true });
+        writeFileSync(
+          join(orgDir, 'activity-channel.env'),
+          'ACTIVITY_BOT_TOKEN=bot123\nACTIVITY_CHAT_ID=456\n',
+        );
+      });
+
+      afterEach(() => {
+        vi.restoreAllMocks();
+      });
+
+      it('returns true when sendMessage succeeds', async () => {
+        vi.spyOn(TelegramAPI.prototype, 'sendMessage').mockResolvedValue(undefined as any);
+        const result = await postActivity(orgDir, testDir, 'myorg', 'hello');
+        expect(result).toBe(true);
+      });
+
+      it('returns false when sendMessage throws', async () => {
+        vi.spyOn(TelegramAPI.prototype, 'sendMessage').mockRejectedValue(new Error('network'));
+        const result = await postActivity(orgDir, testDir, 'myorg', 'hello');
+        expect(result).toBe(false);
+      });
+
+      it('passes replyMarkup to sendMessage', async () => {
+        const mockSend = vi.spyOn(TelegramAPI.prototype, 'sendMessage').mockResolvedValue(undefined as any);
+        const keyboard = { inline_keyboard: [[{ text: 'OK', callback_data: 'ok' }]] };
+        await postActivity(orgDir, testDir, 'myorg', 'msg', keyboard);
+        expect(mockSend).toHaveBeenCalledWith('456', 'msg', keyboard);
+      });
+
+      it('finds env via second candidate (ctxRoot/orgs/org path)', async () => {
+        const altOrgDir = join(testDir, 'orgs', 'myorg');
+        mkdirSync(altOrgDir, { recursive: true });
+        writeFileSync(
+          join(altOrgDir, 'activity-channel.env'),
+          'ACTIVITY_BOT_TOKEN=bot789\nACTIVITY_CHAT_ID=999\n',
+        );
+        const emptyOrgDir = join(testDir, 'empty-orgdir');
+        mkdirSync(emptyOrgDir, { recursive: true });
+
+        const mockSend = vi.spyOn(TelegramAPI.prototype, 'sendMessage').mockResolvedValue(undefined as any);
+        const result = await postActivity(emptyOrgDir, testDir, 'myorg', 'hello');
+        expect(result).toBe(true);
+        expect(mockSend).toHaveBeenCalledWith('999', 'hello', undefined);
+      });
     });
   });
 });
