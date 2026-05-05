@@ -4,17 +4,17 @@
 > To regenerate: `cortextos goals generate-md --agent seo --org glv`
 
 ## Focus
-May 1 nighttime mode — execute: (a) R19+ page audit batches against the 587-URL list (own pace, no Aiden-gate), (b) Tier 1 audit when products-export.json deploys (fire-and-report), (c) Person schema map polish to ready-to-deploy state — DO NOT deploy until domain cuts over, (d) backlog tactical work (Fusion title-fix gating freshness re-verify, Titan retainer-gated polish, Soo Sackers post-breadcrumb-deploy verify when PR #6 lands)
+May 4 Reyco Wed-launch sprint — A1/A2 batches gate-blocked on Aiden A/B disposition (path A: Aiden manual upload via PR #125 admin handler, path B: boss WP-CLI direct write). PR #125 deployed clean to prod 18:49Z May 4 (seo-meta-tools.php verified). 196 desc + 160 alt CSVs ready. When Aiden replies, fire same heartbeat.
 
 ## Goals
-1. R19+ page-by-page audit — continue against the urls.csv 587-URL list. Standalone work, no external gates. Target 50-100 pages overnight. Surface systemic findings as single dev tickets when >50% of a batch hits same issue (existing pattern).
-2. Tier 1 WC products audit — when reyco-marine PR #124 (admin-trigger product JSON export) deploys + JSON file lands on production filesystem, fire `python3 tools/product-json-audit.py <path>` for 60-sec turnaround. Output severity-ranked findings CSV + summary MD. Note: PR #124 is OPEN but NOT YET DEPLOYED (verified via SSH). Standby until deploy.
-3. Person schema map → ready-to-deploy state — finalize the staff schema stubs for the 6 Person blocks (Casey/Aaron/Lynn/Ron/Kory/Lee/Damian roster per memory). Stage as deploy-ready files. DO NOT push to production until domain cutover lands. Casey bio data still gated 8+ days.
-4. Backlog tactical: (a) Fusion GSC queue — RE-VERIFY freshness on the 4 generic-title-blocked blog URLs once their fix is dispatched (don't submit until titles are unique). (b) Titan cannibalization — already filed and retainer-gated, no further work. (c) Soo Sackers — when PR #6 deploys, run gsc-verify-protocol.md (already staged).
-5. Cross-agent escalation reflex — Goal 5 from prior cycle. Continue surfacing >48h gates as systemic blocks. Casey + Charlene 8+ day silence already escalated to boss this cycle.
+1. PRIMARY — when Aiden picks path A or B: fire A1 batch (133 product rank_math_description writes) + A2 batch (165 non-Echo product alt-text writes) immediately. Report counts back to boss. ETA 5-10 min once unblocked.
+2. Post-launch SEO retainer activation prep: GSC verification on reycomarine.com, baseline-rankings-snapshot pull (was waiting on May 1 cutover anchor — domain now live so anchor-pull is now possible). Coordinate with Aiden to fetch GSC CSV for 28-day baseline.
+3. Person schema deploy-readiness — staff stubs for 6 Person blocks (Casey/Aaron/Lynn/Ron/Kory/Lee/Damian) staged. Casey/Charlene 6+ days silent on bio data; deploy whenever they reply OR Aiden authorizes the 'generic placeholder' fallback.
+4. Princecraft category reorg coordination — boss is shipping (or has shipped) PR #135 (empty-tab filter) + planning PR for Princecraft tab reorg (Sport+Platinum → Fishing Boats / Pontoons / Deck Boats). When that lands, re-audit Princecraft + sister brand pages for rank_math meta + alt text completeness on the renamed tabs.
+5. Backlog tactical: (a) Soo Sackers post-PR #6 verify (gsc-verify-protocol.md staged); (b) Fusion title-fix RE-verify on the 4 generic-title-blocked blog URLs; (c) Titan retainer-gated polish.
 
 ## Bottleneck
-PR #124 (products-export.json) auto-merge + GHA deploy state UNKNOWN — boss's GITHUB_TOKEN still 401 in WSL post-Aiden-refresh (daemon needs restart to inherit), so PR state can only be checked via Aiden Windows-side. Casey/Charlene 8+ day silence blocking schema markup + tag mapping v4. Reyco domain cutover still pending DealerSpike.
+Aiden A/B decision on SEO batch upload (CSVs verified clean, PR #125 admin handler live, both paths ready to fire). 4h+ pending. Casey/Charlene 6+ day silence on Person schema bio data still blocking E-E-A-T strongest play.
 
 ## Updated
-2026-05-01T03:38:00Z (by boss)
+2026-05-04T19:25:00Z (by boss)

@@ -7,15 +7,15 @@
   "direction": "higher",
   "window": "24h",
   "measurement": "",
-  "status": "proposed",
-  "baseline_value": 0,
-  "result_value": null,
-  "decision": null,
-  "learning": "",
+  "status": "completed",
+  "baseline_value": 8,
+  "result_value": 8,
+  "decision": "keep",
+  "learning": "Cycle-11 KEEP at 8/10. Ceiling-break: cross-agent-output-QC graduated to standing rule (n=8), (ii)>=1 per-banked-pattern adopted framework-level, Phase 5 external research no-defer, substantive Phase 6 boss exchange. Validation since: cycle-12 produced 25 sub-instances epistemic-discipline-ledger family + cross-agent rule transfer fired correctly catching mechanism-conflation #20 and #24 within session. Token-cap May 3 interrupted decision-write.",
   "experiment_commit": null,
   "tracking_commit": null,
   "created_at": "2026-05-02T06:09:25Z",
-  "started_at": null,
-  "completed_at": null,
-  "changes_description": null
+  "started_at": "2026-05-05T04:33:32Z",
+  "completed_at": "2026-05-05T04:33:32Z",
+  "changes_description": "cycle-11 fired 2026-05-02 05:48Z, work performed and conceptually closed during session, decision-write delayed to 2026-05-05 02:40Z post-token-cap-recovery"
 }

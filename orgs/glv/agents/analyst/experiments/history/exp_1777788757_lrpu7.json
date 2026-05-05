@@ -7,15 +7,15 @@
   "direction": "higher",
   "window": "24h",
   "measurement": "",
-  "status": "proposed",
-  "baseline_value": 0,
-  "result_value": null,
-  "decision": null,
-  "learning": "",
+  "status": "completed",
+  "baseline_value": 7,
+  "result_value": 7,
+  "decision": "keep",
+  "learning": "Cycle-12 KEEP at 7/10. Produced 25 sub-instances of epistemic-discipline-ledger family with parent-class graduation (boundary-enforced mechanism > convention-enforced discipline fired 4x success-mode). Mechanism-conflation catches (#20 APPLICATION-vs-CORROBORATION, #24 rule-internalization-vs-auto-firing) demonstrated meta-rule recursion-check. Cron-fire-tracking-divergence parent class graduated (operator-experience-gap, n=5+ structural fleet-wide 1/291 SKILL coverage). 7 not 8: META-layer refinement vs cycle-11 first-order graduation; sift batch unfired; AM bundle adjudication delayed by token-cap.",
   "experiment_commit": null,
   "tracking_commit": null,
   "created_at": "2026-05-03T06:12:37Z",
-  "started_at": null,
-  "completed_at": null,
-  "changes_description": null
+  "started_at": "2026-05-05T04:33:47Z",
+  "completed_at": "2026-05-05T04:33:47Z",
+  "changes_description": "cycle-12 fired 2026-05-03 06:12Z, work performed and conceptually closed in May 3 session, decision-write delayed by token-cap event ~16:00Z May 3"
 }

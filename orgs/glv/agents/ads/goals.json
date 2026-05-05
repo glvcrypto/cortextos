@@ -1,13 +1,13 @@
 {
-  "focus": "May 2 post-Reyco-cutover state — Fusion Meta ads ENDED Apr 30, post-mortem template ready for 30-min completion when Aiden delivers CSV; Titan Stage 4 still gated on Meta BM+pixel; CPL null-recovery proposal staged with industry proxy baseline + 5 hypotheses pre-loaded.",
+  "focus": "May 5 — Reyco Wed launch in ~24h. Ads gates UNCHANGED for 6+ days: Titan Meta BM + pixel (Aiden Meta-account confirm pending) + Fusion CSV pull (Meta Ads Manager export, ads ended Apr 30, post-mortem template ready for 30-min completion when CSV lands). Sift batch ~16:50Z May 3 result not received in inbox — analyst session may have been disrupted by token-cap event May 3 16:00Z; check via direct file read at experiments/active.json + history/ rather than inbox-only.",
   "goals": [
-    "Standby for Fusion CSV — when Aiden delivers (queued in his AM brief 9-decision queue, item #5), fire campaign-post-mortem-template.md against data, deliver report to JB within 30 min. All template sections pre-built.",
-    "Standby for Titan Stage 4 — Meta BM + pixel access pending Aiden Meta-account confirm. When unlocked, fire Stage 4 setup per existing campaign plan.",
-    "CPL null-recovery proposal MAINTAIN-READY — 5 pre-loaded hypotheses (H1-H5) + proxy baseline (Scaledon + Wordstream + Ontario Tier 2 adjustment) at experiments/cpl-null-recovery-proposal.md. When first real campaign launches, fire H1 baseline measurement + cycle-2 framework operating.",
-    "Cycle-12 sift contribution candidate (May 2-4 fire window) — surface 'pre-load hypothesis under credential block so first signal validates immediately, not researches from scratch' as cycle-11 May 1 banked observation. Independent surface to analyst per stand-down rule pattern.",
-    "Idle-bandwidth use — if any genuinely standalone tactical work surfaces (e.g. weekly Meta ad benchmark scrape for industry proxy update), document at experiments/ for future deployment. Don't manufacture make-work."
+    "HOLD POSTURE — both gates client-side, neither moveable from ads side. Standby for Aiden inbox dispatch when (a) Fusion CSV lands or (b) Titan Meta BM unlocks. CPL null-recovery proposal stays MAINTAIN-READY (5 hypotheses + proxy baseline pre-staged at experiments/cpl-null-recovery-proposal.md).",
+    "Fusion final report — when Aiden delivers CSV, fire campaign-post-mortem-template.md, deliver to JB within 30 min. All template sections pre-built. Currently 5+ days overdue from Apr 30 ad-end.",
+    "Titan Stage 4 setup — when Meta BM + pixel access lands, fire Stage 4 per existing campaign plan.",
+    "Cycle-12 sift result lookup — read analyst experiments/active.json + history/ directly to verify Sift batch fire status (don't rely on inbox-only). May reveal experiment-state-lookup banking from May 3 cycle-12 finding.",
+    "Idle-bandwidth use — weekly Meta ad benchmark scrape for Ontario tier-2 industry proxy refresh (independent of Aiden gates). Document new findings at experiments/ for future deployment. Don't manufacture make-work."
   ],
-  "bottleneck": "Two unchanged external gates: Aiden Fusion CSV pull from Meta Ads Manager (item #5 in AM brief queue, 13+ hours pending) + Titan Meta BM/pixel access. Both surface in current AM brief queue — no path forward without Aiden action. Reyco cutover landed today but doesn't unblock ads (Reyco isn't a paid-ads client).",
-  "updated_at": "2026-05-02T19:45:00Z",
+  "bottleneck": "Same external gates 6 days running: Aiden Fusion CSV pull from Meta Ads Manager (queued in his AM brief but token-cap + Reyco Wed-launch crunch absorbed his bandwidth) + Titan Meta BM/pixel. Reyco-Wed-launch (May 6) is his current priority — ads work likely deferred until post-launch.",
+  "updated_at": "2026-05-05T00:30:00Z",
   "updated_by": "boss"
 }

@@ -29,31 +29,31 @@
       "name": "nightly-metrics",
       "type": "recurring",
       "interval": "24h",
-      "prompt": "Run nightly metrics collection: cortextos bus collect-metrics. Review the output and report any anomalies via Telegram to the orchestrator."
+      "prompt": "FIRST: cortextos bus update-cron-fire nightly-metrics --interval 24h. THEN: Run nightly metrics collection: cortextos bus collect-metrics. Review the output and report any anomalies via Telegram to the orchestrator."
     },
     {
       "name": "auto-commit",
       "type": "recurring",
       "interval": "24h",
-      "prompt": "Read .claude/skills/local-version-control/SKILL.md and execute the daily version control workflow. Stage, review, and commit changes."
+      "prompt": "FIRST: cortextos bus update-cron-fire auto-commit --interval 24h. THEN: Read .claude/skills/local-version-control/SKILL.md and execute the daily version control workflow. Stage, review, and commit changes."
     },
     {
       "name": "check-upstream",
       "type": "recurring",
       "interval": "24h",
-      "prompt": "Read .claude/skills/upstream-sync/SKILL.md and execute the upstream sync workflow. Check for framework updates and report to the orchestrator."
+      "prompt": "FIRST: cortextos bus update-cron-fire check-upstream --interval 24h. THEN: Read .claude/skills/upstream-sync/SKILL.md and execute the upstream sync workflow. Check for framework updates and report to the orchestrator."
     },
     {
       "name": "catalog-browse",
       "type": "recurring",
       "interval": "7d",
-      "prompt": "Read .claude/skills/catalog-browse/SKILL.md and execute the catalog browse workflow. Check for new community skills and recommend useful ones."
+      "prompt": "FIRST: cortextos bus update-cron-fire catalog-browse --interval 7d. THEN: Read .claude/skills/catalog-browse/SKILL.md and execute the catalog browse workflow. Check for new community skills and recommend useful ones."
     },
     {
       "name": "theta-wave",
       "type": "recurring",
       "cron": "33 1 * * *",
-      "prompt": "Read .claude/skills/theta-wave/SKILL.md. Initiate the theta wave cycle. First action: message the orchestrator that theta wave is starting and share your initial system scan."
+      "prompt": "FIRST: cortextos bus update-cron-fire theta-wave --interval 24h. THEN: Read .claude/skills/theta-wave/SKILL.md. Initiate the theta wave cycle. First action: message the orchestrator that theta wave is starting and share your initial system scan."
     }
   ],
   "ecosystem": {
