@@ -3,7 +3,7 @@ import { mkdtempSync, rmSync, existsSync, readFileSync, mkdirSync, writeFileSync
 import { join } from 'path';
 import { tmpdir } from 'os';
 import { execSync } from 'child_process';
-import { selfRestart, autoCommit, checkGoalStaleness, postActivity } from '../../../src/bus/system';
+import { selfRestart, hardRestart, autoCommit, checkGoalStaleness, postActivity } from '../../../src/bus/system';
 import type { BusPaths } from '../../../src/types';
 
 function makePaths(testDir: string, agent: string = 'test-agent'): BusPaths {
@@ -58,6 +58,49 @@ describe('Bus System', () => {
       const logPath = join(paths.logDir, 'restarts.log');
       const logContent = readFileSync(logPath, 'utf-8');
       expect(logContent).toContain('SELF-RESTART: no reason specified');
+    });
+  });
+
+  describe('hardRestart', () => {
+    it('creates .force-fresh and .restart-planned markers and appends to restarts.log', () => {
+      const paths = makePaths(testDir);
+      hardRestart(paths, 'test-agent', 'fresh session needed');
+
+      const freshMarker = join(paths.stateDir, '.force-fresh');
+      expect(existsSync(freshMarker)).toBe(true);
+      expect(readFileSync(freshMarker, 'utf-8').trim()).toBe('fresh session needed');
+
+      const restartMarker = join(paths.stateDir, '.restart-planned');
+      expect(existsSync(restartMarker)).toBe(true);
+      expect(readFileSync(restartMarker, 'utf-8').trim()).toBe('fresh session needed');
+
+      const logPath = join(paths.logDir, 'restarts.log');
+      expect(existsSync(logPath)).toBe(true);
+      const logContent = readFileSync(logPath, 'utf-8');
+      expect(logContent).toContain('HARD-RESTART: fresh session needed');
+      expect(logContent).toMatch(/\[\d{4}-\d{2}-\d{2}T/);
+    });
+
+    it('uses default reason when none provided', () => {
+      const paths = makePaths(testDir);
+      hardRestart(paths, 'test-agent');
+
+      const logContent = readFileSync(join(paths.logDir, 'restarts.log'), 'utf-8');
+      expect(logContent).toContain('HARD-RESTART: no reason specified');
+
+      const freshContent = readFileSync(join(paths.stateDir, '.force-fresh'), 'utf-8');
+      expect(freshContent.trim()).toBe('no reason specified');
+    });
+
+    it('.force-fresh and .restart-planned are distinct files both present', () => {
+      const paths = makePaths(testDir);
+      hardRestart(paths, 'test-agent', 'test');
+
+      const freshPath = join(paths.stateDir, '.force-fresh');
+      const restartPath = join(paths.stateDir, '.restart-planned');
+      expect(freshPath).not.toBe(restartPath);
+      expect(existsSync(freshPath)).toBe(true);
+      expect(existsSync(restartPath)).toBe(true);
     });
   });
 
@@ -154,6 +197,37 @@ describe('Bus System', () => {
       expect(report.status).toBe('nothing_to_stage');
       expect(report.blocked.length).toBeGreaterThan(0);
     });
+
+    it('filters out .cortextos-env file', () => {
+      writeFileSync(join(gitDir, '.cortextos-env'), 'CTX_BOT_TOKEN=abc');
+      writeFileSync(join(gitDir, 'safe.md'), 'safe content');
+
+      const report = autoCommit(gitDir, true);
+      expect(report.blocked.some(b => b.includes('.cortextos-env') && b.includes('runtime_env'))).toBe(true);
+      expect(report.staged).toContain('safe.md');
+    });
+
+    it('filters out files in excluded directories', () => {
+      mkdirSync(join(gitDir, 'node_modules', 'somepkg'), { recursive: true });
+      writeFileSync(join(gitDir, 'node_modules', 'somepkg', 'index.js'), 'module.exports=1');
+      writeFileSync(join(gitDir, 'safe.md'), 'safe');
+
+      const report = autoCommit(gitDir, true);
+      expect(report.blocked.some(b => b.startsWith('node_modules/'))).toBe(true);
+      expect(report.staged).toContain('safe.md');
+    });
+
+    it('returns clean for non-git directory', () => {
+      const nonGitDir = mkdtempSync(join(tmpdir(), 'not-a-git-'));
+      try {
+        const report = autoCommit(nonGitDir);
+        expect(report.status).toBe('clean');
+        expect(report.staged).toEqual([]);
+        expect(report.blocked).toEqual([]);
+      } finally {
+        rmSync(nonGitDir, { recursive: true, force: true });
+      }
+    });
   });
 
   describe('checkGoalStaleness', () => {
@@ -235,6 +309,21 @@ describe('Bus System', () => {
 
       const report = checkGoalStaleness(testDir);
       expect(report.summary.total).toBe(2);
+    });
+
+    it('skips agent directories with invalid names (uppercase, spaces)', () => {
+      const validDir = join(testDir, 'orgs', 'myorg', 'agents', 'valid-agent');
+      const invalidDir = join(testDir, 'orgs', 'myorg', 'agents', 'INVALID_AGENT');
+      mkdirSync(validDir, { recursive: true });
+      mkdirSync(invalidDir, { recursive: true });
+
+      const date = new Date().toISOString();
+      writeFileSync(join(validDir, 'GOALS.md'), `# Goals\n\n## Updated\n${date}\n`);
+      writeFileSync(join(invalidDir, 'GOALS.md'), `# Goals\n\n## Updated\n${date}\n`);
+
+      const report = checkGoalStaleness(testDir);
+      expect(report.summary.total).toBe(1);
+      expect(report.agents[0].agent).toBe('valid-agent');
     });
   });
 
