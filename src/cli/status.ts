@@ -48,7 +48,7 @@ export const statusCommand = new Command('status')
           const hb: Heartbeat = JSON.parse(readFileSync(hbPath, 'utf-8'));
           const ts = hb.last_heartbeat || hb.timestamp || new Date().toISOString();
           const age = Math.floor((Date.now() - new Date(ts).getTime()) / 1000);
-          const ageStr = age < 60 ? `${age}s ago` : age < 3600 ? `${Math.floor(age / 60)}m ago` : `${Math.floor(age / 3600)}h ago`;
+          const ageStr = formatHeartbeatAge(age);
           rows.push({
             agent: hb.agent || agent,
             status: hb.status || 'unknown',
@@ -79,6 +79,12 @@ export const statusCommand = new Command('status')
     }
   });
 
+export function formatHeartbeatAge(seconds: number): string {
+  if (seconds < 60) return `${seconds}s ago`;
+  if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+  return `${Math.floor(seconds / 3600)}h ago`;
+}
+
 function displayStatuses(statuses: AgentStatus[]): void {
   if (statuses.length === 0) {
     console.log('No agents running.');
@@ -106,7 +112,7 @@ function displayStatuses(statuses: AgentStatus[]): void {
   console.log('');
 }
 
-function formatUptime(seconds: number): string {
+export function formatUptime(seconds: number): string {
   if (seconds < 60) return `${seconds}s`;
   if (seconds < 3600) return `${Math.floor(seconds / 60)}m`;
   if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ${Math.floor((seconds % 3600) / 60)}m`;
