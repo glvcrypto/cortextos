@@ -1,6 +1,6 @@
 # CPL Null-Recovery Proposal: Proxy Baseline for Titan Tiny Homes
 **Prepared by:** GLV Marketing (ads agent)
-**Date:** 2026-05-01
+**Date:** 2026-05-01 | **Revised:** 2026-05-05
 **Purpose:** Provide a defensible CPL hypothesis pre-loaded for when Titan launches, so cycle-1 null can be contextualized against public industry benchmarks rather than declared meaningless.
 
 ---
@@ -19,11 +19,12 @@ This document builds a proxy baseline from public industry data so when cycle-2 
 
 | Source | Vertical | CPL range (CAD est.) | Notes |
 |--------|----------|----------------------|-------|
-| Wordstream (2025 Meta benchmarks) | Real estate | $15–$45 USD → ~$20–$60 CAD | Broadest category; includes luxury + commercial |
-| Adamigo.ai (2025 Meta Canada) | Home builder / contractor | $35–$75 CAD | Closest SIC match; construction + custom builds |
-| Scaledon (2025) | Tiny home / alternative housing | $28–$55 CAD | Small sample (N~12 campaigns); most directly comparable |
+| **SuperAds.ai (2025, $3B+ data)** | **Real estate Canada** | **$87 CAD (Dec 2025 endpoint)** | **Best Canada-specific dataset; annual avg inflated by Aug 2025 outlier — use Dec endpoint** |
+| Wordstream (2025 Meta benchmarks) | Real estate global | ~$23 CAD (~$17 USD) | US-weighted; understates Canadian CPL significantly |
+| Adamigo.ai (2025 Meta Canada) | Home builder / contractor | $48–$90 CAD | Updated for May 2026 FX (~1.38x); closest SIC match |
+| Scaledon (2025) | Tiny home / alternative housing | $28–$55 CAD | Small sample (N~12); most directly comparable vertical |
 | Oh Good Growth (2024–2025) | Real estate leads Canada | $30–$65 CAD | Ontario-focused; Tier 2 cities outperform on CPL |
-| Internal analog: Fusion Financial (Apr 2026) | Financial services | ~$45–$80 CAD est. | Different vertical; lower intent product; directional only |
+| Internal analog: Fusion Financial (Apr 2026) | Financial services | ~$45–$80 CAD est. | Different vertical; directional only |
 
 ### Derived proxy range
 
@@ -34,14 +35,16 @@ Given:
 - Budget $500/mo ($16.67/day) — thin learning signal; CPL will run high weeks 1–2
 - Andromeda broad targeting (Ontario-wide) — gives algorithm maximum audience to find buyers
 
-**Proxy CPL benchmark: $30–$55 CAD (learning phase); $25–$40 CAD (post-learning)**
+**Proxy CPL benchmark (REVISED 2026-05-05): $55–$90 CAD (learning phase); $40–$70 CAD (post-learning)**
+
+Prior proxy ($25–$40) was based on pre-Andromeda US-weighted benchmarks. Canada-specific SuperAds.ai data (Dec 2025 endpoint $87 CAD) and updated FX-adjusted Adamigo data revise this materially upward. Tiny home vertical may run below real estate average due to strong creative hook + lead form pre-fill, but $25–$40 is no longer defensible as the baseline.
 
 | Phase | CPL range | Interpretation |
 |-------|-----------|----------------|
-| Week 1–2 (learning) | $40–$80 | Expected; do NOT optimize |
-| Month 1 exit target | $30–$55 | Acceptable; hold settings |
-| Steady-state target | $25–$40 | Strong; scale eligible |
-| Kill signal | > $65 for 2 weeks post-learning | Structural problem — creative or audience |
+| Week 1–2 (learning) | $55–$120 | Expected; do NOT optimize |
+| Month 1 exit target | $50–$90 | Acceptable; hold settings |
+| Steady-state target | $40–$70 | Strong; scale eligible |
+| Kill signal | > $90 for 2 weeks post-learning | Structural problem — creative or audience |
 
 ---
 
