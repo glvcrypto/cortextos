@@ -649,3 +649,24 @@ Word counts (rough):
 | 5 | 5 | 9 (up to 13) | (this batch) | 2026-05-06 |
 
 **Cumulative: 23 pages / 86-90 product entries shipped via series-showcase template.**
+
+---
+
+## Plumb delta (boss msg 1778085161686, plumb commit f5349f9 / PR #187)
+
+Boss plumbed batch-5 to reyco-marine theme. Production state on the live site differs from the deliverable in one place. Recording for future content-audit consistency.
+
+**WC product IDs assigned at plumb:**
+- cordless-mowers DLM-2100 → product_id 353
+- cordless-mowers DLM-2100SP → product_id 354
+- cordless-trimmers DSRM-2100 → product_id 359
+- cordless-chainsaws DCS-5000 (rear-handle) → product_id 233
+- cordless-chainsaws DCS-2500T (top-handle) → product_id 351
+- cordless-blowers DPB-2500 → product_id 357
+
+**SKU substitution on cordless-chainsaws page:**
+Deliverable specified DCS-2100C (rear-handle, 16in) as the single anchor. That SKU does not exist in Reyco WC inventory. Boss substituted the actual Reyco-stocked rear-handle eForce chainsaw, **DCS-5000 (18in bar)**, and added **DCS-2500T (16in top-handle, product_id 351)** as second anchor since it is also stocked. Plumbed page is therefore 2 entries instead of the deliverable's 1, with bar-length spec corrected to 18in on the rear-handle row of the comparison table.
+
+**Net entry count post-plumb: 6 on cordless-chainsaws — boss reports cumulative 88+ entries shipped across 5 batches** (up from the deliverable's pre-plumb count of 9 batch-5 entries / 86 cumulative).
+
+**Working-process note for future Echo eForce SKU specs:** my SKU specs are tentative until WC-verified at plumb time. Stock-flag in QC checklist is the correct workflow. Boss caught the gap cleanly via `wp post list`. For the next eForce batch (or any catalog with brand-fresh SKUs not yet known to web-copy), default to flagging the SKU rather than asserting it.
