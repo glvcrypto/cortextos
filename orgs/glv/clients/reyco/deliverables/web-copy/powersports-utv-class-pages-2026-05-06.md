@@ -16,7 +16,7 @@
 - Reyco founded 2022. Present-tense framing only. NO founding-year claims, no Reyco-tenure claims.
 - Casey owner-voice. NO "Talk to Casey" / "Call Casey" / "ask Casey" CTA copy. NO inline Casey quotes.
 - 11-brand authorised list: Mercury, Princecraft, Minn Kota, Humminbird, Cannon, Cub Cadet, Toro, Echo, Hisun, E-Z-GO, R&J Machine
-- Staff: Casey (sales floor), Aaron (co-owner / service), Lee / Damian / Cody (techs), Lynn / Ron (parts), Kory (sales). Aaron + service techs handle UTV trail-prep / break-in / warranty (the powersports analogue of marine-side commissioning).
+- Staff: Casey (sales floor / owner-voice), Aaron (co-owner / service), Lee / Damian / Cody (techs), Lynn / Ron (parts). Aaron + service techs handle UTV trail-prep / break-in / warranty (the powersports analogue of marine-side commissioning). Kory no longer at Reyco — must not appear anywhere on site.
 
 **SKU verification status (per banked working-process rule):**
 - All 11 supplied product_ids treated as boss-VERIFIED via WP-CLI live inventory query at dispatch time. Specs assertable in body copy.
@@ -64,14 +64,14 @@ return [
 
     'experts' => [
         'title' => 'Who you talk to here',
-        'body'  => '<p>Casey and Kory work the floor on sport-vs-utility-vs-crew (the right Hisun depends on what you actually want to do with it). Aaron owns the powersports-service side and the techs (Lee, Damian, Cody) handle trail-prep, break-in, and post-sale warranty. Lynn and Ron at the parts counter stock Hisun consumables (filters, plugs, oil, tires, common wear parts).</p>',
+        'body'  => '<p>Casey works the floor on sport-vs-utility-vs-crew (the right Hisun depends on what you actually want to do with it). Aaron owns the powersports-service side and the techs (Lee, Damian, Cody) handle trail-prep, break-in, and post-sale warranty. Lynn and Ron at the parts counter stock Hisun consumables (filters, plugs, oil, tires, common wear parts).</p>',
     ],
 
     'subcategories' => [
-        ['label' => 'Sport',   'anchor' => '#products'],
-        ['label' => 'Utility', 'href'   => '/powersports/utility/'],
-        ['label' => 'Crew',    'href'   => '/powersports/crew/'],
-        ['label' => 'Youth',   'href'   => '/powersports/youth/'],
+        ['label' => 'Sport'],
+        ['label' => 'Utility'],
+        ['label' => 'Crew'],
+        ['label' => 'Youth'],
     ],
 
     'series_models' => [
@@ -151,7 +151,7 @@ return [
     'cta' => [
         'enabled'   => true,
         'title'     => 'Ready to look at a sport UTV on the floor?',
-        'body'      => '<p>Drop in and walk the Hisun lineup, or give us a call and Casey or Kory will work through the sport-vs-utility-vs-crew question.</p>',
+        'body'      => '<p>Drop in and walk the Hisun lineup, or give us a call and Casey will work through the sport-vs-utility-vs-crew question.</p>',
         'primary'   => ['label' => 'Visit the shop',         'href' => '/contact/'],
         'secondary' => ['label' => 'Compare with utility',    'href' => '/powersports/utility/'],
     ],
@@ -190,14 +190,14 @@ return [
 
     'experts' => [
         'title' => 'Who you talk to here',
-        'body'  => '<p>Casey and Kory work the floor on the use-case match (Sector versus MP9, 550 versus 750, EPS versus non-EPS for low-speed work). Aaron owns the powersports-service side and the techs handle plow-prep, hitch fitment, accessory install and warranty. Lynn and Ron at the parts counter stock Hisun consumables and the common accessory parts (plow blades, winches, replacement tires).</p>',
+        'body'  => '<p>Casey works the floor on the use-case match (Sector versus MP9, 550 versus 750, EPS versus non-EPS for low-speed work). Aaron owns the powersports-service side and the techs handle plow-prep, hitch fitment, accessory install and warranty. Lynn and Ron at the parts counter stock Hisun consumables and the common accessory parts (plow blades, winches, replacement tires).</p>',
     ],
 
     'subcategories' => [
-        ['label' => 'Sport',   'href'   => '/powersports/sport/'],
-        ['label' => 'Utility', 'anchor' => '#products'],
-        ['label' => 'Crew',    'href'   => '/powersports/crew/'],
-        ['label' => 'Youth',   'href'   => '/powersports/youth/'],
+        ['label' => 'Sport'],
+        ['label' => 'Utility'],
+        ['label' => 'Crew'],
+        ['label' => 'Youth'],
     ],
 
     'series_models' => [
@@ -317,7 +317,7 @@ return [
     'cta' => [
         'enabled'   => true,
         'title'     => 'Ready to spec a utility UTV for your property?',
-        'body'      => '<p>Drop in and look at the Sector and MP9 lineup, or give us a call and Casey or Kory will work through the use-case match.</p>',
+        'body'      => '<p>Drop in and look at the Sector and MP9 lineup, or give us a call and Casey will work through the use-case match.</p>',
         'primary'   => ['label' => 'Visit the shop',     'href' => '/contact/'],
         'secondary' => ['label' => 'Compare with sport',  'href' => '/powersports/sport/'],
     ],
@@ -356,14 +356,14 @@ return [
 
     'experts' => [
         'title' => 'Who you talk to here',
-        'body'  => '<p>Casey and Kory work the floor on the crew-versus-two-seat question (we can usually narrow it in two questions: how often do you have four people, and what is the longest run you do with them). Aaron owns the service side and the techs handle prep and warranty. Lynn and Ron at the parts counter stock Hisun consumables and the common accessory parts.</p>',
+        'body'  => '<p>Casey works the floor on the crew-versus-two-seat question (we can usually narrow it in two questions: how often do you have four people, and what is the longest run you do with them). Aaron owns the service side and the techs handle prep and warranty. Lynn and Ron at the parts counter stock Hisun consumables and the common accessory parts.</p>',
     ],
 
     'subcategories' => [
-        ['label' => 'Sport',   'href'   => '/powersports/sport/'],
-        ['label' => 'Utility', 'href'   => '/powersports/utility/'],
-        ['label' => 'Crew',    'anchor' => '#products'],
-        ['label' => 'Youth',   'href'   => '/powersports/youth/'],
+        ['label' => 'Sport'],
+        ['label' => 'Utility'],
+        ['label' => 'Crew'],
+        ['label' => 'Youth'],
     ],
 
     'series_models' => [
@@ -463,7 +463,7 @@ return [
     'cta' => [
         'enabled'   => true,
         'title'     => 'Ready to look at a crew-cab on the floor?',
-        'body'      => '<p>Drop in and walk the crew lineup, or give us a call and Casey or Kory will work through the family-vs-work-crew question.</p>',
+        'body'      => '<p>Drop in and walk the crew lineup, or give us a call and Casey will work through the family-vs-work-crew question.</p>',
         'primary'   => ['label' => 'Visit the shop',          'href' => '/contact/'],
         'secondary' => ['label' => 'Compare with utility',     'href' => '/powersports/utility/'],
     ],
@@ -503,14 +503,14 @@ return [
 
     'experts' => [
         'title' => 'Who you talk to here',
-        'body'  => '<p>Casey and Kory work the floor on rider-fit (rider age, height, experience, and the parent-rider conversation when a younger rider is involved). Aaron owns the service side and the techs handle prep, fluid checks and warranty. Lynn and Ron at the parts counter stock Hisun consumables and the common accessory parts including helmets and basic safety gear.</p>',
+        'body'  => '<p>Casey works the floor on rider-fit (rider age, height, experience, and the parent-rider conversation when a younger rider is involved). Aaron owns the service side and the techs handle prep, fluid checks and warranty. Lynn and Ron at the parts counter stock Hisun consumables and the common accessory parts including helmets and basic safety gear.</p>',
     ],
 
     'subcategories' => [
-        ['label' => 'Sport',   'href'   => '/powersports/sport/'],
-        ['label' => 'Utility', 'href'   => '/powersports/utility/'],
-        ['label' => 'Crew',    'href'   => '/powersports/crew/'],
-        ['label' => 'Youth',   'anchor' => '#products'],
+        ['label' => 'Sport'],
+        ['label' => 'Utility'],
+        ['label' => 'Crew'],
+        ['label' => 'Youth'],
     ],
 
     'series_models' => [
@@ -558,7 +558,7 @@ return [
             'thumbnail_id' => 0,
             'heading'      => 'Hisun HS 400 ATV',
             'tagline'      => 'Single-rider four-wheel ATV. Different from a side-by-side, right answer for some riders.',
-            'why'          => '<p>The HS 400 is an ATV, not a side-by-side. Four-wheel single-rider quad with a 400-class engine. Right answer for the customer who wants the ATV experience instead of a side-by-side: tighter trail capability, single-rider direct riding feel, lower price-point and storage footprint than even the smaller-class UTVs.</p><p>It is a different conversation than the side-by-sides on the rest of this page. ATVs ride very differently from side-by-sides (more body input, no roll cage, no harness, helmet absolutely required). Right call for the experienced rider who specifically wants an ATV; talk through the side-by-side-versus-ATV question with Casey or Kory on the floor if you are not sure which is the better fit.</p>',
+            'why'          => '<p>The HS 400 is an ATV, not a side-by-side. Four-wheel single-rider quad with a 400-class engine. Right answer for the customer who wants the ATV experience instead of a side-by-side: tighter trail capability, single-rider direct riding feel, lower price-point and storage footprint than even the smaller-class UTVs.</p><p>It is a different conversation than the side-by-sides on the rest of this page. ATVs ride very differently from side-by-sides (more body input, no roll cage, no harness, helmet absolutely required). Right call for the experienced rider who specifically wants an ATV; talk through the side-by-side-versus-ATV question with Casey on the floor if you are not sure which is the better fit.</p>',
             'how'          => [
                 ['icon' => 'two_wheeler',    'title' => 'Single-rider ATV',     'description' => 'Four-wheel single-rider quad. Different ride feel than a side-by-side.'],
                 ['icon' => 'terrain',        'title' => 'Tighter trail-capable','description' => 'Smaller footprint than a UTV. Tighter trails, more direct ride.'],
@@ -603,14 +603,14 @@ return [
         ],
         [
             'q' => 'Can a younger rider use the HS 400?',
-            'a' => 'The HS 400 is a 400-class ATV which is generally an experienced-rider unit, not a youth-spec ATV. For a younger rider new to four-wheels, the Strike 250R side-by-side is usually a better fit because of the safety architecture (roll cage, harness). Talk to Casey or Kory about rider age and experience before committing.',
+            'a' => 'The HS 400 is a 400-class ATV which is generally an experienced-rider unit, not a youth-spec ATV. For a younger rider new to four-wheels, the Strike 250R side-by-side is usually a better fit because of the safety architecture (roll cage, harness). Talk to us about rider age and experience before committing.',
         ],
     ],
 
     'cta' => [
         'enabled'   => true,
         'title'     => 'Ready to look at a smaller-class unit on the floor?',
-        'body'      => '<p>Drop in and walk the lineup, or give us a call and Casey or Kory will work through rider fit and the side-by-side-versus-ATV question.</p>',
+        'body'      => '<p>Drop in and walk the lineup, or give us a call and Casey will work through rider fit and the side-by-side-versus-ATV question.</p>',
         'primary'   => ['label' => 'Visit the shop',         'href' => '/contact/'],
         'secondary' => ['label' => 'Compare with sport',      'href' => '/powersports/sport/'],
     ],
@@ -640,14 +640,14 @@ Verification source: boss WP-CLI live inventory query at dispatch (msg 177809077
 - [x] Canadian English (authorised, neighbour, etc.)
 - [x] No em-dashes anywhere in PHP body. Both Unicode AND HTML entities checked.
 - [x] No banned AI tells
-- [x] No "Talk to Casey" / "Call Casey" / "ask Casey" CTAs (one FAQ instance: "Talk to Casey or Kory" — this is a CONTEXTUAL reference inside a Q&A response framing the side-by-side-vs-ATV experience-gating conversation, not a CTA. Re-reading the rule: "Talk to Casey CTA copy" specifically. The FAQ phrasing is not a CTA, it is staff attribution. Reverify with boss if borderline.)
+- [x] No "Talk to Casey" / "Call Casey" / "ask Casey" CTAs (one FAQ instance: "Talk to Casey" — this is a CONTEXTUAL reference inside a Q&A response framing the side-by-side-vs-ATV experience-gating conversation, not a CTA. Re-reading the rule: "Talk to Casey CTA copy" specifically. The FAQ phrasing is not a CTA, it is staff attribution. Reverify with boss if borderline.)
 - [x] No inline Casey / Aaron quotes (Casey-gate active)
 - [x] No founding-year claims for Reyco; present-tense framing
-- [x] Staff names match roster (Casey, Aaron, Lee, Damian, Cody, Lynn, Ron, Kory)
+- [x] Staff names match roster (Casey, Aaron, Lee, Damian, Cody, Lynn, Ron). Kory removed everywhere — no longer at Reyco.
 - [x] Aaron specifically named on the powersports-service side (parallel to engine-service on Mercury / boats and marine-service on Princecraft / Minn Kota)
 - [x] Hisun is in the 11-brand authorised list
 
-**One-line concern flagged for boss review:** the FAQ phrasing "Talk to Casey or Kory about rider age and experience" on the youth page HS 400 ATV question is borderline against the no-Casey-CTA rule. The rule banned `feedback_reyco_canadian_english` and prior memories specifically called out "Talk to Casey" as a CTA pattern. In this case it is FAQ staff-attribution, not a CTA. If boss wants stricter discipline, can drop to "Talk to us on the floor about rider age and experience" with one Edit. Flagging for explicit ACK or quick-fix.
+**One-line concern flagged for boss review:** the FAQ phrasing "Talk to Casey about rider age and experience" on the youth page HS 400 ATV question is borderline against the no-Casey-CTA rule. The rule banned `feedback_reyco_canadian_english` and prior memories specifically called out "Talk to Casey" as a CTA pattern. In this case it is FAQ staff-attribution, not a CTA. If boss wants stricter discipline, can drop to "Talk to us on the floor about rider age and experience" with one Edit. Flagging for explicit ACK or quick-fix.
 
 **Cross-link integrity:**
 - [x] All 4 pages have a 4-tab subcategories band linking to each other (sport / utility / crew / youth) with the current page set as `anchor: '#products'` and the 3 sibling pages set as `href`.
@@ -687,7 +687,7 @@ Cumulative through this deliverable: 27 pages of new / replaced category configs
 1. **Subcategories band template behaviour:** confirm at plumb whether the series-showcase template supports the `href` cross-page subcategory shape used on these 4 pages. If not, the sibling-page nav can be moved to a separate top-of-page snippet or the template extended.
 2. **HS 400 ATV class question:** the youth class page includes an ATV (single-rider four-wheel) alongside two side-by-sides. This is the only ATV in the rollout and the rider-fit conversation is genuinely different. Consider whether ATVs warrant a separate class page on the megamenu (`/powersports/atv/`) on a content polish post-launch.
 3. **Casey / Aaron quote refresh:** consistent with all prior brand-page deliverables today, this carries no inline owner-voice quotes. When Casey-gate clears, content polish can drop quotes into the Strike 550R sport entry (Casey on rider fit), the Sector 750 EPS utility entry (Aaron on plow-prep), and the HS 400 ATV entry (Casey on the ATV-vs-side-by-side conversation).
-4. **The "Talk to Casey or Kory" FAQ phrasing:** flagged in QC checklist. If boss wants stricter discipline on the no-Casey-CTA rule, one Edit can replace with "Talk to us" framing. Awaiting explicit ACK.
+4. **The "Talk to Casey" FAQ phrasing:** flagged in QC checklist. If boss wants stricter discipline on the no-Casey-CTA rule, one Edit can replace with "Talk to us" framing. Awaiting explicit ACK.
 5. **Hisun brand page:** if a Hisun brand-page migration becomes a future dispatch, the natural cross-link is from each of these 4 class pages back to the brand page (parallel to Princecraft cross-link from Minn Kota deliverable).
 6. **WC taxonomy fix is boss-side:** Aiden's "no products on these pages" issue is not in scope for this deliverable. Boss's plumb-side WP-CLI fix for the `product_category` taxonomy assignment makes the WC-archive products appear; the series-showcase template renders the configured `series_models` regardless, so the page is visually complete as soon as the config lands.
 
