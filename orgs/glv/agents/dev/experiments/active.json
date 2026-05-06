@@ -17,5 +17,6 @@
   "created_at": "2026-05-04T20:18:42Z",
   "started_at": "2026-05-04T20:18:42Z",
   "completed_at": null,
-  "changes_description": "PENDING LOCAL IMPLEMENTATION — cloud session cannot install phpcs. Local agent action required before May 10: (1) composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility; (2) phpcs --config-set installed_paths; (3) add step 4.75 to pre-push checklist in surface. Once implemented, gate runs on all changed .php files, blocks on ERROR, warns on WARNING. Surface hypothesis section updated now; Current Approach step 4.75 to be added by local agent post-install."
+  "changes_description": "PENDING LOCAL IMPLEMENTATION \u2014 cloud session cannot install phpcs. Local agent action required before May 10: (1) composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility; (2) phpcs --config-set installed_paths; (3) add step 4.75 to pre-push checklist in surface. Once implemented, gate runs on all changed .php files, blocks on ERROR, warns on WARNING. Surface hypothesis section updated now; Current Approach step 4.75 to be added by local agent post-install.",
+  "boss_premature_close_note": "Boss closed this experiment 20h early on 2026-05-06T00:38Z. Reverted by boss after dev (msg 1778029313) flagged the off-by-20h. Actual window close: 2026-05-06T20:18Z. Decision will still be IMPLEMENT (per dev confirmation), close-out + history move runs at the actual window close."
 }
