@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-05 (PR #83 opened — chore(ci): Node 20→22 LTS, June 2 deadline; WC 10.7 HPOS scan clean; exp_phpc RUNNING closes 2026-05-06T20:18Z; PHP 7.4 deadline May 20 = 15 days)_
+_Last updated: 2026-05-06 (idle heartbeat — all 83 PRs await Aiden review; exp_phpc window closes TONIGHT 20:18Z — local agent must eval + implement phpcs; PHP 7.4 deadline May 20 = 14 days)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -129,7 +129,7 @@ These PRs are complete and tested. Waiting for merge approval.
   - Requires: reyco-marine checkout for full scan (not available in cloud sessions — local agent must run before May 10)
 - **WC 10.7 HPOS audit** — cloud GitHub code search (2026-05-05): zero hits on `wp_postmeta`, `get_post_meta`, `update_post_meta`, `get_posts`, and WC REST v1/v2/v3 across master branch. Theme is a display layer only — no custom order-management code. Low HPOS risk. Recommend local agent run `WP_DEBUG=true` smoke test after WC 10.7 upgrade to catch any runtime surprises.
   - Experiment `exp_1777768046_php8g` — **DECIDED: KEEP** (2026-05-04T20:18Z). Zero PHP deploys in 48h window; gate correct; master branch clean. Closed.
-  - Experiment `exp_1777925922_phpc` — **RUNNING** (started 2026-05-04T20:18Z, closes 2026-05-06T20:18Z). PHPCompatibility PHPCS gate targeting behavioral PHP 8.x changes. **⚠️ PENDING LOCAL IMPLEMENTATION** — local agent must `composer global require phpcompatibility/php-compatibility` + add step 4.75 to pre-push checklist **before May 10**.
+  - Experiment `exp_1777925922_phpc` — **RUNNING → closes TONIGHT 2026-05-06T20:18Z** (48h window). PHPCompatibility PHPCS gate targeting behavioral PHP 8.x changes. Gate was NOT implemented during window (cloud-session constraint). **⚠️ LOCAL AGENT ACTION REQUIRED AT/AFTER 20:18Z tonight:** eval experiment → mark decision IMPLEMENT → `composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility` + `phpcs --config-set installed_paths` + add step 4.75 to pre-push checklist. PHP deadline May 20 (14 days) makes this mandatory regardless of experiment window outcome.
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
 - **Visual regression CI** — PR #75 closed 2026-05-04 (no Playwright CI planned at this time).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
