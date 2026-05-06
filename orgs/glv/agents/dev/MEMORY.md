@@ -36,6 +36,14 @@
 - PHP: `single-product.php`, `service-detail.php`, `header.php` — key templates.
 - `page_type=form` + `suppress_booking_modal` flags added for Order Parts form page.
 
+### Dashboard TypeScript errors (identified 2026-05-06)
+Two pre-existing TypeScript errors block Dashboard Build CI on ALL branches:
+1. **viewport in Metadata** (`dashboard/src/app/layout.tsx`) — fixed by PR #85. `viewport` must be a separate `export const viewport: Viewport` (Next.js 15+ requirement).
+2. **Lead interface missing `}`** (`dashboard/src/lib/types.ts` line 178) — fixed by PR #86. TypeScript was parsing ContentStatus/ContentItem/CostEntry/User/SSEEvent/etc. as members of Lead. esbuild (Vitest + Next.js bundler) strips types without semantic checking so tests + build passed; only `npx tsc --noEmit` catches this.
+- Neither PR alone fixes Dashboard Build CI (they're each branched from main which has both errors)
+- Merge sequence: PR #84 → PR #86 → rebase PR #85 → PR #85 → all CI green
+- Static analysis from cloud session identified error #2 without running tsc
+
 ## Cloud Session Protocol
 
 When running in cloud (no local daemon):
