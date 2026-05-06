@@ -14,12 +14,6 @@
       "prompt": "Read HEARTBEAT.md and follow its instructions. Update your heartbeat, check inbox, and work on your highest priority task."
     },
     {
-      "name": "weekly-content-plan",
-      "type": "recurring",
-      "interval": "7d",
-      "prompt": "It's weekly content planning time. Check GOALS.md and MEMORY.md for the @glvbuilds strategy. Draft a 1-week content calendar for Instagram/TikTok/YouTube/LinkedIn — at least 5 posts covering the 4 content pillars. Save to memory/YYYY-MM-DD-content-calendar.md and send Aiden a Telegram summary for approval."
-    },
-    {
       "name": "experiment-content-quality",
       "type": "recurring",
       "interval": "48h",
