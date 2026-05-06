@@ -79,8 +79,9 @@ export function injectMessage(
     write(PASTE_END);
   }
 
-  // Send Enter after a short delay to submit the pasted content
-  setTimeout(() => write(KEYS.ENTER), enterDelay);
+  // Send Enter after a short delay to submit the pasted content.
+  // Guard with try/catch: the PTY may be closed by the time the timer fires.
+  setTimeout(() => { try { write(KEYS.ENTER); } catch { /* PTY closed */ } }, enterDelay);
 }
 
 /**

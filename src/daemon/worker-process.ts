@@ -73,12 +73,15 @@ export class WorkerProcess {
    * Terminate the worker session.
    */
   async terminate(): Promise<void> {
-    if (!this.pty) return;
+    // Capture to local var: onExit callback may null this.pty between the
+    // guard check and the subsequent write/kill calls (PTY null-write guard).
+    const pty = this.pty;
+    if (!pty) return;
     this.log('Terminating...');
     try {
-      this.pty.write('\x03'); // Ctrl-C
+      pty.write('\x03'); // Ctrl-C
       await sleep(500);
-      this.pty.kill();
+      pty.kill();
     } catch { /* ignore */ }
     this.status = 'completed';
     this.pty = null;
@@ -89,8 +92,11 @@ export class WorkerProcess {
    * Use to nudge a stuck worker without restarting it.
    */
   inject(text: string): boolean {
-    if (!this.pty || this.status !== 'running') return false;
-    injectMessage((data) => this.pty!.write(data), text);
+    // Capture to local var: PTY may be nulled by onExit between status check
+    // and the injectMessage call (PTY null-write guard).
+    const pty = this.pty;
+    if (!pty || this.status !== 'running') return false;
+    injectMessage((data) => pty.write(data), text);
     return true;
   }
 

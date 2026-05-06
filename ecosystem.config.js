@@ -17,8 +17,9 @@ module.exports = {
         CTX_FRAMEWORK_ROOT: "/home/aiden/cortextos",
         CTX_PROJECT_ROOT: "/home/aiden/cortextos",
         CTX_ORG: process.env.CTX_ORG || "glv",
+        CTX_DEBUG_ALLOW_CRASH_TRIGGER: process.env.CTX_DEBUG_ALLOW_CRASH_TRIGGER || '0',
       },
-      max_restarts: 50,
+      max_restarts: 10,
       restart_delay: 5000,
       autorestart: true,
     },
@@ -32,7 +33,7 @@ module.exports = {
       },
       // Dashboard reads its real config from dashboard/.env.local — populated
       // by /onboarding Phase 7. PM2 just supervises the npm process.
-      max_restarts: 50,
+      max_restarts: 10,
       restart_delay: 5000,
       autorestart: true,
     },

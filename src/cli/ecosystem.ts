@@ -71,11 +71,13 @@ export const ecosystemCommand = new Command('ecosystem')
     // generated file, so instance switching required regenerating the file.
     // Now: `CTX_INSTANCE_ID=other pm2 restart cortextos-daemon` just works.
     //
-    // BUG-016 fix: bumped max_restarts from 10 to 50. PM2's max_restarts
-    // controls how many times PM2 itself restarts cortextos-daemon if it
-    // crashes — independent of in-daemon agent crash counting. 10 was too
-    // low: a transient infrastructure wobble could exhaust retries before
-    // the daemon stabilized. 50 leaves real headroom.
+    // BUG-016 (revert): max_restarts reverted from 50 → 10. The 2026-04-22
+    // crash storm showed that 50 restarts let a PTY null-write bug loop for
+    // ~20 min before PM2 gave up — a crash circuit-breaker at 10 makes PM2
+    // stop sooner so the operator gets a clear signal. Real transient wobbles
+    // recover within 2-3 restarts; 10 is still ample headroom.
+    // CTX_DEBUG_ALLOW_CRASH_TRIGGER: debug slot for controlled crash injection
+    // in staging (set to '1' to enable SIGUSR2 crash trigger).
     //
     // BUG-019 fix: emit a cortextos-dashboard PM2 entry alongside the daemon
     // so the dashboard runs under PM2 supervision instead of as an orphan
@@ -96,7 +98,7 @@ export const ecosystemCommand = new Command('ecosystem')
       },
       // Dashboard reads its real config from dashboard/.env.local — populated
       // by /onboarding Phase 7. PM2 just supervises the npm process.
-      max_restarts: 50,
+      max_restarts: 10,
       restart_delay: 5000,
       autorestart: true,
     }`
@@ -121,8 +123,9 @@ module.exports = {
         CTX_FRAMEWORK_ROOT: ${JSON.stringify(projectRoot)},
         CTX_PROJECT_ROOT: ${JSON.stringify(projectRoot)},
         CTX_ORG: process.env.CTX_ORG || ${JSON.stringify(detectedOrg)},
+        CTX_DEBUG_ALLOW_CRASH_TRIGGER: process.env.CTX_DEBUG_ALLOW_CRASH_TRIGGER || '0',
       },
-      max_restarts: 50,
+      max_restarts: 10,
       restart_delay: 5000,
       autorestart: true,
     }${dashboardAppBlock},

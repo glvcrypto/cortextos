@@ -123,6 +123,7 @@ async function main(): Promise<void> {
     { file: '.user-disable', type: 'user-disable' },
     { file: '.user-stop', type: 'user-stop' },
     { file: '.daemon-stop', type: 'daemon-stop' },
+    { file: '.daemon-crashed', type: 'daemon-crashed' },
   ];
 
   for (const marker of markers) {
@@ -217,6 +218,10 @@ async function main(): Promise<void> {
     case 'daemon-stop':
       message = `🛑 ${agentName} stopped (daemon shutdown).`;
       if (reason) message += ` (${reason})`;
+      break;
+    case 'daemon-crashed':
+      message = `🔴 ${agentName} stopped — daemon itself crashed.`;
+      if (reason) message += ` Reason: ${reason}`;
       break;
     case 'rate-limited':
       message = `⏳ ${agentName} paused — Anthropic rate limit hit. Will resume when the window resets.`;
