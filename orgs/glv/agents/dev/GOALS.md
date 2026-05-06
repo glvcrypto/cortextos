@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-06 (cloud session ~12:10 UTC — 85 PRs await Aiden review; PR #85 Dashboard Build CI still failing — second TypeScript error beyond viewport fix; exp_phpc closes TONIGHT 20:18Z; PHP 7.4 deadline May 20 = 14 days)_
+_Last updated: 2026-05-06 (cloud session ~16:17 UTC — 86 PRs await Aiden review; PR #86 opened — Lead interface missing brace in types.ts (second TS error); merge sequence: #84 → #86 → rebase #85 → #85; exp_phpc closes TONIGHT 20:18Z; PHP 7.4 deadline May 20 = 14 days)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -49,7 +49,8 @@ These PRs are complete and tested. Waiting for merge approval.
 
 | PR | Title | Notes |
 |----|-------|-------|
-| #85 | fix(dashboard): move viewport out of Metadata into separate Viewport export | Viewport fix is correct. ⚠️ Dashboard Build CI still failing — second TypeScript error exists beyond the viewport fix. Local agent must run `npx tsc --noEmit` in `dashboard/` to identify + fix before Aiden reviews. PR #85 comment has debug instructions. |
+| #86 | fix(dashboard): Lead interface missing closing brace in types.ts | Second TypeScript error — `interface Lead` was missing `}` causing ContentStatus/ContentItem/etc. to parse as Lead members → `npx tsc --noEmit` fails. CI failing on PR #86 is EXPECTED (viewport error from PR #85 not included). Merge sequence: #84 → #86 → rebase #85 → #85. |
+| #85 | fix(dashboard): move viewport out of Metadata into separate Viewport export | Viewport fix is correct. CI: Build ✅ Unit Tests ❌ (needs #84) Dashboard Build ❌ (needs #86 merged first, then rebase). Rebase #85 from main after #86 merges → all three CI green. |
 | #84 | fix(test): comms channels timestamp flake — replace hardcoded 2026-04-15 timestamps with relative offsets | Unit Tests ✅ Build & Type Check ✅ Dashboard Build ❌ (pre-existing, blocked on #85). ⚠️ local agent must run npm test before Aiden reviews. |
 | #83 | chore(ci): bump Node.js 20 → 22 LTS across all CI jobs | Single-file change (.github/workflows/ci.yml). Node 20 EOL Apr 2026; GitHub Actions forces Node 24 default June 2 (28 days). No src changes — CI verifies on merge. |
 | #82 | test(bus): postActivity success + failure + replyMarkup + second-candidate coverage — 4 cases | Fills postActivity live-send path gap in system.test.ts. returns true on success, false on throw, replyMarkup forwarded, second candidate env path. 20 pre-existing + 4 new = 24/24. ⚠️ local agent must run npm test before Aiden reviews. |
