@@ -22,7 +22,7 @@ export interface SkillInfo {
 // Helpers
 // ---------------------------------------------------------------------------
 
-function parseSkillMd(content: string): { name: string; description: string } {
+export function parseSkillMd(content: string): { name: string; description: string } {
   // Parse YAML-style frontmatter from SKILL.md
   const frontmatterMatch = content.match(/^---\s*\n([\s\S]*?)\n---/);
   let name = '';

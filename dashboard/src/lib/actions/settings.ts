@@ -32,7 +32,7 @@ const SYSTEM_CONFIG_PATH = path.join(CONFIG_DIR, 'dashboard-settings.json');
 // Telegram
 // ---------------------------------------------------------------------------
 
-function maskToken(token: string): string {
+export function maskToken(token: string): string {
   if (token.length <= 8) return '****';
   return token.slice(0, 4) + '****' + token.slice(-4);
 }
@@ -355,7 +355,7 @@ const SYSTEM_BLOCKLIST: string[] = [
   'C:/Program Files (x86)',
 ];
 
-function normalizeFsPath(p: string): string {
+export function normalizeFsPath(p: string): string {
   let n = p.replace(/\\/g, '/');
   if (n.length > 1 && n.endsWith('/') && !/^[A-Za-z]:\/$/.test(n)) {
     n = n.slice(0, -1);
