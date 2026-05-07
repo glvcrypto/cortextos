@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-07 (cloud session ~12:XX UTC — PR #79 added to merge queue (was opened 2026-05-03 but missing from GOALS.md); queue now at 88 PRs (#6–#87 + #79); PHP 7.4 deadline May 20 = 13 days; Node 22 deadline June 2 = 26 days)_
+_Last updated: 2026-05-07 (cloud session ~20:07 UTC — reyco-marine PR #234 opened (hero mobile CTA spacing); reyco #189 now 27h+ past SLA; 88 cortextos PRs (#6–#87 + #79) waiting Aiden; PHP 7.4 deadline May 20 = 13 days; Node 22 deadline June 2 = 26 days)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -138,6 +138,9 @@ These PRs are complete and tested. Waiting for merge approval.
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
 - **Visual regression CI** — PR #75 closed 2026-05-04 (no Playwright CI planned at this time).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
+- **Open PRs (needs Aiden review):**
+  - PR #234 (opened 2026-05-07T19:02Z) — fix(mobile): hero phone-CTA spacing — `pb-16` → `pb-28` on hero inner div (front-page.php line 36); root cause: pb-16 (64px) vs -mt-20 adventure tabs (80px) = -16px overlap on mobile. CI pending.
+  - PR #189 (opened 2026-05-06T~17:08Z) — fix: Casey-twice on Meet the Team Sales counter card — **⚠️ NOW 27h+ past 24h SLA** — needs Aiden review
 
 ### WC Pricing Sweep
 
