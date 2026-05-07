@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-06 (cloud session ~16:17 UTC — 86 PRs await Aiden review; PR #86 opened — Lead interface missing brace in types.ts (second TS error); merge sequence: #84 → #86 → rebase #85 → #85; exp_phpc closes TONIGHT 20:18Z; PHP 7.4 deadline May 20 = 14 days)_
+_Last updated: 2026-05-07 (cloud session ~04:00 UTC — no new PRs; merge queue steady at #84→#86→rebase #85→#85; exp_phpc CLOSED→IMPLEMENT 2026-05-06T20:18Z; PHP 7.4 deadline May 20 = 13 days; Node 22 deadline June 2 = 26 days)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -124,7 +124,7 @@ These PRs are complete and tested. Waiting for merge approval.
 
 ### Reyco Marine
 
-- **⚠️ PHP 7.4 → 8.x migration — DEADLINE May 20, 2026 (17 days)** — SiteGround drops PHP 7.4 support site-wide. Reyco Marine custom theme must be PHP 8.x-compatible before then.
+- **⚠️ PHP 7.4 → 8.x migration — DEADLINE May 20, 2026 (13 days)** — SiteGround drops PHP 7.4 support site-wide. Reyco Marine custom theme must be PHP 8.x-compatible before then.
   - Files to audit: `functions.php`, `header.php`, `footer.php`, `single-product.php`, `service-detail.php`, `inc/class-resend-mailer.php`, `front-page.php`, `subcategory-section.php`
   - Key patterns to check: `each(`, `create_function(`, `(real)` cast, old-style constructors, `${` string interpolation, `ereg`/`split`
   - **✅ Cloud grep scan (2026-05-03 ~08:00 UTC)**: GitHub code search across master branch — zero hits on all critical PHP 7.4→8.x removed/deprecated patterns: `each(`, `create_function(`, `(real)`, `ereg`/`split(`, `${` interpolation, `mysql_*`, old-style constructors, `function match` keyword conflict. Master branch is clean on grep-level checks. `Reyco_Resend_Mailer` (PR #130) not yet on master — verify when merged.
@@ -132,7 +132,7 @@ These PRs are complete and tested. Waiting for merge approval.
   - Requires: reyco-marine checkout for full scan (not available in cloud sessions — local agent must run before May 10)
 - **WC 10.7 HPOS audit** — cloud GitHub code search (2026-05-05): zero hits on `wp_postmeta`, `get_post_meta`, `update_post_meta`, `get_posts`, and WC REST v1/v2/v3 across master branch. Theme is a display layer only — no custom order-management code. Low HPOS risk. Recommend local agent run `WP_DEBUG=true` smoke test after WC 10.7 upgrade to catch any runtime surprises.
   - Experiment `exp_1777768046_php8g` — **DECIDED: KEEP** (2026-05-04T20:18Z). Zero PHP deploys in 48h window; gate correct; master branch clean. Closed.
-  - Experiment `exp_1777925922_phpc` — **RUNNING → closes TONIGHT 2026-05-06T20:18Z** (48h window). PHPCompatibility PHPCS gate targeting behavioral PHP 8.x changes. Gate was NOT implemented during window (cloud-session constraint). **⚠️ LOCAL AGENT ACTION REQUIRED AT/AFTER 20:18Z tonight:** eval experiment → mark decision IMPLEMENT → `composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility` + `phpcs --config-set installed_paths` + add step 4.75 to pre-push checklist. PHP deadline May 20 (14 days) makes this mandatory regardless of experiment window outcome.
+  - Experiment `exp_1777925922_phpc` — **✅ CLOSED → decision: IMPLEMENT** (closed 2026-05-06T20:18Z). PHPCompatibility PHPCS gate for PHP 7.4→8.x behavioral changes. **⚠️ LOCAL AGENT ACTION REQUIRED before May 10:** `composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility` + `phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility` + add step 4.75 to pre-push checklist (block on ERROR, warn on WARNING). PHP deadline May 20 (13 days) makes this mandatory.
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
 - **Visual regression CI** — PR #75 closed 2026-05-04 (no Playwright CI planned at this time).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
