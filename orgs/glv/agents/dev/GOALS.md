@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-08 (cloud session ~16:07 UTC — no new PR activity; reyco #189 now ~47h open (~23h past SLA); reyco #234 ~21h open; 88 cortextos PRs (#6–#87 + #79) waiting Aiden; PHP 7.4 deadline May 20 = 12 days; Node 22 deadline June 2 = 25 days; N4/N5 CI deliverable updated — phpcs install portable fix; ⚠️ WP 7.0 also drops May 20 — double-change day risk)_
+_Last updated: 2026-05-08 (cloud session ~20:23 UTC — reyco PRs #235/#236/#237 MERGED today; #238 open (canonical email info@); #189 ~51h open (~27h past SLA); #234 ~25h open; 88 cortextos PRs (#6–#87 + #79) waiting Aiden; PHP 7.4 deadline May 20 = 12 days; Node 22 deadline June 2 = 24 days; ⚠️ WP 7.0 also drops May 20 — double-change day risk)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -142,8 +142,9 @@ These PRs are complete and tested. Waiting for merge approval.
 - **Visual regression CI** — PR #75 closed 2026-05-04 (no Playwright CI planned at this time).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
 - **Open PRs (needs Aiden review):**
-  - PR #234 (opened 2026-05-07T19:02Z) — fix(mobile): hero phone-CTA spacing — `pb-16` → `pb-28` on hero inner div (front-page.php line 36); root cause: pb-16 (64px) vs -mt-20 adventure tabs (80px) = -16px overlap on mobile. CI pending.
-  - PR #189 (opened 2026-05-06T~17:08Z) — fix: Casey-twice on Meet the Team Sales counter card — **⚠️ NOW ~47h open (~23h past 24h SLA)** — needs Aiden review
+  - PR #238 (opened 2026-05-08T~19:19Z) — feat(canonical): contact email info@reycomarine.com — customizer default + LocalBusiness schema + wp_mail_from filter + about.php RECIPIENTS fix (missed in #235). Awaiting Aiden review.
+  - PR #234 (opened 2026-05-07T19:02Z) — fix(mobile): hero phone-CTA spacing — `pb-16` → `pb-28` on hero inner div (front-page.php line 36). **Boss can merge (no CI gate).**
+  - PR #189 (opened 2026-05-06T~17:08Z) — fix: Casey-twice on Meet the Team Sales counter card — **⚠️ NOW ~51h open (~27h past 24h SLA)** — needs Aiden review urgently
 
 ### WC Pricing Sweep
 
@@ -162,6 +163,9 @@ These PRs are complete and tested. Waiting for merge approval.
 
 ## Completed (Recent)
 
+- reyco-marine PR #237 (merged 2026-05-08) — fix: mixed-content HTTPS — `is_ssl()` false behind SiteGround reverse proxy → assets on `http://`; 3 hooks: init HTTPS flag + script/style URL rewrite filters
+- reyco-marine PR #236 (merged 2026-05-08) — fix(homepage): adventure-tab label "Water" → "Marine"
+- reyco-marine PR #235 (merged 2026-05-08) — feat(forms): multi-recipient contact forms (info@+parts@+sales@ RECIPIENTS) across all 4 forms: class-resend-mailer.php, contact.php, service-detail.php, notify-me.php
 - reyco-marine PR #134 (merged 2026-05-04) — fix(home): adventure-tabs grid cols 5→4 after snow hide
 - reyco-marine PR #133 (merged 2026-05-04) — fix(visibility): hide snow equipment carousels + megamenu (no scope yet)
 - reyco-marine PR #132 (merged 2026-05-04) — fix(nav): megamenu hover = orange box over white text + bump font 2pt
