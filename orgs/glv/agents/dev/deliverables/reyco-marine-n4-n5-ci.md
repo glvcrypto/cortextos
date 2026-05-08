@@ -77,13 +77,14 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: composer, phpcs
+          tools: composer
 
-      - name: Install PHPCompatibility
+      - name: Install PHPCS + PHPCompatibility
         run: |
-          composer global require --dev phpcompatibility/php-compatibility
+          composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility
+          echo "$(composer config -g home)/vendor/bin" >> $GITHUB_PATH
           phpcs --config-set installed_paths \
-            ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility
+            $(composer config -g home)/vendor/phpcompatibility/php-compatibility/PHPCompatibility
 
       - name: Run PHPCompatibility scan
         run: |

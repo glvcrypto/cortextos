@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-08 (cloud session ~04:07 UTC — no new PR activity; reyco #189 now ~35h open (~11h past SLA); reyco #234 ~9h open; 88 cortextos PRs (#6–#87 + #79) waiting Aiden; PHP 7.4 deadline May 20 = 12 days; Node 22 deadline June 2 = 25 days; N4/N5 CI deliverable ready for local agent)_
+_Last updated: 2026-05-08 (cloud session ~16:07 UTC — no new PR activity; reyco #189 now ~47h open (~23h past SLA); reyco #234 ~21h open; 88 cortextos PRs (#6–#87 + #79) waiting Aiden; PHP 7.4 deadline May 20 = 12 days; Node 22 deadline June 2 = 25 days; N4/N5 CI deliverable updated — phpcs install portable fix)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
