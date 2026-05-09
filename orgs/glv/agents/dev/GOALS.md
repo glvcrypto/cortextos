@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-09 (cloud session ~04:04 UTC — idle; #238 MERGED 23:51 UTC May 8 ✅; #189 ~60h open (~36h past SLA); #234 ~33.5h open (boss can merge); 88 cortextos PRs (#6–#87 + #79) waiting Aiden; PHP 7.4 deadline May 20 = 11 days; Node 22 deadline June 2 = 24 days; ⚠️ WP 7.0 also drops May 20 — double-change day risk; ⚠️ PHPCompatibility PHPCS install deadline May 10 = TODAY ~20h remaining)_
+_Last updated: 2026-05-09 (cloud session ~08:10 UTC — idle; #189 ~63h open (~39h past SLA); #234 ~37h open (boss can merge); 88 cortextos PRs (#6–#87 + #79) waiting Aiden; PHP 7.4 deadline May 20 = 11 days; Node 22 deadline June 2 = 24 days; ⚠️ WP 7.0 also drops May 20 — double-change day risk; ⚠️ PHPCompatibility PHPCS install deadline May 10 = TOMORROW ~16h remaining — ESCALATING)_
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -137,13 +137,13 @@ These PRs are complete and tested. Waiting for merge approval.
   - Source: Context7 weekly stack scan 2026-05-08 ~14:56 UTC.
 - **WC 10.7 HPOS audit** — cloud GitHub code search (2026-05-05): zero hits on `wp_postmeta`, `get_post_meta`, `update_post_meta`, `get_posts`, and WC REST v1/v2/v3 across master branch. Theme is a display layer only — no custom order-management code. Low HPOS risk. Recommend local agent run `WP_DEBUG=true` smoke test after WC 10.7 upgrade to catch any runtime surprises.
   - Experiment `exp_1777768046_php8g` — **DECIDED: KEEP** (2026-05-04T20:18Z). Zero PHP deploys in 48h window; gate correct; master branch clean. Closed.
-  - Experiment `exp_1777925922_phpc` — **✅ CLOSED → decision: IMPLEMENT** (closed 2026-05-06T20:18Z). PHPCompatibility PHPCS gate for PHP 7.4→8.x behavioral changes. **⚠️ LOCAL AGENT ACTION REQUIRED before May 10:** `composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility` + `phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility` + add step 4.75 to pre-push checklist (block on ERROR, warn on WARNING). PHP deadline May 20 (11 days) makes this mandatory.
+  - Experiment `exp_1777925922_phpc` — **✅ CLOSED → decision: IMPLEMENT** (closed 2026-05-06T20:18Z). PHPCompatibility PHPCS gate for PHP 7.4→8.x behavioral changes. **⚠️ LOCAL AGENT ACTION REQUIRED — ESCALATING — ~16h to deadline (May 10):** `composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility` + `phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility` + add step 4.75 to pre-push checklist (block on ERROR, warn on WARNING). PHP deadline May 20 (11 days) makes this mandatory.
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
 - **Visual regression CI** — PR #75 closed 2026-05-04 (no Playwright CI planned at this time).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
 - **Open PRs (needs Aiden review):**
   - PR #234 (opened 2026-05-07T19:02Z) — fix(mobile): hero phone-CTA spacing — `pb-16` → `pb-28` on hero inner div (front-page.php line 36). **Boss can merge (no CI gate).**
-  - PR #189 (opened 2026-05-06T~17:08Z) — fix: Casey-twice on Meet the Team Sales counter card — **⚠️ NOW ~60h open (~36h past 24h SLA)** — needs Aiden review urgently
+  - PR #189 (opened 2026-05-06T~17:08Z) — fix: Casey-twice on Meet the Team Sales counter card — **⚠️ NOW ~63h open (~39h past 24h SLA)** — needs Aiden review urgently
 
 ### WC Pricing Sweep
 
