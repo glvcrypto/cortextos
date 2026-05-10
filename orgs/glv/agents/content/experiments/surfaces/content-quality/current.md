@@ -1,4 +1,4 @@
-# Content Quality — Experiment 4: Northern Ontario-Specific Lede (Tightened Constraint)
+# Content Quality — Experiment 7: Surface Rules Applied to FAQ/Service Page Format
 
 ## Current Approach
 
@@ -55,7 +55,14 @@ All other brand voice rules remain unchanged:
 - Short sentences, short paragraphs
 - Local Northern Ontario context always included
 - Clear CTA at the end of every piece
-- Named expert used for credibility where relevant (use confirmed staff roster — Casey, Aaron, Lee, Damian, Lynn, Ron, Kory)
+- Named expert used for credibility where relevant (use confirmed staff roster — Casey, Aaron, Lee, Damian, Lynn, Ron, Cody)
 - No invented data — all facts verifiable
 
 For social posts: personal brand voice as Aiden (founder), showing real agency work and AI tools in action.
+
+**FAQ/Service page format adaptation (Experiment 7 addition):** When applying these rules to FAQ pages or service pages (not long-form blog posts), adapt the CMI structure as follows:
+
+- **Page opening**: Lead with a NO-specific fact in the intro paragraph, then establish who this page is for (identity-first). Keep this brief — 2-3 sentences.
+- **FAQ answer structure** (per question): Direct answer first (1 sentence) → brief context/pain acknowledgment → specific proof (named staff, service timeline, local detail) → next step or related CTA. Each answer: 3-6 sentences max.
+- **Section groupings**: Organise questions by buyer intent stage — general/brand questions first, then service/process questions, then logistics (hours, location, pricing). This mirrors the CMI reader journey at the page level.
+- **Lede fact selection for FAQ/service pages**: Choose a fact that speaks to the breadth or depth of the local service relationship — season length, geographic scope, or a fleet/inventory-scale fact. Not a product-specific fact (those belong in product pages).
