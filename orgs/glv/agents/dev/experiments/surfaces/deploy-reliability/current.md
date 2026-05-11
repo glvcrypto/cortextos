@@ -148,3 +148,12 @@ Six consecutive gate-layer keeps covering syntax, layout, template breadth, WP r
 - PHP 8.x grep gate covers removed/deprecated function calls but not behavioural changes (e.g. strict type coercion, `match` vs `switch` differences, `str_contains` availability)
 - PHPCompatibility PHPCS gate (step 4.75) is in Current Approach but PENDING LOCAL INSTALL — exp_1777925922_phpc decided IMPLEMENT 2026-05-06; deadline May 20 (SiteGround PHP 7.4→8.x cutover)
 - Single product URL in smoke set (`/product/2022-mercury-me-60-elpt-4s-efi/`) could 404 if the product is deleted; should be updated to a durable inventory page URL once one exists
+- **STALE MARKERS (verified 2026-05-11T16:38Z):** `REQUIRED_MARKERS` in step 3 checks `.site-header`, `.site-footer`, `main.site-main`, `nav.site-nav` — NONE of these class names exist on reycomarine.com. The reyco-marine theme uses Tailwind utility classes + custom classes (`reyco-nav-link`, `reyco-nav-text`). Actual stable structural elements: `reyco-nav-link` (9×), `<main` (1×), `<footer` (2×), `<nav` (2×). The marker gate would FAIL on every deploy against the current production site. Next experiment: replace with theme-accurate markers.
+
+## Next Hypothesis (queued — pending exp_1778496458_smku close)
+
+**Structural marker update:** Replace stale WordPress classic class names in `REQUIRED_MARKERS` with markers that exist in the live reyco-marine Tailwind theme. Proposed new set:
+```bash
+REQUIRED_MARKERS=("reyco-nav-link" "<main" "<footer" "<nav")
+```
+Rationale: `reyco-nav-link` is a theme-specific custom class (9 per page, stable); `<main`, `<footer`, `<nav` are HTML5 structural elements always present when WP renders correctly. A broken deploy (white screen, WP fatal) would be missing all of these. Verified on 2026-05-11 against live reycomarine.com.
