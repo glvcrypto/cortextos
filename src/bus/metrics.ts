@@ -86,6 +86,22 @@ export function collectMetrics(ctxRoot: string, org?: string): MetricsReport {
     } catch { /* empty */ }
   }
 
+  // Supplement with live state-dir scan so newly started agents are always included.
+  // enabled-agents.json is written at daemon startup and may lag behind the live roster.
+  // Discriminator: presence of heartbeat.json distinguishes agent dirs from system dirs
+  // (oauth/, usage/, batch worker dirs, etc.) which share the same parent.
+  const stateBaseDir = join(ctxRoot, 'state');
+  if (existsSync(stateBaseDir)) {
+    try {
+      for (const entry of readdirSync(stateBaseDir, { withFileTypes: true })) {
+        if (!entry.isDirectory() || agentNames.includes(entry.name)) continue;
+        if (existsSync(join(stateBaseDir, entry.name, 'heartbeat.json'))) {
+          agentNames.push(entry.name);
+        }
+      }
+    } catch { /* ignore — stateBaseDir unreadable */ }
+  }
+
   const agents: Record<string, AgentMetrics> = {};
   let totalCompleted = 0;
   let agentsHealthy = 0;
