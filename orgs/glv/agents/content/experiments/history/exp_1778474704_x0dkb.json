@@ -1,0 +1,21 @@
+{
+  "id": "exp_1778474704_x0dkb",
+  "agent": "content",
+  "metric": "content-quality",
+  "hypothesis": "Surface rules accumulated through exp_1-3 (NO-specific lede, CMI body structure) generalise from blog posts to FAQ/service page format. Evidence: exp_3 kept at 9/10 for blog format with NO-specific lede + CMI 4-stage structure. Hypothesis: applying these same surface rules to a FAQ page (adapted: NO-specific lede in intro, CMI buyer-intent journey at section level, direct-answer-first per Q, named staff as proof, service timelines as specifics) will score 8-9/10 — validating format generalisation.",
+  "surface": "experiments/surfaces/content-quality/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "",
+  "status": "completed",
+  "baseline_value": 8,
+  "result_value": 8,
+  "decision": "keep",
+  "learning": "FAQ format generalisation validated. Surface rules applied successfully across all 15 answers. Strongest: seasonal service section — walleye opener deadline, winterisation urgency, specific April cutoff. Named staff (Lynn+Ron parts, Casey+Aaron ownership) credible and not generic. NO-specific lede (Lake Superior shoreline 2700km Ontario) is the strongest lede in the batch — breadth fact appropriate for a page-level intro. CMI buyer-intent section ordering (About→Service→Parts→Seasonal→Pricing→Location) is structurally sound and mirrors FAQ reader journey. Gap to 9: ~3 of 15 answers drop the proof element — Do You Ship Parts and Do You Offer Financing end with redirect only, no named staff or timeline. Format generalisation is confirmed valid; enforcement of per-answer proof element is the remaining refinement. Score 8/10 (same ceiling as exp_2 identity-first, one point below exp_3 blog format). Hypothesis confirmed: surface rules generalise to FAQ format at 8/10.",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-05-11T04:45:04Z",
+  "started_at": "2026-05-11T04:45:11Z",
+  "completed_at": "2026-05-11T04:45:43Z",
+  "changes_description": "Surface rules applied to Reyco FAQ page: FAQ adaptation added to current.md (intro lede, per-Q answer structure, section ordering by buyer intent). Output: orgs/glv/clients/reyco/deliverables/web-copy/faq-page.md — full FAQ page for reycomarine.com. All surface rules applied. Committed in feat(content): exp_7 (b5edf88)."
+}

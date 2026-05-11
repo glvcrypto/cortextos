@@ -1,0 +1,21 @@
+{
+  "id": "exp_1778474757_actes",
+  "agent": "content",
+  "metric": "content-quality",
+  "hypothesis": "Enforce mandatory proof element in every FAQ answer, including logistics answers (hours, location, shipping, financing). Evidence: exp_7 kept at 8/10 — format generalisation validated but ~3/15 answers dropped proof (Do You Ship Parts, Do You Offer Financing, Where Are You Located). These were the weakest answers — redirect-only, no staff name or specific detail. Hypothesis: adding explicit proof-required rule to FAQ answer structure (every answer must name a staff member OR give a real number/timeline OR cite a specific constraint) will push FAQ format from 8 to 9/10, matching the blog format ceiling. This is the same proof-discipline that pushed exp_3 to 9/10 — applied now at the individual-answer level rather than the lede level.",
+  "surface": "experiments/surfaces/content-quality/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "",
+  "status": "running",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-05-11T04:45:57Z",
+  "started_at": "2026-05-11T04:46:09Z",
+  "completed_at": null,
+  "changes_description": "Added mandatory proof-in-every-answer rule to FAQ answer structure in current.md. Rule: every FAQ answer (including logistics) must contain named staff OR real number/timeline OR specific local/operational constraint. Addresses the ~3/15 proof-dropout gap identified in exp_7 evaluation (Do You Ship Parts, Do You Offer Financing, Where Are You Located were redirect-only)."
+}
