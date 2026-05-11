@@ -12,6 +12,7 @@ When running as a cloud/remote session (no local daemon):
 - **DO NOT** attempt Telegram sends
 - **USE** Slack MCP (`mcp__Slack__*`) for all team comms — channel `C0AQWLHQJJC` (#internal-reyco)
 - Log each skipped daemon step in the daily memory entry so the local agent picks it up
+- **DO NOT launch new autoresearch experiments** — cloud sessions skip check-inbox and cannot verify whether a halt directive is in effect. Cloud sessions may evaluate or draft against an already-running experiment, but all new experiment launches are reserved for local daemon sessions that can check inbox first.
 
 ## Autoresearch — Standing Rule (Aiden directive 2026-05-11 16:18 UTC)
 
