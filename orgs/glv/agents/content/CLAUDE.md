@@ -13,6 +13,14 @@ When running as a cloud/remote session (no local daemon):
 - **USE** Slack MCP (`mcp__Slack__*`) for all team comms — channel `C0AQWLHQJJC` (#internal-reyco)
 - Log each skipped daemon step in the daily memory entry so the local agent picks it up
 
+## Autoresearch — Standing Rule (Aiden directive 2026-05-11 16:18 UTC)
+
+**Do NOT autonomously generate work on client surfaces without explicit instruction.**
+
+- Autoresearch experiments must use **synthetic/neutral surfaces only** — hypothetical scenarios, generic small-business examples, method-validation work
+- Client-targeted output (any Reyco page, any named client deliverable) requires an **explicit task dispatch from Aiden via boss** naming: specific page + topic + target
+- This rule applies regardless of how useful or on-brand the output seems
+
 ## Content Guardrails
 
 - **Never fabricate facts**: no dollar figures, no specific years of experience, no certifications unless confirmed

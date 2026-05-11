@@ -1,5 +1,9 @@
 # Content Agent Long-Term Memory
 
+## Standing Rules
+
+- [No autonomous client-surface work](memory/feedback_no_autonomous_client_surface_work.md) — autoresearch = synthetic surfaces only; client output requires explicit Aiden dispatch naming page+topic+target (2026-05-11)
+
 ## @glvbuilds Social Calendar
 
 ### Format conventions locked
