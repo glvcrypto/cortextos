@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-10 (cloud session ~20:19 UTC — PR monitor: ALL client repos clear — reyco-marine #234 MERGED 20:03Z, #189 CLOSED, titantinyhomes #4 MERGED 18:52Z; 88 cortextos PRs (#6–#87 + #79) waiting Aiden; PHP 7.4 deadline May 20 = 10 days; Node 22 deadline June 2 = 23 days; ⚠️ WP 7.0 also drops May 20 — double-change day risk; ⚠️ PHPCompatibility PHPCS — Aiden to install tomorrow/Monday (May 11–12), gives 6–8 days runway before May 20 PHP cutover; CI audit: #87 Build ✅ Unit Tests ❌ Dashboard Build ❌ (pre-existing flakes); #84 Build ✅ Unit Tests ✅ Dashboard Build ❌ (needs #86); #83 Build ✅ Unit Tests ❌ Dashboard Build ❌ (fixed by #84))_
+_Last updated: 2026-05-11 23:08 UTC — cloud session. Client repos: reyco-marine 0 open PRs ✅ (PR #234/#189 resolved by Aiden); titantinyhomes PR #5 MERGED+DEPLOYED (SHA 3d8dc88, floating CTA + email sweep + Resend wired); glvmarketing PR #2 OPEN (WP theme source — WP Phase 2 already live via FTP); fusionfinancial 0 open PRs ✅. 88 cortextos PRs (#6–#87 + #79) still waiting Aiden. ⚠️ PHPCompatibility PHPCS DEADLINE PASSED (midnight May 10) — local agent must install before May 20 PHP cutover (9 days). ⚠️ Node 22 deadline June 2 = 22 days. ⚠️ PHP 7.4 cutover May 20 = 9 days. CI: #87 pre-existing flakes; #84 ✅ Tests; #83 fixed by #84._
 
 ## Priority 1 — Merge Queue (blocked on Aiden review)
 
@@ -141,9 +141,7 @@ These PRs are complete and tested. Waiting for merge approval.
 - **Path C booking form** — interim wp_mail form + calendar embed slot. Standing by for Aiden spot-check on v2 service pages.
 - **Visual regression CI** — PR #75 closed 2026-05-04 (no Playwright CI planned at this time).
 - **Lightspeed product sync** — 58 products still missing images (Mercury 38, Toro 7, Cub Cadet 10, Princecraft 3). Root cause: not yet synced from Lightspeed to WC. Unblocked when Casey runs sync.
-- **Open PRs (needs Aiden review):**
-  - PR #234 (opened 2026-05-07T19:02Z) — fix(mobile): hero phone-CTA spacing — `pb-16` → `pb-28` on hero inner div (front-page.php line 36). **Boss can merge (no CI gate).** ~69h open.
-  - PR #189 (opened 2026-05-06T~17:08Z) — fix: Casey-twice on Meet the Team Sales counter card — **⚠️ NOW ~95h open (~71h past 24h SLA)** — needs Aiden review urgently
+- **Open PRs:** 0 ✅ — PR #234 (mobile CTA spacing) and PR #189 (Casey-twice fix) both resolved by Aiden as of 2026-05-10–11.
 
 ### WC Pricing Sweep
 
@@ -161,6 +159,10 @@ These PRs are complete and tested. Waiting for merge approval.
 | #6 | chore: .gitignore .db artifacts | Can merge independently |
 
 ## Completed (Recent)
+
+- **2026-05-11 — GLV Marketing WP Phase 2 DONE** (cloud session): theme `glv-marketing` (28 files) uploaded via FTP + activated; CF7 + Rank Math + WP Importer plugins installed; 11 pages created + reading settings + permalinks; 24 blog posts imported from Supabase WXR; CF7 forms (GLV Contact ID 6, GLV Lead ID 42) created; site title set; all 11 routes 200 ✅. glvmarketing PR #2 still open for source version control.
+- **2026-05-11 — Titan Tiny Homes floating CTA** (cloud session): `FloatingMeetingButton.tsx` + `MeetingModal.tsx` built; 15s/30%-scroll auto-popup once-per-session; Resend wired via Supabase send-email function → joseph@titantinyhomes.ca; site-wide joeyrattan@ → joseph@ sweep (Contact, Footer, Privacy, Terms, schema.org). PR #5 squash-merged SHA `3d8dc88` + GHA deployed to SiteGround ✅. Bundle smoke check: joseph@ 10x, joeyrattan@ 0, CTA code confirmed.
+- **2026-05-11 — GLV Socials Phase 0** (cloud session): Remotion 4.0.459 carousel pipeline at `clients/glv-marketing/socials/remotion/`. GLV brand tokens, 3 slide types, 2 compositions (1080×1350 + 1080×1080). Batch render script + 10 test stills confirmed. Committed to cortextos main.
 
 - reyco-marine PR #238 (merged 2026-05-08 23:51 UTC) — feat(canonical): contact email info@reycomarine.com — customizer default + LocalBusiness schema + wp_mail_from filter + about.php RECIPIENTS fix
 - reyco-marine PR #237 (merged 2026-05-08) — fix: mixed-content HTTPS — `is_ssl()` false behind SiteGround reverse proxy → assets on `http://`; 3 hooks: init HTTPS flag + script/style URL rewrite filters
