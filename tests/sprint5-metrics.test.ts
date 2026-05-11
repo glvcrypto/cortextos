@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { existsSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
@@ -7,6 +7,7 @@ import {
   parseUsageOutput,
   storeUsageData,
   collectTelegramCommands,
+  registerTelegramCommands,
 } from '../src/bus/metrics.js';
 
 describe('Sprint 5: Observability & Metrics', () => {
@@ -266,6 +267,67 @@ describe('Sprint 5: Observability & Metrics', () => {
 
       const commands = collectTelegramCommands([scanDir]);
       expect(commands[0].description.length).toBe(256);
+    });
+  });
+
+  describe('registerTelegramCommands', () => {
+    const originalFetch = globalThis.fetch;
+
+    afterEach(() => {
+      globalThis.fetch = originalFetch;
+    });
+
+    const sampleCommands = [
+      { command: 'deploy', description: 'Deploy the app' },
+      { command: 'status', description: 'Check status' },
+    ];
+
+    it('returns empty status immediately when commands array is empty', async () => {
+      const result = await registerTelegramCommands('123:BOT', []);
+      expect(result.status).toBe('empty');
+      expect(result.count).toBe(0);
+      expect(result.commands).toEqual([]);
+      expect(result.error).toContain('No commands found');
+    });
+
+    it('returns ok status on successful Telegram registration', async () => {
+      globalThis.fetch = vi.fn(async () =>
+        new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        }),
+      ) as any;
+
+      const result = await registerTelegramCommands('123:BOT', sampleCommands);
+      expect(result.status).toBe('ok');
+      expect(result.count).toBe(2);
+      expect(result.commands).toEqual(sampleCommands);
+      expect(result.error).toBeUndefined();
+    });
+
+    it('returns error status when Telegram API returns ok: false', async () => {
+      globalThis.fetch = vi.fn(async () =>
+        new Response(JSON.stringify({ ok: false, description: 'Bad Request: invalid command' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }),
+      ) as any;
+
+      const result = await registerTelegramCommands('123:BOT', sampleCommands);
+      expect(result.status).toBe('error');
+      expect(result.count).toBe(0);
+      expect(result.error).toContain('Bad Request');
+    });
+
+    it('returns error status when fetch throws', async () => {
+      globalThis.fetch = vi.fn(async () => {
+        throw new TypeError('fetch failed: network error');
+      }) as any;
+
+      const result = await registerTelegramCommands('123:BOT', sampleCommands);
+      expect(result.status).toBe('error');
+      expect(result.count).toBe(0);
+      expect(result.error).toContain('TypeError');
     });
   });
 });
