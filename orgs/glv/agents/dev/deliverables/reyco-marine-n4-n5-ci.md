@@ -1,6 +1,7 @@
 # Reyco Marine — N4/N5 CI Workflow (Ready to Deploy)
 
 _Drafted: 2026-05-08 (cloud session dev agent heartbeat)_
+_Updated: 2026-05-11 — PHP 8.1 (EOL Dec 2025) → 8.3 runner; testVersion expanded to `7.4-8.3` range for full deprecation coverage._
 _Scout signal HIGH priority item from 2026-05-07: review Claude Code CI auto-fix integration path before implementing N4/N5 manually._
 
 ## Decision Summary
@@ -33,10 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up PHP 8.1
+      - name: Set up PHP 8.3
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.3'
           tools: composer
 
       - name: PHP syntax check (all .php files)
@@ -68,15 +69,15 @@ jobs:
           echo "PHP 8.x removed-pattern gate: PASS"
 
   phpcs-compat:
-    name: PHPCompatibility PHPCS (PHP 8.1)
+    name: PHPCompatibility PHPCS (PHP 7.4-8.3)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up PHP 8.1
+      - name: Set up PHP 8.3
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.3'
           tools: composer
 
       - name: Install PHPCS + PHPCompatibility
@@ -90,13 +91,14 @@ jobs:
         run: |
           phpcs \
             --standard=PHPCompatibility \
-            --runtime-set testVersion 8.1 \
+            --runtime-set testVersion 7.4-8.3 \
             --extensions=php \
             --ignore=vendor \
             --warning-severity=0 \
             . \
-            || (echo "FAIL: PHPCompatibility found PHP 8.x incompatibilities" && exit 1)
+            || (echo "FAIL: PHPCompatibility found PHP 7.4→8.x incompatibilities" && exit 1)
           echo "PHPCompatibility gate: PASS"
+        # testVersion 7.4-8.3 = check for all removals/changes from 7.4 through 8.3
         # --warning-severity=0 = report ERRORs only, suppress WARNINGs
         # Change to --warning-severity=5 to fail on warnings too
 
@@ -200,7 +202,9 @@ jobs:
 Already documented in deploy-reliability surface. Still required for pre-push gate:
 ```bash
 composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility
-phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility
+phpcs --config-set installed_paths $(composer config -g home)/vendor/phpcompatibility/php-compatibility/PHPCompatibility
+# Scan (use same testVersion range as CI):
+phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4-8.3 --extensions=php --ignore=vendor /path/to/reyco-marine/wp-content/themes/reyco-marine/
 ```
 
 ---
@@ -208,7 +212,8 @@ phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compa
 ## Notes
 
 - `shivammathur/setup-php@v2` is the standard PHP setup action for GitHub Actions — handles PHP version + PECL extensions
-- PHPCompatibility scan targets `testVersion 8.1` (minimum supported after SiteGround upgrade May 20)
+- PHPCompatibility scan uses `testVersion 7.4-8.3` — covers all removals/deprecations from PHP 7.4 through 8.3. SiteGround targeting 8.1 (EOL Dec 2025); recommend requesting 8.3 (active through Dec 2027). Either way the range catches all issues.
+- CI runner uses PHP 8.3 — runs on the latest stable PHP to catch runtime issues regardless of SiteGround's specific target version
 - Smoke test uses `reycomarine.com` (production domain, migrated 2026-05-06) — not `reyco.glvmarketing.ca` (staging)
 - smoke-test job guarded by `if: github.event_name == 'push' && github.ref == 'refs/heads/master'` — runs only after master deploy, not on PRs
 - Claude review action (`claude-review.yml`) is additive — costs ~$0.10–$0.30 per PR review depending on diff size

@@ -52,6 +52,7 @@ When running in cloud (no local daemon):
 - Use GitHub MCP + git for all code/PR work
 - Memory-only commits can go direct to main; code changes need PR
 - **`npm test` and `npm run build` DO NOT WORK in cloud sessions** — `node_modules` is not installed in the repo checkout. Do not attempt to run tests or build; log as infeasible. All build/test verification must be done locally before PRs are opened.
+- **N4/N5 CI deliverable correct path**: `orgs/glv/agents/dev/deliverables/reyco-marine-n4-n5-ci.md` — NOT `deliverables/reyco-marine-n4-n5-ci.md` at repo root (which doesn't exist). Previous sessions used the wrong path in memory/Slack — corrected 2026-05-11.
 
 ## n8n Workflow Notes
 
