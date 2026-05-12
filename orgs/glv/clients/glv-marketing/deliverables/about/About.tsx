@@ -15,14 +15,10 @@ import {
   Sparkles,
 } from "lucide-react";
 
-// DRAFT v2 - awaiting Aiden QC
-// Changes from v1 (a18f9793):
-//   Story arc: 6-year internship credential replaces "watched agencies underdeliver" framing
-//   Differentiators reordered: Customized lead + AI card softened (no vendor names)
-//   Dropped Northern Ontario differentiator card (privacy card is stronger; NO covered in story + serves section)
-//   SMB card broadened: "any business, SMBs are core"
-//   2 tricolons stripped (hero + CTA)
-//   Photo: /assets/aiden-glave.jpg (confirmed by dev, onError fallback removed)
+// v3 - QC passed (boss 2026-05-12 23:40 UTC)
+// v3 changes (cfba7607): story rewritten with SEO anchor + quality framing; checklist 6 to 12 items
+// v2 changes (ed15cbc9): 6yr internship story arc, Customized lead card, AI softened, tricolons stripped, photo wired
+// v1 baseline (a18f9793): initial founder-frame rewrite
 
 const seo = {
   title: "About | GLV Marketing",
