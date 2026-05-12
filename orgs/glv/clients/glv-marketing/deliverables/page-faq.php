@@ -98,20 +98,20 @@ get_header();
             <div>
                 <!-- Category heading with red accent line -->
                 <h2 class="text-2xl md:text-3xl font-heading font-bold mb-2"><?php echo $cat_title; ?></h2>
-                <div class="mb-5">
+                <div class="mb-8">
                     <div class="h-0.5 w-12 bg-primary rounded-full mb-px"></div>
                     <div class="h-px bg-border/60"></div>
                 </div>
                 <!-- Accordion items -->
                 <div class="space-y-3">
                     <?php foreach ($questions as $item) : ?>
-                    <div class="glv-faq-item rounded-xl border border-border/50 bg-card overflow-hidden transition-colors duration-200 hover:border-primary/25">
-                        <button class="glv-faq-trigger w-full text-left px-6 sm:px-7 py-5 font-heading font-medium text-foreground flex items-center justify-between gap-4 hover:bg-primary/[0.03] transition-colors duration-150"
+                    <div class="glv-faq-item rounded-xl border border-border/50 bg-card transition-colors duration-200 hover:border-primary/25">
+                        <button class="glv-faq-trigger w-full text-left px-6 sm:px-7 py-6 font-heading font-medium text-foreground flex items-center justify-between gap-4 hover:bg-primary/[0.03] transition-colors duration-150"
                                 aria-expanded="false">
-                            <span class="text-sm sm:text-base leading-snug"><?php echo esc_html($item['q']); ?></span>
+                            <span class="text-base sm:text-lg leading-snug"><?php echo esc_html($item['q']); ?></span>
                             <svg class="glv-faq-chevron shrink-0 text-primary/60 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
-                        <div class="glv-faq-content hidden px-6 sm:px-7 pb-7 pt-4 text-muted-foreground leading-loose text-sm space-y-3 border-t border-border/30">
+                        <div class="glv-faq-content hidden px-7 sm:px-8 pb-10 pt-4 text-muted-foreground leading-loose text-base space-y-3">
                             <?php echo wp_kses_post($item['a']); ?>
                         </div>
                     </div>
@@ -137,6 +137,33 @@ get_header();
     </div>
 </section>
 
+<style>
+/* FAQ-specific overrides — Tailwind build is purged; new utility classes added via FTP are silently ignored.
+   These values mirror the Tailwind classes used in the markup but guarantee application regardless of build. */
+.glv-faq-trigger {
+    padding-top: 1.5rem;    /* py-6 */
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;   /* px-6 */
+    padding-right: 1.5rem;
+}
+.glv-faq-trigger span {
+    font-size: 1rem;         /* text-base */
+    line-height: 1.5;
+}
+.glv-faq-content {
+    padding-top: 1rem;       /* pt-4 */
+    padding-bottom: 2.5rem;  /* pb-10 */
+    padding-left: 1.75rem;   /* px-7 */
+    padding-right: 1.75rem;
+    line-height: 2;           /* leading-loose */
+    font-size: 1rem;          /* text-base */
+}
+@media (min-width: 640px) {
+    .glv-faq-trigger { padding-left: 1.75rem; padding-right: 1.75rem; } /* sm:px-7 */
+    .glv-faq-trigger span { font-size: 1.125rem; }                       /* sm:text-lg */
+    .glv-faq-content { padding-left: 2rem; padding-right: 2rem; }        /* sm:px-8 */
+}
+</style>
 <script>
 (function(){
     function setOpen(item, open) {
