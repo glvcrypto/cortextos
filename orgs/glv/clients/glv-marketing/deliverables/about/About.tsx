@@ -7,56 +7,58 @@ import {
   ArrowRight,
   Target,
   Shield,
-  Zap,
+  Wrench,
   MapPin,
   Globe,
   CheckCircle,
   Briefcase,
+  Sparkles,
 } from "lucide-react";
 
-// DRAFT - awaiting Aiden QC
-// Flags for Aiden to unlock the best version:
-//   [Q1] Story arc: confirm the "years watching agencies underdeliver" framing reflects your actual background
-//   [Q2] Differentiation: confirm AI-powered tools claim is the primary differentiator you want to lead with
-//   [Q3] Vertical fit: confirm law/medical/financial are the regulated verticals you want named on the about page
-//   [Q4] External signal: any credential, publication, or client result you want cited here (or keep soft)
-//   [Q5] Visual: founder photo available for hero section? (placeholder text works fine without one)
+// DRAFT v2 - awaiting Aiden QC
+// Changes from v1 (a18f9793):
+//   Story arc: 6-year internship credential replaces "watched agencies underdeliver" framing
+//   Differentiators reordered: Customized lead + AI card softened (no vendor names)
+//   Dropped Northern Ontario differentiator card (privacy card is stronger; NO covered in story + serves section)
+//   SMB card broadened: "any business, SMBs are core"
+//   2 tricolons stripped (hero + CTA)
+//   Photo placeholder wired: /assets/founder-aiden.jpg
 
 const seo = {
   title: "About | GLV Marketing",
   description:
-    "GLV Marketing is a Canadian marketing agency founded by Aiden Glave in Sault Ste. Marie, Ontario. Built for small and mid-sized businesses that want real results without big-city agency overhead.",
+    "GLV Marketing is a Canadian marketing agency founded by Aiden Glave in Sault Ste. Marie, Ontario. Built for businesses that want real results, customized strategy, and direct access to the person doing the work.",
   canonical: "https://glvmarketing.ca/about",
 };
 
 const differentiators = [
+  {
+    icon: Sparkles,
+    title: "Customized for Your Business, Not Templated",
+    desc: "Every client gets a strategy built for their business specifically. GLV does not apply a standard package and call it done. The work is scoped around what your business actually needs, delivered to an industry-standard quality, and done efficiently enough that you are not waiting months for results.",
+  },
   {
     icon: Target,
     title: "You Work With the Strategist",
     desc: "When you hire GLV, you work directly with me. Not a junior account manager who hands your account to someone else after the first call. Every strategy, every decision, every deliverable comes from the same person who understood your business from the start.",
   },
   {
-    icon: Zap,
-    title: "AI Tools Built In-House",
-    desc: "GLV builds and runs AI-powered marketing tools that most agencies are still treating as a buzzword. Automated workflows, content systems, and reporting pipelines that replace hours of manual work and let me focus on what actually moves the needle for your business.",
+    icon: Wrench,
+    title: "Modern Tools and Systems",
+    desc: "GLV uses current tools and automated workflows to do in hours what traditional agencies bill days for. That efficiency goes back into the quality and depth of the work, not into agency overhead. You get more done, faster, without paying for a team you never interact with.",
   },
   {
     icon: Shield,
     title: "Canadian Privacy Law, by Default",
     desc: "Most marketing agencies are not thinking about PIPEDA or PHIPA when they set up your tools. GLV is. If you operate in a regulated industry, your marketing infrastructure has to be compliant by design, not patched together after the fact.",
   },
-  {
-    icon: MapPin,
-    title: "Northern Ontario, National Reach",
-    desc: "GLV is based in Sault Ste. Marie. I understand the Northern Ontario market in a way that no Toronto or Vancouver agency does. And I bring the same quality of strategy to clients anywhere in Canada, because good marketing does not have a geography.",
-  },
 ];
 
 const serves = [
   {
     icon: Briefcase,
-    title: "Small and Mid-Sized Canadian Businesses",
-    desc: "Owners who want to grow online but are not ready to hand their marketing to a large agency and get lost in the shuffle. GLV is built for businesses where the owner still cares deeply about where their money goes.",
+    title: "Businesses of Any Size",
+    desc: "GLV works with businesses of any size. Small and mid-sized businesses are the core because that is where direct-strategist access and customized work matter most. At that scale, templated agency work does real damage. At larger scales, GLV can scope accordingly.",
   },
   {
     icon: Shield,
@@ -76,16 +78,37 @@ const About = () => (
 
     {/* Hero */}
     <section className="section-padding">
-      <div className="container max-w-4xl">
+      <div className="container max-w-5xl">
         <AnimatedSection>
-          <p className="text-sm uppercase tracking-widest text-primary/70 font-medium mb-4">About</p>
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight">
-            I'm Aiden Glave. <br />
-            I built <span className="text-gradient">GLV Marketing</span> because small businesses deserve better.
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            For years I watched agencies charge small business owners serious money for work that produced nothing. Cookie-cutter strategies. Junior staff. Reports that looked busy and moved nothing. I built GLV to fix that, starting in Northern Ontario, growing across Canada.
-          </p>
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <p className="text-sm uppercase tracking-widest text-primary/70 font-medium mb-4">About</p>
+              <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight">
+                I'm Aiden Glave. <br />
+                I founded <span className="text-gradient">GLV Marketing</span>.
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                After six years working inside a digital marketing firm, I came back to Sault Ste. Marie to build something better. A marketing agency that delivers the quality of work large firms produce, without the overhead, the account manager shuffle, or the templated thinking that comes with it.
+              </p>
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-lg w-72 h-80 bg-muted flex items-center justify-center">
+                <img
+                  src="/assets/founder-aiden.jpg"
+                  alt="Aiden Glave, founder of GLV Marketing"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.style.display = "none";
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = '<p class="text-muted-foreground text-sm text-center px-6">Founder photo coming soon</p>';
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         </AnimatedSection>
       </div>
     </section>
@@ -97,16 +120,16 @@ const About = () => (
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6">How GLV Started</h2>
           <div className="space-y-5 text-muted-foreground leading-relaxed">
             <p>
-              I started learning marketing on my own. Not through an agency, not through a program. I applied it to real businesses and started seeing what actually worked versus what agencies were selling. The gap was significant.
+              I spent six years working at a digital marketing firm. That experience gave me a clear picture of what good marketing strategy looks like when it is executed well, and what the industry standard actually requires to produce results that hold up over time.
             </p>
             <p>
-              Most agencies are built around account volume. They take on as many clients as possible, assign junior staff, and deliver templated work that looks professional but does not produce results. Small business owners pay for it anyway because they do not know what good looks like.
+              I wanted to bring that back to Sault Ste. Marie and Northern Ontario. The businesses here are real, the market is real, and the need for quality marketing is exactly the same as anywhere else in Canada. What was missing was access to that level of strategy without having to send your business to a large city agency that treats you as a small account.
             </p>
             <p>
-              I started GLV to close that gap. To give Canadian small businesses access to the same quality of strategy and tools that enterprise companies get, without the overhead, the account manager shuffle, or the agency markup on work that could be done better and faster with the right systems.
+              Modern tools and systems now make it possible to deliver that quality as a solo operation. Automated workflows, purpose-built content systems, and up-to-date platforms mean I can do in a day what used to require a full agency team. The efficiency goes into the work, not into internal overhead.
             </p>
             <p>
-              GLV is based in Sault Ste. Marie. I understand what it takes to build a business in Northern Ontario, where the market is smaller, the margin for error is tighter, and every dollar of marketing spend has to count. That perspective shapes how I work with every client, regardless of where they are in Canada.
+              GLV is the result. Based in Northern Ontario, working with businesses across Canada, and built around the idea that customized, high-quality marketing should not require a large-agency budget or a junior account manager as your main point of contact.
             </p>
           </div>
         </AnimatedSection>
@@ -119,7 +142,7 @@ const About = () => (
         <AnimatedSection>
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">Why Clients Choose GLV</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl">
-            GLV is not a team. It is a founder-run operation, and that is intentional. Here is what that means for you:
+            GLV is a founder-run operation. Here is what that means in practice:
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
             {differentiators.map((d) => (
@@ -147,7 +170,7 @@ const About = () => (
         <AnimatedSection>
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">Who GLV Works With</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl">
-            GLV works best with a specific kind of business owner. If any of these sound like you, we should talk:
+            GLV works with businesses across Canada at various stages of growth. The work is scoped to fit the business:
           </p>
           <div className="grid sm:grid-cols-3 gap-4">
             {serves.map((s) => (
@@ -176,7 +199,7 @@ const About = () => (
             {[
               "WordPress and WooCommerce builds: production-ready sites, not templates",
               "SEO and local search, built into the site from day one, not added later",
-              "AI-powered marketing automation and content workflows",
+              "Marketing automation and content workflows using current tools",
               "GEO (Generative Engine Optimisation): positioning your business in AI-driven search results",
               "Google and Meta advertising for businesses that want measurable results",
               "Ongoing site management for clients who want a long-term partner, not a one-off build",
@@ -197,7 +220,7 @@ const About = () => (
         <AnimatedSection>
           <h2 className="text-3xl font-heading font-bold mb-4">Let's talk about your business</h2>
           <p className="text-muted-foreground mb-8">
-            A 15-minute call is enough to figure out whether GLV is the right fit. No pitch deck. No pressure. Just a conversation about where you are and where you want to go.
+            Book a free 15-minute call. I'll ask a few questions about your business and tell you honestly whether GLV is the right fit.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/contact">
