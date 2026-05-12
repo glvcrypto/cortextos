@@ -163,6 +163,10 @@ get_header();
     .glv-faq-trigger span { font-size: 1.125rem; }                       /* sm:text-lg */
     .glv-faq-content { padding-left: 2rem; padding-right: 2rem; }        /* sm:px-8 */
 }
+/* Inter-category spacing — space-y-12/16 likely purged from build */
+.space-y-12 > div + div {
+    margin-top: 5rem;
+}
 </style>
 <script>
 (function(){
