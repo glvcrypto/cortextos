@@ -26,7 +26,7 @@ get_header();
     </div>
 </section>
 
-<section class="pb-16 md:pb-24">
+<section id="glv-faq-body" class="pb-16 md:pb-24">
     <div class="container max-w-3xl">
 
         <!-- Expand / Collapse All -->
@@ -166,6 +166,10 @@ get_header();
 /* Inter-category spacing — space-y-12/16 likely purged from build */
 .space-y-12 > div + div {
     margin-top: 5rem;
+}
+/* FAQ section bottom padding — pb-16/pb-24 likely purged */
+#glv-faq-body {
+    padding-bottom: 5rem;
 }
 </style>
 <script>
