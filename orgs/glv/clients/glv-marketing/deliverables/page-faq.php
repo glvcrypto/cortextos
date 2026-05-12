@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 get_header();
 ?>
 
-<section class="section-padding">
+<section id="glv-faq-intro" class="section-padding">
     <div class="container max-w-3xl">
         <nav aria-label="Breadcrumb" class="mb-8">
             <ol class="flex items-center gap-2 text-sm text-muted-foreground">
@@ -170,6 +170,10 @@ get_header();
 /* FAQ section bottom padding — pb-16/pb-24 likely purged */
 #glv-faq-body {
     padding-bottom: 5rem;
+}
+/* Intro section: trim bottom padding — section-padding applies 128px, too much gap */
+#glv-faq-intro {
+    padding-bottom: 2rem;
 }
 </style>
 <script>
