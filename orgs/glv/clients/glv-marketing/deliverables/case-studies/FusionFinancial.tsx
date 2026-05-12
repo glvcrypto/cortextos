@@ -9,128 +9,117 @@ import {
   ArrowRight,
   Globe,
   Search,
-  Store,
   ShieldCheck,
   Layout as LayoutIcon,
-  Target,
-  Code,
-  ExternalLink,
+  TrendingUp,
   CheckCircle,
-  Package,
-  MapPin,
+  ExternalLink,
+  RefreshCw,
+  Users,
+  Star,
 } from "lucide-react";
 
-// DRAFT rev2 - Aiden re-QC pending
-// Testimonial section stripped (no quote on file)
-// Keywords table stripped (no GSC data yet)
-// GBP confirmed by Aiden - included as deliverable
-// Re-framed as WP/WooCommerce build case study
-
 const seo = {
-  title: "Reyco Marine Case Study | GLV Marketing",
+  title: "Fusion Financial Case Study | GLV Marketing",
   description:
-    "How GLV Marketing built Reyco Marine's production WordPress and WooCommerce site, structuring an 11-brand catalogue, running a pre-launch security audit, and executing a clean domain migration to reycomarine.com.",
-  canonical: "https://glvmarketing.ca/case-studies/reyco-marine",
+    "How GLV Marketing built Fusion Financial's production WordPress site from the ground up and continues to manage it as an active client, delivering 20+ organic leads through search.",
+  canonical: "https://glvmarketing.ca/case-studies/fusion-financial",
 };
 
-const tags = ["WordPress Development", "WooCommerce", "Security Audit", "Domain Migration", "Local SEO"];
+const tags = ["WordPress Development", "Ongoing Management", "Local SEO", "Financial Services"];
 
-const challenges = [
+const scope = [
   {
     icon: Globe,
-    title: "No Customer-Facing Website",
-    desc: "Reyco operated through an internal staging subdomain. Customers had no online destination to browse inventory, book service, or research their 11 authorized brands.",
-  },
-  {
-    icon: Search,
-    title: "Zero Search Visibility",
-    desc: "With no indexed production site, Reyco was invisible to buyers searching for marine service, Mercury dealers, or outdoor power equipment in Northern Ontario.",
-  },
-  {
-    icon: Store,
-    title: "Complex Product Catalogue",
-    desc: "11 authorized brands across marine, lawn, snow, and ATV/UTV, plus seasonal services and parts, required a structured WooCommerce architecture rather than a basic brochure site.",
+    title: "Brand-New Business, No Web Presence",
+    desc: "Fusion Financial launched with no existing website and no Google footprint. The site needed to establish credibility and capture organic search traffic from day one.",
   },
   {
     icon: ShieldCheck,
-    title: "Security Before Scale",
-    desc: "Launching a WooCommerce store without a pre-launch security review risked exposing the business to known vulnerabilities on day one.",
+    title: "Regulated Industry Messaging",
+    desc: "Financial services copy requires careful, compliant positioning. Every page had to build trust clearly while staying within the bounds of what a financial advisory firm can claim.",
+  },
+  {
+    icon: Users,
+    title: "Turning Visitors into Leads",
+    desc: "A financial services site lives or dies on trust signals. Structure, copy, and calls to action all had to work together to move a visitor from curious to ready to book.",
+  },
+  {
+    icon: Search,
+    title: "Local Search Competition",
+    desc: "Breaking into local search results for financial services in a new market requires more than a good-looking site. The architecture had to be built for discovery from the start.",
   },
 ];
 
 const solutions = [
   {
     icon: LayoutIcon,
-    title: "Custom WordPress + WooCommerce Build",
-    desc: "Full production site built on WordPress with WooCommerce on SiteGround hosting. Canadian English throughout, mobile-responsive, structured around the full scope of Reyco's business: marine, lawn, snow, and ATV/UTV equipment, plus in-house service and an authorized parts department.",
-  },
-  {
-    icon: Package,
-    title: "11-Brand Catalogue Architecture",
-    desc: "WooCommerce product catalogue structured around all 11 authorized brands: Echo, Princecraft, R&J, Toro, Mercury, EZGO, Cub Cadet, Minn Kota, Cannon, Humminbird, and Hisun, plus service categories covering marine, small engine, lawn, snow, and ATV/UTV. Each brand and category built for clean navigation and search indexing.",
+    title: "Custom WordPress Build",
+    desc: "Full production site built on WordPress. Clean layout, trust-forward design, and copy structured around the questions financial services prospects actually ask. Mobile-responsive and fast.",
   },
   {
     icon: ShieldCheck,
-    title: "Pre-Launch Security Audit",
-    desc: "Independent Tier 0 security review before public launch. All findings documented and remediated prior to cutover. Site cleared for production deployment, protecting the business and its customers from day one.",
+    title: "Financial Services Positioning",
+    desc: "Page copy written to build confidence and credibility without overreaching. Service pages, about content, and calls to action all calibrated for how financial advisory clients make decisions.",
   },
   {
-    icon: Code,
-    title: "Domain Migration",
-    desc: "Clean cutover from the internal staging environment (reyco.glvmarketing.ca) to the production domain (reycomarine.com) on May 6, 2026. Redirect structure preserved any early crawl signal and eliminated split-authority issues at launch.",
-  },
-  {
-    icon: Target,
+    icon: Search,
     title: "On-Page SEO Configuration",
-    desc: "Keyword research targeting Northern Ontario marine, small engine, and outdoor power searches. On-page optimisation across all product and service pages: brand, category, and location targeting. 356 product SEO assets deployed (196 meta descriptions + 160 alt-text entries). LocalBusiness schema deployed site-wide. Google Business Profile set up for Sault Ste. Marie.",
+    desc: "Keyword research and on-page optimisation across every service page. Meta descriptions, title tags, schema markup, and local targeting, all built in at launch. LocalBusiness schema deployed site-wide.",
   },
   {
-    icon: MapPin,
-    title: "Google Business Profile",
-    desc: "GBP set up and verified for Reyco Marine in Sault Ste. Marie, establishing local search presence at launch and supporting map pack eligibility for marine, small engine, and outdoor power searches in Northern Ontario.",
+    icon: TrendingUp,
+    title: "Organic Lead Generation",
+    desc: "20+ organic leads delivered through search since launch. Fusion Financial's site earns inbound inquiries without paid traffic, through the organic foundation GLV built and continues to maintain.",
+  },
+];
+
+const maintenance = [
+  {
+    icon: RefreshCw,
+    title: "Ongoing Site Management",
+    desc: "Fusion Financial is an active GLV client. GLV handles ongoing WordPress maintenance, plugin updates, security monitoring, and technical health checks so the Fusion team stays focused on clients, not their website.",
+  },
+  {
+    icon: Star,
+    title: "Content and Strategy Updates",
+    desc: "As Fusion Financial's service offering evolves, GLV updates page content, adds new service pages, and adjusts on-page SEO targeting to keep the site aligned with how the business actually operates.",
+  },
+  {
+    icon: Users,
+    title: "Active Relationship",
+    desc: "This is not a one-and-done engagement. GLV is Fusion Financial's ongoing web partner, present for changes big and small, and invested in how the site performs over the long term.",
   },
 ];
 
 const milestones = [
   {
     label: "Production site launched",
-    value: "May 6, 2026",
-    sub: "reycomarine.com, live on SiteGround",
+    value: "From scratch",
+    sub: "Brand-new business, zero to live",
     icon: CheckCircle,
   },
   {
-    label: "Authorized brands structured",
-    value: "11 brands",
-    sub: "Full WooCommerce catalogue architecture",
-    icon: Package,
+    label: "Organic leads delivered",
+    value: "20+",
+    sub: "Through search, no paid traffic required",
+    icon: TrendingUp,
   },
   {
-    label: "Product SEO deployed",
-    value: "356 assets",
-    sub: "196 meta descriptions + 160 alt-text entries",
-    icon: Search,
-  },
-  {
-    label: "Pre-launch security",
-    value: "Cleared",
-    sub: "Tier 0 audit, all findings remediated",
-    icon: ShieldCheck,
-  },
-  {
-    label: "Domain migration",
-    value: "Clean cutover",
-    sub: "Staging to reycomarine.com, May 6",
-    icon: Code,
-  },
-  {
-    label: "Google Business Profile",
+    label: "Ongoing management",
     value: "Active",
-    sub: "Sault Ste. Marie, set up at launch",
-    icon: MapPin,
+    sub: "GLV maintains the site as a long-term partner",
+    icon: RefreshCw,
+  },
+  {
+    label: "Local SEO",
+    value: "Configured",
+    sub: "On-page optimisation built in at launch",
+    icon: Search,
   },
 ];
 
-const ReycoMarine = () => (
+const FusionFinancial = () => (
   <Layout>
     <SEOHead title={seo.title} description={seo.description} canonical={seo.canonical} />
 
@@ -140,15 +129,15 @@ const ReycoMarine = () => (
         <Breadcrumbs
           items={[
             { label: "Case Studies", href: "/case-studies" },
-            { label: "Reyco Marine" },
+            { label: "Fusion Financial" },
           ]}
         />
         <AnimatedSection>
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Reyco <span className="text-gradient">Marine</span>
+            Fusion <span className="text-gradient">Financial</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mb-6">
-            How GLV Marketing built Reyco Marine's production WordPress and WooCommerce site, structuring an 11-brand catalogue, running a pre-launch security audit, and executing a clean domain migration to launch Northern Ontario's premier marine and outdoor power dealer online.
+            How GLV Marketing built Fusion Financial's production WordPress site from the ground up and continues to manage it as an active partner, delivering organic leads and keeping the site performing as the business grows.
           </p>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
@@ -166,16 +155,16 @@ const ReycoMarine = () => (
       <div className="container max-w-4xl py-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { label: "Industry", value: "Marine & Outdoor Power" },
-            { label: "Location", value: "Sault Ste. Marie, Ontario" },
-            { label: "Website", value: "reycomarine.com", link: true },
-            { label: "Engagement", value: "2026 to Present" },
+            { label: "Industry", value: "Financial Services" },
+            { label: "Location", value: "Northern Ontario" },
+            { label: "Website", value: "fusionfinancial.ca", link: true },
+            { label: "Engagement", value: "2024 to Present" },
           ].map((item) => (
             <div key={item.label}>
               <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{item.label}</p>
               {item.link ? (
                 <a
-                  href="https://reycomarine.com"
+                  href="https://fusionfinancial.ca"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-semibold text-primary inline-flex items-center gap-1 hover:underline"
@@ -191,16 +180,16 @@ const ReycoMarine = () => (
       </div>
     </section>
 
-    {/* The Challenge */}
+    {/* Scope of Work */}
     <section className="section-padding">
       <div className="container max-w-4xl">
         <AnimatedSection>
-          <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">The Challenge</h2>
+          <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">What the Site Needed to Do</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mb-8">
-            Reyco Marine is a Sault Ste. Marie institution, a full-service dealer for marine, lawn, snow, and ATV/UTV equipment with an in-house service team and an authorized parts department. Despite a strong local reputation, they had no customer-facing website and no presence in search:
+            Fusion Financial came to GLV as a brand-new business ready to launch. The website had to do several things at once:
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
-            {challenges.map((c) => (
+            {scope.map((c) => (
               <div
                 key={c.title}
                 className="rounded-xl border border-border/50 bg-card p-5 flex gap-4"
@@ -251,9 +240,9 @@ const ReycoMarine = () => (
         <AnimatedSection>
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-2 text-center">The Results</h2>
           <p className="text-muted-foreground text-center mb-10">
-            Delivered at launch, May 6, 2026.
+            Organic leads through search, and a site that keeps performing month over month.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {milestones.map((m) => (
               <div key={m.label} className="rounded-xl border border-border/50 bg-card p-5">
                 <div className="flex items-center gap-3 mb-3">
@@ -273,25 +262,53 @@ const ReycoMarine = () => (
       </div>
     </section>
 
-    {/* Key Takeaway */}
+    {/* What We've Maintained */}
     <section className="section-padding bg-card border-y border-border">
+      <div className="container max-w-4xl">
+        <AnimatedSection>
+          <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">What We Have Maintained</h2>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl mb-8">
+            The build was the beginning. Fusion Financial is an active GLV client, and the ongoing work is what keeps the site performing:
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {maintenance.map((m) => (
+              <div
+                key={m.title}
+                className="rounded-xl border border-border/50 bg-background p-5 flex gap-4"
+              >
+                <div className="w-10 h-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <m.icon className="text-primary" size={20} />
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-sm mb-1">{m.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{m.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+
+    {/* Key Takeaway */}
+    <section className="section-padding">
       <div className="container max-w-3xl text-center">
         <AnimatedSection>
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">Key Takeaway</h2>
           <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Reyco Marine had the inventory, the reputation, and the service team. What they needed was a digital foundation that matched all three. GLV Marketing delivered a production WordPress and WooCommerce site with a structured 11-brand catalogue, a clean security record, and a verified local search presence. All of it in place before the domain went live.
+            Fusion Financial did not need a flashy website. They needed one that builds trust, shows up in search, and keeps working. GLV built it, and GLV keeps it running. That ongoing relationship is what separates a site that peaks at launch from one that compounds over time.
           </p>
         </AnimatedSection>
       </div>
     </section>
 
     {/* CTA */}
-    <section className="section-padding">
+    <section className="section-padding bg-card border-y border-border">
       <div className="container max-w-2xl text-center">
         <AnimatedSection>
-          <h2 className="text-3xl font-heading font-bold mb-4">Ready to build your business online?</h2>
+          <h2 className="text-3xl font-heading font-bold mb-4">Looking for a long-term web partner?</h2>
           <p className="text-muted-foreground mb-8">
-            Let's build a site that works as hard as you do, just like we did for Reyco Marine.
+            We build and maintain sites for businesses that want results over the long haul, just like we do for Fusion Financial.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/contact">
@@ -312,4 +329,4 @@ const ReycoMarine = () => (
   </Layout>
 );
 
-export default ReycoMarine;
+export default FusionFinancial;

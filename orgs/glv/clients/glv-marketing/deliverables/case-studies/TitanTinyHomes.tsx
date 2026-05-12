@@ -9,128 +9,104 @@ import {
   ArrowRight,
   Globe,
   Search,
-  Store,
-  ShieldCheck,
-  Layout as LayoutIcon,
-  Target,
-  Code,
-  ExternalLink,
+  Smartphone,
+  Home,
+  Layers,
+  TrendingUp,
   CheckCircle,
-  Package,
-  MapPin,
+  ExternalLink,
+  Target,
 } from "lucide-react";
 
-// DRAFT rev2 - Aiden re-QC pending
-// Testimonial section stripped (no quote on file)
-// Keywords table stripped (no GSC data yet)
-// GBP confirmed by Aiden - included as deliverable
-// Re-framed as WP/WooCommerce build case study
-
 const seo = {
-  title: "Reyco Marine Case Study | GLV Marketing",
+  title: "Titan Tiny Homes Case Study | GLV Marketing",
   description:
-    "How GLV Marketing built Reyco Marine's production WordPress and WooCommerce site, structuring an 11-brand catalogue, running a pre-launch security audit, and executing a clean domain migration to reycomarine.com.",
-  canonical: "https://glvmarketing.ca/case-studies/reyco-marine",
+    "How GLV Marketing built Titan Tiny Homes' production WordPress site from scratch, structuring a modular home catalogue, mobile-first design, and organic discovery architecture for a brand-new business entering a competitive market.",
+  canonical: "https://glvmarketing.ca/case-studies/titan-tiny-homes",
 };
 
-const tags = ["WordPress Development", "WooCommerce", "Security Audit", "Domain Migration", "Local SEO"];
+const tags = ["WordPress Development", "Service Catalogue", "Mobile-First", "Local SEO"];
 
 const challenges = [
   {
     icon: Globe,
-    title: "No Customer-Facing Website",
-    desc: "Reyco operated through an internal staging subdomain. Customers had no online destination to browse inventory, book service, or research their 11 authorized brands.",
+    title: "Starting from Zero",
+    desc: "Titan Tiny Homes launched as a brand-new business with no web presence and no Google footprint. Every customer and every lead had to come from a standing start.",
   },
   {
     icon: Search,
-    title: "Zero Search Visibility",
-    desc: "With no indexed production site, Reyco was invisible to buyers searching for marine service, Mercury dealers, or outdoor power equipment in Northern Ontario.",
+    title: "A Competitive Search Landscape",
+    desc: "Tiny home and modular build searches are dominated by established players. Titan needed a site built for organic discovery, not a brochure that would sit unfound.",
   },
   {
-    icon: Store,
-    title: "Complex Product Catalogue",
-    desc: "11 authorized brands across marine, lawn, snow, and ATV/UTV, plus seasonal services and parts, required a structured WooCommerce architecture rather than a basic brochure site.",
+    icon: Layers,
+    title: "Complex Offering to Organize",
+    desc: "Tiny homes, modular builds, floor plans, custom options, and services needed clear structure. Buyers have to understand the offering before they will ever make contact.",
   },
   {
-    icon: ShieldCheck,
-    title: "Security Before Scale",
-    desc: "Launching a WooCommerce store without a pre-launch security review risked exposing the business to known vulnerabilities on day one.",
+    icon: Smartphone,
+    title: "Mobile-First Buyers",
+    desc: "Homebuyers research on their phones. A site that did not perform on mobile was a site that would not convert.",
   },
 ];
 
 const solutions = [
   {
-    icon: LayoutIcon,
-    title: "Custom WordPress + WooCommerce Build",
-    desc: "Full production site built on WordPress with WooCommerce on SiteGround hosting. Canadian English throughout, mobile-responsive, structured around the full scope of Reyco's business: marine, lawn, snow, and ATV/UTV equipment, plus in-house service and an authorized parts department.",
+    icon: Home,
+    title: "Custom WordPress Build",
+    desc: "Full production site built on WordPress. Mobile-responsive from the ground up, fast load times, and structured for the kind of browsing behaviour that leads to an inquiry, not a bounce.",
   },
   {
-    icon: Package,
-    title: "11-Brand Catalogue Architecture",
-    desc: "WooCommerce product catalogue structured around all 11 authorized brands: Echo, Princecraft, R&J, Toro, Mercury, EZGO, Cub Cadet, Minn Kota, Cannon, Humminbird, and Hisun, plus service categories covering marine, small engine, lawn, snow, and ATV/UTV. Each brand and category built for clean navigation and search indexing.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Pre-Launch Security Audit",
-    desc: "Independent Tier 0 security review before public launch. All findings documented and remediated prior to cutover. Site cleared for production deployment, protecting the business and its customers from day one.",
-  },
-  {
-    icon: Code,
-    title: "Domain Migration",
-    desc: "Clean cutover from the internal staging environment (reyco.glvmarketing.ca) to the production domain (reycomarine.com) on May 6, 2026. Redirect structure preserved any early crawl signal and eliminated split-authority issues at launch.",
+    icon: Layers,
+    title: "Structured Product + Service Catalogue",
+    desc: "Titan's full offering organized into a clean catalogue: tiny home models, modular builds, floor plan options, and services. Built so buyers can find exactly what they are looking for, and understand what makes Titan different.",
   },
   {
     icon: Target,
-    title: "On-Page SEO Configuration",
-    desc: "Keyword research targeting Northern Ontario marine, small engine, and outdoor power searches. On-page optimisation across all product and service pages: brand, category, and location targeting. 356 product SEO assets deployed (196 meta descriptions + 160 alt-text entries). LocalBusiness schema deployed site-wide. Google Business Profile set up for Sault Ste. Marie.",
+    title: "Organic Discovery Architecture",
+    desc: "On-page SEO configuration across every product and service page. Meta descriptions, title tags, schema markup, and local targeting, built in at launch so the site starts earning search visibility from day one, not after the fact.",
   },
   {
-    icon: MapPin,
-    title: "Google Business Profile",
-    desc: "GBP set up and verified for Reyco Marine in Sault Ste. Marie, establishing local search presence at launch and supporting map pack eligibility for marine, small engine, and outdoor power searches in Northern Ontario.",
+    icon: TrendingUp,
+    title: "Brand-New Business Launch",
+    desc: "Zero to live: Google-indexed, findable, and ready to receive customers from the moment the domain went public. No existing traffic to protect, no technical debt to inherit. A clean foundation built to grow.",
   },
 ];
 
 const milestones = [
   {
     label: "Production site launched",
-    value: "May 6, 2026",
-    sub: "reycomarine.com, live on SiteGround",
+    value: "From scratch",
+    sub: "Brand-new business, zero to live",
     icon: CheckCircle,
   },
   {
-    label: "Authorized brands structured",
-    value: "11 brands",
-    sub: "Full WooCommerce catalogue architecture",
-    icon: Package,
+    label: "Catalogue structure",
+    value: "Full offering",
+    sub: "Models, floor plans, services, all organized",
+    icon: Layers,
   },
   {
-    label: "Product SEO deployed",
-    value: "356 assets",
-    sub: "196 meta descriptions + 160 alt-text entries",
+    label: "Organic discovery",
+    value: "Built in",
+    sub: "On-page SEO configured at launch",
     icon: Search,
   },
   {
-    label: "Pre-launch security",
-    value: "Cleared",
-    sub: "Tier 0 audit, all findings remediated",
-    icon: ShieldCheck,
+    label: "Mobile performance",
+    value: "Responsive",
+    sub: "Optimized for how buyers actually browse",
+    icon: Smartphone,
   },
   {
-    label: "Domain migration",
-    value: "Clean cutover",
-    sub: "Staging to reycomarine.com, May 6",
-    icon: Code,
-  },
-  {
-    label: "Google Business Profile",
+    label: "Organic lead pull",
     value: "Active",
-    sub: "Sault Ste. Marie, set up at launch",
-    icon: MapPin,
+    sub: "Site drives real customer inquiries through search",
+    icon: TrendingUp,
   },
 ];
 
-const ReycoMarine = () => (
+const TitanTinyHomes = () => (
   <Layout>
     <SEOHead title={seo.title} description={seo.description} canonical={seo.canonical} />
 
@@ -140,15 +116,15 @@ const ReycoMarine = () => (
         <Breadcrumbs
           items={[
             { label: "Case Studies", href: "/case-studies" },
-            { label: "Reyco Marine" },
+            { label: "Titan Tiny Homes" },
           ]}
         />
         <AnimatedSection>
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Reyco <span className="text-gradient">Marine</span>
+            Titan <span className="text-gradient">Tiny Homes</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mb-6">
-            How GLV Marketing built Reyco Marine's production WordPress and WooCommerce site, structuring an 11-brand catalogue, running a pre-launch security audit, and executing a clean domain migration to launch Northern Ontario's premier marine and outdoor power dealer online.
+            How GLV Marketing built a production WordPress site from scratch for a brand-new modular home builder, structured for organic discovery and designed to pull in real customers from a standing start.
           </p>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
@@ -166,16 +142,16 @@ const ReycoMarine = () => (
       <div className="container max-w-4xl py-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { label: "Industry", value: "Marine & Outdoor Power" },
-            { label: "Location", value: "Sault Ste. Marie, Ontario" },
-            { label: "Website", value: "reycomarine.com", link: true },
-            { label: "Engagement", value: "2026 to Present" },
+            { label: "Industry", value: "Modular & Tiny Homes" },
+            { label: "Location", value: "Northern Ontario" },
+            { label: "Website", value: "titantinyhomes.ca", link: true },
+            { label: "Engagement", value: "2025 to Present" },
           ].map((item) => (
             <div key={item.label}>
               <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{item.label}</p>
               {item.link ? (
                 <a
-                  href="https://reycomarine.com"
+                  href="https://titantinyhomes.ca"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-semibold text-primary inline-flex items-center gap-1 hover:underline"
@@ -197,7 +173,7 @@ const ReycoMarine = () => (
         <AnimatedSection>
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">The Challenge</h2>
           <p className="text-muted-foreground leading-relaxed max-w-3xl mb-8">
-            Reyco Marine is a Sault Ste. Marie institution, a full-service dealer for marine, lawn, snow, and ATV/UTV equipment with an in-house service team and an authorized parts department. Despite a strong local reputation, they had no customer-facing website and no presence in search:
+            Titan Tiny Homes entered the market as a brand-new business with a strong product and no digital presence. The challenge was not fixing a broken website. It was building one that could compete for attention from day one:
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
             {challenges.map((c) => (
@@ -251,7 +227,7 @@ const ReycoMarine = () => (
         <AnimatedSection>
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-2 text-center">The Results</h2>
           <p className="text-muted-foreground text-center mb-10">
-            Delivered at launch, May 6, 2026.
+            A brand-new business, online and earning organic attention from launch.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {milestones.map((m) => (
@@ -279,7 +255,7 @@ const ReycoMarine = () => (
         <AnimatedSection>
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">Key Takeaway</h2>
           <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Reyco Marine had the inventory, the reputation, and the service team. What they needed was a digital foundation that matched all three. GLV Marketing delivered a production WordPress and WooCommerce site with a structured 11-brand catalogue, a clean security record, and a verified local search presence. All of it in place before the domain went live.
+            A strong product is not enough if no one can find it. GLV Marketing gave Titan Tiny Homes the digital foundation their build quality deserved: a site that organizes their offering clearly, performs on every device, and pulls in real customers through organic search. Built from scratch, built to last.
           </p>
         </AnimatedSection>
       </div>
@@ -291,7 +267,7 @@ const ReycoMarine = () => (
         <AnimatedSection>
           <h2 className="text-3xl font-heading font-bold mb-4">Ready to build your business online?</h2>
           <p className="text-muted-foreground mb-8">
-            Let's build a site that works as hard as you do, just like we did for Reyco Marine.
+            Let's build a site that earns customers, just like we did for Titan Tiny Homes.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/contact">
@@ -312,4 +288,4 @@ const ReycoMarine = () => (
   </Layout>
 );
 
-export default ReycoMarine;
+export default TitanTinyHomes;
