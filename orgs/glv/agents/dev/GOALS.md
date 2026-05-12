@@ -1,18 +1,27 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-12 ~20:00 UTC — cloud session. **🚨 URGENT: glvmarketing.ca emergency handoff from boss at 19:55 UTC — template-service.php 500 is launch blocker (see Priority 0 below).** Client repos: reyco-marine PR #239 OPEN (llms.txt routing — awaiting Aiden); titantinyhomes PR #5 MERGED+DEPLOYED; glvmarketing PR #2 OPEN (SLA expired 19:01 UTC, safe to merge or close); **glvmarketing PR #3 OPEN** (Phase 2 regressions: logos + partner row — local agent must apply deploy.yml fix before merge); fusionfinancial 0 open PRs ✅. 95 cortextos PRs waiting Aiden (#6–#95). ✅ Coverage scan complete. ⚠️ PHPCompatibility PHPCS DEADLINE PASSED (midnight May 10) — local agent must install before May 20 PHP cutover (8 days). ⚠️ Node 22 deadline June 2 = 21 days. ⚠️ PHP 7.4 cutover May 20 = 8 days. ⏸ exp_1778496458_smku closes 2026-05-13T10:57Z — implement REQUIRED_MARKERS fix after close._
+_Last updated: 2026-05-12 ~22:30 UTC — cloud session. glvmarketing.ca launch blockers **fully resolved** (see Priority 0 — all ✅). Client repos: reyco-marine PR #239 OPEN (llms.txt routing — awaiting Aiden); titantinyhomes PR #5 MERGED+DEPLOYED; glvmarketing PR #2 OPEN (SLA expired 19:01 UTC, safe to merge or close); **glvmarketing PR #3 OPEN** (Phase 2 regressions: logos + partner row — local agent must apply deploy.yml fix before merge); fusionfinancial 0 open PRs ✅. 95 cortextos PRs waiting Aiden (#6–#95). ✅ Coverage scan complete. ⚠️ PHPCompatibility PHPCS DEADLINE PASSED (midnight May 10) — local agent must install before May 20 PHP cutover (8 days). ⚠️ Node 22 deadline June 2 = 21 days. ⚠️ PHP 7.4 cutover May 20 = 8 days. ⏸ exp_1778496458_smku closes 2026-05-13T10:57Z — implement REQUIRED_MARKERS fix after close._
 
-## Priority 0 — URGENT: glvmarketing.ca Launch Blockers
+## Priority 0 — glvmarketing.ca Launch Status (ALL RESOLVED ✅)
 
-**Boss dispatch 19:55 UTC May 12 (msg_id 1778615871114-boss-7xwl1). Boss has been doing 2h of direct FTP+REST work; handing off to dev at Aiden's direction.**
+**Boss dispatch 19:55 UTC May 12 resolved. All P0 blockers closed as of ~22:00 UTC May 12.**
 
-**State as of handoff:**
+**Final resolved state:**
 - ✅ Visual fixes done
 - ✅ Contact form / Resend wired
 - ✅ URL hierarchy reparented (Services parent page)
-- ✅ 20 pages created via REST
-- ❌ **template-service.php 500 bug** — blocking all 10 service pages from showing Vite-styled layout
-- ⏳ Remaining 11 pages need proper content + template
+- ✅ 20 pages created via REST with content (boss phase, then dev phase)
+- ✅ **template-service.php 500 fixed** — infinite `have_posts()` loop in loop body; null-coalescing + icon safety added; all 17 service pages return 200
+- ✅ All service pages have content — hero_subtitle, features, problem sections all populated
+- ✅ case-studies/titan-tiny-homes + fusion-financial 404 fixed — CPT slug conflict resolved, rewrites flushed
+- ✅ FAQ page visual fixed — `glass` class replaced, pricing violation removed, CTA aligned
+- ✅ About page v3 live — QC passed by boss 2026-05-12 23:40 UTC (commit cfba7607 → PHP)
+- ✅ All smoke URLs green: /, /services/, 17 service child pages, /case-studies/, 3 case study pages, /contact/, /about/, /faq/
+
+**Remaining (local agent or Aiden action required):**
+- ⏳ WP templates (template-service.php, template-case-study.php, page-about.php, page-faq.php) deployed via FTP only — not yet in glvcrypto/glvmarketing repo (SSH + git push)
+- ⏳ glvmarketing PR #3: deploy.yml fix (local agent, workflow scope token)
+- ⏳ PR #2: safe to merge or close (SLA expired)
 - ⏳ FAQ visual match to Vite design
 - ⏳ `/case-studies/titan` + `/case-studies/fusion` 404 (rewrite cache)
 
