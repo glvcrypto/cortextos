@@ -51,7 +51,7 @@ get_header();
                     ['q' => 'What makes GLV different from other marketing agencies?',
                      'a' => 'We combine traditional digital marketing with AI-powered strategies like Generative Engine Optimization. We\'re local, so we understand the Northern Ontario market. We don\'t do cookie-cutter templates; every strategy is built for your specific business, market, and goals. And we focus on measurable results, not vanity metrics.'],
                     ['q' => 'Are you a one-person agency or a team?',
-                     'a' => 'GLV Marketing is led by Aiden Glave, with support from strategic partners. We keep our team lean intentionally — it means you work directly with senior strategists, not junior account managers.'],
+                     'a' => 'GLV Marketing is led by Aiden Glave, with support from strategic partners. We keep our team lean intentionally. That means you work directly with senior strategists, not junior account managers.'],
                 ],
                 'Our Services' => [
                     ['q' => 'What services do you offer?',
@@ -73,7 +73,7 @@ get_header();
                     ['q' => 'Can you guarantee my business will appear in AI answers?',
                      'a' => 'No one can guarantee AI citations because the algorithms are constantly evolving. What we can do is implement every known best practice: structured data, entity signals, authoritative content, and technical markup. This gives your business the strongest possible chance of being recommended by AI tools.'],
                     ['q' => 'Is GEO only for tech companies?',
-                     'a' => 'Not at all. GEO is most valuable for local service businesses — the ones people ask AI about every day. Plumbers, accountants, builders, restaurants, dentists: if someone might ask an AI "Who is the best [your service] near me?" then GEO matters for you.'],
+                     'a' => 'Not at all. GEO is most valuable for local service businesses, the ones people ask AI about every day. Plumbers, accountants, builders, restaurants, dentists: if someone might ask an AI "Who is the best [your service] near me?" then GEO matters for you.'],
                 ],
                 'Pricing &amp; Process' => [
                     ['q' => 'How much do your services cost?',
@@ -89,7 +89,7 @@ get_header();
                     ['q' => 'What area do you serve?',
                      'a' => 'We\'re based in Sault Ste. Marie, Ontario, and serve businesses across Northern Ontario including Sudbury, Timmins, Thunder Bay, North Bay, and surrounding communities. Since most of our work is digital, we can also work with clients anywhere in Ontario or across Canada.'],
                     ['q' => 'How do I get started?',
-                     'a' => 'Book a free consultation through our contact page or call us at 705-975-0579. We\'ll discuss your business, your goals, and whether we\'re a good fit. No pressure, no obligation — just a straightforward conversation about how we can help you grow online.'],
+                     'a' => 'Book a free consultation through our contact page or call us at 705-975-0579. We\'ll discuss your business, your goals, and whether we\'re a good fit. No pressure, no obligation. Just a straightforward conversation about how we can help you grow online.'],
                 ],
             ];
 
@@ -106,12 +106,12 @@ get_header();
                 <div class="space-y-3">
                     <?php foreach ($questions as $item) : ?>
                     <div class="glv-faq-item rounded-xl border border-border/50 bg-card overflow-hidden transition-colors duration-200 hover:border-primary/25">
-                        <button class="glv-faq-trigger w-full text-left px-5 sm:px-6 py-5 font-heading font-medium text-foreground flex items-center justify-between gap-4 hover:bg-primary/[0.03] transition-colors duration-150"
+                        <button class="glv-faq-trigger w-full text-left px-6 sm:px-7 py-5 font-heading font-medium text-foreground flex items-center justify-between gap-4 hover:bg-primary/[0.03] transition-colors duration-150"
                                 aria-expanded="false">
                             <span class="text-sm sm:text-base leading-snug"><?php echo esc_html($item['q']); ?></span>
                             <svg class="glv-faq-chevron shrink-0 text-primary/60 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
-                        <div class="glv-faq-content hidden px-5 sm:px-6 pb-6 pt-2 text-muted-foreground leading-relaxed text-sm border-t border-border/30">
+                        <div class="glv-faq-content hidden px-6 sm:px-7 pb-7 pt-4 text-muted-foreground leading-loose text-sm space-y-3 border-t border-border/30">
                             <?php echo wp_kses_post($item['a']); ?>
                         </div>
                     </div>
