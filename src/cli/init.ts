@@ -147,40 +147,7 @@ export const initCommand = new Command('init')
           if (!existsSync(systemMdPath)) continue; // only update existing agents
 
           try {
-            const systemMd = [
-              '# System Context',
-              '',
-              `**Organization:** ${ctx.name || orgName}`,
-              `**Description:** ${ctx.description || '(not set)'}`,
-              `**Timezone:** ${ctx.timezone || 'UTC'}`,
-              `**Orchestrator:** ${ctx.orchestrator || '(not set)'}`,
-              `**Dashboard:** ${ctx.dashboard_url || '(not configured)'}`,
-              `**Communication Style:** ${ctx.communication_style || 'casual'}`,
-              `**Day Mode:** ${ctx.day_mode_start || '08:00'} - ${ctx.day_mode_end || '00:00'}`,
-              '**Framework:** cortextOS Node.js',
-              '',
-              '---',
-              '',
-              '## Team Roster',
-              '',
-              '> This section is populated during onboarding. For the live roster:',
-              '```bash',
-              'cortextos list-agents',
-              '```',
-              '',
-              '## Agent Health',
-              '',
-              '```bash',
-              'cortextos bus read-all-heartbeats',
-              '```',
-              '',
-              '## Communication',
-              '',
-              '- Agent-to-agent: `cortextos bus send-message <agent> <priority> "<text>"`',
-              '- Telegram to user: `cortextos bus send-telegram <chat_id> "<text>"`',
-              '- Check inbox: `cortextos bus check-inbox`',
-              '',
-            ].join('\n');
+            const systemMd = buildAgentSystemMd(ctx, orgName);
             writeFileSync(systemMdPath, systemMd, 'utf-8');
             regenerated++;
           } catch { /* skip agents we can't write to */ }
@@ -198,7 +165,44 @@ export const initCommand = new Command('init')
     console.log(`    3. Start: cortextos start\n`);
   });
 
-function findOrgTemplateDir(projectRoot: string): string | null {
+export function buildAgentSystemMd(ctx: Partial<OrgContext>, orgName: string): string {
+  return [
+    '# System Context',
+    '',
+    `**Organization:** ${ctx.name || orgName}`,
+    `**Description:** ${ctx.description || '(not set)'}`,
+    `**Timezone:** ${ctx.timezone || 'UTC'}`,
+    `**Orchestrator:** ${ctx.orchestrator || '(not set)'}`,
+    `**Dashboard:** ${ctx.dashboard_url || '(not configured)'}`,
+    `**Communication Style:** ${ctx.communication_style || 'casual'}`,
+    `**Day Mode:** ${ctx.day_mode_start || '08:00'} - ${ctx.day_mode_end || '00:00'}`,
+    '**Framework:** cortextOS Node.js',
+    '',
+    '---',
+    '',
+    '## Team Roster',
+    '',
+    '> This section is populated during onboarding. For the live roster:',
+    '```bash',
+    'cortextos list-agents',
+    '```',
+    '',
+    '## Agent Health',
+    '',
+    '```bash',
+    'cortextos bus read-all-heartbeats',
+    '```',
+    '',
+    '## Communication',
+    '',
+    '- Agent-to-agent: `cortextos bus send-message <agent> <priority> "<text>"`',
+    '- Telegram to user: `cortextos bus send-telegram <chat_id> "<text>"`',
+    '- Check inbox: `cortextos bus check-inbox`',
+    '',
+  ].join('\n');
+}
+
+export function findOrgTemplateDir(projectRoot: string): string | null {
   const candidates = [
     join(projectRoot, 'templates', 'org'),
     join(projectRoot, 'node_modules', 'cortextos', 'templates', 'org'),
@@ -210,7 +214,7 @@ function findOrgTemplateDir(projectRoot: string): string | null {
   return null;
 }
 
-function copyOrgTemplateFiles(templateDir: string, orgDir: string, orgName: string): void {
+export function copyOrgTemplateFiles(templateDir: string, orgDir: string, orgName: string): void {
   try {
     const files = readdirSync(templateDir);
     for (const file of files) {
