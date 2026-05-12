@@ -22,7 +22,7 @@ import {
 //   Dropped Northern Ontario differentiator card (privacy card is stronger; NO covered in story + serves section)
 //   SMB card broadened: "any business, SMBs are core"
 //   2 tricolons stripped (hero + CTA)
-//   Photo placeholder wired: /assets/founder-aiden.jpg
+//   Photo: /assets/aiden-glave.jpg (confirmed by dev, onError fallback removed)
 
 const seo = {
   title: "About | GLV Marketing",
@@ -94,17 +94,9 @@ const About = () => (
             <div className="flex justify-center md:justify-end">
               <div className="rounded-2xl overflow-hidden border border-border/50 shadow-lg w-72 h-80 bg-muted flex items-center justify-center">
                 <img
-                  src="/assets/founder-aiden.jpg"
+                  src="/assets/aiden-glave.jpg"
                   alt="Aiden Glave, founder of GLV Marketing"
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    target.style.display = "none";
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = '<p class="text-muted-foreground text-sm text-center px-6">Founder photo coming soon</p>';
-                    }
-                  }}
                 />
               </div>
             </div>
