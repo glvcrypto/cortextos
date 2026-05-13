@@ -20,7 +20,7 @@ Before pushing any code:
      "https://reycomarine.com/service/engine-repair/"
      "https://reycomarine.com/boats-and-marine/outboard-motors/"
    )
-   REQUIRED_MARKERS=(".site-header" ".site-footer" "main.site-main" "nav.site-nav")
+   REQUIRED_MARKERS=("reyco-nav-link" "<main" "<footer" "<nav")
    for url in "${SMOKE_URLS[@]}"; do
      html=$(curl -s "$url")
      for marker in "${REQUIRED_MARKERS[@]}"; do
@@ -31,7 +31,7 @@ Before pushing any code:
    done
    echo "Structural marker check: PASS"
    ```
-   Template coverage (exp_1778496458_smku — migrated 2026-05-11 to production domain):
+   Template coverage (exp_1778669306_rmkr — REQUIRED_MARKERS updated 2026-05-13 to theme-accurate markers):
    - `/boats-and-marine/` — product catalog page (replaces stale /products/)
    - `/service/` — services listing (replaces stale /services/)
    - `/product/2022-mercury-me-60-elpt-4s-efi/` — single product page (single-product.php template)
@@ -129,31 +129,30 @@ fi
 
 **Result:** IMPLEMENT — exp closed 2026-05-06T20:18Z. Gate decision: block push on ERROR, warn on WARNING. Requires local phpcs + PHPCompatibility install (SiteGround PHP 7.4→8.x deadline May 20). Step 4.75 added to Current Approach above.
 
-## Hypothesis Being Tested (exp_1778496458_smku — RUNNING, window closes 2026-05-13T10:57Z)
+## Hypothesis Tested (exp_1778496458_smku) — KEEP
 
-Six consecutive gate-layer keeps covering syntax, layout, template breadth, WP runtime errors, PHP 7.4-removed patterns, and PHPCompatibility PHPCS behavioral checks (step 4.75, pending install). Unaddressed gap: as of 2026-05-06, `reycomarine.com` is the production domain. Old smoke URLs (`reyco.glvmarketing.ca`) were already partially broken — `/products/` and `/services/` returned 404 even on staging. Hypothesis: replacing all 6 smoke URLs with verified `reycomarine.com` production URLs fixes the broken gate and validates the actual deploy target.
+Seven consecutive gate-layer actions (6 KEEP, 1 IMPLEMENT). Zero reyco-marine CI deploys during 48h window (2026-05-11T10:57Z → 2026-05-13T10:57Z) — consistent with all prior experiments. 100% baseline maintained. Production URLs all verified 200 during window; no false-positive blocks. Gate correctly targets reycomarine.com. Critical gap identified during window: REQUIRED_MARKERS were stale WP classic class names not present in live Tailwind theme — addressed in exp_1778669306_rmkr (this experiment).
 
-**URLs in step 3 updated 2026-05-11 — all verified 200:**
-- `https://reycomarine.com/` — homepage
-- `https://reycomarine.com/boats-and-marine/` — product catalog
-- `https://reycomarine.com/service/` — services listing
-- `https://reycomarine.com/product/2022-mercury-me-60-elpt-4s-efi/` — single product (single-product.php)
-- `https://reycomarine.com/service/engine-repair/` — service detail
-- `https://reycomarine.com/boats-and-marine/outboard-motors/` — brand/category archive
+**Result:** KEEP — zero deploys in 48h window; production URLs verified 200; gate correctly defined; seventh consecutive action warranted.
+
+## Hypothesis Being Tested (exp_1778669306_rmkr — RUNNING, window closes 2026-05-15T10:57Z)
+
+Seven gate-layer actions covering syntax, layout regression, template breadth, WP runtime errors, PHP 7.4-removed patterns, PHPCompatibility PHPCS behavioral checks (step 4.75, pending install), and production smoke URL migration. Critical gap found during exp_smku window: REQUIRED_MARKERS in step 3 contained stale WordPress classic theme class names (.site-header, .site-footer, main.site-main, nav.site-nav) that do not exist in the live reyco-marine Tailwind theme — the gate would unconditionally FAIL on every real deploy. Hypothesis: replacing with theme-accurate markers verified on live reycomarine.com (reyco-nav-link, &lt;main, &lt;footer, &lt;nav) makes the structural marker gate functional and eliminates the false-failure class.
+
+**Markers updated 2026-05-13 — all verified present on reycomarine.com (2026-05-11T16:38Z):**
+- `reyco-nav-link` — theme-specific custom class, 9× per page (all page types)
+- `<main` — HTML5 structural, 1× per page
+- `<footer` — HTML5 structural, 2× per page
+- `<nav` — HTML5 structural, 2× per page
 
 ## Known gaps
 - php -l catches syntax errors only, not logic errors or missing function calls
 - Structural marker + error scan requires live production URL (SG Dynamic Cache may serve stale HTML on first hit post-commit)
 - Error string patterns are English-only; WP fatal templates in other locales would not match (not applicable for Reyco Marine — en-CA)
 - PHP 8.x grep gate covers removed/deprecated function calls but not behavioural changes (e.g. strict type coercion, `match` vs `switch` differences, `str_contains` availability)
-- PHPCompatibility PHPCS gate (step 4.75) is in Current Approach but PENDING LOCAL INSTALL — exp_1777925922_phpc decided IMPLEMENT 2026-05-06; deadline May 20 (SiteGround PHP 7.4→8.x cutover)
+- **PHPCompatibility PHPCS gate (step 4.75) PENDING LOCAL INSTALL** — exp_1777925922_phpc decided IMPLEMENT 2026-05-06; deadline May 20 (SiteGround PHP 7.4→8.x cutover, now 7 days). Install: `composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility && phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility`
 - Single product URL in smoke set (`/product/2022-mercury-me-60-elpt-4s-efi/`) could 404 if the product is deleted; should be updated to a durable inventory page URL once one exists
-- **STALE MARKERS (verified 2026-05-11T16:38Z):** `REQUIRED_MARKERS` in step 3 checks `.site-header`, `.site-footer`, `main.site-main`, `nav.site-nav` — NONE of these class names exist on reycomarine.com. The reyco-marine theme uses Tailwind utility classes + custom classes (`reyco-nav-link`, `reyco-nav-text`). Actual stable structural elements: `reyco-nav-link` (9×), `<main` (1×), `<footer` (2×), `<nav` (2×). The marker gate would FAIL on every deploy against the current production site. Next experiment: replace with theme-accurate markers.
 
-## Next Hypothesis (queued — pending exp_1778496458_smku close)
+## Next Hypothesis (queued — pending exp_1778669306_rmkr close)
 
-**Structural marker update:** Replace stale WordPress classic class names in `REQUIRED_MARKERS` with markers that exist in the live reyco-marine Tailwind theme. Proposed new set:
-```bash
-REQUIRED_MARKERS=("reyco-nav-link" "<main" "<footer" "<nav")
-```
-Rationale: `reyco-nav-link` is a theme-specific custom class (9 per page, stable); `<main`, `<footer`, `<nav` are HTML5 structural elements always present when WP renders correctly. A broken deploy (white screen, WP fatal) would be missing all of these. Verified on 2026-05-11 against live reycomarine.com.
+**PHPCompatibility PHPCS local install:** After local agent installs `phpcs` + PHPCompatibility standard, verify step 4.75 gate runs cleanly on the reyco-marine codebase with no false-positive ERRORs on clean PHP 8.x code. Gate is already in Current Approach; experiment validates that installed gate produces no false-positive blocks before the May 20 SiteGround PHP 7.4→8.x cutover.

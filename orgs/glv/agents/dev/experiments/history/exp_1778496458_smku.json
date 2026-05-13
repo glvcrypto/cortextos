@@ -1,0 +1,21 @@
+{
+  "id": "exp_1778496458_smku",
+  "agent": "dev",
+  "metric": "deploy_reliability",
+  "hypothesis": "Post-migration smoke URL update: replace reyco.glvmarketing.ca staging URLs with reycomarine.com production URLs across all 6 smoke URL slots. Production domain is reycomarine.com (migrated 2026-05-06). Staging domain reyco.glvmarketing.ca still serves 200 on homepage but /products/ and /services/ return 404 even on staging — meaning the old smoke gate was partially broken for 4 of 6 URLs. New 6-URL set verified 200 on 2026-05-11: homepage, boats-and-marine catalog, service listing, single product (mercury 60 ELPT), service detail (engine-repair), brand/category archive (outboard-motors). Template coverage maintained: homepage, catalog, service listing, single-product.php, service-detail.php, category archive.",
+  "surface": "experiments/surfaces/deploy-reliability/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "Percentage of deploys where CI smoke test passes on first push (track via git log + CI run history). Secondary: zero false-positive blocks from the new production URLs (no unexpected redirects, auth walls, or server errors).",
+  "status": "decided",
+  "baseline_value": 100,
+  "result_value": 100,
+  "decision": "keep",
+  "learning": "Seventh experiment on deploy-reliability surface (5 KEEP, 1 IMPLEMENT, 1 KEEP). Zero reyco-marine CI deploys during 48h window (2026-05-11T10:57Z → 2026-05-13T10:57Z) — consistent with all prior experiments; all reyco-marine PHP/template PRs still pending Aiden review. 100% baseline maintained with zero failures. Production URLs all verified 200 during window: no false-positive blocks, no unexpected redirects, no auth walls. Gate correctly targets reycomarine.com as production deploy domain. Critical gap identified during window (2026-05-11T16:38Z): REQUIRED_MARKERS in step 3 are stale WordPress classic class names (.site-header, .site-footer, main.site-main, nav.site-nav) that do not exist in the live reyco-marine Tailwind theme — the gate would FAIL on every real deploy. Next experiment must fix this. Queued: replace with verified theme-accurate markers (reyco-nav-link, <main, <footer, <nav).",
+  "experiment_commit": "0d2b4afa",
+  "tracking_commit": "b5a3f4da",
+  "created_at": "2026-05-11T10:47:40Z",
+  "started_at": "2026-05-11T10:57:00Z",
+  "completed_at": "2026-05-13T10:57:00Z",
+  "changes_description": "Updated SMOKE_URLS in step 3 from reyco.glvmarketing.ca (staging, partially broken: /products/ and /services/ 404) to reycomarine.com (production). New URL set: / (homepage), /boats-and-marine/ (catalog), /service/ (services listing), /product/2022-mercury-me-60-elpt-4s-efi/ (single product), /service/engine-repair/ (service detail), /boats-and-marine/outboard-motors/ (brand/category archive). All 6 verified 200 on 2026-05-11T10:53Z. Window closes 2026-05-13T10:57Z."
+}
