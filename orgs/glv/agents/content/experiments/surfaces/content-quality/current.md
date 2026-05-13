@@ -48,6 +48,15 @@ The lede sentence must be:
 
 **Vary the proof type** across a batch — rotate between: named expert insight, service timeline, product spec, seasonal deadline.
 
+**Per-section Northern Ontario detail rule (Experiment 11 addition):** The lede provides the geographic anchor for the whole piece — but each CMI body section must also contain at least one verifiable Northern Ontario-specific detail relevant to that section. Named staff and service timelines are not sufficient on their own. Each section must contribute its own local anchor:
+
+- **Reader pain section**: A seasonal trigger, weather/climate fact, or geographic pressure specific to Northern Ontario (not a generic "winters can be harsh" statement — a specific date, measurement, or regional constraint).
+- **Product/solution section**: Local service scope, local availability, or regional context that makes this product/service relevant to a Northern Ontario operator specifically.
+- **Proof section**: A specific local timeline (e.g. book 2 weeks before the walleye opener), a regional operational constraint (e.g. parts arrive from Sudbury distribution — 2-day lead), or a NO-specific comparison that grounds the claim.
+- **Objection/CTA section**: A local seasonal deadline or regional-specific urgency anchor — not a generic "limited appointments available." Name the specific pressure (freeze-up, opener, storm season) and the specific consequence of missing it.
+
+**What counts:** Same standard as the lede — Northern Ontario geography (Lake Superior, St. Marys River, Algoma district, Sudbury, Parry Sound), season dates (walleye opener, ice-out, first hard frost), weather/climate data (SSM snowfall, Lake Superior temperature), or regional operational facts. General industry stats do not qualify.
+
 All other brand voice rules remain unchanged:
 - Educational, direct, professional but approachable
 - Canadian English throughout
