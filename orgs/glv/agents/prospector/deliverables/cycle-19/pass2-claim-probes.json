@@ -1,0 +1,173 @@
+{
+  "_meta": {
+    "generated": "2026-05-12",
+    "purpose": "PASS 2 per-claim Playwright probes for cycle-19 re-vet",
+    "structure": "Each prospect can have multiple probes (one per claim). probe.type = playwright_text | playwright_selector | google_serp_surrogate | google_serp_review_count | manual_kill"
+  },
+  "prospects": [
+    {
+      "id": "B1-E01",
+      "name": "Priest Plumbing",
+      "url": "https://priestplumbing.ca/",
+      "claims": [
+        {"claim": "52 Google reviews vs Perrotta 84", "type": "google_serp_review_count", "search_query": "Priest Plumbing Sault Ste Marie reviews", "expected_count_range": [40, 70]}
+      ]
+    },
+    {
+      "id": "B1-E02",
+      "name": "J.G. Fitzgerald & Sons",
+      "url": "https://fitzgeraldroofing.ca/",
+      "claims": [
+        {"claim": "blog last post Jul 22 2022", "type": "playwright_text", "url": "https://fitzgeraldroofing.ca/blog/", "text": "2022"},
+        {"claim": "5 Google reviews", "type": "google_serp_review_count", "search_query": "J.G. Fitzgerald Sons Roofing reviews", "expected_count_range": [3, 10]}
+      ]
+    },
+    {
+      "id": "B1-E03",
+      "name": "Northern Climate Heating and Air",
+      "url": "https://northernclimatesudbury.com/",
+      "claims": [
+        {"claim": "166 visits/mo vs 669-Heat 1259 (SEMrush)", "type": "manual_kill", "reason": "SEMrush numerical traffic specific — no surrogate per banked rule"}
+      ]
+    },
+    {
+      "id": "B1-E04",
+      "name": "D. Peppard Mechanical",
+      "url": "https://peppardmechanical.com/",
+      "claims": [
+        {"claim": "12 blog posts in 5 months", "type": "playwright_text", "url": "https://peppardmechanical.com/blog/", "text": "2025"},
+        {"claim": "content effort not aimed at buying searches (SEMrush)", "type": "manual_kill", "reason": "SEMrush keyword-intent claim — no surrogate per banked rule"}
+      ]
+    },
+    {
+      "id": "B1-E05",
+      "name": "Adept Plumbing",
+      "url": "https://adeptplumbing.ca/",
+      "claims": [
+        {"claim": "3-page Squarespace site (home/contact/gallery)", "type": "playwright_nav_count", "url": "https://adeptplumbing.ca/"},
+        {"claim": "1 Google review vs Villeneuve 30", "type": "google_serp_review_count", "search_query": "Adept Plumbing Sault Ste Marie reviews"}
+      ]
+    },
+    {
+      "id": "B1-E08",
+      "name": "Blue Sky Plumbing",
+      "url": null,
+      "claims": [
+        {"claim": "no website (Facebook-only via YP redirect)", "type": "google_serp_no_website", "search_query": "Blue Sky Plumbing Sault Ste Marie"},
+        {"claim": "12 Facebook reviews vs Perrotta 84", "type": "playwright_selector", "url": "https://www.facebook.com/search/posts/?q=Blue%20Sky%20Plumbing%20Sault%20Ste%20Marie", "text": "Blue Sky Plumbing"}
+      ]
+    },
+    {
+      "id": "B1-E09",
+      "name": "Witherell Plumbing & Heating",
+      "url": "https://witherellplumbing.com/",
+      "claims": [
+        {"claim": "0 organic search visibility (SEMrush)", "type": "google_serp_surrogate", "search_query": "Witherell Plumbing Heating", "test": "first_page_presence"}
+      ]
+    },
+    {
+      "id": "B1-E10",
+      "name": "B. Gibson Mechanical",
+      "url": null,
+      "claims": [
+        {"claim": "4.0 star Google rating vs Villeneuve 4.6", "type": "google_serp_review_count", "search_query": "B. Gibson Mechanical Sault Ste Marie"}
+      ]
+    },
+    {
+      "id": "B1-E12",
+      "name": "Buhler Mechanical",
+      "url": "https://buhlermechanical.com/",
+      "claims": [
+        {"claim": "5 pages total no service breakdown", "type": "playwright_nav_count", "url": "https://buhlermechanical.com/"}
+      ]
+    },
+    {
+      "id": "B1-E13",
+      "name": "Sunrise Roofing",
+      "url": null,
+      "claims": [
+        {"claim": "no website, 3 Facebook reviews", "type": "google_serp_no_website", "search_query": "Sunrise Roofing Sault Ste Marie"}
+      ]
+    },
+    {
+      "id": "B1-E14",
+      "name": "Harris Plumbing",
+      "url": "https://harrisplumbing.ca/",
+      "claims": [
+        {"claim": "HomeStars/Readers Choice recognition", "type": "playwright_text", "url": "https://harrisplumbing.ca/", "text": "HomeStars"},
+        {"claim": "search visibility gap vs recognition (SEMrush)", "type": "google_serp_surrogate", "search_query": "Harris Plumbing Barrie", "test": "first_page_presence_check"}
+      ]
+    },
+    {
+      "id": "B1-E15",
+      "name": "Bedard Plumbing",
+      "url": null,
+      "claims": [
+        {"claim": "single-page site / no website", "type": "google_serp_no_website", "search_query": "Bedard Plumbing Sault Ste Marie"}
+      ]
+    },
+    {
+      "id": "B1-E16",
+      "name": "Elite Plumbing Solutions",
+      "url": "https://eliteplumbingsolutions.ca/",
+      "claims": [
+        {"claim": "services-nueva page exists (replacement for 'no service pages' claim)", "type": "playwright_text", "url": "https://eliteplumbingsolutions.ca/services-nueva/", "text": "services"},
+        {"claim": "p2 SERP ranking (SEMrush)", "type": "manual_kill", "reason": "SEMrush specific position — no surrogate per banked rule"},
+        {"claim": "0 Google reviews", "type": "google_serp_review_count", "search_query": "Elite Plumbing Solutions Sudbury reviews"}
+      ]
+    },
+    {
+      "id": "B1-E19",
+      "name": "Designed Roofing Inc.",
+      "url": "https://designedroofing.com/",
+      "claims": [
+        {"claim": "30-year Sika Elite Contractor", "type": "playwright_text", "url": "https://designedroofing.com/", "text": "Sika"},
+        {"claim": "0 Google reviews", "type": "google_serp_review_count", "search_query": "Designed Roofing reviews Ontario"}
+      ]
+    },
+    {
+      "id": "B1-E20",
+      "name": "Cullen Plumbing",
+      "url": "https://cullenplumbing.net/",
+      "claims": [
+        {"claim": "50 Google reviews vs Cardinal 703", "type": "google_serp_review_count", "search_query": "Cullen Plumbing reviews"},
+        {"claim": "55yr vs 7yr newcomer (founding year)", "type": "playwright_text", "url": "https://cullenplumbing.net/", "text": "1970"}
+      ]
+    },
+    {
+      "id": "B2-E01",
+      "name": "Forest Ridge Golf and Country Club",
+      "url": "https://forestridgegolf.ca/",
+      "claims": [
+        {"claim": "tee-booking page says 'see you in 2026' and we ARE in 2026", "type": "playwright_text", "url": "https://forestridgegolf.ca/", "text": "2026"}
+      ]
+    },
+    {
+      "id": "B2-E02",
+      "name": "Idylwylde Golf and Country Club",
+      "url": "https://idylwylde.com/",
+      "claims": [
+        {"claim": "/contact returns 404", "type": "playwright_http_status", "url": "https://www.idylwylde.com/contact", "expected_status": 404},
+        {"claim": "no NAP on homepage", "type": "playwright_text", "url": "https://www.idylwylde.com/", "text": "705-522-8580", "negate": true}
+      ]
+    },
+    {
+      "id": "B2-E03",
+      "name": "Georgian Home Comfort",
+      "url": "https://georgianhomecomfort.com/",
+      "claims": [
+        {"claim": "duplicate YP addresses (373 Huronia vs 3-30 Saunders)", "type": "playwright_text", "url": "https://www.yellowpages.ca/bus/Ontario/Barrie/Georgian-Home-Comfort/101596107.html", "text": "Huronia"},
+        {"claim": "duplicate YP addresses #2", "type": "playwright_text", "url": "https://www.yellowpages.ca/bus/Ontario/Barrie/Georgian-Home-Comfort/101172940.html", "text": "Saunders"}
+      ]
+    },
+    {
+      "id": "B2-E04",
+      "name": "Exclusive Cooling Ltd",
+      "url": "https://exclusivecooling.ca/",
+      "claims": [
+        {"claim": "2023 Lennox promo offers still live", "type": "playwright_text", "url": "https://exclusivecooling.ca/", "text": "2023"},
+        {"claim": "copyright © 2015 in footer", "type": "playwright_text", "url": "https://exclusivecooling.ca/", "text": "2015"}
+      ]
+    }
+  ]
+}
