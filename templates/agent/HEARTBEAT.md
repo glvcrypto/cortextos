@@ -7,9 +7,13 @@ Skipping steps = broken system. The dashboard monitors your compliance.
 
 ```bash
 cortextos bus update-heartbeat "<1-sentence summary of current work>"
+cortextos bus update-cron-fire heartbeat --interval 4h
 ```
 
-If this fails, your agent shows as DEAD on the dashboard. Fix it before anything else.
+The second command records this heartbeat fire in `state/<agent>/cron-state.json` so the
+gap detector stays silent. Without it the detector false-positives after 2× the cron interval.
+
+If `update-heartbeat` fails, your agent shows as DEAD on the dashboard. Fix it before anything else.
 
 ## Step 2: Sweep inbox for un-ACK'd messages
 
