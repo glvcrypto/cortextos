@@ -65,6 +65,16 @@ export const ecosystemCommand = new Command('ecosystem')
     const hasDashboard = existsSync(join(dashboardDir, 'package.json')) &&
       existsSync(join(dashboardDir, 'node_modules', '.bin', 'next'));
 
+    // Bake the dir of the node running this CLI into the env block. PM2 god
+    // daemons resurrected from non-interactive shells often have a PATH that
+    // lacks nvm/fnm/system-node's bin dir, which causes node-pty's
+    // execvp('claude', ...) inside the daemon to fail with EACCES (the bare
+    // 'claude' lookup falls through to WSL Windows-interop dirs and reports
+    // Permission Denied). Pin this once at generation time; users still get
+    // the rest of their runtime PATH appended for editor/tooling.
+    const nodeBinDir = dirname(process.execPath);
+    const pathFallback = '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin';
+
     // BUG-002 fix: emit ecosystem.config.js as raw JS that resolves
     // process.env.CTX_INSTANCE_ID at PM2-startup time, not at generation time.
     // The previous JSON.stringify approach baked the instance id into the
@@ -93,6 +103,7 @@ export const ecosystemCommand = new Command('ecosystem')
       cwd: ${JSON.stringify(dashboardDir)},
       env: {
         PORT: process.env.PORT || '3000',
+        PATH: ${JSON.stringify(nodeBinDir + ':')} + (process.env.PATH || ${JSON.stringify(pathFallback)}),
       },
       // Dashboard reads its real config from dashboard/.env.local — populated
       // by /onboarding Phase 7. PM2 just supervises the npm process.
@@ -121,6 +132,7 @@ module.exports = {
         CTX_FRAMEWORK_ROOT: ${JSON.stringify(projectRoot)},
         CTX_PROJECT_ROOT: ${JSON.stringify(projectRoot)},
         CTX_ORG: process.env.CTX_ORG || ${JSON.stringify(detectedOrg)},
+        PATH: ${JSON.stringify(nodeBinDir + ':')} + (process.env.PATH || ${JSON.stringify(pathFallback)}),
       },
       max_restarts: 50,
       restart_delay: 5000,
