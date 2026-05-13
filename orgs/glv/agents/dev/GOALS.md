@@ -1,6 +1,6 @@
 # Dev Agent Goals
 
-_Last updated: 2026-05-12 ~22:30 UTC — cloud session. glvmarketing.ca launch blockers **fully resolved** (see Priority 0 — all ✅). Client repos: reyco-marine PR #239 OPEN (llms.txt routing — awaiting Aiden); titantinyhomes PR #5 MERGED+DEPLOYED; glvmarketing PR #2 OPEN (SLA expired 19:01 UTC, safe to merge or close); **glvmarketing PR #3 OPEN** (Phase 2 regressions: logos + partner row — local agent must apply deploy.yml fix before merge); fusionfinancial 0 open PRs ✅. 95 cortextos PRs waiting Aiden (#6–#95). ✅ Coverage scan complete. ⚠️ PHPCompatibility PHPCS DEADLINE PASSED (midnight May 10) — local agent must install before May 20 PHP cutover (8 days). ⚠️ Node 22 deadline June 2 = 21 days. ⚠️ PHP 7.4 cutover May 20 = 8 days. ⏸ exp_1778496458_smku closes 2026-05-13T10:57Z — implement REQUIRED_MARKERS fix after close._
+_Last updated: 2026-05-13 00:12 UTC — cloud session. glvmarketing.ca launch blockers **fully resolved**. Client repos: reyco-marine PR #239 OPEN (llms.txt routing — awaiting Aiden); titantinyhomes PR #5 MERGED+DEPLOYED; **glvmarketing PR #2 CLOSED** (FTP-superseded, 23:15 UTC May 12); **glvmarketing PR #3 CLOSED** (logos + Reyco partner row already live, 23:15 UTC May 12); fusionfinancial 0 open PRs ✅. 95 cortextos PRs waiting Aiden (#6–#95). ✅ Coverage scan complete. ✅ glv-marketing theme PHP 8.x grep scan CLEAN (19 files, 2989 lines — May 12). ⚠️ PHPCompatibility PHPCS full tool scan still needed (local run — see commands below). ⚠️ Node 22 deadline June 2 = 20 days. ⚠️ PHP 7.4 cutover May 20 = 7 days. ⏸ exp_1778496458_smku closes 2026-05-13T10:57Z — implement REQUIRED_MARKERS fix after close._
 
 ## Priority 0 — glvmarketing.ca Launch Status (ALL RESOLVED ✅)
 
@@ -19,11 +19,11 @@ _Last updated: 2026-05-12 ~22:30 UTC — cloud session. glvmarketing.ca launch b
 - ✅ All smoke URLs green: /, /services/, 17 service child pages, /case-studies/, 3 case study pages, /contact/, /about/, /faq/
 
 **Remaining (local agent or Aiden action required):**
-- ⏳ WP templates (template-service.php, template-case-study.php, page-about.php, page-faq.php) deployed via FTP only — not yet in glvcrypto/glvmarketing repo (SSH + git push)
-- ⏳ glvmarketing PR #3: deploy.yml fix (local agent, workflow scope token)
-- ⏳ PR #2: safe to merge or close (SLA expired)
-- ⏳ FAQ visual match to Vite design
-- ⏳ `/case-studies/titan` + `/case-studies/fusion` 404 (rewrite cache)
+- ⏳ WP templates (template-service.php, template-case-study.php, page-about.php, page-faq.php) deployed via FTP only — not yet in glvcrypto/glvmarketing repo (SSH + git push needed)
+- ✅ PR #2 CLOSED 23:15 UTC May 12 — "Superseded by live FTP deploy"
+- ✅ PR #3 CLOSED 23:15 UTC May 12 — logos + Reyco partner row live-verified before close
+- ✅ FAQ visual — fixed (glass class removed, pricing violation removed)
+- ✅ /case-studies/{titan,fusion} 404 — CPT slug conflict resolved
 
 **Aiden hint:** reference `glvcrypto/reyco-marine` template-service.php — same SG infra, same template name, works there.
 
