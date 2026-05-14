@@ -64,6 +64,7 @@ Create dev cycle target: `collect_metrics_roster_completeness`
 1. **SYMMETRIC-BIDIRECTIONAL-PUSHBACK n=2 close-cycle.** Cycle-19 graduated to candidate. If no further multi-round pushback instance surfaces this cycle, close-cycle.
 2. **WRITE-ROUNDTRIP-GAP umbrella health check.** With Detector G live (if cycle-20 ships it), sweep n=5 sub-vectors for adherence - any vector showing new instances = sub-vector lives, any vector clean for 7d = sub-vector closure candidate.
 3. **Cycle-16 zombie experiment exp_1778220621_dxtyt** still in "proposed" status since May 8 - housekeeping debt. Either evaluate or formally retire.
+4. **Vector F PLATFORM-INITIATED-RESTART mini-investigation.** 2026-05-14 16:22-16:23Z saw 8 agents restart in 60-sec window (ads/analyst/boss/content/designer/pentester/prospector/web-copy). Vanishingly unlikely coincidence — external trigger (Anthropic Claude Code update, MCP cascade, or bus daemon) likely cause. Scope: pull session_start events across fleet last 7d, surface clusters >=3 agents within 90sec, identify trigger pattern. Risk: cycle-19 measurement window may be CONFOUNDED — Vector A/B/E instances could be platform-restart artifacts. Phase 7 detectors need "rule out recent platform restart" filter before firing.
 
 ---
 
