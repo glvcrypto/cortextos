@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "purpose": "Final 1 candidate for v6.3 — Doyle Plumbing (Peterborough, 35yrs, SE Ontario multi-community). Replaces Mark Edwards (KILL — wix-parked dead domain).",
+    "source_scout_report": "projects/glv-marketing/research/leads/plumbing-peterborough-scout-report.md",
+    "killed_predecessor": "v63-E08 Mark Edwards Plumbing — markedwardsplumbing.ca returns HTTP 404 (Wix parking page, domain not connected to website)"
+  },
+  "candidates": [
+    {
+      "id": "v63-E09",
+      "name": "Doyle Plumbing (Doyle Home Services)",
+      "city": "Peterborough",
+      "vertical": "plumbing",
+      "url": "https://doyleplumbing.ca/",
+      "phone": "705-740-0505",
+      "scout_score": "5/15 Tier B (35yrs, SE Ontario, founded 1991 by master plumber Brant Doyle)",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "35+ years, founded 1991", "type": "playwright_text", "url": "https://doyleplumbing.ca/", "texts": ["1991", "35"]},
+        {"id": "H2", "claim": "Multi-trade: plumbing + heating + electrical", "type": "playwright_text", "url": "https://doyleplumbing.ca/", "texts": ["heating", "electrical", "plumbing"]},
+        {"id": "H3", "claim": "SE Ontario multi-community coverage, 24hr", "type": "playwright_text", "url": "https://doyleplumbing.ca/", "texts": ["24", "Peterborough", "Fraserville"]}
+      ],
+      "hypothesized_hook_angle": "35yr master-plumber-owned multi-trade (plumbing+heating+electrical) with SE Ontario multi-community organic expansion — bundled-service-stack discovery story not surfacing in search"
+    }
+  ]
+}

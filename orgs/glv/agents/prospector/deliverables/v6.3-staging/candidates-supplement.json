@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "purpose": "Supplemental 2 candidates for v6.3 after Dart + Boyle KILLs",
+    "source_scout_report": "projects/glv-marketing/research/leads/plumbing-peterborough-scout-report.md"
+  },
+  "candidates": [
+    {
+      "id": "v63-E06",
+      "name": "Vandermeulen Plumbing",
+      "city": "Peterborough",
+      "vertical": "plumbing",
+      "url": "https://vandermeulenplumbing.ca/",
+      "phone": "705-742-3433",
+      "scout_score": "8/15 Tier A",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "Largest independent plumbing contractor in the Kawarthas", "type": "playwright_text", "url": "https://vandermeulenplumbing.ca/", "texts": ["largest", "independent", "Kawartha"]},
+        {"id": "H2", "claim": "20+ years, 24/7 service", "type": "playwright_text", "url": "https://vandermeulenplumbing.ca/", "texts": ["24", "20"]},
+        {"id": "H3", "claim": "Multi-area coverage (Kawarthas)", "type": "playwright_text", "url": "https://vandermeulenplumbing.ca/", "texts": ["Kawartha"]}
+      ],
+      "hypothesized_hook_angle": "Self-described largest indep plumber in Kawarthas + zero visible marketing — scale-vs-visibility gap"
+    },
+    {
+      "id": "v63-E07",
+      "name": "EJ Mac Plumbing",
+      "city": "Peterborough",
+      "vertical": "plumbing",
+      "url": "https://ejmacplumbing.ca/",
+      "phone": "705-760-5668",
+      "scout_score": "9/15 Tier A",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "22 years (est. 2004), Inc.", "type": "playwright_text", "url": "https://ejmacplumbing.ca/", "texts": ["22", "2004", "Inc"]},
+        {"id": "H2", "claim": "50-mile service radius around Peterborough", "type": "playwright_text", "url": "https://ejmacplumbing.ca/", "texts": ["50", "mile", "radius"]},
+        {"id": "H3", "claim": "TBR-listed", "type": "playwright_text", "url": "https://ejmacplumbing.ca/", "texts": ["three best rated", "Three Best Rated", "TBR"]}
+      ],
+      "hypothesized_hook_angle": "22-yr Inc with 50mi radius = multi-rural-area opportunity, TBR-listed but no SEO investment"
+    }
+  ]
+}

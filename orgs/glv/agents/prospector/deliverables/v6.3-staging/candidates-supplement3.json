@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "purpose": "Supplement #3 — 2 candidates to replace Neil Johnston + Tom's (form-only, email-dead). Boss directive (A') requires email-having.",
+    "source_scout_report": "projects/glv-marketing/research/leads/plumbing-peterborough-scout-report.md",
+    "killed_or_parked_predecessors": ["v63-E01 Neil Johnston (form-only, no email)", "v63-E03 Tom's H&C (form-only, lorem ipsum on contact page, no email)"]
+  },
+  "candidates": [
+    {
+      "id": "v63-E10",
+      "name": "Randle Plumbing Ltd.",
+      "city": "Peterborough",
+      "vertical": "plumbing",
+      "url": "https://randleplumbing.ca/",
+      "phone": "705-243-5601",
+      "scout_score": "2/15 Tier B (Ltd. signal, needs full research)",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "Ltd. (incorporated)", "type": "playwright_text", "url": "https://randleplumbing.ca/", "texts": ["Ltd", "Limited"]},
+        {"id": "H2", "claim": "Peterborough service area", "type": "playwright_text", "url": "https://randleplumbing.ca/", "texts": ["Peterborough"]},
+        {"id": "H3", "claim": "Plumbing services scope", "type": "playwright_text", "url": "https://randleplumbing.ca/", "texts": ["plumbing", "service"]}
+      ],
+      "hypothesized_hook_angle": "Ltd. plumbing operation with thin web presence — basic-discovery hook angle, exact age/team TBD by probe"
+    },
+    {
+      "id": "v63-E11",
+      "name": "Hitchon's Pump House",
+      "city": "Peterborough",
+      "vertical": "plumbing",
+      "url": "https://hitchonspumphouse.ca/",
+      "phone": "705-304-3307",
+      "scout_score": "3/15 Tier B (20+ yrs, pump/well specialist niche)",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "20+ years", "type": "playwright_text", "url": "https://hitchonspumphouse.ca/", "texts": ["20", "years"]},
+        {"id": "H2", "claim": "Pump/well specialist", "type": "playwright_text", "url": "https://hitchonspumphouse.ca/", "texts": ["pump", "well"]},
+        {"id": "H3", "claim": "Peterborough service area", "type": "playwright_text", "url": "https://hitchonspumphouse.ca/", "texts": ["Peterborough"]}
+      ],
+      "hypothesized_hook_angle": "Niche pump/well specialist with 20+ yrs — well-pump SEO has near-zero competition; specialist long-tail keyword opportunity invisible in current SERPs"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "generated": "2026-05-13",
+    "purpose": "v6.3 fresh-research-5 batch — Peterborough HVAC cohort, Playwright-from-step-1 9-step",
+    "source_scout_report": "projects/glv-marketing/research/leads/hvac-peterborough-scout-report.md",
+    "boss_directive": "msg 1778675968431-boss-romvs (path A' approved 2026-05-13T12:59Z)",
+    "verification_standard": "cycle-19 retool — Playwright-rendered probes only, KILL-only on unverifiable specifics, no rewrites mid-pass"
+  },
+  "candidates": [
+    {
+      "id": "v63-E01",
+      "name": "Neil Johnston Heating Inc.",
+      "city": "Peterborough",
+      "vertical": "HVAC",
+      "url": "https://neiljohnstonheating.ca/",
+      "phone": null,
+      "scout_score": "10/15 Tier A",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "40+ years in operation, Inc.", "type": "playwright_text", "url": "https://neiljohnstonheating.ca/", "texts": ["40", "Inc"]},
+        {"id": "H2", "claim": "Serves Peterborough + 7 surrounding rural communities (Norwood, Havelock, Hastings, Cavan, Millbrook, Bethany, Keene)", "type": "playwright_text", "url": "https://neiljohnstonheating.ca/", "texts": ["Norwood", "Havelock", "Hastings", "Cavan", "Millbrook", "Bethany", "Keene"]},
+        {"id": "H3", "claim": "No visible digital marketing investment", "type": "bing_surrogate", "search_query": "Neil Johnston Heating Peterborough", "target_host": "neiljohnstonheating.ca"}
+      ],
+      "hypothesized_hook_angle": "40-year multi-rural-area shop with each town as a missed keyword cluster"
+    },
+    {
+      "id": "v63-E02",
+      "name": "Dart Heating & Air Conditioning Limited",
+      "city": "Selwyn / Peterborough area",
+      "vertical": "HVAC",
+      "url": "https://dartheating.ca/",
+      "phone": null,
+      "scout_score": "9/15 Tier A",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "30+ years, Ltd.", "type": "playwright_text", "url": "https://dartheating.ca/", "texts": ["30"]},
+        {"id": "H2", "claim": "Keeprite Elite partner", "type": "playwright_text", "url": "https://dartheating.ca/", "texts": ["Keeprite", "Elite"]},
+        {"id": "H3", "claim": "TSSA + HRAI + WSIB + OCT memberships", "type": "playwright_text", "url": "https://dartheating.ca/", "texts": ["TSSA", "HRAI", "WSIB", "OCT"]},
+        {"id": "H4", "claim": "Family-run (Bonnie + Brian Dart)", "type": "playwright_text", "url": "https://dartheating.ca/", "texts": ["Bonnie", "Brian"]}
+      ],
+      "hypothesized_hook_angle": "Keeprite Elite badge earned + zero digital visibility — credentials Google doesn't surface"
+    },
+    {
+      "id": "v63-E03",
+      "name": "Tom's Heating & Cooling",
+      "city": "Peterborough",
+      "vertical": "HVAC",
+      "url": "https://tomsheatingandcooling.ca/",
+      "phone": "705-740-2218",
+      "scout_score": "9/15 Tier A",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "33 years (est. 1992), Inc.", "type": "playwright_text", "url": "https://tomsheatingandcooling.ca/", "texts": ["1992", "33"]},
+        {"id": "H2", "claim": "YORK + Moovair + Rinnai dealer", "type": "playwright_text", "url": "https://tomsheatingandcooling.ca/", "texts": ["YORK", "Moovair", "Rinnai"]},
+        {"id": "H3", "claim": "Multi-area: Peterborough + Kawartha Lakes + Lindsay", "type": "playwright_text", "url": "https://tomsheatingandcooling.ca/", "texts": ["Kawartha", "Lindsay"]}
+      ],
+      "hypothesized_hook_angle": "33-yr multi-brand dealer with Kawartha+Lindsay reach — dealer creds invisible in local search"
+    },
+    {
+      "id": "v63-E04",
+      "name": "Peterborough Refrigeration H&A Ltd.",
+      "city": "Peterborough",
+      "vertical": "HVAC",
+      "url": "https://peterboroughrefrigeration.com/",
+      "phone": "705-741-1488",
+      "scout_score": "10/15 Tier A",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "Lennox dealer", "type": "playwright_text", "url": "https://peterboroughrefrigeration.com/", "texts": ["Lennox"]},
+        {"id": "H2", "claim": "24-hour residential + commercial service", "type": "playwright_text", "url": "https://peterboroughrefrigeration.com/", "texts": ["24"]},
+        {"id": "H3", "claim": "TBR top-3 listed", "type": "bing_surrogate", "search_query": "best HVAC Peterborough threebestrated", "target_host": "peterboroughrefrigeration.com"}
+      ],
+      "hypothesized_hook_angle": "Lennox dealer + TBR top-3 + 24hr commercial — dealer/award badges not connected to search-side findability"
+    },
+    {
+      "id": "v63-E05",
+      "name": "Boyle Heating & Cooling",
+      "city": "Peterborough",
+      "vertical": "HVAC",
+      "url": "https://boylehvac.ca/",
+      "phone": "705-741-1023",
+      "scout_score": "3/15 Tier B",
+      "candidate_hooks": [
+        {"id": "H1", "claim": "Trane dealer", "type": "playwright_text", "url": "https://boylehvac.ca/", "texts": ["Trane"]},
+        {"id": "H2", "claim": "Owner-operated by Mike Boyle, TSSA-credentialed", "type": "playwright_text", "url": "https://boylehvac.ca/", "texts": ["Mike", "TSSA"]}
+      ],
+      "hypothesized_hook_angle": "Trane dealer owner-op — credentials present, search visibility unknown (probe will reveal)"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "exp_1778698298_vs7mv",
+  "agent": "scout",
+  "metric": "digest_items_adopted_per_7d",
+  "hypothesis": "Pairing each actionable-now routing tag with a specific 1-sentence suggested action (e.g., '→ dev: evaluate agentmemory repo as cortextOS memory layer replacement, start with architecture section') converts boss and specialist triage from routing decisions to single-step execution, pushing adoptions above the cycle-2 high of 9. Evidence: cycle-4 DISCARD (7 adoptions) showed routing tags removed triage overhead but left adoption conversion low because recipients received the item but no concrete next action. The tier classification + routing foundation is confirmed by 3 consecutive keeps; cycle-5 adds the action layer as the third and final friction reduction. Exploit signal: 3 keeps in a row on the same pattern family.",
+  "surface": "experiments/surfaces/ecosystem_scan_adoption/current.md",
+  "direction": "higher",
+  "window": "7d",
+  "measurement": "",
+  "status": "running",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-05-13T18:51:38Z",
+  "started_at": "2026-05-13T18:52:16Z",
+  "completed_at": null,
+  "changes_description": "Updated ecosystem_scan_adoption surface to cycle-5 format: each actionable-now routing tag now paired with a specific 1-sentence suggested action (e.g., '→ dev: evaluate agentmemory repo as cortextOS memory layer replacement'). Previous cycle-4 format had tier labels + routing destination only — cycle-5 adds the concrete next-action layer. actionable-within-30d items retain routing tag only (no action), watch-only items unchanged. Goal: convert routing-primed recipients into single-step execution, targeting >9 adoptions (above cycle-2 high)."
+}
