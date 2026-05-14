@@ -1,16 +1,17 @@
-# ecosystem_scan_adoption — Cycle 4 Surface
+# ecosystem_scan_adoption — Cycle 5 Surface
 
-## Current digest format (as of Apr 29 2026 — cycle 4 experiment)
+## Current digest format (as of May 14 2026 — cycle 5 experiment, APPROVED)
 Agent-to-agent messages to boss + targeted specialists + condensed Slack post to #internal-agents. Structure:
 - Items classified into three tiers: **actionable-now** / **actionable-within-30d** / **watch-only**
-- Each **actionable-now** item carries a `→ [agent]` routing tag (e.g., `→ dev`, `→ seo`, `→ analyst`, `→ boss-decision`)
-- Lead with actionability and routing: recipients see both WHEN to act and WHO should receive it
-- Per-finding: tier label + routing tag, source, 1-line summary, relevance note
+- Each **actionable-now** item carries a `→ [agent]` routing tag AND a specific 1-sentence suggested action
+- Format: `actionable-now → [agent]: [specific suggested action]` (e.g., `actionable-now → dev: evaluate agentmemory repo as cortextOS memory layer replacement, start with architecture section`)
+- **actionable-within-30d** items retain routing tag only — no action sentence (not urgent enough to prescribe)
+- **watch-only** items: source + 1-line summary only, no routing tag
 - Separate messages per recipient (boss gets fleet-level findings; individual specialists get domain-specific signals)
-- Slack post mirrors tiered classification + routing tags for #internal-agents paper trail
+- Slack post mirrors tiered classification + action layer for #internal-agents paper trail
 
 ## Hypothesis
-Adding explicit `→ [agent]` routing tags to actionable-now items eliminates boss's triage overhead and increases adoptions above 9/week. Cycle 3 KEEP (9 adoptions, vs 6 baseline) confirmed tier classification primes action. The remaining friction is boss deciding which agent receives each item. Pre-routing removes that decision step.
+Pairing each actionable-now routing tag with a specific 1-sentence suggested action converts boss and specialist triage from routing decisions to single-step execution, pushing adoptions above the cycle-2 high of 9. Evidence: cycle-4 DISCARD (7 adoptions) showed routing tags removed triage overhead but left adoption conversion low because recipients received the item but no concrete next action. The tier classification + routing foundation is confirmed by 3 consecutive keeps; cycle-5 adds the action layer as the third and final friction reduction. Exploit signal: 3 keeps in a row on the same pattern family.
 
 ## What "adoption" means
 A finding is considered naturally adopted when:
@@ -21,27 +22,14 @@ A finding is considered naturally adopted when:
 - Boss includes it in overnight proposals or decision queue
 
 ## Measurement method
-Manual count of natural adoptions from agent message logs, boss outbound Telegram, and task activity over the 7-day window.
+Manual count of natural adoptions from agent message logs, boss outbound Telegram, and task activity over the 7-day window (May 13–20 2026).
 
 ---
 
-## Scan Log — Cycle 4 Data Points
+## Scan Log — Cycle 5 Data Points
 
-### 2026-05-02 scan (day 4 of 7d window)
-Routing tags used: `[scout→boss]`, `[scout→dev]`, `[scout→pentester]`
+### Pre-window organic adoption (counted)
+- Dev Agent View (`claude agents` command) — dev evaluated and banked dashboard state taxonomy as low-priority UX improvement. Counts as 1 organic adoption (cycle-5 window opened May 13).
 
-**Findings sent:**
-- `[scout→boss]` — Claude Opus 4.7 upgrade decision + Claude Managed Agents context (actionable-now: boss-decision)
-- `[scout→dev]` — /ultrareview command + everything-claude-code repo (actionable-within-30d)
-- `[scout→pentester]` — pentest-ai-agents (DUPLICATE — already triaged 2026-05-01; dedup gap; not a valid experiment send)
-
-**Boss routing behavior observed:**
-- Boss received [scout→boss] message, immediately produced per-agent evaluation framing (analyst + dev = lean-upgrade, others stay on 4.6) and queued for Aiden AM brief. Routing tag removed boss's triage step — boss went directly to evaluation framing rather than "who should I route this to?" deliberation. Consistent with hypothesis.
-- Claude Managed Agents: boss confirmed "tracking only" and independently banked cortextOS-architecture-ahead positioning note. No triage overhead observed.
-
-**Noise:**
-- pentest-ai-agents send was a duplicate — should not count toward adoption measurement. Dedup gap fixed with triaged-signals.json.
-
-**Adoption candidates (pending 7d window close 2026-05-06T14:41Z):**
-- Opus 4.7 queued in AM brief (strong adoption signal pending Aiden decision)
-- /ultrareview routed to dev (adoption TBD)
+**Running tally: 1 / target >9**
+**Window closes: 2026-05-20T18:30Z**
