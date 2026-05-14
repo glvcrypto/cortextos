@@ -1548,6 +1548,10 @@ busCommand
 
     // R1: ACL — agents may only soft-restart themselves; operator terminal (no CTX_AGENT_NAME) is unrestricted
     if (env.agentName && env.agentName !== targetAgent) {
+      // R4: log rejected attempt BEFORE exiting so detection captures denied cross-agent calls
+      const denyPaths = resolvePaths(env.agentName, env.instanceId, env.org);
+      logEvent(denyPaths, env.agentName, env.org, 'action' as any, 'agent_restart_denied', 'warning',
+        JSON.stringify({ caller: env.agentName, target: targetAgent, reason, via: 'soft-restart', denied: true }));
       console.error(`ACL denied: agent '${env.agentName}' cannot soft-restart '${targetAgent}' (self-restart only)`);
       process.exit(1);
     }
@@ -1596,6 +1600,10 @@ busCommand
 
     // R1: ACL — soft-restart-all is operator-only; agents cannot invoke it
     if (env.agentName) {
+      // R4: log rejected attempt BEFORE exiting so detection captures denied calls
+      const denyPaths = resolvePaths(env.agentName, env.instanceId, env.org);
+      logEvent(denyPaths, env.agentName, env.org, 'action' as any, 'agent_restart_denied', 'warning',
+        JSON.stringify({ caller: env.agentName, target: '*', reason: opts.reason, via: 'soft-restart-all', denied: true }));
       console.error(`ACL denied: agent '${env.agentName}' cannot invoke soft-restart-all (operator-only command)`);
       process.exit(1);
     }
