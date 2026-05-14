@@ -1,5 +1,6 @@
 // Broker WC/WP REST API calls through Playwright to bypass SG WAF.
 // Uses persistent context with cached sgcaptcha clearance + App Password Basic Auth.
+// Usage: node sg-waf-rest-broker.mjs <api_path> [--method GET|PATCH|POST|PUT|DELETE] [--data '{"key":"val"}']
 import { chromium } from 'playwright';
 import fs from 'fs';
 
@@ -9,8 +10,17 @@ const WP_PWD = cred.match(/WP_APP_PASSWORD="([^"]+)"/)[1];
 const WP_BASE = cred.match(/WP_BASE_URL="([^"]+)"/)[1];
 const auth = 'Basic ' + Buffer.from(`${WP_USER}:${WP_PWD}`).toString('base64');
 
-const apiPath = process.argv[2];
-if (!apiPath) { console.error('usage: node sg-waf-rest-broker.mjs <api_path>'); process.exit(1); }
+const args = process.argv.slice(2);
+const apiPath = args[0];
+if (!apiPath) {
+  console.error('usage: node sg-waf-rest-broker.mjs <api_path> [--method GET|PATCH|POST|PUT|DELETE] [--data \'{"key":"val"}\']');
+  process.exit(1);
+}
+
+const methodIdx = args.indexOf('--method');
+const method = methodIdx !== -1 ? args[methodIdx + 1].toUpperCase() : 'GET';
+const dataIdx = args.indexOf('--data');
+const postData = dataIdx !== -1 ? args[dataIdx + 1] : null;
 
 const userDataDir = '/tmp/sg-bypass-userdata-v2';
 const browser = await chromium.launchPersistentContext(userDataDir, {
@@ -27,18 +37,22 @@ await browser.addInitScript(() => {
 
 const page = await browser.newPage();
 
-// Use page.request which uses browser cookies for sgcaptcha clearance
 const url = `${WP_BASE}${apiPath}`;
-const resp = await page.request.fetch(url, {
-  method: 'GET',
-  headers: { 'Authorization': auth, 'Accept': 'application/json' },
-});
+const fetchOpts = {
+  method,
+  headers: {
+    'Authorization': auth,
+    'Accept': 'application/json',
+    ...(postData ? { 'Content-Type': 'application/json' } : {}),
+  },
+  ...(postData ? { data: postData } : {}),
+};
+const resp = await page.request.fetch(url, fetchOpts);
 const status = resp.status();
 const body = await resp.text();
 
-console.log(JSON.stringify({ status, url, bytes: body.length }));
+console.log(JSON.stringify({ status, url, method, bytes: body.length }));
 if (status >= 200 && status < 300) {
-  // Pretty-print JSON if possible
   try {
     const j = JSON.parse(body);
     process.stdout.write('\n' + JSON.stringify(j, null, 2));
