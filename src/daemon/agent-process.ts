@@ -1,6 +1,13 @@
 import { appendFileSync, existsSync, readFileSync, statSync, writeFileSync } from 'fs';
+import { randomBytes } from 'crypto';
 import { join, sep } from 'path';
 import { homedir } from 'os';
+
+// Generated once per daemon process startup. Injected into every agent PTY env as
+// CTX_DAEMON_SESSION_TOKEN. Validated on .force-fresh reads so rogue agents cannot
+// trigger a clean-session wipe on a peer by writing an unsigned marker file.
+const DAEMON_SESSION_TOKEN = randomBytes(16).toString('hex');
+process.env['CTX_DAEMON_SESSION_TOKEN'] = DAEMON_SESSION_TOKEN;
 import type { AgentConfig, AgentStatus, CtxEnv } from '../types/index.js';
 import { AgentPTY } from '../pty/agent-pty.js';
 import { CodexAppServerPTY } from '../pty/codex-app-server-pty.js';
@@ -459,14 +466,25 @@ export class AgentProcess {
       return hermesDbExists(hermesHome);
     }
 
-    // Check for force-fresh marker
+    // R2: validate .force-fresh provenance — only honor files signed with the daemon session token
     const forceFreshPath = join(this.env.ctxRoot, 'state', this.name, '.force-fresh');
     if (existsSync(forceFreshPath)) {
+      let honored = false;
       try {
+        const content = readFileSync(forceFreshPath, 'utf-8').trim();
+        honored = content === DAEMON_SESSION_TOKEN;
+        if (!honored) {
+          // Unsigned or wrong-token file — delete it but don't start fresh (potential abuse)
+          appendFileSync(
+            join(this.env.ctxRoot, 'logs', this.name, 'restarts.log'),
+            `[${new Date().toISOString()}] SECURITY: .force-fresh rejected — invalid provenance token (content: ${content.slice(0, 8)}...)\n`,
+            'utf-8',
+          );
+        }
         const { unlinkSync } = require('fs');
         unlinkSync(forceFreshPath);
-      } catch { /* ignore */ }
-      return false;
+      } catch { /* non-fatal — don't honor on read error */ }
+      if (honored) return false;
     }
 
     // Check for existing conversation
