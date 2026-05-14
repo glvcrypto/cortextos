@@ -111,7 +111,7 @@ NAPA Canada CC'd on every submission might be perfectly legitimate (NAPA runs a 
 ### F-4. GitHub PAT embedded in local git remote URL
 
 **File:** `.git/config` in local clone at `c:/Users/joshu/Desktop/Agentic Workspace/reyco-marine/`
-**Token:** `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` (user `glvcrypto`)
+**Token:** `gho_S9RH...EQ4rW` (user `glvcrypto`) — redacted 2026-05-14 (META-LEAK remediation); fingerprint = first-4+last-4 per convention upgrade
 
 **Expert**
 The `origin` remote in the local clone stores the GitHub personal access token directly in the URL: `https://glvcrypto:gho_xxx@github.com/glvcrypto/reyco-marine.git`. This is a common side effect of `git clone` with a token in the URL, and it persists in `.git/config` on the dev machine. While `.git/config` is never pushed to GitHub, it is readable by any process running as the user — malware, backup tools, cloud-sync clients (OneDrive/Dropbox), even some IDEs that index repo metadata. It also leaks into stderr/log output on some git operations, and into any tool that runs `git remote -v`.

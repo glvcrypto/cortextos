@@ -3,7 +3,8 @@
 # Output: transparent PNGs in /v2/transparent/
 
 FAL_KEY=$(cat /mnt/c/Users/joshu/.claude/credentials/fal-key.txt)
-BOT_TOKEN="8667999119:AAFsnx3ODW4mdf2L634z5V6DsJMJUH0i3is"
+# DEPRECATED: bot 8667999119 revoked 2026-05-14, do not run
+BOT_TOKEN="${BOT_TOKEN:?BOT_TOKEN env var not set}"
 CHAT_ID="1582763943"
 OUTPUT_DIR="/home/aiden/cortextos/orgs/glv/clients/reyco-marine/assets/homepage-icons/v2/transparent"
 mkdir -p "$OUTPUT_DIR"
