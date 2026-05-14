@@ -72,6 +72,8 @@ export class AgentPTY {
       CTX_ORG: this.env.org,
       CTX_AGENT_DIR: this.env.agentDir,
       CTX_PROJECT_ROOT: this.env.projectRoot,
+      // R2: daemon session token — agents need this to write a valid .force-fresh for hard-restart
+      CTX_DAEMON_SESSION_TOKEN: process.env['CTX_DAEMON_SESSION_TOKEN'] || '',
       // Backward compat
       CRM_AGENT_NAME: this.env.agentName,
       CRM_TEMPLATE_ROOT: this.env.frameworkRoot,

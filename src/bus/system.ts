@@ -78,9 +78,10 @@ export function selfRestart(paths: BusPaths, agentName: string, reason?: string)
 export function hardRestart(paths: BusPaths, agentName: string, reason?: string): void {
   const resolvedReason = reason || 'no reason specified';
 
-  // Create force-fresh marker (agent-process.ts checks this on restart)
+  // Create force-fresh marker (agent-process.ts checks this on restart).
+  // Content must be the daemon session token (CTX_DAEMON_SESSION_TOKEN) for provenance validation.
   ensureDir(paths.stateDir);
-  writeFileSync(join(paths.stateDir, '.force-fresh'), resolvedReason + '\n', 'utf-8');
+  writeFileSync(join(paths.stateDir, '.force-fresh'), process.env['CTX_DAEMON_SESSION_TOKEN'] || '', 'utf-8');
 
   // Also create restart marker so crash-alert knows it was planned
   writeFileSync(join(paths.stateDir, '.restart-planned'), resolvedReason + '\n', 'utf-8');
