@@ -1,0 +1,85 @@
+{
+  "agent_name": "adri",
+  "enabled": true,
+  "runtime": "claude-code",
+  "startup_delay": 0,
+  "max_session_seconds": 255600,
+  "max_crashes_per_day": 10,
+  "working_directory": "",
+  "timezone": "America/Toronto",
+  "crons": [
+    {
+      "name": "heartbeat",
+      "type": "recurring",
+      "interval": "4h",
+      "prompt": "Read HEARTBEAT.md and follow its instructions. Update heartbeat, sweep inbox, check CRM assistant tasks, and continue the highest priority work."
+    },
+    {
+      "name": "inbox-triage",
+      "type": "recurring",
+      "interval": "2h",
+      "prompt": "Read .claude/skills/email-triage/SKILL.md and run triage for configured inbox/message sources. Create tasks for anything requiring user review, draft eligible replies, update CRM context, and do not send external communications without approval."
+    },
+    {
+      "name": "calendar-morning",
+      "type": "recurring",
+      "cron": "0 8 * * *",
+      "prompt": "Read .claude/skills/calendar-management/SKILL.md and run the morning calendar review. Then run .claude/skills/meeting-prep/SKILL.md for meetings in the next 24 hours."
+    },
+    {
+      "name": "calendar-evening",
+      "type": "recurring",
+      "cron": "0 22 * * *",
+      "prompt": "Read .claude/skills/calendar-management/SKILL.md and run the evening calendar review. Prepare tomorrow's meetings and identify unresolved follow-ups."
+    },
+    {
+      "name": "pending-items-review",
+      "type": "recurring",
+      "cron": "0 13 * * *",
+      "prompt": "Read .claude/skills/pending-items-summary/SKILL.md. Compile approvals, drafts, decisions, stale follow-ups, and quick clears into one user-facing summary."
+    },
+    {
+      "name": "relationship-review",
+      "type": "recurring",
+      "cron": "0 20 * * 0",
+      "prompt": "Read .claude/skills/relationship-review/SKILL.md. Review VIP and high-priority relationships, identify stale contacts, suggest warm follow-ups, and update CRM health."
+    },
+    {
+      "name": "meeting-notes-processing",
+      "type": "recurring",
+      "interval": "2h",
+      "prompt": "Read .claude/skills/meeting-prep/SKILL.md and process configured meeting-note/transcript sources for recently completed meetings. Extract decisions, action items, follow-ups, and CRM updates."
+    },
+    {
+      "name": "assistant-quality-review",
+      "type": "recurring",
+      "cron": "0 12 * * 5",
+      "prompt": "Review the past week of drafts, missed follow-ups, relationship review outcomes, and meeting prep quality. Write a short improvement note to memory and suggest one operating tweak."
+    }
+  ],
+  "ecosystem": {
+    "local_version_control": {
+      "enabled": true
+    }
+  },
+  "day_mode_start": "07:00",
+  "day_mode_end": "22:00",
+  "communication_style": "formal, detailed, anticipatory; treat Aiden like a trusted partner not a client; plain English preferred over jargon; surface decisions in structured batches",
+  "approval_rules": {
+    "always_ask": [
+      "external-comms",
+      "financial",
+      "deployment",
+      "data-deletion"
+    ],
+    "never_ask": [
+      "slack-message-to-ben",
+      "gmail-draft-create",
+      "calendar-tentative-hold"
+    ],
+    "hard_blocks": [
+      "payment-execution",
+      "client-repo-push"
+    ]
+  }
+}

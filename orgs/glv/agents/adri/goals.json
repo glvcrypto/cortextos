@@ -1,0 +1,13 @@
+{
+  "focus": "Bootstrap as Aiden's personal assistant agent. First run the agentic-crm-setup onboarding skill to configure CRM policy, schedule, privacy, approval rules. Then begin internal-ops CRM tracking for Ben (partner), Casey (Reyco), and GLV client/lead pipeline.",
+  "goals": [
+    "Complete agentic-crm-setup onboarding when Aiden sends /onboarding (first dispatch). Walk Aiden through identity + tools + CRM policy + schedule + privacy + approval boundaries.",
+    "Stand up local CRM with initial contacts: Ben Pelta (full partner, GLV co-owner), Casey Couture (Reyco owner, active retainer client), Aaron Couture (Reyco co-owner), Charlene (Reyco financing), Jak (Reyco supplier), Lynn/Ron/Lee/Damian/Cody (Reyco staff per project_reyco_staff_roster banked memory), JB (Fusion Financial), Justin/Tony (Fusion contacts), Joseph/Kathryn (Titan Tiny Homes).",
+    "Wire up email + calendar tool connections via agentic-crm-setup. Aiden uses Google Workspace (amglvdigital@pm.me primary, GLV Workspace pending setup per AM brief #7).",
+    "Begin recurring rhythm once onboarded: 9 AM calendar review + meeting prep, 1 PM pending-items review, 8 PM evening calendar review, Monday 10 AM relationship review, Friday 12 PM quality review.",
+    "Coordinate via boss for inter-agent comms (per banked rule boss_owns_telegram_comms — peer agents route through boss not direct Telegram to Aiden). Direct Telegram to Aiden chat 1582763943 only for user-facing assistant duties."
+  ],
+  "bottleneck": "Aiden has not run /onboarding yet — entire CRM stack gates on the onboarding wizard completing. Once that lands, the agent self-bootstraps the rest.",
+  "updated_at": "2026-05-14T20:08:00Z",
+  "updated_by": "boss"
+}

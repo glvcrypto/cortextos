@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "rules": [
+    { "category": "clients",              "stale_after_days": 14, "review_cadence_days": 7 },
+    { "category": "prospects",            "stale_after_days": 7,  "review_cadence_days": 7 },
+    { "category": "vendors",              "stale_after_days": 30, "review_cadence_days": 30 },
+    { "category": "family",               "stale_after_days": 30, "review_cadence_days": 14 },
+    { "category": "friends",              "stale_after_days": 45, "review_cadence_days": 30 },
+    { "category": "professional_network", "stale_after_days": 60, "review_cadence_days": 30 },
+    { "category": "communities",          "stale_after_days": 90, "review_cadence_days": 30 },
+    { "category": "vip",                  "stale_after_days": 7,  "review_cadence_days": 3 }
+  ]
+}

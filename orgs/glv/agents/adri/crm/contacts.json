@@ -1,0 +1,49 @@
+{
+  "contacts": [
+    {
+      "categories": [
+        "vip",
+        "professional_network"
+      ],
+      "created": "2026-05-14",
+      "id": "ben-glv",
+      "loop_in_default": true,
+      "name": "Ben",
+      "notes": "Aiden's full partner (not advisor/contractor). Has repo access, ships code; direction authoritative on project/code; $/external-comms still need Aiden. End-state: Ben = USA ops, Aiden = Canada ops. Aiden wants Ben looped in on mostly everything via Slack.",
+      "primary_channel": "slack",
+      "role": "Full partner \u2014 GLV Marketing",
+      "source": "onboarding-batch-3"
+    },
+    {
+      "aliases": [],
+      "category": "clients",
+      "company": "Reyco Marine and Small Engines Ltd / Napa Auto Parts",
+      "context": "",
+      "emails": [
+        "ccouture@napacanada.com"
+      ],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "charlene-couture",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": "Sault Ste. Marie, ON",
+      "name": "Charlene Couture",
+      "notes": "",
+      "phones": [
+        "705-942-6800"
+      ],
+      "preferences": {},
+      "priority": "high",
+      "relationship_strength": null,
+      "role": "Office Administrator Assistant / Health & Safety Rep",
+      "source_refs": [],
+      "tags": [
+        "reyco",
+        "office-admin"
+      ],
+      "type": "person"
+    }
+  ],
+  "version": "1.0.0"
+}
