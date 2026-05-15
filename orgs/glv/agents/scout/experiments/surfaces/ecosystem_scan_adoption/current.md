@@ -49,7 +49,8 @@ Starting next ecosystem scan: log `dispatch_timestamp` (when scout sent the scan
 | 5 | 2026-05-14 | Binary-inspection-first principle banked by analyst after scout self-correction on 30min polling claim | `indirect_banked_rule_application` | Correction propagated to analyst; applied to future tool-behavior claims |
 | 6 | 2026-05-15 | Prospector ran full SPF/DKIM/DMARC T2/T3 verification in direct response to domain scan `actionable-now → prospector: Verify GLV sending domain auth...` | `direct_action_pairing` | Immediate execution of suggested action; confirmed LOW risk + documented p=none gap |
 | 7 | 2026-05-15 | Ads agent confirmed static-creative 60-70% stat from domain scan signal + banked to MEMORY for Titan Stage 4 format weighting | `direct_action_pairing` | Action-pairing `→ ads: audit creative count` triggered immediate Andromeda model re-evaluation |
+| 8 | 2026-05-15 | Prospector installed cold-outreach-verify + site-availability-verify skills within minutes of actionable-now scan dispatch | `direct_action_pairing` | `→ prospector: install cold-outreach-verify + site-availability-verify from community/skills/` → immediate install (17KB + 9.4KB); dispatch_timestamp: 2026-05-15T14:49Z, adoption_timestamp: 2026-05-15T14:50Z (Δ≈1min) |
 
-**Running tally: 7 / target >9**
+**Running tally: 8 / target >9**
 **Window closes: 2026-05-20T18:30Z**
 **Note: file committed 2026-05-15T10:13Z — reconstructed from session log (entries 1-5 not previously committed)**
