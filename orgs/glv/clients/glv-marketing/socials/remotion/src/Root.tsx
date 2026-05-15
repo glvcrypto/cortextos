@@ -1,7 +1,9 @@
 import React from "react";
 import { Composition } from "remotion";
 import { Carousel } from "./Carousel";
+import { GBPCarousel } from "./GBPCarousel";
 import { brand } from "./brand";
+import { brandGLV } from "./brand-glvbuilds";
 import { CarouselProps, SlideData } from "./types";
 
 // ── Sample carousel: "5 reasons your business is invisible online" ──────────
@@ -52,6 +54,56 @@ const squareProps: CarouselProps = {
 
 const totalFrames = sampleSlides.length * brand.slideDuration;
 
+// ── GBP pre-audit carousel: "6 things I check before I touch a client's Google listing" ──
+// Source: orgs/glv/social/glvbuilds/drafts/2026-05-15_carousel-gbp-pre-audit-6-checks.md
+// Brand: canonical light theme (bg #FFFFFF / fg #000000 / accent #B22222) from brand-glvbuilds.ts
+const gbpSlides: SlideData[] = [
+  {
+    type: "hook",
+    tag: "@glvbuilds",
+    headline: "6 things I check before I touch a client's Google listing",
+    body: "10 minutes. Every new client. Every time.",
+  },
+  {
+    type: "content",
+    tag: "Check 1",
+    headline: "Who is the Primary Owner?",
+    body: "Previous agency? Old personal account?\nIf you don't control Primary Owner, you don't control the listing.",
+  },
+  {
+    type: "content",
+    tag: "Check 2",
+    headline: "Is there a duplicate listing?",
+    body: "Private browser. Search the business name.\nTwo profiles suppresses the primary one and confuses customers.",
+  },
+  {
+    type: "content",
+    tag: "Check 3",
+    headline: "Is the profile verified, flagged, or suspended?",
+    body: "GBP doesn't always send an email when there's a problem.\nCheck the status in GBP Manager before assuming the profile is active.",
+  },
+  {
+    type: "content",
+    tag: "Check 4",
+    headline: "Screenshot everything before you change anything.",
+    body: "Primary category, hours, description, photo count.\nFive minutes of documentation prevents weeks of confusion.",
+  },
+  {
+    type: "content",
+    tag: "Check 5",
+    headline: "Check for pending user-suggested edits.",
+    body: "Google lets anyone suggest changes to your listing.\nKnow what's in the queue before you start adding to it.",
+  },
+  {
+    type: "cta",
+    tag: "Check 6",
+    headline: "NAP match: GBP, website footer, schema.",
+    body: "Name, address, phone. All three must match exactly.\nComment CHECKLIST for the template",
+  },
+];
+
+const gbpTotalFrames = gbpSlides.length * brandGLV.slideDuration;
+
 export const RemotionRoot: React.FC = () => (
   <>
     {/* 1080×1350 portrait — IG/LI */}
@@ -74,6 +126,17 @@ export const RemotionRoot: React.FC = () => (
       width={brand.canvas.square.width}
       height={brand.canvas.square.height}
       defaultProps={squareProps}
+    />
+
+    {/* 1080×1080 — @glvbuilds GBP pre-audit carousel */}
+    <Composition
+      id="GBPPreAudit"
+      component={GBPCarousel}
+      durationInFrames={gbpTotalFrames}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{ slides: gbpSlides }}
     />
   </>
 );
