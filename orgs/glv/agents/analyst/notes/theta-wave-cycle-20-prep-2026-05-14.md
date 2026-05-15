@@ -97,3 +97,46 @@ Create dev cycle target: `collect_metrics_roster_completeness`
 - Acceptance: cloud-session agents reachable across channel boundaries even when local-bus stale
 - Risks: Slack ACK parsing fragile, false-negatives likely on indirect responses
 - Status: candidate for cycle-20 dispatch consideration alongside Detector E + B + G
+
+### Vector G WRITE-ROUNDTRIP-GAP — state-mutation-not-propagated-to-daemon-crons (n=2 CONFIRMED, 2026-05-15)
+
+**Graduation:** candidate n=1 → confirmed n=2 within <24h per [[feedback_single_shot_mechanism_claims_require_n2]]. Both instances surfaced during Phase 5 migration boundary day-1 (the post-merge window where mechanism boundary is invisible from inside agent repos).
+
+**Variants:**
+- **G1 — agent-edit-config-not-picked-up:** adri 2026-05-14 21:00Z, calendar-evening cron 0 20 → 0 22 in config.json + commit 87d2ffbe, fired old schedule (banked rule [[feedback_no_direct_config_json_edit_post_phase_5]])
+- **G2 — aiden-kill-cycle-but-daemon-cron-survives:** designer cycle-2 visual-review-accuracy killed by Aiden 2026-05-11, daemon cron remained ENABLED next-fire 2026-05-22 04:23Z; discovered via PR #101 bus list-crons surface; designer holding remove-cron pending Aiden AM brief auth
+
+**Underlying mechanism:** state mutation at layer X (config.json edit OR cycle-status kill) does not propagate to daemon-owned `state/{agent}/crons.json`. Producer-side rule + consumer-side discipline both needed.
+
+**Sub-rule candidate for cycle-20 dispatch:**
+"any cycle/cron kill via agent dispatch or skill action must check + remove daemon-cron in same operation"
+- Implementation: wrap `manage-cycle remove` + cycle-kill paths to issue `bus remove-cron $agent $cycle_name` automatically
+- Acceptance: future Aiden cycle-kills auto-clean daemon crons; orphan-cron sweep returns 0
+
+**Detector G-detect candidate (carry-forward from earlier):** still relevant — sweep for daemon cron entries without matching active cycle/config entry. PR #101 list-crons surface enables the sweep cheaply (already filesystem-anchored per [[feedback_filesystem_anchored_predicate_pattern]]).
+
+**Pattern prediction:** more instances expected as other agents discover the layer split during normal cycle/cron mutations through migration period. Cycle-20 measurement window should track Vector G recurrence count specifically.
+
+**AM brief routing 2026-05-15 12:00Z:** designer instance surfaced as discrete authorize-cleanup item, consolidated into single Cycle-19-Day-1 measurement window brief alongside Vector F closure + Vector H surface.
+
+---
+
+### Vector H WRITE-ROUNDTRIP-GAP — commit-without-push, peer-reset (n=1, banked 2026-05-15)
+
+**Incident:** 2026-05-14 20:44:24-50 EDT. Dev rebase against origin/main → ABORT → `git reset --hard origin/main` 15s later (intended as cleanup). Wiped 6 local-only commits across 4 agents (3 adri + 2 content + 1 boss + dev's own pre-reset). Adri recovered via reflog forensics; content/boss memory not recovered (low value).
+
+**Banked rule:** [[feedback_never_rebase_abort_then_reset_hard]] (System B). Cross-link family: agent-writes-need-git-commit (Vector E), no-direct-config-json-edit-post-phase-5 (Vector G), design-coupled-with-agent-discipline (meta), no-bandaid-options (anchor).
+
+**Mechanism:** producer-commits-locally → consumer-reads-origin-refs → no push-required guarantee → write-without-propagation (push layer). Inverse of Vector E.
+
+**Cycle-20 detector candidate — `cortextos bus safe-reset` wrapper:**
+- Pre-destructive-op check: `git log origin/main..HEAD --all --oneline` across all agent worktrees
+- Refuse op if non-empty + name affected agents
+- Override flag for boss/Aiden authorization
+- Post-incident sweep: scan reflog for `reset --hard origin/main` events, cross-reference with peer commits in destroyed range
+- Surface: `cross-agent-unpushed-commits.jsonl`
+- Acceptance: future rebase-abort-then-reset incidents caught before destruction, peer commits surfaced for cherry-restore consent
+
+**Risks:** false positives on intentional fleet-cleanup ops (rare); wrapper requires override for legitimate boss/Aiden ops.
+
+**Adjacent: push-promptly habit (producer half).** Detector could also sweep agent worktrees for stale unpushed commits at heartbeat tick → flag to owning agent.
