@@ -51,7 +51,7 @@ module.exports = {
       },
       // Dashboard reads its real config from dashboard/.env.local — populated
       // by /onboarding Phase 7. PM2 just supervises the npm process.
-      max_restarts: 50,
+      max_restarts: 10,
       restart_delay: 5000,
       autorestart: true,
     },
