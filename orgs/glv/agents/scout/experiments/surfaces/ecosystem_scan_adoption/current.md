@@ -28,8 +28,28 @@ Manual count of natural adoptions from agent message logs, boss outbound Telegra
 
 ## Scan Log — Cycle 5 Data Points
 
-### Pre-window organic adoption (counted)
-- Dev Agent View (`claude agents` command) — dev evaluated and banked dashboard state taxonomy as low-priority UX improvement. Counts as 1 organic adoption (cycle-5 window opened May 13).
+### Adoption Type Taxonomy (est. 2026-05-14, analyst-scout joint)
+- `direct_action_pairing` — scan dispatch → peer applies action-pairing step in-thread
+- `indirect_banked_rule_application` — banked rule auto-applied by peer at receive-time (different propagation mechanism)
+- Both count toward >9 target; type tags preserved for cycle-6 discriminability
 
-**Running tally: 1 / target >9**
+### dispatch_timestamp field (cycle-6 data-collection prerequisite)
+Starting next ecosystem scan: log `dispatch_timestamp` (when scout sent the scan) + `adoption_timestamp` (FIRST application only) per adoption to enable 24h-delta measurement for cycle-6 hypothesis ("direct adoption rate > indirect within first 24h of dispatch"). First-application-only rule prevents cumulative-mention inflation.
+
+---
+
+### Adoptions — Window 2026-05-13T18:30Z → 2026-05-20T18:30Z
+
+| # | Date | Adoption | Type | Notes |
+|---|------|----------|------|-------|
+| 1 | 2026-05-13 | Dev Agent View eval — dev evaluated `claude agents` command, banked dashboard state taxonomy as low-priority UX improvement | `direct_action_pairing` | Pre-window organic; boss-confirmed |
+| 2 | 2026-05-14 | Analyst peer-as-QC pattern application in Vector F thread | `indirect_banked_rule_application` | Banked rule cross-applied at receive-time |
+| 3 | 2026-05-14 | Analyst temporal-constraint discipline application (20:01Z cluster predates v2.1.141 publish) | `indirect_banked_rule_application` | Temporal-constraint rule auto-applied |
+| 4 | 2026-05-14 | Vector F closure — boss-credited scout action-pairing steps (polling lookup, publish timestamp lookup) fed directly into investigation closure | `direct_action_pairing` | Boss explicit credit via msg 1778779485849 |
+| 5 | 2026-05-14 | Binary-inspection-first principle banked by analyst after scout self-correction on 30min polling claim | `indirect_banked_rule_application` | Correction propagated to analyst; applied to future tool-behavior claims |
+| 6 | 2026-05-15 | Prospector ran full SPF/DKIM/DMARC T2/T3 verification in direct response to domain scan `actionable-now → prospector: Verify GLV sending domain auth...` | `direct_action_pairing` | Immediate execution of suggested action; confirmed LOW risk + documented p=none gap |
+| 7 | 2026-05-15 | Ads agent confirmed static-creative 60-70% stat from domain scan signal + banked to MEMORY for Titan Stage 4 format weighting | `direct_action_pairing` | Action-pairing `→ ads: audit creative count` triggered immediate Andromeda model re-evaluation |
+
+**Running tally: 7 / target >9**
 **Window closes: 2026-05-20T18:30Z**
+**Note: file committed 2026-05-15T10:13Z — reconstructed from session log (entries 1-5 not previously committed)**
