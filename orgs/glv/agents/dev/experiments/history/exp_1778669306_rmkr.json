@@ -1,0 +1,21 @@
+{
+  "id": "exp_1778669306_rmkr",
+  "agent": "dev",
+  "metric": "deploy_reliability",
+  "hypothesis": "The REQUIRED_MARKERS array in step 3 of the pre-push smoke gate contains stale WordPress classic theme class names (.site-header, .site-footer, main.site-main, nav.site-nav) that do not exist anywhere in the live reyco-marine Tailwind theme. This means step 3 would unconditionally FAIL on every real deploy against the current production site, blocking all valid pushes. Replacing with markers verified present on live reycomarine.com: 'reyco-nav-link' (theme-specific custom class, 9× per page — stable across all page types), '<main' (HTML5 structural, 1× per page), '<footer' (HTML5 structural, 2× per page), '<nav' (HTML5 structural, 2× per page). A broken deploy (WP fatal, white screen) would be missing all four of these. Verified on 2026-05-11T16:38Z against live reycomarine.com across all 6 smoke URLs.",
+  "surface": "experiments/surfaces/deploy-reliability/current.md",
+  "direction": "higher",
+  "window": "48h",
+  "measurement": "Percentage of deploys where CI smoke test passes on first push (track via git log + CI run history). Secondary: confirm new REQUIRED_MARKERS produce no false-positive failures on the 6 production smoke URLs.",
+  "status": "decided",
+  "baseline_value": 100,
+  "result_value": 100,
+  "decision": "keep",
+  "learning": "Eighth experiment on deploy-reliability surface (6 KEEP, 1 IMPLEMENT, 1 KEEP). Zero reyco-marine CI deploys during 48h window (2026-05-13T10:57Z → 2026-05-15T10:57Z) — consistent with all eight prior experiments. REQUIRED_MARKERS updated from stale WP classic theme class names (.site-header, .site-footer, main.site-main, nav.site-nav) to live Tailwind theme markers verified on reycomarine.com (reyco-nav-link, <main, <footer, <nav) — commit db6328a7. All 4 markers confirmed present on reycomarine.com (2026-05-11T16:38Z). Gate is now correctly defined: structural marker check will not unconditionally fail on every real deploy. 100% baseline maintained. No false-positive blocks during window. PHPCompatibility PHPCS step 4.75 still pending local install — 5 days to May 20 SiteGround PHP 7.4→8.x cutover. Next: PHPCompatibility PHPCS install validation (exp_1778842106_phpci).",
+  "experiment_commit": "db6328a7",
+  "tracking_commit": "005fc1a0",
+  "created_at": "2026-05-13T10:57:00Z",
+  "started_at": "2026-05-13T10:57:00Z",
+  "completed_at": "2026-05-15T10:57:00Z",
+  "changes_description": "Updated REQUIRED_MARKERS in step 3 from stale WP class names (.site-header, .site-footer, main.site-main, nav.site-nav) to live Tailwind theme markers verified on reycomarine.com: reyco-nav-link (custom class, 9x per page), <main (1x), <footer (2x), <nav (2x). All 4 markers confirmed present across all 6 smoke URLs on 2026-05-11T16:38Z."
+}

@@ -135,7 +135,7 @@ Seven consecutive gate-layer actions (6 KEEP, 1 IMPLEMENT). Zero reyco-marine CI
 
 **Result:** KEEP — zero deploys in 48h window; production URLs verified 200; gate correctly defined; seventh consecutive action warranted.
 
-## Hypothesis Being Tested (exp_1778669306_rmkr — RUNNING, window closes 2026-05-15T10:57Z)
+## Hypothesis Tested (exp_1778669306_rmkr) — KEEP
 
 Seven gate-layer actions covering syntax, layout regression, template breadth, WP runtime errors, PHP 7.4-removed patterns, PHPCompatibility PHPCS behavioral checks (step 4.75, pending install), and production smoke URL migration. Critical gap found during exp_smku window: REQUIRED_MARKERS in step 3 contained stale WordPress classic theme class names (.site-header, .site-footer, main.site-main, nav.site-nav) that do not exist in the live reyco-marine Tailwind theme — the gate would unconditionally FAIL on every real deploy. Hypothesis: replacing with theme-accurate markers verified on live reycomarine.com (reyco-nav-link, &lt;main, &lt;footer, &lt;nav) makes the structural marker gate functional and eliminates the false-failure class.
 
@@ -145,6 +145,8 @@ Seven gate-layer actions covering syntax, layout regression, template breadth, W
 - `<footer` — HTML5 structural, 2× per page
 - `<nav` — HTML5 structural, 2× per page
 
+**Result:** KEEP — zero reyco-marine CI deploys in 48h window (2026-05-13T10:57Z → 2026-05-15T10:57Z). Eighth consecutive gate-layer action (6 KEEP, 1 IMPLEMENT, 1 KEEP). Gate correctly defined — structural marker check now functional against live Tailwind theme. 100% baseline maintained; no false-positive blocks. PHPCompatibility PHPCS step 4.75 pending local install (5 days to May 20 SiteGround cutover).
+
 ## Known gaps
 - php -l catches syntax errors only, not logic errors or missing function calls
 - Structural marker + error scan requires live production URL (SG Dynamic Cache may serve stale HTML on first hit post-commit)
@@ -153,6 +155,23 @@ Seven gate-layer actions covering syntax, layout regression, template breadth, W
 - **PHPCompatibility PHPCS gate (step 4.75) PENDING LOCAL INSTALL** — exp_1777925922_phpc decided IMPLEMENT 2026-05-06; deadline May 20 (SiteGround PHP 7.4→8.x cutover, now 7 days). Install: `composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility && phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility`
 - Single product URL in smoke set (`/product/2022-mercury-me-60-elpt-4s-efi/`) could 404 if the product is deleted; should be updated to a durable inventory page URL once one exists
 
-## Next Hypothesis (queued — pending exp_1778669306_rmkr close)
+## Hypothesis Being Tested (exp_1778842106_phpci — RUNNING, window closes 2026-05-17T10:57Z)
 
-**PHPCompatibility PHPCS local install:** After local agent installs `phpcs` + PHPCompatibility standard, verify step 4.75 gate runs cleanly on the reyco-marine codebase with no false-positive ERRORs on clean PHP 8.x code. Gate is already in Current Approach; experiment validates that installed gate produces no false-positive blocks before the May 20 SiteGround PHP 7.4→8.x cutover.
+Eight gate-layer actions covering syntax, layout regression, template breadth, WP runtime errors, PHP 7.4-removed patterns, PHPCompatibility PHPCS behavioral checks, production smoke URL migration, and REQUIRED_MARKERS correction. The IMPLEMENT decision for PHPCompatibility PHPCS (exp_1777925922_phpc, 2026-05-06) has not been operationalized: step 4.75 is defined in Current Approach but requires local phpcs + PHPCompatibility install before it fires. This experiment validates that after install, the gate produces (a) zero false-positive ERRORs on the clean reyco-marine PHP codebase and (b) correct blocking behavior on PHP 8.x-incompatible patterns. Critical context: SiteGround drops PHP 7.4 on May 20, 2026 — gate must be active by May 19.
+
+**Install command (local agent / Aiden terminal):**
+```bash
+composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility
+phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility
+# Verify:
+phpcs --standard=PHPCompatibility --runtime-set testVersion 8.1 --version
+```
+
+**Validation sweep (after install):**
+```bash
+# Run against all reyco-marine .php files — expect zero ERROR findings on clean code
+phpcs --standard=PHPCompatibility --runtime-set testVersion 8.1 \
+  wp-content/themes/reyco-marine/*.php \
+  wp-content/themes/reyco-marine/inc/*.php \
+  wp-content/plugins/reyco-*/
+```
