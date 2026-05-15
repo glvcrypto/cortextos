@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    background: #FAF6EE;
+    color: #1A1614;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .slide {
+    width: 1080px;
+    height: 1080px;
+    padding: 92px 96px 76px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .top-rule {
+    width: 64px;
+    height: 4px;
+    background: #C8501E;
+    margin-bottom: 32px;
+  }
+
+  .number-badge {
+    font-size: 22px;
+    font-weight: 700;
+    color: #C8501E;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .headline {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.12;
+    color: #1A1614;
+    letter-spacing: -1px;
+    margin-bottom: 32px;
+  }
+
+  .headline.cover {
+    font-size: 76px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    margin-bottom: 28px;
+  }
+
+  .headline.compact {
+    font-size: 52px;
+  }
+
+  .body-text {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: #3A322D;
+    margin-bottom: 16px;
+  }
+
+  .body-text.large {
+    font-size: 34px;
+    color: #1A1614;
+  }
+
+  .spacer { flex-grow: 1; }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 40px;
+  }
+
+  .handle {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1A1614;
+    letter-spacing: 0.3px;
+  }
+
+  .slide-indicator {
+    font-size: 22px;
+    font-weight: 500;
+    color: #8A7C72;
+    letter-spacing: 1px;
+  }
+
+  .cta-line {
+    font-size: 28px;
+    font-weight: 600;
+    color: #C8501E;
+    margin-top: 14px;
+  }
+
+  .arrow {
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+<div class="slide" id="slide"></div>
+
+<script>
+  function render(payload) {
+    const el = document.getElementById('slide');
+    const lines = (payload.body || []).map(l => `<div class="body-text${payload.bodyLarge ? ' large' : ''}">${escape(l)}</div>`).join('');
+    const cta = payload.cta ? `<div class="cta-line">${escape(payload.cta)}</div>` : '';
+    const number = payload.number ? `<div class="number-badge">${escape(payload.number)}</div>` : '';
+    const hClass = ['headline'];
+    if (payload.cover) hClass.push('cover');
+    if (payload.compact) hClass.push('compact');
+    el.innerHTML = `
+      <div class="top-rule"></div>
+      ${number}
+      <div class="${hClass.join(' ')}">${escape(payload.headline)}</div>
+      ${lines}
+      ${cta}
+      <div class="spacer"></div>
+      <div class="footer">
+        <div class="handle">@glv.marketing</div>
+        <div class="slide-indicator">${escape(payload.indicator || '')}</div>
+      </div>
+    `;
+  }
+
+  function escape(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  window.__render = render;
+</script>
+</body>
+</html>

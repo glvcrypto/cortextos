@@ -9,7 +9,7 @@
 ## Carry-Forward 1: collect-metrics hardcoded-roster bug (n=2 confirmed)
 
 ### State
-- Bug: `cortextos bus collect-metrics` returns dev-only roster (1 agent) instead of fleet roster (13 agents). Output: `agents_healthy: 0 / agents_total: 1`.
+- Bug: `cortextos bus collect-metrics` returns dev-only roster (1 agent) instead of fleet roster (14 agents — adri joined 2026-05-14). Output: `agents_healthy: 0 / agents_total: 1`.
 - Confirmation: n=2 across consecutive nights (2026-05-13 nightly + 2026-05-14 nightly). Confirmed by boss ACK msg ni06v as graduated from candidate to confirmed bug.
 - Prior task task_1778479815827_059 was CANCELLED 2026-05-11 (verified via memory check). No active fix task exists.
 - Class membership: cycle-12 mechanism-vs-convention parent class (n=5+ instances now).

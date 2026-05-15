@@ -7,15 +7,15 @@
   "direction": "higher",
   "window": "24h",
   "measurement": "",
-  "status": "proposed",
+  "status": "completed",
   "baseline_value": 0,
-  "result_value": null,
-  "decision": null,
-  "learning": "",
+  "result_value": 0,
+  "decision": "discard",
+  "learning": "RETIRED Phase 7 H5 of cycle-20. Cycle-16 (2026-05-08) zombie 7d housekeeping debt — proposed since May 8, never moved to running until just now for retire-ceremony. Framework score has been stable-at-9 (cycle-19 KEEP 9/10 ratified day-1 measurement window 3 catches / 0 escapes); cycle-16 hypothesis claimed score 7/10 KEEP at the time but evaluation was never executed and the evidence basis (cycle-12-16 stable-at-7) is now superseded by the cycle-17→19 stable-at-9 trajectory. Retiring as DISCARD-by-stale-premise per [[feedback_stale_premise_cancel_over_defer.md]]. No remaining cognitive load from cycle-16 framework. Boss pre-approved retire msg b1fm8.",
   "experiment_commit": null,
   "tracking_commit": null,
   "created_at": "2026-05-08T06:10:21Z",
-  "started_at": null,
-  "completed_at": null,
-  "changes_description": null
+  "started_at": "2026-05-15T05:42:52Z",
+  "completed_at": "2026-05-15T05:43:00Z",
+  "changes_description": "Formally moving cycle-16 from proposed→running→discard. Boss pre-approved discard per msg b1fm8 (7d housekeeping debt, framework stable-at-9, no remaining load). Cycle-20 Phase 7 H5 retire."
 }

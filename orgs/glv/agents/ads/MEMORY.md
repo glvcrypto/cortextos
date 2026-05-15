@@ -64,13 +64,13 @@ Source: socialmediaexaminer.com, 1clickreport.com
 Creative is now the primary targeting signal, not audience settings.
 
 Key implications:
-1. Need 15-50+ active creatives for Meta to optimize properly — 2-3 ads = dead campaign
+1. Need 15-50+ active creatives for Meta to optimize properly — 2-3 ads = dead campaign (min 10 variants to be adequately tested)
 2. UGC (raw/authentic) outperforms polished production. Founder selfie-style clips = lowest cost entry
 3. Best structure: 2 campaigns only — one for testing new creatives, one for scaling winners
+4. Static creative still converts best — 60-70% of spend under Andromeda model (May 2026 signal). Prioritize static image variants over video in early test phase.
 
-For Fusion post-Apr 30 (if continuing): first priority is creative volume, not budget increase. JB/Tony phone video clips are the move.
-For Titan (when live): 12 concepts ready — natural fit for test/scale structure.
-All future campaign briefs should default to 2-campaign structure and UGC-first creative guidance.
+For Titan (when live): 12 concepts ready — meets creative floor, but ensure static-heavy format split per item 4 above.
+All future campaign briefs should default to 2-campaign structure and UGC-first, static-primary creative guidance.
 
 Advertisers using this structure: 20-35% higher ROAS vs legacy setups.
 
