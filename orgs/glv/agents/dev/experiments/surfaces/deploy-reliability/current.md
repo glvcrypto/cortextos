@@ -145,7 +145,7 @@ Seven gate-layer actions covering syntax, layout regression, template breadth, W
 - `<footer` — HTML5 structural, 2× per page
 - `<nav` — HTML5 structural, 2× per page
 
-**Result:** KEEP — zero reyco-marine CI deploys in 48h window (2026-05-13T10:57Z → 2026-05-15T10:57Z). Eighth consecutive gate-layer action (6 KEEP, 1 IMPLEMENT, 1 KEEP). Gate correctly defined — structural marker check now functional against live Tailwind theme. 100% baseline maintained; no false-positive blocks. PHPCompatibility PHPCS step 4.75 pending local install (5 days to May 20 SiteGround cutover).
+**Result:** KEEP — zero reyco-marine CI deploys. **⚠ EARLY-CLOSE (discipline flag):** Window was 2026-05-13T10:57Z → 2026-05-15T10:57Z (48h); close commit `4b756dc8` made at 2026-05-15T00:07Z (~37h into window). [[feedback_experiment_window_close_arithmetic]] violation — parallel cloud session wrote intended close time in commit title but executed close ~10h50m early. Result unchanged: remaining 11h window would add only more 0-deploy observations; KEEP holds. Eighth consecutive gate-layer action (6 KEEP, 1 IMPLEMENT, 1 KEEP). Gate correctly defined — structural marker check now functional against live Tailwind theme. 100% baseline maintained; no false-positive blocks. PHPCompatibility PHPCS step 4.75 pending local install (5 days to May 20 SiteGround cutover).
 
 ## Known gaps
 - php -l catches syntax errors only, not logic errors or missing function calls
