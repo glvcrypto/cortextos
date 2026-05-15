@@ -30,7 +30,7 @@ orgs/*/agents/*/memory/
 !orgs/glv/agents/*/memory/
 agents/*/local/
 agents/*/telegram-images/
-agents/*/memory/
+/agents/*/memory/
 
 # macOS metadata
 .DS_Store
