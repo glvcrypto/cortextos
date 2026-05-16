@@ -6,12 +6,16 @@ import { execSync, spawn, spawnSync } from 'child_process';
 import { IPCClient } from '../daemon/ipc-server.js';
 
 const IS_WINDOWS = platform() === 'win32';
-const SAFE_CMD = /^[@a-z0-9._/-]+$/i;
+export const SAFE_CMD = /^[@a-z0-9._/-]+$/i;
 
-function commandExists(cmd: string): boolean {
+export function commandExists(
+  cmd: string,
+  _spawnSync: typeof spawnSync = spawnSync,
+  _isWindows: boolean = IS_WINDOWS,
+): boolean {
   if (!SAFE_CMD.test(cmd)) return false;
-  const which = IS_WINDOWS ? 'where' : 'which';
-  const result = spawnSync(which, [cmd], { stdio: 'pipe' });
+  const which = _isWindows ? 'where' : 'which';
+  const result = _spawnSync(which, [cmd], { stdio: 'pipe' });
   return result.status === 0;
 }
 
