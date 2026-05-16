@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { Carousel } from "./Carousel";
 import { GBPCarousel } from "./GBPCarousel";
+import { GLVCarousel } from "./GLVCarousel";
 import { ReelComposition, ReelProps } from "./reel/ReelComposition";
 import { brand } from "./brand";
 import { brandGLV } from "./brand-glvbuilds";
@@ -138,6 +139,159 @@ export const RemotionRoot: React.FC = () => (
       width={brandGLV.canvas.width}
       height={brandGLV.canvas.height}
       defaultProps={{ slides: gbpSlides }}
+    />
+
+    {/* 1080×1080 — First client story carousel */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-15_carousel-first-client-story.md */}
+    <Composition
+      id="FirstClientStory"
+      component={GLVCarousel}
+      durationInFrames={7 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          {
+            type: "hook",
+            tag: "@glv.marketing",
+            headline: "What I told my first client when he asked why he wasn't showing up on Google",
+            body: "The answer wasn't technical.",
+          },
+          {
+            type: "content",
+            headline: "He existed on Google. Just barely.",
+            body: "Auto-generated profile. Wrong address. No hours. No photos.\nOne review from 2019.\nPrimary category set to the broad version.",
+          },
+          {
+            type: "content",
+            headline: "The root cause wasn't the website.",
+            body: "The profile had never been claimed or verified. No activity signal.\nGoogle had no reason to surface him over a competitor with a complete, active profile.",
+          },
+          {
+            type: "content",
+            headline: "The first fix wasn't what he expected.",
+            body: "I didn't touch the website first.\nClaimed the profile, corrected the address, set the right category, added photos, set hours.\nMap pack before organic.",
+          },
+          {
+            type: "content",
+            headline: "I was honest about the timeline.",
+            body: "6 to 12 weeks before consistent improvement.\nDepends on reviews and local competition.\nNo page-one promises.",
+          },
+          {
+            type: "content",
+            headline: "The baseline lesson I learned from him.",
+            body: "I didn't track call volume before we started.\nWhen calls increased, I couldn't prove by how much.\nNow I document the baseline on day one of every engagement.",
+          },
+          {
+            type: "cta",
+            headline: "What I tell every new client now.",
+            body: "\"Before I look at your website, I need 20 minutes with your Google Business Profile.\nThat's where customers decide to call you or your competitor.\"\nDrop a comment if this matches what you found on your first audit. ↓",
+          },
+        ] as SlideData[],
+      }}
+    />
+
+    {/* 1080×1080 — GBP primary category carousel */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-15_carousel-gbp-primary-category.md */}
+    <Composition
+      id="GBPPrimaryCategory"
+      component={GLVCarousel}
+      durationInFrames={7 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          {
+            type: "hook",
+            tag: "@glv.marketing",
+            headline: "The one Google Business Profile setting most businesses have wrong",
+            body: "Set at signup. Never revisited. Quietly hurting local rankings.",
+          },
+          {
+            type: "content",
+            headline: "The setting: primary category.",
+            body: "The highest-weight single field in GBP.\nGoogle uses it to decide which searches you're eligible to appear for.",
+          },
+          {
+            type: "content",
+            headline: "The mistake: choosing broad over specific.",
+            body: "\"Contractor\" competes with roofers, painters, and landscapers.\n\"Plumbing Contractor\" competes with your actual competitors.",
+          },
+          {
+            type: "content",
+            headline: "The fix starts with competitor research.",
+            body: "Private browser. Search your service + city.\nClick into the top 3 local pack results.\nWhat category are they using?",
+          },
+          {
+            type: "content",
+            headline: "Then check Google's full category list.",
+            body: "Several hundred options. The specific category you need may exist.\n\"HVAC Contractor\" and \"Air Conditioning Contractor\" are different entries.",
+          },
+          {
+            type: "content",
+            headline: "The change takes 30 seconds.",
+            body: "GBP Manager → Edit profile → Business information → Category.\nChange primary. Keep accurate secondaries.",
+          },
+          {
+            type: "cta",
+            headline: "Give it 30 days.",
+            body: "Category changes take time to register.\nCheck map pack visibility before and after.\nPrivate browser or a rank grid tool.\nWhat's the biggest GBP mistake you've seen on a client audit? ↓",
+          },
+        ] as SlideData[],
+      }}
+    />
+
+    {/* 1080×1080 — Rank #1 mindset carousel */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-15_carousel-rank-1-mindset.md */}
+    <Composition
+      id="Rank1Mindset"
+      component={GLVCarousel}
+      durationInFrames={7 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          {
+            type: "hook",
+            tag: "@glv.marketing",
+            headline: "Why I stopped trying to rank #1 for my clients",
+            body: "Broad rankings look good in reports.\nThese 6 shifts produce actual results.",
+          },
+          {
+            type: "content",
+            headline: "\"Rank #1\" means different things.",
+            body: "Map pack, organic position one, broad keyword, specific phrase.\nThese are different systems.\nRanking in one doesn't guarantee the others.",
+          },
+          {
+            type: "content",
+            headline: "Broad keyword traffic doesn't equal qualified leads.",
+            body: "I've seen clients on page one for a category term with zero calls.\nThe wrong traffic doesn't convert.",
+          },
+          {
+            type: "content",
+            headline: "Map pack beats organic position one for local intent.",
+            body: "When someone searches on mobile with intent to act now, they call from the map pack.\nOrganic results are further down the screen.",
+          },
+          {
+            type: "content",
+            headline: "High-intent, specific searches convert better.",
+            body: "\"Licensed electrician [city] weekend emergency\" converts at a different rate than \"electrician.\"\nTarget the phrase that matches buying intent.",
+          },
+          {
+            type: "content",
+            headline: "What I track instead.",
+            body: "Map pack visibility + GBP calls + direction requests\n+ GSC service page clicks + form submissions.\nNot just rank position.",
+          },
+          {
+            type: "cta",
+            headline: "The question I ask every new client.",
+            body: "\"When someone searches for what you do, what do you want to happen?\"\nThe answer is always \"I want them to call.\"\nThat's what I'm working toward.\nWhat do you track for local SEO success? Drop it in the comments ↓",
+          },
+        ] as SlideData[],
+      }}
     />
 
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
