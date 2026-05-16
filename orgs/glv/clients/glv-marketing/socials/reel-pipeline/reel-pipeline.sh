@@ -49,7 +49,7 @@ WHISPER_OUT="$RUN_DIR/transcript"
   -f "$AUDIO_PATH" \
   -ojf \
   -of "$WHISPER_OUT" \
-  --word-timestamps true \
+  -np \
   2>/dev/null
 
 WHISPER_JSON="${WHISPER_OUT}.json"
@@ -67,16 +67,22 @@ import json, sys
 with open(sys.argv[1]) as f:
     data = json.load(f)
 
+# whisper.cpp -ojf format: data['transcription'][*]['tokens'][*]
+# Each token: text, offsets.from (ms), offsets.to (ms)
+# Skip special tokens (wrapped in [_ ... ] or empty after strip)
 words = []
-for segment in data.get("segments", []):
-    for w in segment.get("words", []):
-        text = w.get("word", "").strip()
-        if not text:
+for segment in data.get("transcription", []):
+    for tok in segment.get("tokens", []):
+        text = tok.get("text", "").strip()
+        if not text or text.startswith("[_") or text.startswith("<"):
             continue
+        offsets = tok.get("offsets", {})
+        start_ms = offsets.get("from", 0)
+        end_ms = offsets.get("to", 0)
         words.append({
             "word": text,
-            "start": round(w.get("start", 0), 3),
-            "end": round(w.get("end", 0), 3),
+            "start": round(start_ms / 1000.0, 3),
+            "end": round(end_ms / 1000.0, 3),
         })
 
 with open(sys.argv[2], "w") as f:
@@ -122,11 +128,19 @@ DURATION_FRAMES="$(python3 -c "import math; print(math.ceil($DURATION_SECS * 30)
 log "Video duration: ${DURATION_SECS}s = ${DURATION_FRAMES} frames @ 30fps"
 
 # ── Step 7: Build Remotion props ──────────────────────────────────────────────
+# Copy video into Remotion public/ so staticFile() can serve it; delete after render
+REMOTION_PUBLIC="$REMOTION_DIR/public"
+mkdir -p "$REMOTION_PUBLIC"
+VIDEO_STAGED="${REMOTION_PUBLIC}/reel-input-${TIMESTAMP}.mp4"
+cp "$VIDEO_PATH" "$VIDEO_STAGED"
+VIDEO_STAGED_NAME="reel-input-${TIMESTAMP}.mp4"
+log "Staged video to Remotion public/: $VIDEO_STAGED_NAME"
+
 PROPS_JSON="$RUN_DIR/props.json"
-python3 - "$VIDEO_PATH" "$CAPTIONS_JSON" "$HEADLINE" "$PROPS_JSON" << 'PYEOF'
+python3 - "$VIDEO_STAGED_NAME" "$CAPTIONS_JSON" "$HEADLINE" "$PROPS_JSON" << 'PYEOF'
 import json, sys
 
-video_path = sys.argv[1]
+video_basename = sys.argv[1]
 captions_file = sys.argv[2]
 headline = sys.argv[3]
 out_file = sys.argv[4]
@@ -135,7 +149,7 @@ with open(captions_file) as f:
     captions = json.load(f)
 
 props = {
-    "videoPath": video_path,
+    "videoPath": video_basename,
     "captions": captions,
     "headline": headline,
     "showBrandTag": True,
@@ -157,6 +171,10 @@ npx remotion render Reel \
   --output="$OUTPUT_VIDEO" \
   --gl=swiftshader \
   2>&1 | tail -10
+
+# Clean up staged video from public/
+rm -f "$VIDEO_STAGED"
+log "Cleaned up staged video"
 
 log "Render complete: $OUTPUT_VIDEO"
 

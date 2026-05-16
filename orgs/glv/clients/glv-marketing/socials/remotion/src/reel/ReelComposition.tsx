@@ -6,6 +6,7 @@ import {
   useVideoConfig,
   interpolate,
   Easing,
+  staticFile,
 } from "remotion";
 
 export interface CaptionWord {
@@ -67,7 +68,7 @@ export const ReelComposition: React.FC<ReelProps> = ({
     <AbsoluteFill style={{ background: "#000" }}>
       {/* Layer a: full-screen video */}
       <AbsoluteFill>
-        <OffthreadVideo src={videoPath} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <OffthreadVideo src={staticFile(videoPath)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </AbsoluteFill>
 
       {/* Layer b: caption burn — bottom third */}
