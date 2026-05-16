@@ -23,6 +23,14 @@ import {
 import { join } from 'path';
 import { mkdirSync } from 'fs';
 
+export function buildPermissionMessage(agentName: string, toolName: string, summary: string): string {
+  let message = `PERMISSION REQUEST\nAgent: ${agentName}\nTool: ${toolName}\n\n\`\`\`\n${sanitizeCodeBlock(summary)}\n\`\`\``;
+  if (message.length > 3800) {
+    message = message.slice(0, 3800) + '...(truncated)';
+  }
+  return message;
+}
+
 async function main(): Promise<void> {
   const input = await readStdin();
   const { tool_name, tool_input } = parseHookInput(input);
@@ -59,13 +67,7 @@ async function main(): Promise<void> {
   process.on('SIGTERM', () => { cleanup(); process.exit(1); });
   process.on('SIGINT', () => { cleanup(); process.exit(1); });
 
-  // Build message
-  let message = `PERMISSION REQUEST\nAgent: ${env.agentName}\nTool: ${tool_name}\n\n\`\`\`\n${sanitizeCodeBlock(summary)}\n\`\`\``;
-
-  // Truncate if over limit
-  if (message.length > 3800) {
-    message = message.slice(0, 3800) + '...(truncated)';
-  }
+  const message = buildPermissionMessage(env.agentName, tool_name, summary);
 
   const keyboard = buildPermissionKeyboard(uniqueId);
   const api = new TelegramAPI(env.botToken);
