@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { Carousel } from "./Carousel";
 import { GBPCarousel } from "./GBPCarousel";
+import { ReelComposition, ReelProps } from "./reel/ReelComposition";
 import { brand } from "./brand";
 import { brandGLV } from "./brand-glvbuilds";
 import { CarouselProps, SlideData } from "./types";
@@ -137,6 +138,23 @@ export const RemotionRoot: React.FC = () => (
       width={brandGLV.canvas.width}
       height={brandGLV.canvas.height}
       defaultProps={{ slides: gbpSlides }}
+    />
+
+    {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
+    {/* durationInFrames/videoPath set at render time via --props */}
+    <Composition
+      id="Reel"
+      component={ReelComposition}
+      durationInFrames={900}
+      fps={30}
+      width={1080}
+      height={1920}
+      defaultProps={{
+        videoPath: "",
+        captions: [],
+        headline: "",
+        showBrandTag: true,
+      } as ReelProps}
     />
   </>
 );
