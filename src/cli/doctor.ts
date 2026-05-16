@@ -65,7 +65,7 @@ export const doctorCommand = new Command('doctor')
 
     // Check node-pty
     try {
-      require('node-pty');
+      await import('node-pty');
       checks.push({
         name: 'node-pty',
         status: 'pass',
@@ -119,7 +119,7 @@ export const doctorCommand = new Command('doctor')
 
     // Actual spawn test (cross-platform)
     try {
-      const pty = require('node-pty');
+      const pty = await import('node-pty');
       let output = '';
       const isWin = process.platform === 'win32';
       const smokeCmd = isWin ? 'cmd.exe' : '/bin/echo';
