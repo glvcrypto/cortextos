@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import * as fs from 'fs';
 import * as path from 'path';
+import { getFrameworkRoot } from '@/lib/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,10 +20,6 @@ export interface AgentMcpConfig {
   org: string;
   servers: McpServer[];
   filePath: string | null;
-}
-
-function getFrameworkRoot(): string {
-  return process.env.CTX_FRAMEWORK_ROOT ?? '/home/aiden/cortextos';
 }
 
 function readAgentMcp(agentDir: string, agent: string, org: string): AgentMcpConfig {
