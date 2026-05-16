@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   AbsoluteFill,
   OffthreadVideo,
@@ -24,12 +24,27 @@ export interface ReelProps {
 
 const FONT = "'Inter', sans-serif";
 const ACCENT = "#B22222";
-const HEADLINE_IN_SEC = 0.5; // headline animates in at 0.5s
-const HEADLINE_DURATION_SEC = 2; // headline visible for 2s then fades
+const HEADLINE_IN_SEC = 0.5;
+const HEADLINE_DURATION_SEC = 2;
+const CHUNK_SIZE = 5; // words per caption phrase
 
-function useCaptionWords(captions: CaptionWord[], frame: number, fps: number) {
-  const nowSec = frame / fps;
-  return captions.filter((w) => nowSec >= w.start && nowSec <= w.end);
+interface CaptionChunk {
+  text: string;
+  start: number;
+  end: number;
+}
+
+function buildChunks(words: CaptionWord[], size: number): CaptionChunk[] {
+  const chunks: CaptionChunk[] = [];
+  for (let i = 0; i < words.length; i += size) {
+    const group = words.slice(i, i + size);
+    chunks.push({
+      text: group.map((w) => w.word).join(" "),
+      start: group[0].start,
+      end: group[group.length - 1].end,
+    });
+  }
+  return chunks;
 }
 
 export const ReelComposition: React.FC<ReelProps> = ({
@@ -42,6 +57,10 @@ export const ReelComposition: React.FC<ReelProps> = ({
   const { fps } = useVideoConfig();
 
   const nowSec = frame / fps;
+
+  const chunks = useMemo(() => buildChunks(captions, CHUNK_SIZE), [captions]);
+  const activeChunk = chunks.find((c) => nowSec >= c.start && nowSec <= c.end);
+  const captionText = activeChunk?.text ?? "";
 
   // Headline: fade+slide in at 0.5s, hold 2s, fade out
   const headlineStartFrame = Math.round(HEADLINE_IN_SEC * fps);
@@ -61,9 +80,6 @@ export const ReelComposition: React.FC<ReelProps> = ({
     { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.ease) }
   );
 
-  const activeWords = useCaptionWords(captions, frame, fps);
-  const captionText = activeWords.map((w) => w.word).join(" ");
-
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       {/* Layer a: full-screen video */}
@@ -71,16 +87,18 @@ export const ReelComposition: React.FC<ReelProps> = ({
         <OffthreadVideo src={staticFile(videoPath)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </AbsoluteFill>
 
-      {/* Layer b: caption burn — bottom third */}
+      {/* Layer b: caption burn — center horizontal, bottom third
+          Column flexbox: justifyContent=main axis=vertical, alignItems=cross axis=horizontal */}
       {captionText.length > 0 && (
         <AbsoluteFill
           style={{
             display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-            paddingBottom: 160,
-            paddingLeft: 48,
-            paddingRight: 48,
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            paddingBottom: 200,
+            paddingLeft: 64,
+            paddingRight: 64,
           }}
         >
           <div
@@ -91,8 +109,8 @@ export const ReelComposition: React.FC<ReelProps> = ({
               color: "#FFFFFF",
               textAlign: "center",
               textShadow: "0px 2px 8px rgba(0,0,0,0.9), 0px 0px 24px rgba(0,0,0,0.7)",
-              lineHeight: 1.2,
-              maxWidth: "90%",
+              lineHeight: 1.25,
+              maxWidth: "100%",
             }}
           >
             {captionText}
