@@ -294,6 +294,75 @@ export const RemotionRoot: React.FC = () => (
       }}
     />
 
+    {/* 1080×1080 — Intro 1: Who Is GLV Marketing */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-16_carousel-intro-1-who-is-glv.md */}
+    <Composition
+      id="Intro1WhoIsGLV"
+      component={GLVCarousel}
+      durationInFrames={8 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "hook", tag: "@glv.marketing", headline: "I left a $6,000/month bank job to build this.", body: "This is GLV Marketing. Here's who we are, why we started, and what makes us different from every other agency in Northern Ontario." },
+          { type: "content", headline: "I had a good job. I left anyway.", body: "I spent years at BNS pulling a stable salary. But I kept watching the same thing happen: small businesses spending real money on marketing that wasn't built to last. I knew I could build something better." },
+          { type: "content", headline: "Most marketing is a treadmill.", body: "You pay, it runs. You stop paying, it stops. No foundation, no compounding, no lasting result. I wanted to build marketing that stacks over time, not resets every month." },
+          { type: "content", headline: "GLV is a different kind of agency.", body: "Not a content mill. Not a freelancer piecing things together between clients. A focused operation built to deliver real marketing infrastructure for small and mid-size businesses." },
+          { type: "content", headline: "Two founders. One direction.", body: "My partner Ben Pelta handles the technical build side of the operation. I handle strategy, SEO, and client relationships. Different skills, same standard." },
+          { type: "content", headline: "Sault Ste. Marie built. Canada-wide capable.", body: "We're based in Sault Ste. Marie, Ontario. We work with businesses across Northern Ontario and take on clients from anywhere in Canada. Location has never been a barrier." },
+          { type: "content", headline: "AI does the heavy lifting. We direct the outcome.", body: "Behind every deliverable at GLV is a fleet of specialized AI agents. They research, draft, audit, and flag. We review every output, direct every decision, and own every result." },
+          { type: "cta", headline: "Follow to see how this actually works.", body: "We share the behind-the-scenes: what's working in local SEO, how we use AI in real client work, and what we're building as we grow. No filler. No fluff. Follow along." },
+        ] as SlideData[],
+      }}
+    />
+
+    {/* 1080×1080 — Intro 2: What GLV Marketing Does */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-16_carousel-intro-2-what-we-do.md */}
+    <Composition
+      id="Intro2WhatWeDo"
+      component={GLVCarousel}
+      durationInFrames={8 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "hook", tag: "@glv.marketing", headline: "We do six things. We do them in one place.", body: "Most small businesses patch together three or four vendors to cover their marketing. GLV handles it all with one strategy behind it." },
+          { type: "content", headline: "We get you found when people search.", body: "Search engine optimization drives compounding traffic. We focus on Google Business Profile for local businesses and on-page SEO for service-area reach. This is where most of our clients see their biggest return." },
+          { type: "content", headline: "Your website should work as hard as you do.", body: "We design and build on WordPress and Vite. Clean, fast, built for search. No bloated themes, no slow builders. A site that looks good and converts." },
+          { type: "content", headline: "Your email list is the one thing you actually own.", body: "We set up and run email marketing for clients who want to stay in front of their customers between seasons. Newsletters, automations, and reactivation campaigns that bring people back." },
+          { type: "content", headline: "Ads that pay for themselves.", body: "Meta and Google ads for businesses ready to accelerate. We build the campaigns, write the copy, and optimize based on what the data shows. We don't touch ad spend until the foundation is solid." },
+          { type: "content", headline: "Want AI working inside your business?", body: "We set up Claude Code and AI workflows for small and mid-size businesses. If you've been curious about AI but don't know where to start, we show you how to use it for real work, not just demos." },
+          { type: "content", headline: "AI that never leaves your building.", body: "For businesses in law, medicine, finance, or construction, cloud AI is a compliance risk. We deploy local AI systems that keep your data on your server. Built for Canadian regulated industries, PIPEDA-ready from day one." },
+          { type: "cta", headline: "We work with businesses that have something to protect.", body: "Marine dealers, contractors, healthcare practices, financial services. If you're in a local or regulated industry and want marketing that compounds, send us a message." },
+        ] as SlideData[],
+      }}
+    />
+
+    {/* 1080×1080 — Intro 3: How We Work */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-16_carousel-intro-3-how-we-work.md */}
+    <Composition
+      id="Intro3HowWeWork"
+      component={GLVCarousel}
+      durationInFrames={8 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "hook", tag: "@glv.marketing", headline: "14 AI agents work on your account. Here's what that actually means.", body: "We're not hiding the AI. We're building with it, on purpose. Here's how it works and why it changes what's possible for small business marketing." },
+          { type: "content", headline: "An AI agent is a specialist, not a chatbot.", body: "Each agent at GLV is trained for one job. One handles SEO content. One audits websites. One manages the research cycle. One tracks the calendar. They don't do everything. They do one thing well." },
+          { type: "content", headline: "They pass the work between each other.", body: "When a new client comes in, the research agent goes first. The content agent drafts next. The audit agent flags issues before anything ships. Each one hands off to the next. The work compounds." },
+          { type: "content", headline: "Faster turnaround. Same standard.", body: "A full site audit that used to take a week takes hours. Draft content that used to take a day is ready in an afternoon. The speed comes from the agents handling the volume. The quality comes from us reviewing every output before it leaves." },
+          { type: "content", headline: "Lower overhead. Passed to you.", body: "We don't have a 12-person team billing hourly for research and first drafts. The agents handle the volume work. That keeps our costs lower and our pricing accessible to businesses that couldn't afford a full-service agency before." },
+          { type: "content", headline: "Same quality on week 40 as on week 1.", body: "Agents don't have off days. They don't forget the brand voice or skip a checklist step. Every deliverable goes through the same process every time." },
+          { type: "content", headline: "AI handles volume. We handle judgment.", body: "Every strategy call is us. Every client relationship is us. Every final approval before anything ships is us. The agents work. We think." },
+          { type: "cta", headline: "If your business needs marketing that compounds, message us.", body: "We take a small number of clients at a time. If you want to know whether GLV is the right fit, start with a message." },
+        ] as SlideData[],
+      }}
+    />
+
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
     {/* durationInFrames/videoPath set at render time via --props */}
     <Composition
