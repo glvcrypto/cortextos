@@ -1,12 +1,12 @@
 {
   "north_star": "Be the Northern Ontario marketing, automation, and AI partner every local business thinks of first — a self-running retainer book that compounds without Aiden as the bottleneck, so his time goes to strategy, product, and new offers instead of delivery.",
-  "daily_focus": "Process Aiden AM brief replies as they land — 6 decisions queued. Continue overnight cycle-19 graduation work, monitor fleet, route approvals.",
-  "daily_focus_set_at": "2026-05-14T12:26:43Z",
+  "daily_focus": "AM brief 11:39Z sent. Yesterday delivered: Reyco PR #241 merged + deployed, Titan PR #6 merged, press release v4 UGC Q&A, cycle-20 7 rules banked, pentester cred sweep clean. 10 Aiden carry-forward items today: press release quotes + NAP, Reyco PR #240 WP admin (66h+ open), SG cache flush, PHPCS install (4d to May 20), 20 cortextos PRs merge-ready, slide-01 QC verdict, GH token refresh, soosackers PAT, daemon restart, pentester revocation. Cycle-20 day-2 measurement window active.",
+  "daily_focus_set_at": "2026-05-16T12:00:32Z",
   "goals": [
     "Ship glv-os MVP by April 20, 2026, and graduate to v1 specialists (SEO + content) by end of May 2026 — Boss + Analyst running 24/7 in WSL via PM2, first client deliverable routed end-to-end through the agent fleet, specialist spawn pattern proven on a signed client.",
     "Reyco Marine monthly SEO retainer active and healthy — first $2K/mo invoice processed May 2026, 62 content funnels + directory submissions producing measurable GSC lift by end of Q3 2026.",
     "Sign 2 new retainer clients by end of Q3 2026 via the clickbait-to-article prospecting pipeline across Thunder Bay (HVAC, plumbers, golf), Sudbury (construction, golf), North Bay (plumbers), and Sault Ste. Marie local, with Canada-wide fallback acceptable if the Northern Ontario pipeline runs dry."
   ],
   "bottleneck": "Reyco LAUNCHED ~21:00Z May 6 → cutover landed clean. Aiden AM critical path: GSC DNS TXT verify + GA4 install via Rank Math + GBP website→reycomarine.com + approve llms.txt+robots.txt PR drafts (4 SEO retainer activation steps). In-progress conversation re: Google Workspace email migration. Stacked AM: 12+ scout overnight proposals batch decisions; 86 cortextos PRs (merge sequence #84→#86→#85); titantinyhomes #4 (~10d); reyco PR #189 crosses 24h ~17:08Z; PHPCS install May 10 deadline; ads gates (Fusion CSV / Titan Meta BM) still pending; CF zone deleted (Brave-mobile fix banked).",
-  "updated_at": "2026-05-07T04:37:46Z"
+  "updated_at": "2026-05-16T12:00:32Z"
 }
