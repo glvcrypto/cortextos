@@ -60,7 +60,7 @@ const totalFrames = sampleSlides.length * brand.slideDuration;
 const gbpSlides: SlideData[] = [
   {
     type: "hook",
-    tag: "@glvbuilds",
+    tag: "@glv.marketing",
     headline: "6 things I check before I touch a client's Google listing",
     body: "10 minutes. Every new client. Every time.",
   },
