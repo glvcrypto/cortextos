@@ -374,8 +374,9 @@ export class AgentManager {
             } else if (media.type === 'voice' || media.type === 'audio') {
               formatted = FastChecker.formatTelegramVoiceMessage(from, effectiveChatId, relFilePath, media.duration, media.transcript);
             } else {
-              // video or video_note
-              formatted = FastChecker.formatTelegramVideoMessage(from, effectiveChatId, media.text, relFilePath, media.file_name || '', media.duration);
+              // video or video_note — check for reel pipeline trigger
+              const isReelCandidate = FastChecker.isReelTrigger(media.text);
+              formatted = FastChecker.formatTelegramVideoMessage(from, effectiveChatId, media.text, relFilePath, media.file_name || '', media.duration, isReelCandidate);
             }
 
             if (checker.isDuplicate(formatted)) {

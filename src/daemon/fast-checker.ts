@@ -377,6 +377,11 @@ ${transcriptBlock}Reply using: cortextos bus send-telegram ${chatId} '<your repl
    * Format a Telegram video/video_note message for injection.
    * Matches bash fast-checker.sh format.
    */
+  /** Returns true if caption should trigger the reel editing pipeline. */
+  static isReelTrigger(caption: string): boolean {
+    return /^reel:/i.test(caption.trimStart()) || /#reel\b/i.test(caption);
+  }
+
   static formatTelegramVideoMessage(
     from: string,
     chatId: string | number,
@@ -384,8 +389,12 @@ ${transcriptBlock}Reply using: cortextos bus send-telegram ${chatId} '<your repl
     filePath: string,
     fileName: string,
     duration: number | undefined,
+    isReelCandidate = false,
   ): string {
     const dur = duration !== undefined ? duration : 'unknown';
+    const reelSection = isReelCandidate
+      ? `\nREEL CANDIDATE: YES\npipeline: orgs/glv/clients/glv-marketing/socials/reel-pipeline/reel-pipeline.sh ${filePath} ${JSON.stringify(caption)}\n`
+      : '';
     return `=== TELEGRAM VIDEO from ${from} (chat_id:${chatId}) ===
 caption:
 \`\`\`
@@ -393,7 +402,7 @@ ${caption}
 \`\`\`
 duration: ${dur}s
 local_file: ${filePath}
-file_name: ${fileName}
+file_name: ${fileName}${reelSection}
 Reply using: cortextos bus send-telegram ${chatId} '<your reply>'
 
 `;
