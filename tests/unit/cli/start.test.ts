@@ -13,10 +13,12 @@ const { mockIsDaemonRunning, mockSend, mockExecSync, mockSpawn, mockSpawnSync } 
 }));
 
 vi.mock('../../../src/daemon/ipc-server.js', () => ({
-  IPCClient: vi.fn().mockImplementation(() => ({
-    isDaemonRunning: mockIsDaemonRunning,
-    send: mockSend,
-  })),
+  IPCClient: vi.fn().mockImplementation(function () {
+    return {
+      isDaemonRunning: mockIsDaemonRunning,
+      send: mockSend,
+    };
+  }),
 }));
 
 vi.mock('child_process', () => ({
