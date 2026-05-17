@@ -409,6 +409,29 @@ export const RemotionRoot: React.FC = () => (
       }}
     />
 
+    {/* 1080×1080 — Intro 1 v3: Who Is GLV Marketing (career-pivot framing removed) */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-17_carousel-intro-1-who-is-glv-v3.md */}
+    <Composition
+      id="Intro1WhoIsGLVv3"
+      component={GLVCarousel}
+      durationInFrames={8 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "hook", tag: "@glv.marketing", headline: "Most local marketing resets the moment you stop paying. GLV is built differently.", body: "This is GLV Marketing. Here's why we exist, what we do, and what makes us different from every other agency in Northern Ontario." },
+          { type: "content", headline: "GLV started because local businesses deserve marketing that lasts.", body: "Most agencies hand over a report and move on. No foundation. No compounding. Businesses pay month after month and when they stop, it all resets. We built GLV to fix that." },
+          { type: "content", headline: "Most marketing is a treadmill.", body: "You pay, it runs. You stop paying, it stops. No foundation, no compounding, no lasting result. We wanted to build marketing that stacks over time, not resets every month." },
+          { type: "content", headline: "GLV is a different kind of agency.", body: "Not a content mill. Not a freelancer piecing things together between clients. A focused operation built to deliver real marketing infrastructure for small and mid-size businesses." },
+          { type: "content", headline: "We're built for the long game.", body: "Most agencies sell you a month-to-month relationship. We build systems that compound. The longer you work with us, the more your marketing does. That's the model." },
+          { type: "content", headline: "Sault Ste. Marie built. Canada-wide capable.", body: "We're based in Sault Ste. Marie, Ontario. We work with businesses across Northern Ontario and take on clients from anywhere in Canada. Location has never been a barrier." },
+          { type: "content", headline: "We run a tight process. The results compound.", body: "Every client goes through the same research cycle, strategy build, and ongoing execution review. That structure is what makes the results stack week over week, instead of starting over every month." },
+          { type: "cta", headline: "Follow to see how this actually works.", body: "We share the behind-the-scenes: what's working in local SEO, how we approach real client work, and what we're building as we grow. No filler. No fluff. Follow along." },
+        ] as SlideData[],
+      }}
+    />
+
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
     {/* durationInFrames/videoPath set at render time via --props */}
     <Composition
