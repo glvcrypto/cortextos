@@ -24,6 +24,7 @@ import {
   IconPlugConnected,
   IconAddressBook,
   IconCalendarEvent,
+  IconBrandInstagram,
 } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -49,6 +50,7 @@ const navItems: NavItem[] = [
   { label: 'Outreach', href: '/outreach', icon: IconMail, section: 'ops' },
   { label: 'Leads', href: '/leads', icon: IconAddressBook, section: 'ops' },
   { label: 'Content', href: '/content', icon: IconCalendarEvent, section: 'ops' },
+  { label: 'Social', href: '/social', icon: IconBrandInstagram, section: 'ops' },
   { label: 'Comms', href: '/comms', icon: IconMessages, section: 'ops' },
   { label: 'Commands', href: '/commands', icon: IconTerminal2, section: 'ops' },
   { label: 'Approvals', href: '/approvals', icon: IconShieldCheck, section: 'ops' },
