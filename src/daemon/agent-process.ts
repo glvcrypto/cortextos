@@ -1,4 +1,4 @@
-import { appendFileSync, existsSync, readFileSync, statSync, unlinkSync, writeFileSync } from 'fs';
+import { appendFileSync, existsSync, readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } from 'fs';
 import { randomBytes } from 'crypto';
 import { join, sep } from 'path';
 import { homedir } from 'os';
@@ -65,6 +65,13 @@ export class AgentProcess {
   // (each start() recreates the PTY, but the Telegram handle persists).
   private telegramApi: TelegramAPI | null = null;
   private telegramChatId: string | null = null;
+  // Idle-model routing: tracks whether the current session was spawned with
+  // the agent's `idle_model` instead of the full `model`. Set in start() after
+  // the idle condition check, cleared on the first non-heartbeat injection so
+  // the next sessionRefresh() uses the full model again.
+  private isIdleSession: boolean = false;
+  // Debounce handle for the refresh-on-non-heartbeat path (single pending refresh).
+  private idleRestoreTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(name: string, env: CtxEnv, config: AgentConfig, log?: LogFn) {
     this.name = name;
@@ -104,6 +111,23 @@ export class AgentProcess {
       ? this.buildStartupPrompt()
       : this.buildContinuePrompt();
 
+    // Idle-model routing: compute the effective model for this session.
+    // If idle_model is configured and the agent's inbox + task queue are empty,
+    // spawn with the lighter model to save tokens on heartbeat-only ticks.
+    const effectiveModel = this.computeEffectiveModel();
+    if (effectiveModel !== this.config.model) {
+      this.isIdleSession = true;
+      this.log(`Idle session: spawning with ${effectiveModel} (inbox empty, no pending tasks)`);
+    } else {
+      this.isIdleSession = false;
+    }
+    // Temporarily override config.model for this spawn without mutating the config
+    // permanently (so sessionRefresh re-evaluates idle conditions fresh each time).
+    const savedModel = this.config.model;
+    if (effectiveModel !== this.config.model) {
+      this.config = { ...this.config, model: effectiveModel };
+    }
+
     this.log(`Starting in ${mode} mode`);
     this.status = 'starting';
 
@@ -127,6 +151,13 @@ export class AgentProcess {
       : this.config.runtime === 'codex-app-server'
         ? new CodexAppServerPTY(this.env, this.config, logPath)
         : new AgentPTY(this.env, this.config, logPath);
+
+    // Restore the canonical model on the config object now that the PTY has
+    // captured it. This ensures sessionRefresh() re-evaluates idle conditions
+    // on the next start() rather than permanently inheriting the idle model.
+    if (effectiveModel !== savedModel) {
+      this.config = { ...this.config, model: savedModel };
+    }
 
     // Issue #330: re-wire the Telegram handle on every start() (session refresh
     // creates a fresh CodexAppServerPTY). Only CodexAppServerPTY uses this — Claude / Hermes
@@ -198,6 +229,7 @@ export class AgentProcess {
     this.stopRequested = true;
     this.log('Stopping...');
     this.clearSessionTimer();
+    this.clearIdleRestoreTimer();
 
     // Capture and null out pty BEFORE any awaits so handleExit() during graceful
     // shutdown doesn't race with us and trigger crash recovery or a double-kill.
@@ -292,6 +324,11 @@ export class AgentProcess {
 
   /**
    * Inject a message into the agent's PTY.
+   *
+   * Idle-model restoration: if the current session is running on idle_model
+   * and this injection is NOT a heartbeat cron fire, schedule a session refresh
+   * so the NEXT session uses the full configured model. The current message is
+   * still delivered — haiku handles the transition; sonnet handles what follows.
    */
   injectMessage(content: string): boolean {
     if (!this.pty || this.status !== 'running') {
@@ -301,6 +338,19 @@ export class AgentProcess {
     if (this.dedup.isDuplicate(content)) {
       this.log('Dedup: skipping duplicate message');
       return false;
+    }
+
+    // Idle-model restoration: non-heartbeat work arrived on a haiku session.
+    // Deliver the message first, then schedule a session refresh (debounced so
+    // a burst of messages only triggers one refresh, not N).
+    if (this.isIdleSession && !isHeartbeatCronFire(content)) {
+      this.isIdleSession = false;
+      this.log(`Idle session received non-heartbeat prompt — will refresh to full model after delivery`);
+      if (this.idleRestoreTimer) clearTimeout(this.idleRestoreTimer);
+      this.idleRestoreTimer = setTimeout(() => {
+        this.idleRestoreTimer = null;
+        this.sessionRefresh().catch(err => this.log(`Idle-restore session refresh failed: ${err}`));
+      }, 60_000); // 60s: give haiku time to finish its response before cutting over
     }
 
     injectMessage((data) => this.pty?.write(data), content);
@@ -383,6 +433,57 @@ export class AgentProcess {
   }
 
   // --- Private methods ---
+
+  /**
+   * Determine the effective model for this session start.
+   *
+   * Returns idle_model if:
+   *   - idle_model is set and not "never"
+   *   - the agent's inbox directory is empty (no pending bus messages)
+   *   - no tasks are assigned to this agent with status pending/in_progress
+   *
+   * Otherwise returns the configured model (or undefined for daemon default).
+   * All errors are swallowed — a failed idle check defaults to full model.
+   */
+  private computeEffectiveModel(): string | undefined {
+    const idleModel = this.config.idle_model;
+    if (!idleModel || idleModel === 'never') {
+      return this.config.model;
+    }
+
+    try {
+      // Check inbox: ~/.cortextos/<instance>/inbox/<agentName>/
+      const inboxPath = join(this.env.ctxRoot, 'inbox', this.name);
+      if (existsSync(inboxPath)) {
+        const files = readdirSync(inboxPath).filter(f => f.endsWith('.json'));
+        if (files.length > 0) return this.config.model; // inbox non-empty
+      }
+
+      // Check tasks: org-scoped task dir, any task assigned to this agent
+      // with status pending or in_progress.
+      const orgTaskDir = join(this.env.ctxRoot, 'orgs', this.env.org, 'tasks');
+      if (existsSync(orgTaskDir)) {
+        const taskFiles = readdirSync(orgTaskDir).filter(f => f.endsWith('.json') && f !== 'audit');
+        for (const tf of taskFiles) {
+          try {
+            const task = JSON.parse(readFileSync(join(orgTaskDir, tf), 'utf-8'));
+            if (
+              task.assigned_to === this.name &&
+              (task.status === 'pending' || task.status === 'in_progress')
+            ) {
+              return this.config.model; // active task exists
+            }
+          } catch { /* corrupt task file — skip */ }
+        }
+      }
+
+      // Inbox empty + no active tasks → idle conditions met
+      return idleModel;
+    } catch {
+      // Any filesystem error → default to full model (fail safe)
+      return this.config.model;
+    }
+  }
 
   private handleExit(exitCode: number): void {
     this.pty = null;
@@ -664,6 +765,13 @@ export class AgentProcess {
     }
   }
 
+  private clearIdleRestoreTimer(): void {
+    if (this.idleRestoreTimer) {
+      clearTimeout(this.idleRestoreTimer);
+      this.idleRestoreTimer = null;
+    }
+  }
+
   /**
    * Check whether the daemon is currently in its shutdown sequence.
    *
@@ -753,4 +861,19 @@ export class AgentProcess {
 
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Returns true if the injected content is a heartbeat cron fire, which should
+ * NOT trigger idle-model restoration. A heartbeat cron fire looks like:
+ *   [CRON FIRED 2026-05-17T15:36:36.932Z] heartbeat: <prompt>
+ *
+ * Any other injection — a bus message, a non-heartbeat cron, a Telegram message,
+ * a direct agent message — is "non-heartbeat" and should restore the full model.
+ */
+function isHeartbeatCronFire(content: string): boolean {
+  // Match: [CRON FIRED <ISO>] heartbeat:
+  // The cron name "heartbeat" is the canonical name in the default template and
+  // in all existing agent crons.json files. Case-insensitive to be safe.
+  return /^\[CRON FIRED [^\]]+\]\s+heartbeat:/i.test(content);
 }
