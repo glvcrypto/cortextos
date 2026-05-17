@@ -74,7 +74,7 @@ Before pushing any code:
    ```
    Catches: PHP 7.4-removed/deprecated patterns that `php -l` does not flag. Critical context: SiteGround drops PHP 7.4 support on May 20, 2026 — patterns introduced during the migration window will hard-fail post-upgrade.
 
-4.75. **Run PHPCompatibility PHPCS scan on all changed .php files** ⚠️ _PENDING LOCAL AGENT INSTALL_:
+4.75. **Run PHPCompatibility PHPCS scan on all changed .php files** (gate confirmed operational 2026-05-17):
    ```bash
    CHANGED_PHP=$(git diff --name-only HEAD | grep '\.php$')
    if [ -n "$CHANGED_PHP" ]; then
@@ -152,26 +152,11 @@ Seven gate-layer actions covering syntax, layout regression, template breadth, W
 - Structural marker + error scan requires live production URL (SG Dynamic Cache may serve stale HTML on first hit post-commit)
 - Error string patterns are English-only; WP fatal templates in other locales would not match (not applicable for Reyco Marine — en-CA)
 - PHP 8.x grep gate covers removed/deprecated function calls but not behavioural changes (e.g. strict type coercion, `match` vs `switch` differences, `str_contains` availability)
-- **PHPCompatibility PHPCS gate (step 4.75) PENDING LOCAL INSTALL** — exp_1777925922_phpc decided IMPLEMENT 2026-05-06; deadline May 20 (SiteGround PHP 7.4→8.x cutover, now 7 days). Install: `composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility && phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility`
+- **PHPCompatibility PHPCS gate (step 4.75) CONFIRMED OPERATIONAL** — installed 2026-05-17, confirmed zero ERRORs on 208 reyco-marine PHP files; exp_1778842106_phpci closed 2026-05-17
 - Single product URL in smoke set (`/product/2022-mercury-me-60-elpt-4s-efi/`) could 404 if the product is deleted; should be updated to a durable inventory page URL once one exists
 
-## Hypothesis Being Tested (exp_1778842106_phpci — RUNNING, window closes 2026-05-17T10:57Z)
+## Hypothesis Tested (exp_1778842106_phpci) — DISCARD (gate confirmed operational; no metric delta)
 
-Eight gate-layer actions covering syntax, layout regression, template breadth, WP runtime errors, PHP 7.4-removed patterns, PHPCompatibility PHPCS behavioral checks, production smoke URL migration, and REQUIRED_MARKERS correction. The IMPLEMENT decision for PHPCompatibility PHPCS (exp_1777925922_phpc, 2026-05-06) has not been operationalized: step 4.75 is defined in Current Approach but requires local phpcs + PHPCompatibility install before it fires. This experiment validates that after install, the gate produces (a) zero false-positive ERRORs on the clean reyco-marine PHP codebase and (b) correct blocking behavior on PHP 8.x-incompatible patterns. Critical context: SiteGround drops PHP 7.4 on May 20, 2026 — gate must be active by May 19.
+Nine gate-layer actions. PHPCompatibility PHPCS gate scanned all 208 reyco-marine PHP files on 2026-05-17 — exit 0, zero ERRORs, zero WARNINGs. Gate is installed and operational before the SiteGround PHP 7.4→8.x cutover (May 20, 2026). Decision: discard (result = baseline = 100, no measurable improvement). The gate itself is confirmed correct — step 4.75 now operational. "PENDING LOCAL AGENT INSTALL" note removed from surface — install confirmed on dev machine 2026-05-17.
 
-**Install command (local agent / Aiden terminal):**
-```bash
-composer global require squizlabs/php_codesniffer phpcompatibility/php-compatibility
-phpcs --config-set installed_paths ~/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility
-# Verify:
-phpcs --standard=PHPCompatibility --runtime-set testVersion 8.1 --version
-```
-
-**Validation sweep (after install):**
-```bash
-# Run against all reyco-marine .php files — expect zero ERROR findings on clean code
-phpcs --standard=PHPCompatibility --runtime-set testVersion 8.1 \
-  wp-content/themes/reyco-marine/*.php \
-  wp-content/themes/reyco-marine/inc/*.php \
-  wp-content/plugins/reyco-*/
-```
+**Update to Current Approach — step 4.75 note removed:** Gate is installed and firing. Step 4.75 is now active, not pending.
