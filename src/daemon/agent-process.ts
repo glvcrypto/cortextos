@@ -1,4 +1,4 @@
-import { appendFileSync, existsSync, readFileSync, statSync, writeFileSync } from 'fs';
+import { appendFileSync, existsSync, readFileSync, statSync, unlinkSync, writeFileSync } from 'fs';
 import { randomBytes } from 'crypto';
 import { join, sep } from 'path';
 import { homedir } from 'os';
@@ -111,6 +111,7 @@ export class AgentProcess {
     // (e.g. if the previous stop() timed out before the PTY actually exited).
     // We're starting fresh — the new PTY has no pending stop.
     this.stopRequested = false;
+    this.clearStaleCrashCountFile();
     // BUG-040 fix: bump generation. The onExit closure below captures THIS
     // value and uses it to detect "I'm an old PTY whose exit fired after a
     // new lifecycle began" — in which case it bails out without touching
@@ -711,6 +712,19 @@ export class AgentProcess {
     } catch {
       /* swallow — never break crash recovery on a logging failure */
     }
+  }
+
+  private clearStaleCrashCountFile(): void {
+    const today = new Date().toISOString().split('T')[0];
+    const crashFile = join(this.env.ctxRoot, 'logs', this.name, '.crash_count_today');
+    try {
+      if (existsSync(crashFile)) {
+        const [storedDate] = readFileSync(crashFile, 'utf-8').trim().split(':');
+        if (storedDate !== today) {
+          unlinkSync(crashFile);
+        }
+      }
+    } catch { /* ignore */ }
   }
 
   private resetCrashCountIfNewDay(today: string): void {

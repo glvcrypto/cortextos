@@ -204,6 +204,13 @@ async function main(): Promise<void> {
   // Track crash count (real crashes only).
   const today = new Date().toISOString().split('T')[0];
   const countFile = join(stateDir, '.crash_count_today');
+  // Clear stale file from prior days so counts don't bleed across midnight.
+  try {
+    if (existsSync(countFile)) {
+      const [storedDate] = readFileSync(countFile, 'utf-8').trim().split(':');
+      if (storedDate !== today) unlinkSync(countFile);
+    }
+  } catch { /* ignore */ }
   let crashCount = 0;
   if (endType === 'crash') {
     try {
