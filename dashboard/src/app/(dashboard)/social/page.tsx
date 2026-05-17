@@ -818,7 +818,7 @@ function CategoryBalancePanel() {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(v: number, name: string) => [`${v} posts (${total > 0 ? Math.round(v / total * 100) : 0}%)`, name]}
+                    formatter={(v, name) => [`${v as number} posts (${total > 0 ? Math.round((v as number) / total * 100) : 0}%)`, name]}
                     contentStyle={{ fontSize: 11, borderRadius: 6 }}
                   />
                 </PieChart>
