@@ -7,6 +7,7 @@
  */
 import { execFileSync, execFile } from 'child_process';
 import { promisify } from 'util';
+import { logAbCall } from '../logger.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -26,14 +27,27 @@ export function abSync(args: string[]): string {
   }).toString().trim();
 }
 
-/** Run a single agent-browser command async. */
+/** Run a single agent-browser command async. Logs invocation + any stderr. */
 export async function ab(args: string[]): Promise<ABResult> {
-  const { stdout, stderr } = await execFileAsync(
-    'agent-browser',
-    ['--session', SESSION, ...args],
-    { timeout: AB_TIMEOUT_MS },
-  );
-  return { stdout: stdout.trim(), stderr: stderr.trim() };
+  const start = Date.now();
+  try {
+    const { stdout, stderr } = await execFileAsync(
+      'agent-browser',
+      ['--session', SESSION, ...args],
+      { timeout: AB_TIMEOUT_MS },
+    );
+    const durationMs = Date.now() - start;
+    if (stderr.trim()) {
+      logAbCall({ ts: new Date().toISOString(), command: args, durationMs, exitCode: 0, stderr: stderr.trim() });
+    }
+    return { stdout: stdout.trim(), stderr: stderr.trim() };
+  } catch (err: unknown) {
+    const durationMs = Date.now() - start;
+    const exitCode = (err as { code?: number }).code ?? 1;
+    const stderr = (err as { stderr?: string }).stderr ?? String(err);
+    logAbCall({ ts: new Date().toISOString(), command: args, durationMs, exitCode, stderr });
+    throw err;
+  }
 }
 
 /**

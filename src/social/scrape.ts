@@ -11,6 +11,8 @@ import { join } from 'path';
 import { homedir } from 'os';
 import type { Platform } from './types.js';
 import { PLATFORMS, emptySnapshot } from './types.js';
+import { SESSION } from './scrapers/base.js';
+import { startWatchdog } from './watchdog.js';
 
 async function run(): Promise<void> {
   const date = new Date().toISOString().split('T')[0];
@@ -27,6 +29,7 @@ async function run(): Promise<void> {
 
   console.log(`[social-scrape] ${date} — platforms: ${targets.join(', ')}`);
 
+  const watchdog = startWatchdog(SESSION);
   const results: Record<string, boolean> = {};
 
   for (const platform of targets) {
@@ -49,9 +52,12 @@ async function run(): Promise<void> {
     }
   }
 
+  watchdog.stop();
+
   const ok = Object.values(results).filter(Boolean).length;
   const fail = Object.values(results).filter(r => !r).length;
-  console.log(`[social-scrape] done — ${ok} ok, ${fail} failed`);
+  const sessionStatus = watchdog.getStatus();
+  console.log(`[social-scrape] done — ${ok} ok, ${fail} failed | session=${sessionStatus.state}, recoveries=${sessionStatus.recovery_attempts}`);
 
   if (fail > 0) process.exitCode = 1;
 }

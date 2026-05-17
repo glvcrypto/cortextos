@@ -309,6 +309,70 @@ function PlatformAnalyticsSection({ platform }: { platform: Platform }) {
   );
 }
 
+// --- Browser Session Health widget ---
+interface SessionStatus {
+  state: 'ok' | 'frozen' | 'dead' | 'unknown';
+  frozen_since: string | null;
+  last_ok_at: string | null;
+  recovery_attempts: number;
+}
+
+function BrowserSessionHealth() {
+  const [status, setStatus] = useState<SessionStatus | null>(null);
+
+  useEffect(() => {
+    async function poll() {
+      try {
+        const res = await fetch('/api/social/session-status');
+        const data = await res.json() as SessionStatus;
+        setStatus(data);
+      } catch { /* no-op */ }
+    }
+    void poll();
+    const id = setInterval(() => void poll(), 30_000);
+    return () => clearInterval(id);
+  }, []);
+
+  const s = status?.state ?? 'unknown';
+
+  const stateConfig = {
+    ok:      { label: 'OK',      bg: 'bg-green-100', text: 'text-green-700',  icon: <IconCheck size={12} /> },
+    frozen:  { label: 'FROZEN',  bg: 'bg-yellow-100', text: 'text-yellow-700', icon: <IconAlertCircle size={12} /> },
+    dead:    { label: 'DEAD',    bg: 'bg-red-100',    text: 'text-red-600',    icon: <IconAlertCircle size={12} /> },
+    unknown: { label: 'UNKNOWN', bg: 'bg-gray-100',   text: 'text-gray-500',   icon: null },
+  }[s];
+
+  return (
+    <div className="rounded-lg border px-4 py-3 flex items-center gap-4 text-sm">
+      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide whitespace-nowrap">
+        Browser Session
+      </span>
+      <span className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-semibold ${stateConfig.bg} ${stateConfig.text}`}>
+        {stateConfig.icon}
+        {stateConfig.label}
+      </span>
+      {status && (
+        <>
+          <span className="text-xs text-muted-foreground">
+            Last OK: {fmtTs(status.last_ok_at)}
+          </span>
+          {status.recovery_attempts > 0 && (
+            <span className="text-xs text-yellow-600">
+              {status.recovery_attempts} auto-recovery{status.recovery_attempts !== 1 ? 's' : ''} this run
+            </span>
+          )}
+          {s === 'frozen' && status.frozen_since && (
+            <span className="text-xs text-yellow-600">
+              Frozen since {fmtTs(status.frozen_since)}
+            </span>
+          )}
+        </>
+      )}
+      <span className="ml-auto text-[11px] text-muted-foreground font-mono">glv-socials</span>
+    </div>
+  );
+}
+
 // ============================================================
 export default function SocialPage() {
   const [channels, setChannels] = useState<SocialChannel[]>([]);
@@ -461,6 +525,9 @@ export default function SocialPage() {
         <p className="mt-2 text-[11px] text-muted-foreground">
           Data collected by social-analytics-scrape cron · Sessions at ~/.cache/agent-browser/sessions/glv-socials
         </p>
+        <div className="mt-3">
+          <BrowserSessionHealth />
+        </div>
       </section>
 
       {/* PANEL 3 — Content Pipeline */}
