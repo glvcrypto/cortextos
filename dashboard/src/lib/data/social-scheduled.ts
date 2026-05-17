@@ -8,9 +8,9 @@
  */
 import fs from 'fs';
 import path from 'path';
-export type { PostStatus, GlvCategory, ScheduledPost, EditRequest } from './social-scheduled-types.js';
-export { GLV_CATEGORIES } from './social-scheduled-types.js';
-import type { ScheduledPost } from './social-scheduled-types.js';
+export type { PostStatus, GlvCategory, ScheduledPost, EditRequest } from './social-scheduled-types';
+export { GLV_CATEGORIES } from './social-scheduled-types';
+import type { ScheduledPost } from './social-scheduled-types';
 
 const CTX_ROOT = process.env.CTX_ROOT ?? path.join(process.cwd(), '..');
 const SCHEDULED_BASE = path.join(
