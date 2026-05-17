@@ -131,13 +131,11 @@ export function startWatchdog(session: string, lastUrl?: string): WatchdogHandle
     }
 
     if (recoveryAttempts >= RECOVERY_CAP) {
-      if (state !== 'dead') {
-        state = 'dead';
-        logWatchdog(`[watchdog:${session}] DEAD — recovery cap exceeded`);
-        writeStatus(session, { state: 'dead', frozen_since: frozenSince.toISOString(), last_ok_at: lastOkAt.toISOString(), recovery_attempts: recoveryAttempts });
-        emitBusEvent('critical', `agent-browser:${session}`, `Session DEAD — ${RECOVERY_CAP} recovery attempts exhausted. Manual restart required.`);
-        notifyBoss('high', `🚨 agent-browser "${session}" DEAD: ${RECOVERY_CAP} recovery attempts exhausted in 10min. Manual restart needed before next analytics scrape.`);
-      }
+      state = 'dead';
+      logWatchdog(`[watchdog:${session}] DEAD — recovery cap exceeded`);
+      writeStatus(session, { state: 'dead', frozen_since: frozenSince.toISOString(), last_ok_at: lastOkAt.toISOString(), recovery_attempts: recoveryAttempts });
+      emitBusEvent('critical', `agent-browser:${session}`, `Session DEAD — ${RECOVERY_CAP} recovery attempts exhausted. Manual restart required.`);
+      notifyBoss('high', `🚨 agent-browser "${session}" DEAD: ${RECOVERY_CAP} recovery attempts exhausted in 10min. Manual restart needed before next analytics scrape.`);
       return;
     }
 

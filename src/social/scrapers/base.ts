@@ -34,7 +34,7 @@ export async function ab(args: string[]): Promise<ABResult> {
     const { stdout, stderr } = await execFileAsync(
       'agent-browser',
       ['--session', SESSION, ...args],
-      { timeout: AB_TIMEOUT_MS },
+      { timeout: AB_TIMEOUT_MS, encoding: 'utf8' as const },
     );
     const durationMs = Date.now() - start;
     if (stderr.trim()) {
