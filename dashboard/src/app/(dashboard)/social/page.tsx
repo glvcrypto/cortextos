@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import {
   LineChart, Line, BarChart, Bar,
+  PieChart, Pie, Cell,
   XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
 } from 'recharts';
 import {
@@ -31,6 +32,15 @@ import {
 import type { SocialChannel, ContentPipeline, ReelPipelineState, WeeklyRollup, DraftItem, RenderItem } from '@/lib/data/social';
 import type { PlatformTimeseries, Platform } from '@/lib/data/social-analytics';
 import type { ScheduledPost, PostStatus } from '@/lib/data/social-scheduled';
+import { GLV_CATEGORIES } from '@/lib/data/social-scheduled';
+
+interface PlatformBestTimes {
+  platform: string;
+  hasData: boolean;
+  totalPosts: number;
+  slots: { day: string; hour: number; avgEngagement: number; sampleSize: number }[];
+  recommended: string | null;
+}
 
 // --- Platform icon map ---
 function PlatformIcon({ platform, size = 16 }: { platform: string; size?: number }) {
@@ -736,6 +746,217 @@ function QueuedPostsPanel() {
   );
 }
 
+// --- Category Balance panel ---
+const CATEGORY_COLORS = [
+  '#6366f1', '#f59e0b', '#10b981', '#ef4444', '#3b82f6',
+  '#8b5cf6', '#f97316', '#06b6d4', '#84cc16',
+];
+
+function CategoryBalancePanel() {
+  const [posts, setPosts] = useState<ScheduledPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/social/scheduled')
+      .then(r => r.json())
+      .then((data: ScheduledPost[]) => {
+        const cutoff = new Date();
+        cutoff.setDate(cutoff.getDate() - 30);
+        const recent = Array.isArray(data)
+          ? data.filter(p => new Date(p.scheduled_at) >= cutoff)
+          : [];
+        setPosts(recent);
+      })
+      .catch(() => { /* no-op */ })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const counts = new Map<string, number>();
+  for (const cat of GLV_CATEGORIES) counts.set(cat, 0);
+  for (const p of posts) {
+    if (p.category) counts.set(p.category, (counts.get(p.category) ?? 0) + 1);
+  }
+
+  const pieData = Array.from(counts.entries()).map(([name, value]) => ({ name, value }));
+  const zeroCats = GLV_CATEGORIES.filter(c => (counts.get(c) ?? 0) === 0);
+  const total = posts.length;
+
+  return (
+    <section>
+      <div className="mb-3 flex items-center gap-2">
+        <h2 className="text-base font-semibold">Category Balance</h2>
+        <span className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground font-medium">
+          Last 30 days
+        </span>
+      </div>
+      <div className="rounded-lg border p-4">
+        {loading ? (
+          <p className="text-sm text-muted-foreground py-4 text-center">Loading…</p>
+        ) : total === 0 ? (
+          <EmptyState
+            icon={<IconFileText size={32} />}
+            title="No categorized posts yet"
+            sub="Scheduled posts with a 'category' field appear here. Social agent sets this on each post."
+          />
+        ) : (
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+            {/* Pie chart */}
+            <div className="shrink-0 mx-auto sm:mx-0">
+              <ResponsiveContainer width={200} height={200}>
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={55}
+                    outerRadius={90}
+                    paddingAngle={2}
+                    dataKey="value"
+                  >
+                    {pieData.map((entry, i) => (
+                      <Cell key={entry.name} fill={CATEGORY_COLORS[i % CATEGORY_COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(v: number, name: string) => [`${v} posts (${total > 0 ? Math.round(v / total * 100) : 0}%)`, name]}
+                    contentStyle={{ fontSize: 11, borderRadius: 6 }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Legend + alerts */}
+            <div className="flex-1 space-y-3">
+              <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+                {pieData.map((entry, i) => (
+                  <div key={entry.name} className="flex items-center gap-2 text-xs">
+                    <span
+                      className="inline-block w-2.5 h-2.5 rounded-sm shrink-0"
+                      style={{ backgroundColor: CATEGORY_COLORS[i % CATEGORY_COLORS.length] }}
+                    />
+                    <span className={`flex-1 truncate ${entry.value === 0 ? 'text-muted-foreground' : ''}`}>
+                      {entry.name}
+                    </span>
+                    <span className={`tabular-nums font-medium ${entry.value === 0 ? 'text-muted-foreground' : ''}`}>
+                      {entry.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {zeroCats.length > 0 && (
+                <div className="rounded-md border border-yellow-200 bg-yellow-50 px-3 py-2 text-xs text-yellow-800">
+                  <span className="font-semibold">Rebalance needed:</span>{' '}
+                  {zeroCats.slice(0, 3).join(', ')}
+                  {zeroCats.length > 3 && ` + ${zeroCats.length - 3} more`}
+                  {' '}— 0 posts in last 30 days.
+                </div>
+              )}
+
+              <p className="text-[11px] text-muted-foreground">
+                {total} categorized post{total !== 1 ? 's' : ''} in the last 30 days
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// --- Best Times widget ---
+function BestTimesWidget() {
+  const [data, setData] = useState<PlatformBestTimes[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/social/best-times')
+      .then(r => r.json())
+      .then((d: PlatformBestTimes[]) => setData(Array.isArray(d) ? d : []))
+      .catch(() => { /* no-op */ })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const withData = data.filter(p => p.hasData);
+  const insufficient = data.filter(p => !p.hasData && p.totalPosts > 0);
+
+  return (
+    <section>
+      <div className="mb-3 flex items-center gap-2">
+        <h2 className="text-base font-semibold">Best Times to Post</h2>
+        <span className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground font-medium">
+          Computed from posted history
+        </span>
+      </div>
+      <div className="rounded-lg border p-4">
+        {loading ? (
+          <p className="text-sm text-muted-foreground py-4 text-center">Loading…</p>
+        ) : withData.length === 0 && insufficient.length === 0 ? (
+          <EmptyState
+            icon={<IconClock size={32} />}
+            title="Insufficient data"
+            sub="Need 8+ posted posts per platform to compute recommendations. Keep posting!"
+          />
+        ) : (
+          <div className="space-y-4">
+            {withData.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                  Recommended
+                </p>
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                  {withData.map(p => (
+                    <div key={p.platform} className="rounded-md border bg-muted/10 px-3 py-2.5 space-y-1">
+                      <div className="flex items-center gap-1.5 text-xs font-medium">
+                        <PlatformIcon platform={p.platform} size={13} />
+                        <span className="capitalize">{p.platform}</span>
+                      </div>
+                      {p.recommended && (
+                        <p className="text-sm font-semibold text-primary">{p.recommended}</p>
+                      )}
+                      {p.slots.length > 1 && (
+                        <p className="text-[11px] text-muted-foreground">
+                          Also: {p.slots.slice(1).map(s => {
+                            const amPm = s.hour < 12
+                              ? `${s.hour === 0 ? 12 : s.hour}am`
+                              : `${s.hour === 12 ? 12 : s.hour - 12}pm`;
+                            return `${s.day} ${amPm}`;
+                          }).join(', ')}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {insufficient.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                  Building history (&lt;8 posts)
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {insufficient.map(p => (
+                    <div key={p.platform} className="flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs text-muted-foreground">
+                      <PlatformIcon platform={p.platform} size={12} />
+                      <span className="capitalize">{p.platform}</span>
+                      <span className="font-mono">{p.totalPosts}/8</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <p className="text-[11px] text-muted-foreground">
+              Based on historical posting times · UTC · Updates daily after scrape
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 // --- Browser Session Health widget ---
 interface SessionStatus {
   state: 'ok' | 'frozen' | 'dead' | 'unknown';
@@ -968,7 +1189,13 @@ export default function SocialPage() {
         <QueuedPostsPanel />
       </section>
 
-      {/* PANEL 4 — Content Pipeline */}
+      {/* PANEL 4 — Category Balance */}
+      <CategoryBalancePanel />
+
+      {/* PANEL 5 — Best Times to Post */}
+      <BestTimesWidget />
+
+      {/* PANEL 6 — Content Pipeline */}
       <section>
         <h2 className="text-base font-semibold mb-4">Content Pipeline</h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -1066,7 +1293,7 @@ export default function SocialPage() {
         </div>
       </section>
 
-      {/* PANEL 4 — Reel Pipeline State */}
+      {/* PANEL 7 — Reel Pipeline State */}
       <section>
         <h2 className="text-base font-semibold mb-4">Reel Pipeline</h2>
         <div className="rounded-lg border p-4">
@@ -1121,7 +1348,7 @@ export default function SocialPage() {
         </div>
       </section>
 
-      {/* PANEL 5 — Weekly Performance Rollup */}
+      {/* PANEL 8 — Weekly Performance Rollup */}
       <section>
         <h2 className="text-base font-semibold mb-4">Weekly Rollup</h2>
         <div className="rounded-lg border p-4">

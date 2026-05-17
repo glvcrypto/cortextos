@@ -13,10 +13,24 @@ const SCHEDULED_BASE = path.join(
 
 export type PostStatus = 'draft' | 'scheduled' | 'posted' | 'failed' | 'cancelled';
 
+export const GLV_CATEGORIES = [
+  'Marketing',
+  'SEO',
+  'Email Marketing',
+  'Paid Ad Strategy',
+  'Website Building',
+  'Claude Code for GLV',
+  'Local SEO & GBP',
+  'AI Integration for SMBs',
+  'Lead Gen & Cold Outreach',
+] as const;
+
+export type GlvCategory = typeof GLV_CATEGORIES[number];
+
 export interface ScheduledPost {
   id: string;
   platform: string;
-  scheduled_at: string;         // ISO timestamp
+  scheduled_at: string;
   status: PostStatus;
   carousel_ref: string | null;
   caption: string | null;
@@ -24,9 +38,15 @@ export interface ScheduledPost {
   audio_brief: string | null;
   geotag: string | null;
   blotato_job_id: string | null;
-  // Derived fields — populated by data layer
-  _file: string;                // relative path for mutations
-  _date: string;                // YYYY-MM-DD derived from scheduled_at
+  // Item 2 — content categorization
+  category: GlvCategory | null;
+  // Item 3 schema fields (implementation gated on ManyChat credentials)
+  first_comment: string | null;
+  manychat_keyword_triggers: string[];
+  manychat_dm_template_id: string | null;
+  // Derived
+  _file: string;
+  _date: string;
 }
 
 export interface EditRequest {
@@ -59,6 +79,10 @@ export function getAllScheduledPosts(): ScheduledPost[] {
         posts.push({
           ...data,
           hashtags: data.hashtags ?? [],
+          category: data.category ?? null,
+          first_comment: data.first_comment ?? null,
+          manychat_keyword_triggers: data.manychat_keyword_triggers ?? [],
+          manychat_dm_template_id: data.manychat_dm_template_id ?? null,
           _file: path.join(dateDir, file),
           _date: dateDir,
         });
