@@ -73,7 +73,11 @@ At $500/month ($16.67/day), splitting across more than 2 ad sets fragments the s
 
 **Purpose:** Test whether a downsizer-creative set outperforms broad on the same audience. Kill if CPL runs 25%+ higher than Ad Set A after 2 weeks + $100 spend.
 
-**COMPLIANCE NOTE (updated 2026-05-11):** Housing Special Ad Category (which applies to residential construction/tiny homes) prohibits age, gender, and postal code targeting. The original age 50-70 targeting is not permitted. Ad Set B must rely on creative differentiation only (Angle 2 lifestyle/downsizer hook) to self-select the downsizer audience — Meta's algorithm will find them via creative signal. This is actually consistent with the Andromeda broad-targeting strategy. Remove the age range at setup.
+**COMPLIANCE NOTE (updated 2026-05-17):** Housing Special Ad Category (which applies to residential construction/tiny homes) prohibits age, gender, and postal code targeting. The original age 50-70 targeting is not permitted. Ad Set B must rely on creative differentiation only (Angle 2 lifestyle/downsizer hook) to self-select the downsizer audience — Meta's algorithm will find them via creative signal. This is actually consistent with the Andromeda broad-targeting strategy. Remove the age range at setup.
+
+**GEO RADIUS NOTE (updated 2026-05-17):** Canada Housing SAC minimum geo radius is **25 kilometres** (not 15 miles — that is the US figure). Ontario-wide province-level targeting comfortably exceeds this minimum and remains compliant. Do not use postal code lists or city-only geo targeting.
+
+**HEC AUTO-CLASSIFICATION NOTE (updated 2026-05-17):** Meta's HEC detection system uses multimodal AI to auto-classify ads containing construction or housing imagery — even if no Special Ad Category is self-declared. Creative showing tiny home builds or exteriors will likely trigger automatic classification. Failure to self-declare when HEC fires = Evasion flag, which damages account health. Step 3 of the Stage 4 implementation sequence (filing under Housing SAC) is mandatory, not optional.
 
 ---
 
@@ -192,7 +196,7 @@ When Meta BM and pixel are confirmed:
 5. Create Ad Set B (Downsizer — Minimalism interest only; no age targeting per Housing SAC)
 6. Build lead form "Talk to Joey"
 7. Load Angle 1 + Angle 2 ads into each ad set
-   - **Audit Advantage+ Creative enhancements before launch** — all are ON by default since Feb 2026. Disable: background generation, music overlays. Evaluate: text variations, contrast. Keep: aspect ratio adjustments.
+   - **Audit Advantage+ Creative enhancements before launch** — all are ON by default since Feb 2026. Control is at the Ad Creative level (not campaign/ad set). **Disable:** Text Improvements (rewrites copy — kills Joey/Kathryn voice), Site Links (misdirects traffic), Add Overlays (obscures creative), Music/Video Filter (inappropriate background music), Image Expansion (for video). **Evaluate:** Brightness/contrast adjustments. **Keep:** Aspect ratio adjustments for placement fit.
    - **Check creative assets for AI-generated/AI-modified content** — disclosure label required by Meta since March 2026 if any AI-assisted visuals are used
 8. Launch — note launch date and time
 9. Do not touch for 14 days

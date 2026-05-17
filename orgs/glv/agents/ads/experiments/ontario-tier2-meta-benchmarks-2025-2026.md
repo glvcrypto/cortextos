@@ -1,6 +1,6 @@
 # Ontario Tier-2 Meta Ads Benchmarks: Refreshed Research
 **Prepared by:** GLV Marketing (ads agent)
-**Date:** 2026-05-04 | **Refreshed:** 2026-05-11
+**Date:** 2026-05-04 | **Refreshed:** 2026-05-17
 **Purpose:** Refresh and expand the proxy baseline in `cpl-null-recovery-proposal.md` with 2025-2026 sourced data. Read in conjunction with that file.
 
 ---
@@ -406,3 +406,72 @@ Applies specifically to Advantage+ Shopping campaigns; Leads objective threshold
 - Uproas — Meta Andromeda Update Explained 2026
 - AdScale — Meta Andromeda Update
 - Mediastrobe/Medium — Meta Housing Ads 2026: Geo-Targeting Under Special Ad Category Restrictions
+
+---
+
+## May 17 Refresh — New Findings (pass date: 2026-05-17)
+
+### CRITICAL CORRECTION — Canada Housing SAC Minimum Radius is 25km (Not 15 miles)
+
+**Source:** Mediastrobe/Medium — Meta Housing Ads 2026 (March 10, 2026) | Confidence: HIGH
+
+The May 11 pass cited a 15-mile minimum radius for Housing Special Ad Category geo-targeting. That figure is US-specific. The Canada-specific minimum is **25 kilometres**. Practical impact for Ontario: Ontario-wide province-level targeting is compliant (radius far exceeds 25km). Do not use postal code lists or small-city-only targeting.
+
+*Correction applied: "15-mile" references in campaign plan should be read as 25km for Canadian campaigns.*
+
+### HIGH PRIORITY — HEC Auto-Classification via Multimodal AI (Since 2026)
+
+**Source:** Mediastrobe/Medium — Meta Housing Ads 2026 (March 10, 2026) | Confidence: HIGH
+
+Meta's Housing, Employment, Credit (HEC) detection system now uses multimodal AI to analyze ad images for real estate and construction imagery (floor plans, building exteriors, construction sites). If visual elements trigger HEC classification automatically, all Housing SAC restrictions apply — even if the advertiser did not self-declare. **Circumvention attempts generate an "Evasion" flag that damages account health.**
+
+Titan implication: Any creative showing tiny home exteriors, builds in progress, or structural imagery will likely auto-trigger HEC classification. Declare the Housing Special Ad Category proactively at campaign setup. This is already in the Stage 4 checklist (Step 3) — this confirms that step is not optional.
+
+### HIGH PRIORITY — Advantage+ Creative Specific Disable List (Confirmed)
+
+**Source:** Meta Business Help Center; Metalla Digital; FraudBlocker | Confidence: HIGH
+
+More specific disable guidance confirmed for Leads objective campaigns. Control is at the **Ad Creative level** (not campaign or ad set). Enhancements to disable for UGC-first campaigns:
+- **Text Improvements** — rewrites ad copy; disable to preserve Joey/Kathryn voice
+- **Site Links** — inserts site links that can misdirect to irrelevant pages; disable
+- **Add Overlays** — adds text overlays that obscure the creative; disable
+- **Music / Video Filter** — can add inappropriate background music to video clips; disable
+- **Image Expansion** — may crop or expand UGC frames unexpectedly for video; disable
+
+Lower-risk enhancements (can evaluate case by case):
+- Brightness/contrast adjustments
+- Aspect ratio adjustments for placement fit (generally safe to keep)
+
+*This updates and replaces the broader "disable / evaluate / keep" guidance from the May 11 pass.*
+
+### MEDIUM PRIORITY — TikTok Smart+ Lead Gen Modular Control (TikTok World 2026)
+
+**Source:** Social Media Today (May 13, 2026); ALM Corp (May 15, 2026) | Confidence: HIGH
+
+TikTok World 2026 (May 13–15) announced Smart+ modular control: advertisers can now toggle automation on or off per module (targeting, budget, placements, catalogs) rather than full-automation or full-manual. Smart+ now explicitly supports lead generation as an objective.
+
+TikTok implication: If TikTok expansion is planned for Titan, Smart+ lead gen with modular controls is the entry configuration. Custom Identity must be replaced with a verified brand profile before any TikTok launch.
+
+### MEDIUM PRIORITY — Google AI Max AI Brief Tool (Copy Constraint Capability)
+
+**Source:** Google Blog — AI Max new features (April 30, 2026); Google Ads API v24.1 (May 13, 2026) | Confidence: HIGH
+
+The May 1 unverified finding flagged Google AI Max copy restrictions (25 term exclusions + 40 messaging restrictions, cited from almcorp.com). The AI Brief tool — confirmed live via Google's official blog (April 30) — provides the counterbalance: advertisers can set Messaging Guidelines specifying what ads should and should not say. This includes restricting prohibited terms and bounding generated copy. The May 1 copy restriction concern is partially addressed by this capability.
+
+Google implication: For any future Reyco or Titan Google campaigns, configure AI Brief Messaging Guidelines at launch. Not actionable at $500 CAD/mo (PMax requires higher budget to exit learning phase).
+
+### NULL FINDINGS (explicit)
+
+- **Canadian CPL benchmarks:** No new Canada-specific real estate CPL data published May 11–17. The $87 CAD December 2025 endpoint (SuperAds.ai) remains current. No Q1 2026 Canada data available from any monitored source.
+- **Meta Ads Manager feature changes (May 11–17):** No new ads-platform announcements confirmed. SocialBee last updated May 8, 2026.
+- **Housing SAC restrictions/relaxations:** No new policy changes in the window. March 2026 framework is current.
+
+### May 17 Sources
+- Mediastrobe/Medium — Meta Housing Ads 2026: Geo-Targeting Under Special Ad Category Restrictions (March 10, 2026)
+- Meta Business Help Center — Turn Off Advantage+ Creative Enhancements
+- Metalla Digital — 10 Meta Advantage+ Creative Enhancements
+- Social Media Today — TikTok World 2026 ad tool announcements (May 13, 2026)
+- ALM Corp — TikTok World 2026 (May 15, 2026)
+- Google Blog — Steer performance with new AI Max features (April 30, 2026)
+- Releasebot — Google Ads API v24.1 release notes (May 13, 2026)
+- Jon Loomer — Purchase event 730-day retention deadline May 18, 2026
