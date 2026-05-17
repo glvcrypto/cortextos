@@ -363,6 +363,52 @@ export const RemotionRoot: React.FC = () => (
       }}
     />
 
+    {/* 1080×1080 — Intro 1 v2: Who Is GLV Marketing (BNS/Ben/AI-fleet removed) */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-16_carousel-intro-1-who-is-glv-v2.md */}
+    <Composition
+      id="Intro1WhoIsGLVv2"
+      component={GLVCarousel}
+      durationInFrames={8 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "hook", tag: "@glv.marketing", headline: "I walked away from a stable career to build this.", body: "This is GLV Marketing. Here's who we are, why we started, and what makes us different from every other agency in Northern Ontario." },
+          { type: "content", headline: "I had stability. I left anyway.", body: "I spent years in corporate pulling a steady income. But I kept watching the same thing happen: small businesses spending real money on marketing that wasn't built to last. I knew I could build something better." },
+          { type: "content", headline: "Most marketing is a treadmill.", body: "You pay, it runs. You stop paying, it stops. No foundation, no compounding, no lasting result. I wanted to build marketing that stacks over time, not resets every month." },
+          { type: "content", headline: "GLV is a different kind of agency.", body: "Not a content mill. Not a freelancer piecing things together between clients. A focused operation built to deliver real marketing infrastructure for small and mid-size businesses." },
+          { type: "content", headline: "We're built for the long game.", body: "Most agencies sell you a month-to-month relationship. We build systems that compound. The longer you work with us, the more your marketing does. That's the model." },
+          { type: "content", headline: "Sault Ste. Marie built. Canada-wide capable.", body: "We're based in Sault Ste. Marie, Ontario. We work with businesses across Northern Ontario and take on clients from anywhere in Canada. Location has never been a barrier." },
+          { type: "content", headline: "We run a tight process. The results compound.", body: "Every client goes through the same research cycle, strategy build, and ongoing execution review. That structure is what makes the results stack week over week, instead of starting over every month." },
+          { type: "cta", headline: "Follow to see how this actually works.", body: "We share the behind-the-scenes: what's working in local SEO, how we approach real client work, and what we're building as we grow. No filler. No fluff. Follow along." },
+        ] as SlideData[],
+      }}
+    />
+
+    {/* 1080×1080 — Intro 3 v2: How We Work (process-forward, AI-fleet removed) */}
+    {/* Source: orgs/glv/social/glvbuilds/drafts/2026-05-16_carousel-intro-3-how-we-work-v2.md */}
+    <Composition
+      id="Intro3HowWeWorkv2"
+      component={GLVCarousel}
+      durationInFrames={8 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "hook", tag: "@glv.marketing", headline: "Here's exactly how we work on your account. Step by step.", body: "We don't bill by the hour and guess as we go. Every GLV client goes through the same structured process. Here's what that looks like and why it works." },
+          { type: "content", headline: "We start by researching your market.", body: "Before we write a word or build a page, we learn your competitive landscape, your target search terms, and where your customers are looking. That research drives every decision that follows." },
+          { type: "content", headline: "Then we build the foundation.", body: "Website, content plan, SEO structure, local presence. We put the pieces in place in the right order. A strong foundation is what makes the next steps compound instead of reset." },
+          { type: "content", headline: "Then we execute. Consistently.", body: "Content goes out on schedule. SEO work gets done weekly. Ads get monitored and adjusted. No gaps, no off weeks. Consistent execution is what separates marketing that compounds from marketing that coasts." },
+          { type: "content", headline: "We review everything before it goes out.", body: "Every deliverable goes through a review step before it reaches your audience. Strategy calls, content sign-offs, campaign reports. Nothing ships without a check." },
+          { type: "content", headline: "The work stacks over time.", body: "Month one builds the foundation. Month three, you start ranking. Month six, you're getting leads you didn't have before. This is what marketing looks like when it compounds instead of resets." },
+          { type: "content", headline: "You get one team. One strategy. One direction.", body: "We handle the research, the planning, the execution, and the reporting. No juggling three agencies or briefing four different people. One relationship, one standard, consistent across everything." },
+          { type: "cta", headline: "If your business needs marketing that compounds, message us.", body: "We take a small number of clients at a time. If you want to know whether GLV is the right fit, start with a message." },
+        ] as SlideData[],
+      }}
+    />
+
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
     {/* durationInFrames/videoPath set at render time via --props */}
     <Composition
