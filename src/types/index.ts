@@ -195,6 +195,21 @@ export interface AgentConfig {
    * poller will be skipped regardless.
    */
   telegram_polling?: boolean;
+  /**
+   * Model to use when the agent is idle: inbox empty AND no pending/in-progress
+   * tasks assigned to it AND the only recent cron fires are heartbeat-type.
+   *
+   * When these conditions are met the daemon spawns the session with this model
+   * instead of `model`. On the first non-heartbeat cron injection or bus message
+   * the session is refreshed so the next session uses the full `model` again.
+   *
+   * Set to "never" (or omit) to disable idle downscaling for this agent.
+   * Useful for agents declared as "always opus" or high-stakes orchestrators.
+   *
+   * @example "claude-haiku-4-5-20251001"
+   * @example "never"
+   */
+  idle_model?: string;
 }
 
 export interface CronEntry {
