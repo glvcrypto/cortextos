@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   LineChart, Line, BarChart, Bar,
   XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
@@ -22,9 +22,15 @@ import {
   IconCheck,
   IconChevronDown,
   IconChevronRight,
+  IconCalendar,
+  IconEdit,
+  IconX,
+  IconPlayerPlay,
+  IconSend,
 } from '@tabler/icons-react';
 import type { SocialChannel, ContentPipeline, ReelPipelineState, WeeklyRollup, DraftItem, RenderItem } from '@/lib/data/social';
 import type { PlatformTimeseries, Platform } from '@/lib/data/social-analytics';
+import type { ScheduledPost, PostStatus } from '@/lib/data/social-scheduled';
 
 // --- Platform icon map ---
 function PlatformIcon({ platform, size = 16 }: { platform: string; size?: number }) {
@@ -309,6 +315,427 @@ function PlatformAnalyticsSection({ platform }: { platform: Platform }) {
   );
 }
 
+// --- Status badge for scheduled posts ---
+function StatusBadge({ status }: { status: PostStatus }) {
+  const cfg = {
+    draft:     { bg: 'bg-gray-100',   text: 'text-gray-600'  },
+    scheduled: { bg: 'bg-blue-100',   text: 'text-blue-700'  },
+    posted:    { bg: 'bg-green-100',  text: 'text-green-700' },
+    failed:    { bg: 'bg-red-100',    text: 'text-red-600'   },
+    cancelled: { bg: 'bg-yellow-100', text: 'text-yellow-700' },
+  }[status] ?? { bg: 'bg-gray-100', text: 'text-gray-500' };
+  return (
+    <span className={`rounded px-1.5 py-0.5 text-[11px] font-medium capitalize ${cfg.bg} ${cfg.text}`}>
+      {status}
+    </span>
+  );
+}
+
+// --- Edit-via-boss modal ---
+function EditModal({
+  post,
+  onClose,
+  onSent,
+}: {
+  post: ScheduledPost;
+  onClose: () => void;
+  onSent: (msgId: string) => void;
+}) {
+  const [desc, setDesc] = useState('');
+  const [urgency, setUrgency] = useState<'now' | 'next_sync' | 'nightly_batch'>('next_sync');
+  const [sending, setSending] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  async function send() {
+    if (!desc.trim()) { setErr('Describe the change.'); return; }
+    setSending(true); setErr(null);
+    try {
+      const res = await fetch('/api/social/scheduled', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'edit_request',
+          post_id: post.id,
+          platform: post.platform,
+          _file: post._file,
+          change_description: desc,
+          urgency,
+        }),
+      });
+      const data = await res.json() as { ok?: boolean; msg_id?: string; error?: string };
+      if (!data.ok) throw new Error(data.error ?? 'unknown error');
+      onSent(data.msg_id ?? '');
+    } catch (e) {
+      setErr(String(e));
+    } finally {
+      setSending(false);
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <div className="w-full max-w-md rounded-xl border bg-background shadow-2xl p-5 space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-semibold">Edit via boss</h3>
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
+            <IconX size={16} />
+          </button>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          <span className="font-medium">{post.platform}</span>
+          {' · '}
+          {new Date(post.scheduled_at).toLocaleString('en-CA', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+        </p>
+        {post.caption && (
+          <p className="text-xs text-muted-foreground line-clamp-2 italic">&ldquo;{post.caption}&rdquo;</p>
+        )}
+        <div className="space-y-2">
+          <label className="text-xs font-medium">What to change</label>
+          <textarea
+            value={desc}
+            onChange={e => setDesc(e.target.value)}
+            placeholder='e.g. "rewrite caption to be more punchy" or "drop the scheduled date by 1 day"'
+            className="w-full rounded-md border px-3 py-2 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-ring"
+            rows={3}
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-xs font-medium">Urgency</label>
+          <select
+            value={urgency}
+            onChange={e => setUrgency(e.target.value as 'now' | 'next_sync' | 'nightly_batch')}
+            className="rounded-md border px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
+          >
+            <option value="now">Now — high priority</option>
+            <option value="next_sync">Next sync</option>
+            <option value="nightly_batch">Nightly batch</option>
+          </select>
+        </div>
+        {err && <p className="text-xs text-red-600">{err}</p>}
+        <div className="flex justify-end gap-2">
+          <button onClick={onClose} className="rounded-md border px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted/50">
+            Cancel
+          </button>
+          <button
+            onClick={() => void send()}
+            disabled={sending}
+            className="flex items-center gap-1.5 rounded-md bg-primary text-primary-foreground px-3 py-1.5 text-xs font-medium hover:bg-primary/90 disabled:opacity-50"
+          >
+            <IconSend size={12} />
+            {sending ? 'Sending…' : 'Send to boss'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- Reschedule modal (date/time picker only) ---
+function RescheduleModal({
+  post,
+  onClose,
+  onDone,
+}: {
+  post: ScheduledPost;
+  onClose: () => void;
+  onDone: () => void;
+}) {
+  const current = post.scheduled_at.slice(0, 16); // YYYY-MM-DDTHH:MM
+  const [dt, setDt] = useState(current);
+  const [saving, setSaving] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  async function save() {
+    if (!dt) { setErr('Pick a date and time.'); return; }
+    setSaving(true); setErr(null);
+    try {
+      const res = await fetch('/api/social/scheduled', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'reschedule',
+          post_id: post.id,
+          platform: post.platform,
+          _file: post._file,
+          new_scheduled_at: new Date(dt).toISOString(),
+        }),
+      });
+      const data = await res.json() as { ok?: boolean; error?: string };
+      if (!data.ok) throw new Error(data.error ?? 'unknown error');
+      onDone();
+    } catch (e) {
+      setErr(String(e));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <div className="w-full max-w-xs rounded-xl border bg-background shadow-2xl p-5 space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-semibold">Reschedule</h3>
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
+            <IconX size={16} />
+          </button>
+        </div>
+        <div className="space-y-2">
+          <label className="text-xs font-medium">New date &amp; time</label>
+          <input
+            type="datetime-local"
+            value={dt}
+            onChange={e => setDt(e.target.value)}
+            className="w-full rounded-md border px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
+          />
+        </div>
+        {err && <p className="text-xs text-red-600">{err}</p>}
+        <div className="flex justify-end gap-2">
+          <button onClick={onClose} className="rounded-md border px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted/50">
+            Cancel
+          </button>
+          <button
+            onClick={() => void save()}
+            disabled={saving}
+            className="rounded-md bg-primary text-primary-foreground px-3 py-1.5 text-xs font-medium hover:bg-primary/90 disabled:opacity-50"
+          >
+            {saving ? 'Saving…' : 'Save'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- Queued Posts panel ---
+function QueuedPostsPanel() {
+  const [posts, setPosts] = useState<ScheduledPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filterPlatform, setFilterPlatform] = useState<string>('all');
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<'date' | 'platform' | 'status'>('date');
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [editPost, setEditPost] = useState<ScheduledPost | null>(null);
+  const [reschedulePost, setReschedulePost] = useState<ScheduledPost | null>(null);
+  const [editSentIds, setEditSentIds] = useState<Set<string>>(new Set());
+
+  const load = useCallback(async () => {
+    try {
+      const res = await fetch('/api/social/scheduled');
+      const data = await res.json() as ScheduledPost[];
+      setPosts(Array.isArray(data) ? data : []);
+    } catch { /* no-op */ } finally { setLoading(false); }
+  }, []);
+
+  useEffect(() => { void load(); }, [load]);
+
+  async function cancel(post: ScheduledPost) {
+    if (!confirm(`Cancel this ${post.platform} post?`)) return;
+    await fetch('/api/social/scheduled', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'cancel', post_id: post.id, platform: post.platform, _file: post._file }),
+    });
+    void load();
+  }
+
+  const platforms = ['all', ...Array.from(new Set(posts.map(p => p.platform))).sort()];
+  const statuses = ['all', 'draft', 'scheduled', 'posted', 'failed', 'cancelled'];
+
+  const visible = posts
+    .filter(p => filterPlatform === 'all' || p.platform === filterPlatform)
+    .filter(p => filterStatus === 'all' || p.status === filterStatus)
+    .sort((a, b) => {
+      if (sortBy === 'date') return a.scheduled_at.localeCompare(b.scheduled_at);
+      if (sortBy === 'platform') return a.platform.localeCompare(b.platform);
+      return a.status.localeCompare(b.status);
+    });
+
+  return (
+    <>
+      {editPost && (
+        <EditModal
+          post={editPost}
+          onClose={() => setEditPost(null)}
+          onSent={(msgId) => {
+            setEditSentIds(s => new Set(s).add(editPost.id + ':' + msgId));
+            setEditPost(null);
+            void load();
+          }}
+        />
+      )}
+      {reschedulePost && (
+        <RescheduleModal
+          post={reschedulePost}
+          onClose={() => setReschedulePost(null)}
+          onDone={() => { setReschedulePost(null); void load(); }}
+        />
+      )}
+
+      {/* Filters + sort bar */}
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <select
+          value={filterPlatform}
+          onChange={e => setFilterPlatform(e.target.value)}
+          className="rounded-md border px-2 py-1 text-xs focus:outline-none"
+        >
+          {platforms.map(p => <option key={p} value={p}>{p === 'all' ? 'All platforms' : p}</option>)}
+        </select>
+        <select
+          value={filterStatus}
+          onChange={e => setFilterStatus(e.target.value)}
+          className="rounded-md border px-2 py-1 text-xs focus:outline-none"
+        >
+          {statuses.map(s => <option key={s} value={s}>{s === 'all' ? 'All statuses' : s}</option>)}
+        </select>
+        <div className="ml-auto flex items-center gap-1 text-xs text-muted-foreground">
+          Sort:
+          {(['date', 'platform', 'status'] as const).map(s => (
+            <button
+              key={s}
+              onClick={() => setSortBy(s)}
+              className={`rounded px-2 py-0.5 ${sortBy === s ? 'bg-primary text-primary-foreground' : 'hover:bg-muted/50'}`}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {loading ? (
+        <p className="text-sm text-muted-foreground py-4 text-center">Loading…</p>
+      ) : visible.length === 0 ? (
+        <EmptyState
+          icon={<IconCalendar size={32} />}
+          title="No queued posts"
+          sub="Scheduled posts appear here. Social agent writes to orgs/glv/clients/glv-marketing/socials/scheduled/"
+        />
+      ) : (
+        <div className="rounded-lg border overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/40 text-muted-foreground text-xs uppercase tracking-wide">
+              <tr>
+                <th className="px-4 py-2.5 text-left font-medium">Platform</th>
+                <th className="px-4 py-2.5 text-left font-medium">Caption</th>
+                <th className="px-4 py-2.5 text-left font-medium">Scheduled</th>
+                <th className="px-4 py-2.5 text-left font-medium">Status</th>
+                <th className="px-4 py-2.5 text-right font-medium">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {visible.map(post => {
+                const isExpanded = expandedId === post.id;
+                const editSentKey = Array.from(editSentIds).find(k => k.startsWith(post.id + ':'));
+                return (
+                  <React.Fragment key={post.id}>
+                    <tr
+                      className="hover:bg-muted/20 transition-colors cursor-pointer"
+                      onClick={() => setExpandedId(isExpanded ? null : post.id)}
+                    >
+                      <td className="px-4 py-2.5">
+                        <div className="flex items-center gap-2">
+                          <PlatformIcon platform={post.platform} />
+                          <span className="font-medium capitalize">{post.platform}</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2.5 max-w-xs">
+                        {post.carousel_ref && (
+                          <span className="text-[11px] text-muted-foreground font-mono block truncate">{post.carousel_ref}</span>
+                        )}
+                        <span className="text-xs text-muted-foreground line-clamp-1">
+                          {post.caption?.slice(0, 60) ?? '(no caption)'}
+                          {(post.caption?.length ?? 0) > 60 ? '…' : ''}
+                        </span>
+                      </td>
+                      <td className="px-4 py-2.5 text-xs text-muted-foreground whitespace-nowrap">
+                        {new Date(post.scheduled_at).toLocaleString('en-CA', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                      </td>
+                      <td className="px-4 py-2.5">
+                        <StatusBadge status={post.status} />
+                        {editSentKey && (
+                          <span className="ml-2 text-[11px] text-blue-600">
+                            Edit requested
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-2.5" onClick={e => e.stopPropagation()}>
+                        <div className="flex items-center justify-end gap-1">
+                          <button
+                            onClick={() => setEditPost(post)}
+                            className="flex items-center gap-1 rounded px-2 py-1 text-[11px] border hover:bg-muted/50 text-muted-foreground"
+                            title="Edit via boss"
+                          >
+                            <IconEdit size={11} />Edit
+                          </button>
+                          {post.status !== 'posted' && post.status !== 'cancelled' && (
+                            <>
+                              <button
+                                onClick={() => setReschedulePost(post)}
+                                className="flex items-center gap-1 rounded px-2 py-1 text-[11px] border hover:bg-muted/50 text-muted-foreground"
+                                title="Reschedule"
+                              >
+                                <IconCalendar size={11} />
+                              </button>
+                              <button
+                                onClick={() => void cancel(post)}
+                                className="flex items-center gap-1 rounded px-2 py-1 text-[11px] border hover:bg-red-50 text-red-500 hover:text-red-600 border-red-200"
+                                title="Cancel post"
+                              >
+                                <IconX size={11} />
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                    {isExpanded && (
+                      <tr key={`${post.id}-expanded`} className="bg-muted/10">
+                        <td colSpan={5} className="px-6 py-4">
+                          <div className="grid grid-cols-2 gap-4 text-xs">
+                            <div className="space-y-2">
+                              <p><span className="font-medium text-muted-foreground">Post ID:</span> {post.id}</p>
+                              <p><span className="font-medium text-muted-foreground">Platform:</span> {post.platform}</p>
+                              {post.carousel_ref && (
+                                <p><span className="font-medium text-muted-foreground">Carousel:</span> {post.carousel_ref}</p>
+                              )}
+                              {post.audio_brief && (
+                                <p><span className="font-medium text-muted-foreground">Audio:</span> {post.audio_brief}</p>
+                              )}
+                              {post.geotag && (
+                                <p><span className="font-medium text-muted-foreground">Geotag:</span> {post.geotag}</p>
+                              )}
+                              {post.blotato_job_id && (
+                                <p><span className="font-medium text-muted-foreground">Blotato job:</span> {post.blotato_job_id}</p>
+                              )}
+                            </div>
+                            <div className="space-y-2">
+                              {post.caption && (
+                                <div>
+                                  <p className="font-medium text-muted-foreground mb-1">Caption:</p>
+                                  <p className="whitespace-pre-wrap leading-relaxed">{post.caption}</p>
+                                </div>
+                              )}
+                              {post.hashtags.length > 0 && (
+                                <div>
+                                  <p className="font-medium text-muted-foreground mb-1">Hashtags:</p>
+                                  <p className="text-blue-600">{post.hashtags.join(' ')}</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
+  );
+}
+
 // --- Browser Session Health widget ---
 interface SessionStatus {
   state: 'ok' | 'frozen' | 'dead' | 'unknown';
@@ -432,7 +859,7 @@ export default function SocialPage() {
         <div>
           <h1 className="text-2xl font-semibold">Social</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            8-channel snapshot · Content pipeline · Reel state · Weekly rollup · Per-account analytics
+            8-channel snapshot · Per-account analytics · Queued posts · Content pipeline · Reel state
           </p>
         </div>
         <button
@@ -530,7 +957,18 @@ export default function SocialPage() {
         </div>
       </section>
 
-      {/* PANEL 3 — Content Pipeline */}
+      {/* PANEL 3 — Queued Posts */}
+      <section>
+        <div className="mb-3 flex items-center gap-2">
+          <h2 className="text-base font-semibold">Queued Posts</h2>
+          <span className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground font-medium">
+            Scheduled · Draft · Posted
+          </span>
+        </div>
+        <QueuedPostsPanel />
+      </section>
+
+      {/* PANEL 4 — Content Pipeline */}
       <section>
         <h2 className="text-base font-semibold mb-4">Content Pipeline</h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
