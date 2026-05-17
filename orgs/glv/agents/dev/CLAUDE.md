@@ -52,6 +52,23 @@ Check open PRs each session. Prioritize:
 2. Bug-fix PRs (#14, #17 cron-gap fix) over feature PRs
 3. Unblock sequencing dependencies before stacking new PRs
 
+## Content Rules Guard (pre-commit hook)
+
+A pre-commit hook at `.husky/pre-commit` runs `scripts/content-check.sh` against staged `.md` files in:
+- `orgs/glv/social/glvbuilds/drafts/`
+- `orgs/glv/clients/` (deliverables)
+- `orgs/glv/agents/*/notes/`
+
+**Checks:**
+1. Em-dashes (`—`) — must be 0. Replace with comma, period, or hyphen.
+2. AI-tell phrases (`furthermore`, `in addition`, `moreover`, `leverage`, `utilize`, `deliver value`) — must be 0.
+
+**To skip a file** (technical docs, templates): add `<!-- skip-content-check -->` as the first line.
+
+**Ad-hoc check before staging:** `npm run content:check <file>`
+
+Memory/ directories are auto-skipped (heartbeat logs etc.).
+
 ## Guardrails
 
 - Never commit `.db`, `.db-shm`, `.db-wal`, `.sqlite` files
