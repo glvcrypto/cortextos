@@ -1,0 +1,779 @@
+{
+  "version": "1.0",
+  "description": "Keyed log of signals already triaged and routed. Check before sending any ecosystem/domain scan finding. TTL = days until signal can be re-surfaced (only on material delta: new release, license change, major version bump, security incident).",
+  "signals": [
+    {
+      "key": "github.com/caramaschiHG/pentest-ai-agents",
+      "canonical_name": "pentest-ai-agents",
+      "date_triaged": "2026-05-01",
+      "triaged_by": "pentester",
+      "verdict": "PATTERN-RELEVANT but ARCHITECTURAL CONFLICT for wholesale import. ONE upgrade banked: OPSEC noise tagging (QUIET/MODERATE/LOUD). NO-OP for fleet architecture.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-15",
+      "resurface_on_delta": [
+        "new release",
+        "security incident",
+        "license change"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/claude-opus-4-7",
+      "canonical_name": "Claude Opus 4.7",
+      "date_triaged": "2026-05-02",
+      "triaged_by": "scout+boss",
+      "verdict": "UPGRADE CANDIDATE for analyst+dev. Fleet stays on sonnet-4-6 pending Aiden auth. Queued in AM brief.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-01",
+      "resurface_on_delta": [
+        "4.8 release",
+        "pricing change",
+        "API deprecation notice"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/claude-managed-agents",
+      "canonical_name": "Claude Managed Agents platform",
+      "date_triaged": "2026-05-02",
+      "triaged_by": "scout+boss",
+      "verdict": "RESURFACE TRIGGERED (2026-05-07, major feature add): Outcomes + Multiagent Orchestration hit public beta May 6. Outcomes = rubric-based self-correction; Multiagent = lead+specialist fleet on shared FS; webhooks for agent completion. Dreaming (research preview) = cross-session memory refinement. cortextOS still architecturally ahead but Anthropic narrowing gap. Routed to boss.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-07",
+      "resurface_on_delta": [
+        "GA launch",
+        "pricing announced",
+        "Dreaming GA"
+      ]
+    },
+    {
+      "key": "github.com/affaan-m/everything-claude-code",
+      "canonical_name": "everything-claude-code",
+      "date_triaged": "2026-05-02",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev for browse. Low urgency.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-16",
+      "resurface_on_delta": [
+        "major release",
+        "significant new skill pattern"
+      ]
+    },
+    {
+      "key": "github.com/VILA-Lab/Dive-into-Claude-Code",
+      "canonical_name": "Dive-into-Claude-Code architectural analysis",
+      "date_triaged": "2026-05-02",
+      "triaged_by": "scout",
+      "verdict": "Design rationale analysis only, no novel prompt/agent patterns. Not routed.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-01",
+      "resurface_on_delta": [
+        "new major section added"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/claude-sonnet-4-5",
+      "canonical_name": "Claude Sonnet 4.5",
+      "date_triaged": "2026-05-03",
+      "triaged_by": "scout",
+      "verdict": "OLD model (released Sept 2025). Fleet runs Sonnet 4.6 which is newer. SKIP \u2014 no upgrade signal.",
+      "ttl_days": 60,
+      "resurface_after": "2026-07-03",
+      "resurface_on_delta": [
+        "deprecation notice"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/claude-design",
+      "canonical_name": "Claude Design (Anthropic Labs)",
+      "date_triaged": "2026-05-03",
+      "triaged_by": "scout",
+      "verdict": "New product for software experience exploration. Reddit reaction: underwhelmed (identical outputs, container soup). Not fleet-actionable.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-03",
+      "resurface_on_delta": [
+        "major capability update",
+        "fleet-relevant integration"
+      ]
+    },
+    {
+      "key": "red.anthropic.com/2026/mythos-preview",
+      "canonical_name": "Claude Mythos Preview / Project Glasswing",
+      "date_triaged": "2026-05-03",
+      "triaged_by": "scout",
+      "verdict": "Safety-research limited release. Autonomous RCE capability on FreeBSD. Not fleet-actionable.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-03",
+      "resurface_on_delta": [
+        "general availability",
+        "security bulletin"
+      ]
+    },
+    {
+      "key": "github.com/VoltAgent/awesome-agent-skills",
+      "canonical_name": "VoltAgent/awesome-agent-skills",
+      "date_triaged": "2026-05-03",
+      "triaged_by": "scout\u2192dev+seo",
+      "verdict": "ROUTED to dev (WordPress/security/web categories) and seo (marketing/SEO category). 1000+ official skills from 40+ orgs. Not cortextOS-native format but reference library.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-17",
+      "resurface_on_delta": [
+        "major new org skills added",
+        "cortextOS compatibility added"
+      ]
+    },
+    {
+      "key": "github.com/superpowers-claude-code",
+      "canonical_name": "Superpowers TDD framework",
+      "date_triaged": "2026-05-03",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. 94K stars, TDD-enforced 7-phase workflow, Anthropic marketplace. Pattern reference for dev agent.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-17",
+      "resurface_on_delta": [
+        "major version release",
+        "cortextOS integration"
+      ]
+    },
+    {
+      "key": "github.com/Piebald-AI/claude-code-system-prompts",
+      "canonical_name": "claude-code-system-prompts (Piebald-AI)",
+      "date_triaged": "2026-05-05",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. Documented Claude Code system prompts v2.1.128 (May 4 2026) including Plan/Explore/Task sub-agent prompts, hooks, CLAUDE.md format. Reference material.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-19",
+      "resurface_on_delta": [
+        "major version update",
+        "new sub-agent type added"
+      ]
+    },
+    {
+      "key": "github.com/trendsmcp/trends-agent-claude",
+      "canonical_name": "trends-agent-claude (trendsmcp)",
+      "date_triaged": "2026-05-05",
+      "triaged_by": "scout\u2192boss",
+      "verdict": "ROUTED to boss. MCP server for live trend data (Google, YouTube, Reddit, HN, Amazon etc). HTTP-mediated, free tier. Scout-relevant for ecosystem scanning.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-19",
+      "resurface_on_delta": [
+        "paid-tier changes",
+        "cortextOS MCP integration",
+        "major new data source"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/enabling-claude-code-autonomously",
+      "canonical_name": "Enabling Claude Code to work more autonomously",
+      "date_triaged": "2026-05-05",
+      "triaged_by": "scout",
+      "verdict": "OLD (published Sept 29 2025). Checkpoints, subagents, hooks, background tasks already shipped. No routing needed.",
+      "ttl_days": 60,
+      "resurface_after": "2026-07-05",
+      "resurface_on_delta": [
+        "follow-up article",
+        "new autonomy feature"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/claude-for-creative-work",
+      "canonical_name": "Claude for Creative Work (Apr 28 2026)",
+      "date_triaged": "2026-05-05",
+      "triaged_by": "scout",
+      "verdict": "TRACK only. Connectors for Ableton, Adobe CC, Blender, Autodesk, SketchUp \u2014 design-software focused. Not actionable for GLV content agent (text/copywriting scope).",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-05",
+      "resurface_on_delta": [
+        "text/content tool connector added",
+        "copywriting workflow integration"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/enterprise-ai-services-blackstone",
+      "canonical_name": "Anthropic enterprise AI JV with Blackstone/HF/Goldman (May 4 2026)",
+      "date_triaged": "2026-05-05",
+      "triaged_by": "scout",
+      "verdict": "TRACK only. Enterprise services company. Not fleet-actionable for GLV at current scale.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-05",
+      "resurface_on_delta": [
+        "SMB tier announced",
+        "pricing that affects GLV"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/agents-for-financial-services",
+      "canonical_name": "Anthropic Agents for Financial Services (May 5 2026)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout",
+      "verdict": "TRACK only. Vertical-specific financial agent tooling. Not GLV-actionable at current scale.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-06",
+      "resurface_on_delta": [
+        "SMB/agency tier announced",
+        "pricing relevant to GLV"
+      ]
+    },
+    {
+      "key": "anthropic.com/api/context-window-beta-retirement",
+      "canonical_name": "1M context window beta retired \u2014 migrate to Sonnet 4.6/Opus 4.7 (Apr 30 2026)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout",
+      "verdict": "FLEET NOTE: scout already on Sonnet 4.6, unaffected. No action required.",
+      "ttl_days": 90,
+      "resurface_after": "2026-08-06",
+      "resurface_on_delta": [
+        "new context window change"
+      ]
+    },
+    {
+      "key": "anthropic.com/api/model-deprecation-sonnet4-opus4-jun15",
+      "canonical_name": "Claude Sonnet 4 + Opus 4 deprecated \u2014 retire June 15 2026 (Apr 14 2026)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. Fleet risk: any agent using claude-sonnet-4 or claude-opus-4 (non-versioned) must migrate by June 15. Fleet audit needed.",
+      "ttl_days": 40,
+      "resurface_after": "2026-06-15",
+      "resurface_on_delta": [
+        "retirement date change",
+        "grace period extension"
+      ]
+    },
+    {
+      "key": "anthropic.com/api/advisor-tool-beta",
+      "canonical_name": "Advisor Tool public beta \u2014 executor+advisor model pairing (Apr 9 2026)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. New API pattern: faster executor model + higher-intelligence advisor for mid-generation guidance in long-horizon agentic tasks. Relevant to cortextOS multi-step task dispatch.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-06",
+      "resurface_on_delta": [
+        "GA launch",
+        "pricing announced",
+        "cortextOS integration path"
+      ]
+    },
+    {
+      "key": "github.com/ruflo/ruflo",
+      "canonical_name": "ruflo \u2014 Claude multi-agent orchestration (44.7K stars)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. Top trending agent orchestration platform for Claude with multi-agent swarms. High star velocity (+2,190 today). Reference for cortextOS fleet coordination patterns.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-20",
+      "resurface_on_delta": [
+        "major version release",
+        "cortextOS integration"
+      ]
+    },
+    {
+      "key": "github.com/agent-skills/agent-skills",
+      "canonical_name": "agent-skills \u2014 production AI coding agent skills (29.2K stars)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. Production-grade engineering skills library for AI coding agents. Directly relevant to cortextOS community skills catalog development.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-20",
+      "resurface_on_delta": [
+        "major new skill category",
+        "cortextOS format compatibility"
+      ]
+    },
+    {
+      "key": "hn.algolia.com/agents-cloudflare-deploy-2026-05",
+      "canonical_name": "HN: Agents can create Cloudflare accounts, buy domains, and deploy (425pts)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout\u2192boss",
+      "verdict": "ROUTED to boss. Autonomy expansion signal \u2014 agents now self-provisioning infra at Cloudflare level. Fleet-awareness item. Not immediately actionable but signals where autonomous deployment is heading.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-20",
+      "resurface_on_delta": [
+        "cortextOS Cloudflare integration",
+        "deployment autonomy policy change"
+      ]
+    },
+    {
+      "key": "hn.algolia.com/computer-use-45x-cost-2026-05",
+      "canonical_name": "HN: Computer Use is 45x more expensive than structured APIs (419pts)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout",
+      "verdict": "TRACK only. Fleet uses structured APIs not computer use. Relevant as cost-model validation for current approach.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-06",
+      "resurface_on_delta": [
+        "computer use cost parity",
+        "fleet evaluating computer use"
+      ]
+    },
+    {
+      "key": "anthropic.com/news/spacex-compute-deal",
+      "canonical_name": "Anthropic x SpaceX compute deal \u2014 Claude Code limits doubled (May 6 2026)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout",
+      "verdict": "RESURFACE TRIGGERED (2026-05-07): Official limit increase confirmed \u2014 Claude Code 5h limits doubled across Pro/Max/Team/Enterprise, peak-hours throttling removed for Pro+Max. Fleet operational win. Routed to boss.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-06",
+      "resurface_on_delta": [
+        "further limit increase",
+        "pricing change"
+      ]
+    },
+    {
+      "key": "events.anthropic.com/code-with-claude-global-series",
+      "canonical_name": "Code with Claude global event series (SF May 6-7, London May 19, Tokyo June 10)",
+      "date_triaged": "2026-05-06",
+      "triaged_by": "scout",
+      "verdict": "UPDATED 2026-05-07: SF Day 2 scan complete. Major announcements confirmed from May 6: rate limits doubled, Routines, CI auto-fix, Code Review, Claude Agent SDK external, Managed Agents Outcomes+Multiagent public beta. Day 2 (May 7) = workshops only, no new announcements. Next: London May 19 scan.",
+      "ttl_days": 35,
+      "resurface_after": "2026-05-19",
+      "resurface_on_delta": [
+        "London event announcement",
+        "recording published with new Claude Code capability"
+      ]
+    },
+    {
+      "key": "github.com/browserbase/skills",
+      "canonical_name": "Browserbase Skills \u2014 web browsing SDK for Claude Code agents",
+      "date_triaged": "2026-05-07",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. Official SDK from Browserbase giving Claude agents structured web browsing tools. GitHub trending May 5. Skill-based architecture, integrates with Browserbase infra. Could enhance scout web-research and dev agent capabilities.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-21",
+      "resurface_on_delta": [
+        "MCP integration",
+        "cortextOS compatibility",
+        "major feature release"
+      ]
+    },
+    {
+      "key": "github.com/rosaboyle/awesome-cc-oss",
+      "canonical_name": "awesome-cc-oss \u2014 Claude Code source leak analysis archive",
+      "date_triaged": "2026-05-07",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. 97-star curated archive of Claude Code source leak (Mar 31 2026): clean-room reimplementations, technical analysis of BUDDY/KAIROS/Dream systems, multi-agent orchestration patterns (hierarchical coordinator, atomic claim, shared team memory, approval mailbox). Reference for cortextOS architecture validation.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-21",
+      "resurface_on_delta": [
+        "major new analysis added",
+        "cortextOS-relevant pattern identified"
+      ]
+    },
+    {
+      "key": "hn.algolia.com/agents-dreaming-managed-agents-2026-05",
+      "canonical_name": "HN: Agents are now 'dreaming' in Claude Managed Agents (18h ago)",
+      "date_triaged": "2026-05-07",
+      "triaged_by": "scout",
+      "verdict": "TRACK only. Low engagement (6pts, 2 comments). Delta on already-tracked claude-managed-agents signal: 'dreaming' = cross-agent memory refinement between sessions. Qualifies as 'major feature add' resurface trigger on existing entry. Fleet still ahead of this approach; not actionable.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-07",
+      "resurface_on_delta": [
+        "GA launch",
+        "pricing announced"
+      ]
+    },
+    {
+      "key": "anthropic.com/claude-code/v2.1.129-131",
+      "canonical_name": "Claude Code v2.1.129/2.1.131 CLI updates (May 6 2026)",
+      "date_triaged": "2026-05-07",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. Key: --plugin-url for session-scoped plugin distribution; skillOverrides modes (off/user-invocable-only/name-only); EnterWorktree now branches from local HEAD preventing silent loss of unpushed commits; CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE env var; gateway model discovery opt-in.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-21",
+      "resurface_on_delta": [
+        "v2.1.132+ release with breaking change",
+        "skillOverrides fleet adoption"
+      ]
+    },
+    {
+      "key": "anthropic.com/claude-code/routines",
+      "canonical_name": "Claude Code Routines \u2014 async automation higher-order prompts (May 6 2026)",
+      "date_triaged": "2026-05-07",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. Strategic parity signal: Routines = higher-order prompts for async automations producing ready-to-merge PRs. cortextOS already does this via heartbeat+task loop. Dev to assess pattern overlap with skill architecture.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-07",
+      "resurface_on_delta": [
+        "Routines API published",
+        "cortextOS integration path identified"
+      ]
+    },
+    {
+      "key": "anthropic.com/claude-agent-sdk",
+      "canonical_name": "Claude Agent SDK \u2014 now public for external devs (May 6 2026)",
+      "date_triaged": "2026-05-07",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. SDK powering CLI, IDE, Desktop is now external. Reference for cortextOS architecture alignment \u2014 fleet should be consistent with these SDK patterns.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-07",
+      "resurface_on_delta": [
+        "major SDK version release",
+        "cortextOS integration"
+      ]
+    },
+    {
+      "key": "anthropic.com/claude-code/code-review-cifix",
+      "canonical_name": "Claude Code Review + CI auto-fix + Security Reviews (May 6 2026)",
+      "date_triaged": "2026-05-07",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. Code Review used by all Anthropic teams; CI auto-fix runs against PRs; Security Reviews automated. Relevant to Reyco deploy.yml N4/N5 sprint and cortextOS CI pipeline buildout.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-21",
+      "resurface_on_delta": [
+        "GA availability for API tier",
+        "CI integration docs published"
+      ]
+    },
+    {
+      "key": "anthropic.com/claude-code/v2.1.132",
+      "canonical_name": "Claude Code v2.1.132 (May 7 2026)",
+      "date_triaged": "2026-05-08",
+      "triaged_by": "scout\u2192dev",
+      "verdict": "ROUTED to dev. CLAUDE_CODE_SESSION_ID now injected into Bash subprocess environment (fleet-relevant for session correlation); CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1 opt-out; SIGINT restore fix; --resume emoji corruption fix; fullscreen sleep/wake blank screen fix; paste starting with / no longer swallowed.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-22",
+      "resurface_on_delta": [
+        "v2.1.133+ breaking change",
+        "CLAUDE_CODE_SESSION_ID fleet integration"
+      ]
+    },
+    {
+      "key": "hn.algolia.com/claude-agent-db-delete-2026-05",
+      "canonical_name": "HN: Claude-powered agent deletes company prod DB in 9 seconds (~400pts)",
+      "date_triaged": "2026-05-08",
+      "triaged_by": "scout\u2192pentester+boss",
+      "verdict": "ROUTED to pentester + boss. Cursor+Claude found prod token in codebase, executed delete, cloud auto-deleted backups. Root cause: insufficient credential isolation + no env separation. Fleet audit requested: data-deletion gate bypass vectors, credential exposure in bus CLI. Key heuristic: treat agent like enthusiastic junior dev re: credential access.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-08",
+      "resurface_on_delta": [
+        "fleet data-deletion audit complete",
+        "similar incident in another system"
+      ]
+    },
+    {
+      "key": "github.com/quemsah/awesome-claude-plugins",
+      "canonical_name": "quemsah/awesome-claude-plugins \u2014 Claude Code plugin adoption metrics (n8n)",
+      "date_triaged": "2026-05-08",
+      "triaged_by": "scout",
+      "verdict": "TRACK only. Automated catalog tracking top 100 repos using Claude Code plugins via n8n. 661 stars, 15,861 repos indexed as of May 7. Scout reference for ecosystem scanning of plugin adoption trends.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-22",
+      "resurface_on_delta": [
+        "cortextOS-relevant plugin in top-10",
+        "major methodology change"
+      ]
+    },
+    {
+      "key": "hn.algolia.com/stash-mcp-memory-2026-05",
+      "canonical_name": "HN: Stash \u2014 open-source MCP memory layer (pg_vector + 28 tools)",
+      "date_triaged": "2026-05-08",
+      "triaged_by": "scout",
+      "verdict": "TRACK only. PostgreSQL+pg_vector backend, 28 MCP recall/remember tools, background consolidation, Apache 2.0. Essentially a RAG wrapper. cortextOS has own memory system (MEMORY.md + kb-ingest). Not now-actionable \u2014 no differentiated capability over current approach.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-08",
+      "resurface_on_delta": [
+        "automatic memory consolidation (no manual writes)",
+        "cortextOS MCP integration path"
+      ]
+    },
+    {
+      "key": "hn.algolia.com/uber-claude-code-budget-burn-2026-05",
+      "canonical_name": "HN: Uber torches 2026 AI budget on Claude Code in four months (401pts)",
+      "date_triaged": "2026-05-07",
+      "triaged_by": "scout",
+      "verdict": "TRACK only. Cost architecture signal. Key patterns identified: long conversation context reuse, misaligned incentives (token spend as productivity proxy), inefficient prompt design. Fleet uses 4h heartbeat + session cycling \u2014 already mitigates most of these patterns.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-07",
+      "resurface_on_delta": [
+        "fleet evaluating token cost optimization",
+        "cost spike detected in fleet"
+      ]
+    },
+    {
+      "key": "artificialawyer.com/claude-for-legal-2026-05",
+      "canonical_name": "Claude for Legal launch",
+      "date_triaged": "2026-05-13",
+      "triaged_by": "scout",
+      "verdict": "ACTIONABLE-NOW for local AI service line. Cloud-hosted = data leaves firm. cortextOS private = counter-positioning for PIPEDA law firms. Routed to boss with framing suggestion.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-13",
+      "resurface_on_delta": [
+        "pricing change",
+        "major feature update",
+        "compliance certification"
+      ]
+    },
+    {
+      "key": "github.com/mattpocock/skills",
+      "canonical_name": "mattpocock/skills TypeScript skills framework",
+      "date_triaged": "2026-05-13",
+      "triaged_by": "scout",
+      "verdict": "ACTIONABLE-WITHIN-30D. 3,372 stars today. TypeScript skills framework with Claude integration. Routed to dev for compatibility eval vs cortextOS skill architecture.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-27",
+      "resurface_on_delta": [
+        "v1.0 release",
+        "cortextOS integration confirmed",
+        "breaking change"
+      ]
+    },
+    {
+      "key": "github.com/rohitg00/agentmemory",
+      "canonical_name": "agentmemory persistent memory library",
+      "date_triaged": "2026-05-13",
+      "triaged_by": "scout",
+      "verdict": "ACTIONABLE-WITHIN-30D. 1,335 stars. Persistent cross-session memory for Claude agents. Routed to dev for comparison vs kb-ingest/GEMINI pattern.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-27",
+      "resurface_on_delta": [
+        "major version bump",
+        "dev eval completed",
+        "security issue"
+      ]
+    },
+    {
+      "key": "cortextos.community/skills/cold-outreach-verify",
+      "canonical_name": "cold-outreach-verify skill",
+      "date_triaged": "2026-05-13",
+      "triaged_by": "scout",
+      "verdict": "ACTIONABLE-NOW. 7-category Phi Accrual verification gate for cold outreach. Replaces WebFetch+ledger pattern. Routed to prospector with install action.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-13",
+      "resurface_on_delta": [
+        "major version",
+        "gate category change"
+      ]
+    },
+    {
+      "key": "cortextos.community/skills/site-availability-verify",
+      "canonical_name": "site-availability-verify skill",
+      "date_triaged": "2026-05-13",
+      "triaged_by": "scout",
+      "verdict": "ACTIONABLE-NOW. 4-step DNS+curl site state check, replaces WebFetch-only. Cited by cold-outreach-verify. Routed to prospector with install action.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-13",
+      "resurface_on_delta": [
+        "major version"
+      ]
+    },
+    {
+      "key": "anthropic.com/claude-code-agent-view-goal-v2.1.139",
+      "canonical_name": "Claude Code Agent View + /goal command (v2.1.139, May 11)",
+      "date_triaged": "2026-05-14",
+      "triaged_by": "scout",
+      "verdict": "ACTIONABLE-WITHIN-30D. 'claude agents' command shows all sessions (running/blocked/done). '/goal' sets completion condition \u2014 Claude works autonomously until met. Both relevant to cortextOS multi-agent architecture and dashboard. Routed to dev.",
+      "ttl_days": 30,
+      "resurface_after": "2026-06-13",
+      "resurface_on_delta": true
+    },
+    {
+      "key": "anthropic.com/claude-for-small-business-2026-05",
+      "canonical_name": "Claude for Small Business (QuickBooks, HubSpot, Canva, DocuSign, GWorkspace, M365 connectors)",
+      "date_triaged": "2026-05-14",
+      "triaged_by": "scout",
+      "verdict": "ACTIONABLE-NOW \u2192 boss-decision. Connectors for tools GLV and clients already use. Evaluate as GLV ops tool + potential service offering for client SMBs. Routed to boss.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-21",
+      "resurface_on_delta": true
+    },
+    {
+      "key": "anthropic.com/managed-agents-dreaming-outcomes-multiagent-2026-05",
+      "canonical_name": "Claude Managed Agents: Dreaming + Outcomes + Multiagent orchestration (May 2026)",
+      "date_triaged": "2026-05-14",
+      "triaged_by": "scout",
+      "verdict": "RE-SURFACE ACTIONABLE-NOW \u2192 boss-decision. Dreaming (cross-session memory review) parallels cortextOS kb-ingest+MEMORY.md. Outcomes = success rubric (parallels goals.json). Multiagent orchestration = delegating to specialists. Evaluate PIPEDA positioning impact and whether cortextOS needs a Dreaming-equivalent on roadmap. Routed to boss.",
+      "ttl_days": 14,
+      "resurface_after": "2026-05-21",
+      "resurface_on_delta": true
+    },
+    {
+      "key": "github.com/caramaschiHG/awesome-ai-agents-2026",
+      "canonical_name": "awesome-ai-agents-2026 (300+ resources, updated monthly)",
+      "date_triaged": "2026-05-14",
+      "triaged_by": "scout",
+      "verdict": "WATCH-ONLY. Scout reference for future ecosystem scans. Added to source rotation.",
+      "ttl_days": 60,
+      "resurface_after": "2026-07-14",
+      "resurface_on_delta": false
+    },
+    {
+      "key": "anthropic.com/news/gates-foundation-partnership-2026-05",
+      "canonical_name": "Gates Foundation $200M Anthropic partnership (May 14 2026)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "watch-only",
+      "ttl_days": 90,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "hn.algolia.com/ai-agent-database-deletion-prod-2026-05",
+      "canonical_name": "HN: AI agent deletes production database via token found in codebase (HN:47924586)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-now",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": "if similar incident recurs"
+    },
+    {
+      "key": "github.com/forrestchang/andrej-karpathy-skills",
+      "canonical_name": "Karpathy CLAUDE.md (110K stars, 28d #1 GitHub trending)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-now",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "github.com/rohitg00/awesome-claude-code-toolkit",
+      "canonical_name": "awesome-claude-code-toolkit (135 agents, 35 skills, 42 commands, 20 hooks, 14 MCP configs)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-within-30d",
+      "ttl_days": 60,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "anthropic.com/claude-code/2.1.142-agent-config-flags",
+      "canonical_name": "Claude Code 2.1.142 \u2014 claude agents config flags (--mcp-config, --permission-mode, --model, --effort, --dangerously-skip-permissions)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-now \u2192 dev",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": "next major version"
+    },
+    {
+      "key": "anthropic.com/claude-code/2.1.141-terminalsequence-hook",
+      "canonical_name": "Claude Code 2.1.141 \u2014 terminalSequence hook field (daemon TTY-less desktop alerts) + background permission preservation fix",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-now \u2192 dev",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "anthropic.com/news/claude-for-small-business-2026-05",
+      "canonical_name": "Claude for Small Business \u2014 HubSpot, QuickBooks, Canva, DocuSign MCP connectors (15 pre-built agentic workflows)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-within-30d \u2192 boss (client pitch social proof for local AI service offering)",
+      "ttl_days": 60,
+      "resurface_after": null,
+      "resurface_on_delta": "pricing change or new integrations"
+    },
+    {
+      "key": "reddit.com/r/ai-agents/circuit-breakers-token-budgets-2026-05",
+      "canonical_name": "Circuit breakers for agent token budgets \u2014 per-task token ceilings prevent 5-10x overruns in retry loops",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-within-30d \u2192 dev (fleet-wide hardening)",
+      "ttl_days": 60,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "cortextos/community/skills/cold-outreach-verify-2026-05-13",
+      "canonical_name": "cortextOS community skill: cold-outreach-verify (7-category pre-send verification, uncataloged, added May 13)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-now \u2192 prospector (not yet cataloged, install from community/skills/)",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "cortextos/community/skills/site-availability-verify-2026-05-13",
+      "canonical_name": "cortextOS community skill: site-availability-verify (4-step network-layer check, uncataloged, added May 13)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-now \u2192 prospector (prerequisite for cold-outreach-verify)",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "cortextos/community/skills/upstream-sync-2026-05-14",
+      "canonical_name": "cortextOS community skill: upstream-sync (framework update checker, approval-gated apply, added May 14)",
+      "date_triaged": "2026-05-15",
+      "triaged_by": "scout",
+      "verdict": "actionable-within-30d \u2192 dev (evaluate for automated framework update management)",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "anthropic.com/news/claude-opus-4-7-task-budgets-public-beta",
+      "canonical_name": "Claude Opus 4.7 Task Budgets API (public beta) \u2014 token spend governance across long runs, same price as 4.6",
+      "date_triaged": "2026-05-16",
+      "triaged_by": "scout",
+      "verdict": "actionable-now \u2192 dev (delta on prior Opus 4.7 triage: task budgets now public beta, directly relevant to fleet long-cron cost control)",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": "GA release or pricing change"
+    },
+    {
+      "key": "anthropic.com/claude-code/ultrareview-slash-command-2026-05",
+      "canonical_name": "Claude Code /ultrareview \u2014 multi-agent cloud review of diffs, Pro/Max get 3 free trials",
+      "date_triaged": "2026-05-16",
+      "triaged_by": "scout",
+      "verdict": "actionable-now \u2192 dev (zero-config QA upgrade for PR review workflow, trials available now)",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": "pricing change or GA for all tiers"
+    },
+    {
+      "key": "github.com/VoltAgent/awesome-claude-code-subagents",
+      "canonical_name": "awesome-claude-code-subagents (VoltAgent) \u2014 100+ specialized Claude Code subagents, curated catalog",
+      "date_triaged": "2026-05-16",
+      "triaged_by": "scout",
+      "verdict": "actionable-within-30d \u2192 dev (review for cortextOS skill candidates, especially research/security/content roles)",
+      "ttl_days": 60,
+      "resurface_after": null,
+      "resurface_on_delta": "major update or new categories"
+    },
+    {
+      "key": "github.com/NousResearch/hermes-agent-2026-05",
+      "canonical_name": "Hermes by Nous Research \u2014 self-evolving autonomous agent, cross-session memory accumulation, 47K stars (MIT)",
+      "date_triaged": "2026-05-16",
+      "triaged_by": "scout",
+      "verdict": "actionable-within-30d \u2192 analyst (cross-session memory architecture review vs cortextOS design)",
+      "ttl_days": 60,
+      "resurface_after": null,
+      "resurface_on_delta": "major release or architectural change"
+    },
+    {
+      "key": "cortextos/community/skills/social-media-insights-2026-05-16",
+      "canonical_name": "cortextOS community skill: social-media-insights (created May 11, scout-discovered May 16, uncataloged) \u2014 17-step social analysis pipeline, structured JSON output, APIFY_API_KEY required (hard-errors without it)",
+      "date_triaged": "2026-05-16",
+      "triaged_by": "scout",
+      "verdict": "actionable-within-30d \u2014 integration requires Aiden approval (paid APIFY spend + cron-scope posture change); route through boss when pursuing; analyst T1-verified: created 2026-05-11, not 2026-05-16",
+      "ttl_days": 30,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "cortextos/community/skills/short-form-video-transcriber-2026-05-16",
+      "canonical_name": "cortextOS community skill: short-form-video-transcriber (May 16, uncataloged) \u2014 yt-dlp + local Whisper, /skillify converts transcripts to skills",
+      "date_triaged": "2026-05-16",
+      "triaged_by": "scout",
+      "verdict": "watch-only \u2014 content intelligence tool, low immediate fleet relevance",
+      "ttl_days": 60,
+      "resurface_after": null,
+      "resurface_on_delta": null
+    },
+    {
+      "key": "epsilla.com/agentic-ux-html-replacing-markdown-2026-05",
+      "canonical_name": "Agentic UX: HTML replacing Markdown for agent output (Anthropic Claude Code EM thesis)",
+      "date_triaged": "2026-05-16",
+      "triaged_by": "scout",
+      "verdict": "watch-only \u2014 relevant if GLV ships agent-generated client reports; no immediate fleet action",
+      "ttl_days": 90,
+      "resurface_after": null,
+      "resurface_on_delta": "adoption by major frameworks"
+    }
+  ],
+  "last_updated": "2026-05-15",
+  "total": 50
+}

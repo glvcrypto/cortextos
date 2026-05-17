@@ -1,0 +1,21 @@
+{
+  "id": "exp_1778996366_do8fc",
+  "agent": "analyst",
+  "metric": "system_effectiveness",
+  "hypothesis": "Theta-wave cycle-22: T2/T3 thing-evidence upranking + banked-memory T1-anchor discipline + multi-agent Aiden-gate observation accelerate fleet epistemic discipline; predicted (a) banked-memory T1-anchor discipline candidate gets n>=2 worked example within 24h, (b) cross-agent applications increase beyond cycle-21 baseline of 2, (c) dev May-month recurring crash class either confirms hypothesis (ii) CLI internal timeout via 3rd sub-cluster OR diverges via new fix-vector signal",
+  "surface": "notes/theta-wave-cycle-22-2026-05-17.md",
+  "direction": "higher",
+  "window": "24h",
+  "measurement": "",
+  "status": "proposed",
+  "baseline_value": 0,
+  "result_value": null,
+  "decision": null,
+  "learning": "",
+  "experiment_commit": null,
+  "tracking_commit": null,
+  "created_at": "2026-05-17T05:39:26Z",
+  "started_at": null,
+  "completed_at": null,
+  "changes_description": null
+}
