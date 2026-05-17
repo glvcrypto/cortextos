@@ -223,7 +223,7 @@ function PlatformAnalyticsSection({ platform }: { platform: Platform }) {
                       <XAxis dataKey="date" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
                       <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={fmtK} width={40} />
                       <Tooltip
-                        formatter={(v: number) => [fmtK(v), 'Followers']}
+                        formatter={(v) => [fmtK(v as number | null), 'Followers']}
                         contentStyle={{ fontSize: 12, borderRadius: 6 }}
                       />
                       <Line
@@ -246,7 +246,7 @@ function PlatformAnalyticsSection({ platform }: { platform: Platform }) {
                       <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                       <XAxis dataKey="date" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
                       <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={fmtK} width={40} />
-                      <Tooltip formatter={(v: number) => fmtK(v)} contentStyle={{ fontSize: 12, borderRadius: 6 }} />
+                      <Tooltip formatter={(v) => fmtK(v as number | null)} contentStyle={{ fontSize: 12, borderRadius: 6 }} />
                       <Bar dataKey="impressions" fill="hsl(var(--primary) / 0.6)" name="Impressions" />
                       <Bar dataKey="reach" fill="hsl(var(--primary) / 0.3)" name="Reach" />
                     </BarChart>
