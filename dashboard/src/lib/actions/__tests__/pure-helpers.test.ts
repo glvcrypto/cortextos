@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { maskToken, normalizeFsPath } from '../settings';
+import { maskToken, normalizeFsPath } from '@/lib/utils/pure-helpers';
 import { parseSkillMd } from '../skills';
 
 // ─── maskToken ────────────────────────────────────────────────────────────────
