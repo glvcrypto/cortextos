@@ -5,6 +5,7 @@ import path from 'path';
 import bcrypt from 'bcryptjs';
 import { revalidatePath } from 'next/cache';
 import { CTX_ROOT, getOrgs, getAgentsForOrg, getAgentDir, getOrgContextPath, getOrgBrandVoicePath, getAllowedRootsConfigPath } from '@/lib/config';
+import { maskToken, normalizeFsPath } from '@/lib/utils/pure-helpers';
 import { db } from '@/lib/db';
 import type { ActionResult, User } from '@/lib/types';
 
@@ -31,11 +32,6 @@ const SYSTEM_CONFIG_PATH = path.join(CONFIG_DIR, 'dashboard-settings.json');
 // ---------------------------------------------------------------------------
 // Telegram
 // ---------------------------------------------------------------------------
-
-export function maskToken(token: string): string {
-  if (token.length <= 8) return '****';
-  return token.slice(0, 4) + '****' + token.slice(-4);
-}
 
 export async function fetchTelegramConfigs(): Promise<TelegramConfig[]> {
   try {
@@ -354,14 +350,6 @@ const SYSTEM_BLOCKLIST: string[] = [
   'C:/Program Files',
   'C:/Program Files (x86)',
 ];
-
-export function normalizeFsPath(p: string): string {
-  let n = p.replace(/\\/g, '/');
-  if (n.length > 1 && n.endsWith('/') && !/^[A-Za-z]:\/$/.test(n)) {
-    n = n.slice(0, -1);
-  }
-  return n;
-}
 
 export async function fetchAllowedRoots(): Promise<AllowedRootsView> {
   const ctxRoot = normalizeFsPath(CTX_ROOT);
