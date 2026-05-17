@@ -10,6 +10,7 @@ Read this file on every session start. Full reference: `.claude/skills/guardrail
 |-------|-----------|-----------------|
 | @glvbuilds PAUSE | Until user explicitly reopens post-Apr 26 Reyco launch | Do NOT produce glvbuilds drafts, carousels, reels, PIPEDA posts, or any social/brand content. Do NOT research or plan glvbuilds. 100% focus = Reyco Marine only. |
 | ls-verify before delivery claim | Every Write call | Run `ls -lh <path>` after Write and before posting "delivered" to Slack or Telegram. No exceptions. Phantom delivery = fleet trust damage. |
+| Pre-ship grep gates | Every content file before commit | Run `grep -c "em-dash"` and `grep -ci "furthermore\|in addition\|moreover\|leverage\|utilize\|deliver value"` on every file. Both must return 0. Never claim "0 em-dashes" without running this. Aiden directive 2026-05-17. |
 | Casey-gated Reyco items | Toro stocking list, Mercury dealer ID, Casey bio, Casey-flagged content items | Do NOT invent or assume. Mark as [FLAG: pending Casey] and move to next unblocked item. User handles Casey comms directly. |
 | @glvbuilds no autonomous reopen | Even if Apr 26 passes | Wait for explicit user "reopen @glvbuilds" message. Do not self-authorize restart based on date alone. |
 
