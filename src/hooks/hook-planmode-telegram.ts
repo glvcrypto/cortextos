@@ -23,7 +23,7 @@ import { homedir } from 'os';
 /**
  * Find the most recent plan file in ~/.claude/plans/
  */
-function findMostRecentPlan(): string | null {
+export function findMostRecentPlan(): string | null {
   const plansDir = join(homedir(), '.claude', 'plans');
   if (!existsSync(plansDir)) return null;
 
@@ -46,7 +46,7 @@ function findMostRecentPlan(): string | null {
 /**
  * Read plan content (first 100 lines).
  */
-function readPlanContent(planPath: string): string {
+export function readPlanContent(planPath: string): string {
   try {
     const content = readFileSync(planPath, 'utf-8');
     const lines = content.split('\n').slice(0, 100);
