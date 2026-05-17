@@ -2,60 +2,20 @@
  * Scheduled posts data layer.
  * Reads per-date, per-platform JSON files from the scheduled/ directory.
  * File path: orgs/glv/clients/glv-marketing/socials/scheduled/YYYY-MM-DD/platform-slug.json
+ *
+ * Pure types and constants are in social-scheduled-types.ts so client components
+ * can import them without pulling in Node.js `fs`.
  */
 import fs from 'fs';
 import path from 'path';
+export type { PostStatus, GlvCategory, ScheduledPost, EditRequest } from './social-scheduled-types.js';
+export { GLV_CATEGORIES } from './social-scheduled-types.js';
+import type { ScheduledPost } from './social-scheduled-types.js';
 
 const CTX_ROOT = process.env.CTX_ROOT ?? path.join(process.cwd(), '..');
 const SCHEDULED_BASE = path.join(
   CTX_ROOT, 'orgs', 'glv', 'clients', 'glv-marketing', 'socials', 'scheduled',
 );
-
-export type PostStatus = 'draft' | 'scheduled' | 'posted' | 'failed' | 'cancelled';
-
-export const GLV_CATEGORIES = [
-  'Marketing',
-  'SEO',
-  'Email Marketing',
-  'Paid Ad Strategy',
-  'Website Building',
-  'Claude Code for GLV',
-  'Local SEO & GBP',
-  'AI Integration for SMBs',
-  'Lead Gen & Cold Outreach',
-] as const;
-
-export type GlvCategory = typeof GLV_CATEGORIES[number];
-
-export interface ScheduledPost {
-  id: string;
-  platform: string;
-  scheduled_at: string;
-  status: PostStatus;
-  carousel_ref: string | null;
-  caption: string | null;
-  hashtags: string[];
-  audio_brief: string | null;
-  geotag: string | null;
-  blotato_job_id: string | null;
-  // Item 2 — content categorization
-  category: GlvCategory | null;
-  // Item 3 schema fields (implementation gated on ManyChat credentials)
-  first_comment: string | null;
-  manychat_keyword_triggers: string[];
-  manychat_dm_template_id: string | null;
-  // Derived
-  _file: string;
-  _date: string;
-}
-
-export interface EditRequest {
-  post_id: string;
-  platform: string;
-  change_description: string;
-  urgency: 'now' | 'next_sync' | 'nightly_batch';
-  requested_at: string;
-}
 
 export function getAllScheduledPosts(): ScheduledPost[] {
   const posts: ScheduledPost[] = [];

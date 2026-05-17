@@ -31,8 +31,8 @@ import {
 } from '@tabler/icons-react';
 import type { SocialChannel, ContentPipeline, ReelPipelineState, WeeklyRollup, DraftItem, RenderItem } from '@/lib/data/social';
 import type { PlatformTimeseries, Platform } from '@/lib/data/social-analytics';
-import type { ScheduledPost, PostStatus } from '@/lib/data/social-scheduled';
-import { GLV_CATEGORIES } from '@/lib/data/social-scheduled';
+import type { ScheduledPost, PostStatus } from '@/lib/data/social-scheduled-types';
+import { GLV_CATEGORIES } from '@/lib/data/social-scheduled-types';
 
 interface PlatformBestTimes {
   platform: string;
