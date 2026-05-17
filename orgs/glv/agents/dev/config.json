@@ -48,6 +48,12 @@
       "type": "recurring",
       "interval": "48h",
       "prompt": "Read .claude/skills/autoresearch/SKILL.md and execute the experiment loop for the deploy-reliability cycle."
+    },
+    {
+      "name": "social-analytics-scrape",
+      "type": "recurring",
+      "cron": "0 6 * * *",
+      "prompt": "Run daily social analytics scrape. Execute: node $CTX_ROOT/../../dist/social/scrape.js (or node /home/aiden/cortextos/dist/social/scrape.js if CTX_ROOT is unavailable). Report per-platform results: which platforms succeeded, which failed, and any error messages. If 3+ platforms fail, send alert via cortextos bus send-telegram."
     }
   ],
   "ecosystem": {
