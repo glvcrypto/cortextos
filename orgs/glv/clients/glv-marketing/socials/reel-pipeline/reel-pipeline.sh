@@ -104,7 +104,7 @@ log "Transcript: ${TRANSCRIPT_TEXT:0:120}..."
 # ── Step 5: Claude generates headline + caption ───────────────────────────────
 log "Generating headline via Claude CLI..."
 
-HEADLINE_PROMPT="You are writing hook-style social media copy for GLV Marketing (a Canadian digital marketing agency). Given this transcript, write a single punchy 1-line headline (max 10 words) for the reel. Rules: no em-dashes, no AI-tells (no leverage/elevate/unlock/transform/game-changer/dive-in), no hedging openers, no tricolons. Canadian English. Just output the headline text, nothing else.
+HEADLINE_PROMPT="You are writing the on-screen headline for a social media reel. Write a single conversational hook (6-10 words, sentence case, no all-caps). Voice: casual Gen-Z creator talking to a friend about the clip — 'what someone would say to describe this to a friend'. Use first or second person (you/I/we) where natural. No formal speech style, no quote-attribution, no news-headline format, no em-dashes, no AI-tells (leverage/elevate/unlock/transform/game-changer/dive-in). Examples of the right tone: 'this old JFK clip is genuinely wild', 'what JFK said that still hits today', 'I did not expect this to land so hard'. Just output the headline text, nothing else.
 
 Transcript: ${TRANSCRIPT_TEXT}"
 
