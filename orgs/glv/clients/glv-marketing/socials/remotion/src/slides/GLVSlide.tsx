@@ -24,6 +24,99 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
   const slideNum = String(slideIndex + 1).padStart(2, "0");
   const totalNum = String(totalSlides).padStart(2, "0");
 
+  if (slide.type === "cover") {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          background: accent,
+          fontFamily: font,
+          position: "relative",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          padding: `${padding.top}px ${padding.horizontal}px ${padding.bottom}px`,
+          boxSizing: "border-box",
+          color: bg,
+        }}
+      >
+        {/* Top eyebrow — series label */}
+        <div
+          style={{
+            fontSize: 28,
+            fontWeight: weights.semibold,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            opacity: 0.92,
+          }}
+        >
+          Intro {slide.coverNumber} / {slide.coverTotal}
+        </div>
+
+        {/* Center stack: giant number + title */}
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "flex-start",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 520,
+              fontWeight: weights.extrabold,
+              lineHeight: 0.85,
+              letterSpacing: "-0.04em",
+              marginBottom: 36,
+            }}
+          >
+            {slide.coverNumber}
+          </div>
+
+          <div
+            style={{
+              fontSize: 108,
+              fontWeight: weights.extrabold,
+              lineHeight: 1.0,
+              letterSpacing: "-0.01em",
+              textTransform: "uppercase",
+              maxWidth: "100%",
+            }}
+          >
+            {slide.headline}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderTop: `1px solid rgba(255,255,255,0.28)`,
+            paddingTop: 20,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: weights.semibold,
+              letterSpacing: "0.02em",
+            }}
+          >
+            @glv.marketing
+          </div>
+          <div style={{ fontSize: 22, opacity: 0.88 }}>
+            {slideNum} / {totalNum}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       style={{

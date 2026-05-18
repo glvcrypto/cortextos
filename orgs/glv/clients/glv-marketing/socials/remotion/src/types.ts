@@ -1,8 +1,8 @@
-export type SlideType = "hook" | "content" | "cta";
+export type SlideType = "hook" | "content" | "cta" | "cover";
 
 export interface SlideData {
   type: SlideType;
-  /** Main headline or hook text */
+  /** Main headline or hook text. For cover slides: the series title (e.g. "Who is GLV") */
   headline: string;
   /** Optional subtext / body copy */
   body?: string;
@@ -12,6 +12,10 @@ export interface SlideData {
   bgImage?: string;
   /** Slide-level tag/label shown above headline (e.g. "TIP #1") */
   tag?: string;
+  /** Cover-only: position in series (e.g. 1 in "1 OF 3") */
+  coverNumber?: number;
+  /** Cover-only: series total (e.g. 3 in "1 OF 3") */
+  coverTotal?: number;
 }
 
 export interface CarouselProps {

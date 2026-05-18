@@ -501,6 +501,76 @@ export const RemotionRoot: React.FC = () => (
       }}
     />
 
+    {/* 1080×1080 — Intro 1 v5: cover slide prepended to v4 (IG grid cleanup) */}
+    {/* Cover: full-red bg, giant "1", title "Who is GLV", numbered series */}
+    <Composition
+      id="Intro1WhoIsGLVv5"
+      component={GLVCarousel}
+      durationInFrames={9 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "cover", headline: "Who is GLV", coverNumber: 1, coverTotal: 3 },
+          { type: "hook", tag: "@glv.marketing", headline: "Most local marketing stops working the moment you stop paying.", body: "This is GLV Marketing. Here's why we exist, what we do, and what makes us different from every other agency in Northern Ontario." },
+          { type: "content", headline: "GLV started because local businesses deserve marketing that lasts.", body: "Most agencies hand you a report and call it a month. The results reset with the billing cycle. We built GLV to change that pattern: an agency where each month's work adds to the last." },
+          { type: "content", headline: "By month 6, most businesses are right where they started.", body: "They paid for ads, got some clicks, stopped paying, lost them. Paid for SEO, got a report, watched nothing rank. Marketing that resets isn't marketing. It's a subscription to standing still." },
+          { type: "content", headline: "GLV is built to produce marketing infrastructure that compounds.", body: "We work with a small number of clients at a time. Every account gets a full strategy, a real foundation, and consistent execution that builds from month one onward." },
+          { type: "content", headline: "Month 3 looks different. Month 6 looks completely different.", body: "Most agencies sell month-to-month relationships. We build systems where each month adds to the last. The longer you work with us, the more your marketing earns. That's the model." },
+          { type: "content", headline: "Based in Sault Ste. Marie. Working with businesses across Canada.", body: "Northern Ontario is where we started. Most of our clients are here because they needed someone who understood the local market. We take on clients from anywhere in Canada. Location has never been a barrier." },
+          { type: "content", headline: "Every client runs through the same research, build, and execution cycle.", body: "That structure is what makes results compound. We apply the same method every time, built from what we've seen actually work for local businesses. The results stack because the work does." },
+          { type: "cta", headline: "What does your marketing do when you stop paying for it?", body: "If the answer is 'stops,' that's worth a conversation. Follow along to see what marketing that compounds looks like, from real client work to the strategies and tools we use every week." },
+        ] as SlideData[],
+      }}
+    />
+
+    {/* 1080×1080 — Intro 2 v3: cover slide prepended to v2 (IG grid cleanup) */}
+    <Composition
+      id="Intro2WhatWeDov3"
+      component={GLVCarousel}
+      durationInFrames={9 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "cover", headline: "What we do", coverNumber: 2, coverTotal: 3 },
+          { type: "hook", tag: "@glv.marketing", headline: "We do six things. We do them in one place.", body: "Most small businesses patch together three or four vendors to cover their marketing. GLV handles it all with one strategy behind it." },
+          { type: "content", headline: "We get you found when people search.", body: "Search engine optimization drives compounding traffic. We focus on Google Business Profile for local businesses and on-page SEO for service-area reach. This is where most of our clients see their biggest return." },
+          { type: "content", headline: "Your website should work as hard as you do.", body: "We design and build on WordPress and Vite. Clean structure, fast load times, built around the search terms your customers actually use. A site that looks good, loads fast, and converts." },
+          { type: "content", headline: "Your email list is the one thing you actually own.", body: "We set up and run email marketing for clients who want to stay in front of their customers between seasons. Newsletters, automations, and reactivation campaigns that bring people back." },
+          { type: "content", headline: "Ads that pay for themselves.", body: "Meta and Google ads for businesses ready to accelerate. We build the campaigns, write the copy, and optimize based on what the data shows. We don't touch ad spend until the foundation is solid." },
+          { type: "content", headline: "Want AI working inside your business?", body: "We set up Claude Code and AI workflows for small and mid-size businesses. If you've been curious about AI but don't know where to start, we show you how to use it for real work, not just demos." },
+          { type: "content", headline: "AI that never leaves your building.", body: "For businesses in law, medicine, finance, or construction, cloud AI is a compliance risk. We deploy local AI systems that keep your data on your server. Built for Canadian regulated industries, PIPEDA-ready from day one." },
+          { type: "cta", headline: "We work with businesses that have something to protect.", body: "Marine dealers, contractors, healthcare practices, financial services. If you're in a local or regulated industry and want marketing that compounds, send us a message." },
+        ] as SlideData[],
+      }}
+    />
+
+    {/* 1080×1080 — Intro 3 v4: cover slide prepended to v3 (IG grid cleanup) */}
+    <Composition
+      id="Intro3HowWeWorkv4"
+      component={GLVCarousel}
+      durationInFrames={9 * brandGLV.slideDuration}
+      fps={brandGLV.fps}
+      width={brandGLV.canvas.width}
+      height={brandGLV.canvas.height}
+      defaultProps={{
+        slides: [
+          { type: "cover", headline: "How we work", coverNumber: 3, coverTotal: 3 },
+          { type: "hook", tag: "@glv.marketing", headline: "Here's exactly how we work on your account. Step by step.", body: "We don't bill by the hour and guess as we go. Every GLV client goes through the same structured process. Here's what that looks like and why it works." },
+          { type: "content", headline: "We start by researching your market.", body: "Before we write a word or build a page, we learn your competitive landscape, your target search terms, and where your customers are looking. That research drives every decision that follows." },
+          { type: "content", headline: "Then we build the foundation.", body: "Website, content plan, SEO structure, local presence. We put the pieces in place in the right order. A strong foundation is what makes the next steps compound instead of reset." },
+          { type: "content", headline: "Then we execute. Consistently.", body: "Content goes out on schedule. SEO work gets done weekly. Ads get monitored and adjusted on a regular cadence. Consistent execution is what separates marketing that compounds from marketing that coasts." },
+          { type: "content", headline: "We review everything before it goes out.", body: "Every deliverable goes through a review step before it reaches your audience. Strategy calls, content sign-offs, campaign reports. Nothing ships without a check." },
+          { type: "content", headline: "The work stacks over time.", body: "Month one builds the foundation. Month three, you start ranking. Month six, you're getting leads you didn't have before. This is what marketing looks like when it compounds instead of resets." },
+          { type: "content", headline: "You get one team. One strategy. One direction.", body: "We handle the research, the planning, the execution, and the reporting. One relationship, one standard, consistent across everything." },
+          { type: "cta", headline: "If your business needs marketing that compounds, message us.", body: "We take a small number of clients at a time. If you want to know whether GLV is the right fit, start with a message." },
+        ] as SlideData[],
+      }}
+    />
+
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
     {/* durationInFrames/videoPath set at render time via --props */}
     <Composition
