@@ -609,6 +609,96 @@ export const RemotionRoot: React.FC = () => (
       defaultProps={{ slides: intro3v4Slides, brand: brandGLV_B }}
     />
 
+    {/* ── Group A: square-aspect per-platform variants (palette B default) ── */}
+
+    {/* fb-square: cover + 3 content (Blotato 4-slide cap) — 1080×1080 */}
+    <Composition
+      id="Intro1WhoIsGLVv5FBSquare"
+      component={GLVCarousel}
+      durationInFrames={4 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro1v5Slides.slice(0, 4), brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro2WhatWeDov3FBSquare"
+      component={GLVCarousel}
+      durationInFrames={4 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro2v3Slides.slice(0, 4), brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro3HowWeWorkv4FBSquare"
+      component={GLVCarousel}
+      durationInFrames={4 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro3v4Slides.slice(0, 4), brand: brandGLV_B }}
+    />
+
+    {/* threads-single: cover only (Blotato rejects carousel) — 1080×1080 */}
+    <Composition
+      id="Intro1WhoIsGLVv5ThreadsSingle"
+      component={GLVCarousel}
+      durationInFrames={1 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro1v5Slides.slice(0, 1), brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro2WhatWeDov3ThreadsSingle"
+      component={GLVCarousel}
+      durationInFrames={1 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro2v3Slides.slice(0, 1), brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro3HowWeWorkv4ThreadsSingle"
+      component={GLVCarousel}
+      durationInFrames={1 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro3v4Slides.slice(0, 1), brand: brandGLV_B }}
+    />
+
+    {/* ── Group B: LinkedIn document (PDF pages) — 1080×1350 palette B ── */}
+    {/* React side identical to IGPortrait; render-runner-B assembles PDF */}
+    <Composition
+      id="Intro1WhoIsGLVv5LinkedInPDF"
+      component={GLVCarousel}
+      durationInFrames={intro1v5Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1350}
+      defaultProps={{ slides: intro1v5Slides, brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro2WhatWeDov3LinkedInPDF"
+      component={GLVCarousel}
+      durationInFrames={intro2v3Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1350}
+      defaultProps={{ slides: intro2v3Slides, brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro3HowWeWorkv4LinkedInPDF"
+      component={GLVCarousel}
+      durationInFrames={intro3v4Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1350}
+      defaultProps={{ slides: intro3v4Slides, brand: brandGLV_B }}
+    />
+
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
     {/* durationInFrames/videoPath set at render time via --props */}
     <Composition
