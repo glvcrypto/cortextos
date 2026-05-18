@@ -4,17 +4,26 @@
 > To regenerate: `cortextos goals generate-md --agent dev --org glv`
 
 ## Focus
-Idle-monitor cloud session. PR #98 + soosackers permanent fixes + upstream sync window all gated on Aiden AM brief replies. Continue PR-monitor sweep + memory commits.
+Idle monitoring — all active goals blocked on Aiden. Reyco PRs #240/#242 highest priority (Rank Math CSV ready, 100h+ open).
 
 ## Goals
-1. Monitor PR #98 (Lead interface CI fix, all green) — flag Aiden merge in next heartbeat
-2. On Aiden go: implement soosackers fixes (workflow OAuth scope + dangerous-clean-slate FTP)
-3. PHPCompatibility PHPCS install — 6 days to May 20 SiteGround PHP cutover (Aiden terminal required)
-4. Reyco GSC tasks #23-26 (noindex/canonicals/5xx/404s) — re-scope via REST app-password path now available
-5. exp_rmkr closes 2026-05-15T10:57Z — close cleanly and start PHPCompatibility PHPCS experiment
+1. Reyco PRs #240/#242 — WP admin: import Rank Math CSV redirects (100h+ open, CSV ready in deliverables/seo/)
+2. Reyco PR #243 — review + merge + `git config core.hooksPath .githooks` (unlocks exp_h8h91 measurement)
+3. Test PRs #48–#68 — batch merge when Aiden has time (20 PRs, no deadline)
+4. Soosackers OAuth scope + FTP permanent fix — gated on Aiden PAT
+5. `npm run build && pm2 restart cortextos-daemon` — Aiden terminal required (post-PR #116 merge)
+
+## Completed
+- PR #98 (Lead interface CI fix) — merged 2026-05-14
+- exp_rmkr — closed 2026-05-15 (keep: Tailwind markers)
+- PHPCompatibility PHPCS — installed 2026-05-17, scanned 208 PHP files: 0 errors, 0 warnings
+- PR #112 (v2 social analytics tab) — merged 2026-05-18
+- PR #115 (pre-commit content-rules guard) — merged 2026-05-18
+- PR #116 (queued posts + watchdog + funnel batch-1 + competitor radar) — merged 2026-05-18 01:02 UTC
+- Reyco GSC tasks #23-26 — noindex/canonicals/5xx/404s scoped; redirect CSVs ready in PRs #240/#242
 
 ## Bottleneck
-Aiden replies on AM brief items 3 (soosackers) + 4 (git divergence reset auth) + PR #98 merge; PHPCS install gated on Aiden terminal
+All work gated on Aiden. No critical deadline remaining. Reyco PRs #240/#242 most urgent (WP admin import needed).
 
 ## Updated
-2026-05-14T12:34:41Z (by boss)
+2026-05-18T23:45:00Z (by dev-agent-cloud-HB10)

@@ -1,13 +1,22 @@
 {
-  "focus": "Idle-monitor cloud session. PR #98 + soosackers permanent fixes + upstream sync window all gated on Aiden AM brief replies. Continue PR-monitor sweep + memory commits.",
+  "focus": "Idle monitoring — all active goals blocked on Aiden. Reyco PRs #240/#242 highest priority (Rank Math CSV ready, 100h+ open).",
   "goals": [
-    "Monitor PR #98 (Lead interface CI fix, all green) — flag Aiden merge in next heartbeat",
-    "On Aiden go: implement soosackers fixes (workflow OAuth scope + dangerous-clean-slate FTP)",
-    "PHPCompatibility PHPCS install — 6 days to May 20 SiteGround PHP cutover (Aiden terminal required)",
-    "Reyco GSC tasks #23-26 (noindex/canonicals/5xx/404s) — re-scope via REST app-password path now available",
-    "exp_rmkr closes 2026-05-15T10:57Z — close cleanly and start PHPCompatibility PHPCS experiment"
+    "Reyco PRs #240/#242 — WP admin: import Rank Math CSV redirects (100h+ open, CSV ready in deliverables/seo/)",
+    "Reyco PR #243 — review + merge + `git config core.hooksPath .githooks` (unlocks exp_h8h91 measurement)",
+    "Test PRs #48–#68 — batch merge when Aiden has time (20 PRs, no deadline)",
+    "Soosackers OAuth scope + FTP permanent fix — gated on Aiden PAT",
+    "`npm run build && pm2 restart cortextos-daemon` — Aiden terminal required (post-PR #116 merge)"
   ],
-  "bottleneck": "Aiden replies on AM brief items 3 (soosackers) + 4 (git divergence reset auth) + PR #98 merge; PHPCS install gated on Aiden terminal",
-  "updated_at": "2026-05-14T12:34:41Z",
-  "updated_by": "boss"
+  "completed": [
+    "PR #98 (Lead interface CI fix) — merged 2026-05-14",
+    "exp_rmkr — closed 2026-05-15 (keep: Tailwind markers)",
+    "PHPCompatibility PHPCS — installed 2026-05-17, scanned 208 PHP files: 0 errors, 0 warnings",
+    "PR #112 (v2 social analytics tab) — merged 2026-05-18",
+    "PR #115 (pre-commit content-rules guard) — merged 2026-05-18",
+    "PR #116 (queued posts + watchdog + funnel batch-1 + competitor radar) — merged 2026-05-18 01:02 UTC",
+    "Reyco GSC tasks #23-26 — noindex/canonicals/5xx/404s scoped; redirect CSVs ready in PRs #240/#242"
+  ],
+  "bottleneck": "All work gated on Aiden. No critical deadline remaining. Reyco PRs #240/#242 most urgent (WP admin import needed).",
+  "updated_at": "2026-05-18T23:45:00Z",
+  "updated_by": "dev-agent-cloud-HB10"
 }
