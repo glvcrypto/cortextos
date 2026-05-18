@@ -611,7 +611,8 @@ export const RemotionRoot: React.FC = () => (
 
     {/* ── Group A: square-aspect per-platform variants (palette B default) ── */}
 
-    {/* fb-square: cover + 3 content (Blotato 4-slide cap) — 1080×1080 */}
+    {/* fb-square: cover + hook + key body + CTA-with-logo (4-slide Blotato cap) — 1080×1080
+        Aiden 2026-05-18 23:12 UTC: last slide must be CTA so logo conditional fires (per-platform-optimization rule). */}
     <Composition
       id="Intro1WhoIsGLVv5FBSquare"
       component={GLVCarousel}
@@ -619,7 +620,7 @@ export const RemotionRoot: React.FC = () => (
       fps={brandGLV_B.fps}
       width={1080}
       height={1080}
-      defaultProps={{ slides: intro1v5Slides.slice(0, 4), brand: brandGLV_B }}
+      defaultProps={{ slides: [intro1v5Slides[0], intro1v5Slides[1], intro1v5Slides[3], intro1v5Slides[8]], brand: brandGLV_B }}
     />
     <Composition
       id="Intro2WhatWeDov3FBSquare"
@@ -628,7 +629,7 @@ export const RemotionRoot: React.FC = () => (
       fps={brandGLV_B.fps}
       width={1080}
       height={1080}
-      defaultProps={{ slides: intro2v3Slides.slice(0, 4), brand: brandGLV_B }}
+      defaultProps={{ slides: [intro2v3Slides[0], intro2v3Slides[1], intro2v3Slides[2], intro2v3Slides[8]], brand: brandGLV_B }}
     />
     <Composition
       id="Intro3HowWeWorkv4FBSquare"
@@ -637,7 +638,7 @@ export const RemotionRoot: React.FC = () => (
       fps={brandGLV_B.fps}
       width={1080}
       height={1080}
-      defaultProps={{ slides: intro3v4Slides.slice(0, 4), brand: brandGLV_B }}
+      defaultProps={{ slides: [intro3v4Slides[0], intro3v4Slides[1], intro3v4Slides[2], intro3v4Slides[8]], brand: brandGLV_B }}
     />
 
     {/* threads-single: cover only (Blotato rejects carousel) — 1080×1080 */}
@@ -697,6 +698,67 @@ export const RemotionRoot: React.FC = () => (
       width={1080}
       height={1350}
       defaultProps={{ slides: intro3v4Slides, brand: brandGLV_B }}
+    />
+
+    {/* ── IG-square paletteB (all 9 slides on palette B) — 1080×1080
+        Aiden 2026-05-18 23:12 UTC lock: single visual identity across the whole post.
+        Distinct from legacy IG-square (Intro1WhoIsGLVv5 etc.) which stays brand-A reference. ── */}
+    <Composition
+      id="Intro1WhoIsGLVv5IGSquarePaletteB"
+      component={GLVCarousel}
+      durationInFrames={intro1v5Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro1v5Slides, brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro2WhatWeDov3IGSquarePaletteB"
+      component={GLVCarousel}
+      durationInFrames={intro2v3Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro2v3Slides, brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro3HowWeWorkv4IGSquarePaletteB"
+      component={GLVCarousel}
+      durationInFrames={intro3v4Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: intro3v4Slides, brand: brandGLV_B }}
+    />
+
+    {/* ── X-horizontal single hero — 1200×675 palette B
+        Hook slide only (cover overflows on 675px height — 520pt giant number doesn't fit). ── */}
+    <Composition
+      id="Intro1WhoIsGLVv5XHorizontal"
+      component={GLVCarousel}
+      durationInFrames={1 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1200}
+      height={675}
+      defaultProps={{ slides: intro1v5Slides.slice(1, 2), brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro2WhatWeDov3XHorizontal"
+      component={GLVCarousel}
+      durationInFrames={1 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1200}
+      height={675}
+      defaultProps={{ slides: intro2v3Slides.slice(1, 2), brand: brandGLV_B }}
+    />
+    <Composition
+      id="Intro3HowWeWorkv4XHorizontal"
+      component={GLVCarousel}
+      durationInFrames={1 * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1200}
+      height={675}
+      defaultProps={{ slides: intro3v4Slides.slice(1, 2), brand: brandGLV_B }}
     />
 
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
