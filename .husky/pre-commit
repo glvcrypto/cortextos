@@ -1,0 +1,3 @@
+#!/bin/sh
+# Pre-commit content-rules guard — delegates to bash script.
+exec bash "$(git rev-parse --show-toplevel)/scripts/pre-commit-content.sh"
