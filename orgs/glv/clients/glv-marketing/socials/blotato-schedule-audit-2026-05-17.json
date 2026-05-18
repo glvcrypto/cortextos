@@ -1,0 +1,14 @@
+{
+  "runs": [
+    {
+      "intro": "intro-1",
+      "channel": "instagram",
+      "scheduled_time": "2026-05-19T13:00:00+00:00",
+      "status": 422,
+      "error": {
+        "message": "Instagram allows a maximum of 5 hashtags per post."
+      }
+    }
+  ],
+  "started_at": "2026-05-17T23:45:29Z"
+}

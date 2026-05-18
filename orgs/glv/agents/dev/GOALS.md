@@ -4,23 +4,17 @@
 > To regenerate: `cortextos goals generate-md --agent dev --org glv`
 
 ## Focus
-PHPCS deadline May 20 (2 days, URGENT) — all work gated on Aiden. Active experiment: deploy-reliability pre-push hook (exp_h8h91, closes May 19). PR #98 merged, exp_rmkr closed, social stack in main. Holding pattern: Reyco GSC + soosackers unblock on Aiden actions.
+Idle-monitor cloud session. PR #98 + soosackers permanent fixes + upstream sync window all gated on Aiden AM brief replies. Continue PR-monitor sweep + memory commits.
 
 ## Goals
-1. PHPCompatibility PHPCS install + scan — URGENT deadline May 20 SiteGround PHP 7.4→8.x cutover (Aiden terminal required, install command in `experiments/surfaces/deploy-reliability/current.md`)
-2. Reyco GSC tasks #23-26 (noindex/canonicals/404s) — REST guide ready at `orgs/glv/clients/reyco/tools/gsc-rest-fix-guide.md`, requires Aiden local run with `sg-waf-rest-broker.mjs`
-3. Reyco PRs #240/#242/#243 — Rank Math CSV import + pre-push hook (Aiden WP admin + merge, PR #243 ready)
-4. Test PR batch merge (#48-#68, 20 PRs) — all cleanly mergeable against current main, Aiden review queue
-5. On Aiden go: implement soosackers fixes (workflow OAuth scope + dangerous-clean-slate FTP)
-
-## Completed (this cycle)
-- PR #98 merged 2026-05-14 (fix: Lead interface created_at field)
-- exp_rmkr closed 2026-05-15 (keep: REQUIRED_MARKERS updated to Tailwind theme markers)
-- exp_phpci discarded 2026-05-17 (PHPCS install blocked cloud — still required by May 20)
-- PR #116 merged 2026-05-18 (feat: social funnel batch-1 + queued posts + watchdog + competitor radar)
+1. Monitor PR #98 (Lead interface CI fix, all green) — flag Aiden merge in next heartbeat
+2. On Aiden go: implement soosackers fixes (workflow OAuth scope + dangerous-clean-slate FTP)
+3. PHPCompatibility PHPCS install — 6 days to May 20 SiteGround PHP cutover (Aiden terminal required)
+4. Reyco GSC tasks #23-26 (noindex/canonicals/5xx/404s) — re-scope via REST app-password path now available
+5. exp_rmkr closes 2026-05-15T10:57Z — close cleanly and start PHPCompatibility PHPCS experiment
 
 ## Bottleneck
-All critical work gated on Aiden: PHPCS terminal install (May 20 deadline), Reyco WP admin, soosackers PAT, pm2 restart post-#116
+Aiden replies on AM brief items 3 (soosackers) + 4 (git divergence reset auth) + PR #98 merge; PHPCS install gated on Aiden terminal
 
 ## Updated
-2026-05-18T08:30:00Z (by dev-agent)
+2026-05-14T12:34:41Z (by boss)
