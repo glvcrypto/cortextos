@@ -6,6 +6,7 @@ import { GLVCarousel } from "./GLVCarousel";
 import { ReelComposition, ReelProps } from "./reel/ReelComposition";
 import { brand } from "./brand";
 import { brandGLV } from "./brand-glvbuilds";
+import { brandGLV_B } from "./brand-glvbuilds-b";
 import { CarouselProps, SlideData } from "./types";
 
 // ── Sample carousel: "5 reasons your business is invisible online" ──────────
@@ -575,37 +576,37 @@ export const RemotionRoot: React.FC = () => (
 
     {/* ── Per-platform variants (Aiden directive 2026-05-18 21:14 UTC) ── */}
 
-    {/* 1080×1350 IG-portrait carousel — Intro 1 v5 */}
+    {/* 1080×1350 IG-portrait carousel — Intro 1 v5 (palette B default) */}
     <Composition
       id="Intro1WhoIsGLVv5IGPortrait"
       component={GLVCarousel}
-      durationInFrames={intro1v5Slides.length * brandGLV.slideDuration}
-      fps={brandGLV.fps}
+      durationInFrames={intro1v5Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
       width={1080}
       height={1350}
-      defaultProps={{ slides: intro1v5Slides }}
+      defaultProps={{ slides: intro1v5Slides, brand: brandGLV_B }}
     />
 
-    {/* 1080×1350 IG-portrait carousel — Intro 2 v3 */}
+    {/* 1080×1350 IG-portrait carousel — Intro 2 v3 (palette B default) */}
     <Composition
       id="Intro2WhatWeDov3IGPortrait"
       component={GLVCarousel}
-      durationInFrames={intro2v3Slides.length * brandGLV.slideDuration}
-      fps={brandGLV.fps}
+      durationInFrames={intro2v3Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
       width={1080}
       height={1350}
-      defaultProps={{ slides: intro2v3Slides }}
+      defaultProps={{ slides: intro2v3Slides, brand: brandGLV_B }}
     />
 
-    {/* 1080×1350 IG-portrait carousel — Intro 3 v4 */}
+    {/* 1080×1350 IG-portrait carousel — Intro 3 v4 (palette B default) */}
     <Composition
       id="Intro3HowWeWorkv4IGPortrait"
       component={GLVCarousel}
-      durationInFrames={intro3v4Slides.length * brandGLV.slideDuration}
-      fps={brandGLV.fps}
+      durationInFrames={intro3v4Slides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
       width={1080}
       height={1350}
-      defaultProps={{ slides: intro3v4Slides }}
+      defaultProps={{ slides: intro3v4Slides, brand: brandGLV_B }}
     />
 
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}

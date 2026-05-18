@@ -1,16 +1,29 @@
 import React from "react";
-import { brandGLV as b } from "../brand-glvbuilds";
+import { brandGLV } from "../brand-glvbuilds";
 import { SlideData } from "../types";
 
 interface Props {
   slide: SlideData;
   slideIndex: number;
   totalSlides: number;
+  brand?: typeof brandGLV;
 }
 
-export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) => {
+// Palette B cover-slide tokens — hardcoded so covers stay on Aiden-locked B
+// regardless of whether the containing Composition is on the legacy white brand
+// or the new palette-B brand. (Aiden 2026-05-18 21:18 UTC: covers "too red".)
+const COVER_PALETTE_B = {
+  bg: "#0A0A0A",
+  fg: "#F5F0E5",
+  accent: "#B22222",
+  divider: "rgba(245, 240, 229, 0.18)",
+  muted: "rgba(245, 240, 229, 0.62)",
+};
+
+export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides, brand = brandGLV }) => {
   const isHook = slide.type === "hook";
-  const { padding, accent, bg, fg, font, weights, muted, divider } = {
+  const b = brand;
+  const { padding, accent, bg, fg, font, weights, muted, divider, body } = {
     padding: b.padding,
     accent: b.accent,
     bg: b.bg,
@@ -19,18 +32,20 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
     weights: b.weights,
     muted: b.muted,
     divider: b.divider,
+    body: (b as typeof brandGLV).body ?? "#333333",
   };
 
   const slideNum = String(slideIndex + 1).padStart(2, "0");
   const totalNum = String(totalSlides).padStart(2, "0");
 
   if (slide.type === "cover") {
+    const c = COVER_PALETTE_B;
     return (
       <div
         style={{
           width: "100%",
           height: "100%",
-          background: accent,
+          background: c.bg,
           fontFamily: font,
           position: "relative",
           overflow: "hidden",
@@ -38,7 +53,7 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
           flexDirection: "column",
           padding: `${padding.top}px ${padding.horizontal}px ${padding.bottom}px`,
           boxSizing: "border-box",
-          color: bg,
+          color: c.fg,
         }}
       >
         {/* Top eyebrow — series label */}
@@ -54,7 +69,7 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
           Intro {slide.coverNumber} / {slide.coverTotal}
         </div>
 
-        {/* Center stack: giant number + title */}
+        {/* Center stack: giant number + title + minimal red underline */}
         <div
           style={{
             flex: 1,
@@ -71,6 +86,7 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
               lineHeight: 0.85,
               letterSpacing: "-0.04em",
               marginBottom: 36,
+              color: c.fg,
             }}
           >
             {slide.coverNumber}
@@ -84,10 +100,21 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
               letterSpacing: "-0.01em",
               textTransform: "uppercase",
               maxWidth: "100%",
+              color: c.fg,
             }}
           >
             {slide.headline}
           </div>
+
+          {/* Single red accent: short underline beneath title — only red element on slide */}
+          <div
+            style={{
+              marginTop: 28,
+              width: 120,
+              height: 6,
+              background: c.accent,
+            }}
+          />
         </div>
 
         {/* Footer */}
@@ -96,7 +123,7 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            borderTop: `1px solid rgba(255,255,255,0.28)`,
+            borderTop: `1px solid ${c.divider}`,
             paddingTop: 20,
           }}
         >
@@ -105,11 +132,12 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
               fontSize: 22,
               fontWeight: weights.semibold,
               letterSpacing: "0.02em",
+              color: c.fg,
             }}
           >
             @glv.marketing
           </div>
-          <div style={{ fontSize: 22, opacity: 0.88 }}>
+          <div style={{ fontSize: 22, color: c.muted }}>
             {slideNum} / {totalNum}
           </div>
         </div>
@@ -192,7 +220,7 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides }) =>
             style={{
               fontSize: 30,
               fontWeight: weights.regular,
-              color: "#333333",
+              color: body,
               lineHeight: 1.55,
               whiteSpace: "pre-line",
               maxWidth: "100%",

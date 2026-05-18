@@ -8,6 +8,7 @@ export const brandGLV = {
   accent: "#B22222",
   accentDim: "rgba(178, 34, 34, 0.08)",
   muted: "#666666",
+  body: "#333333",
   divider: "#E5E5E5",
   font: "'Inter', sans-serif",
   weights: { regular: 400, semibold: 600, bold: 700, extrabold: 800 },
