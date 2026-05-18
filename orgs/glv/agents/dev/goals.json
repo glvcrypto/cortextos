@@ -1,13 +1,20 @@
 {
-  "focus": "Idle-monitor cloud session. PR #98 + soosackers permanent fixes + upstream sync window all gated on Aiden AM brief replies. Continue PR-monitor sweep + memory commits.",
+  "focus": "Holding pattern — all work gated on Aiden. PHPCS confirmed installed 2026-05-17 (0 errors on 208 files, PHP 8.x ready). No critical deadline. Active experiment: exp_h8h91 (pre-push hook, needs PR #243 merge). Reyco PRs aging.",
   "goals": [
-    "Monitor PR #98 (Lead interface CI fix, all green) — flag Aiden merge in next heartbeat",
+    "Reyco PRs #240/#242 — Rank Math redirect CSV import (Aiden WP admin, 90h+ open)",
+    "Reyco PR #243 — pre-push hook merge + git config core.hooksPath (Aiden review + merge, enables exp_h8h91 measurement)",
+    "Reyco GSC tasks #23-26 (noindex/canonicals/404s) — REST guide ready at orgs/glv/clients/reyco/tools/gsc-rest-fix-guide.md, requires Aiden local run",
+    "Test PR batch merge (#48-#68, 20 PRs) — all cleanly mergeable against current main, Aiden review queue",
     "On Aiden go: implement soosackers fixes (workflow OAuth scope + dangerous-clean-slate FTP)",
-    "PHPCompatibility PHPCS install — 6 days to May 20 SiteGround PHP cutover (Aiden terminal required)",
-    "Reyco GSC tasks #23-26 (noindex/canonicals/5xx/404s) — re-scope via REST app-password path now available",
-    "exp_rmkr closes 2026-05-15T10:57Z — close cleanly and start PHPCompatibility PHPCS experiment"
+    "npm run build && pm2 restart cortextos-daemon (post-#116 — Aiden terminal)"
   ],
-  "bottleneck": "Aiden replies on AM brief items 3 (soosackers) + 4 (git divergence reset auth) + PR #98 merge; PHPCS install gated on Aiden terminal",
-  "updated_at": "2026-05-14T12:34:41Z",
-  "updated_by": "boss"
+  "completed": [
+    "PR #98 merged 2026-05-14 (fix: Lead interface created_at field)",
+    "exp_rmkr closed 2026-05-15 (keep: REQUIRED_MARKERS updated to Tailwind theme markers)",
+    "PHPCompatibility PHPCS installed 2026-05-17 — confirmed operational, 0 ERRORs on 208 reyco-marine PHP files, PHP 8.x compatible before May 20 SiteGround cutover (exp_1778842106_phpci discarded 2026-05-17)",
+    "PR #116 merged 2026-05-18 (feat: social funnel batch-1 + queued posts panel + watchdog + competitor radar)"
+  ],
+  "bottleneck": "All work gated on Aiden: Reyco WP admin (PRs #240/#242, 90h+), PR #243 merge, soosackers PAT, pm2 restart. No critical deadline remaining — PHPCS gate operational, site PHP 8.x verified.",
+  "updated_at": "2026-05-18T16:30:00Z",
+  "updated_by": "dev-agent"
 }
