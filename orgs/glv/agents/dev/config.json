@@ -54,6 +54,12 @@
       "type": "recurring",
       "cron": "0 6 * * *",
       "prompt": "Run daily social analytics scrape. Execute: node $CTX_ROOT/../../dist/social/scrape.js (or node /home/aiden/cortextos/dist/social/scrape.js if CTX_ROOT is unavailable). Report per-platform results: which platforms succeeded, which failed, and any error messages. If 3+ platforms fail, send alert via cortextos bus send-telegram."
+    },
+    {
+      "name": "social-weekly-summary",
+      "type": "recurring",
+      "cron": "0 13 * * 1",
+      "prompt": "Generate weekly social analytics summary for the previous Mon-Sun week. Execute: node /home/aiden/cortextos/dist/social/weekly-summary.js. This will write orgs/glv/clients/glv-marketing/socials/reports/weekly-YYYY-MM-DD.md and send a Telegram summary. Report any errors."
     }
   ],
   "ecosystem": {
