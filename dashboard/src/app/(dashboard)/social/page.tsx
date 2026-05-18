@@ -1,6 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import {
+  LineChart, Line, BarChart, Bar,
+  XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
+} from 'recharts';
 import {
   IconBrandInstagram,
   IconBrandTiktok,
@@ -16,8 +20,11 @@ import {
   IconClock,
   IconAlertCircle,
   IconCheck,
+  IconChevronDown,
+  IconChevronRight,
 } from '@tabler/icons-react';
 import type { SocialChannel, ContentPipeline, ReelPipelineState, WeeklyRollup, DraftItem, RenderItem } from '@/lib/data/social';
+import type { PlatformTimeseries, Platform } from '@/lib/data/social-analytics';
 
 // --- Platform icon map ---
 function PlatformIcon({ platform, size = 16 }: { platform: string; size?: number }) {
@@ -25,13 +32,29 @@ function PlatformIcon({ platform, size = 16 }: { platform: string; size?: number
   if (p.includes('instagram')) return <IconBrandInstagram size={size} />;
   if (p.includes('threads')) return <IconBrandInstagram size={size} className="opacity-60" />;
   if (p.includes('tiktok')) return <IconBrandTiktok size={size} />;
-  if (p.includes('x ') || p === 'x') return <IconBrandX size={size} />;
+  if (p === 'x') return <IconBrandX size={size} />;
   if (p.includes('facebook')) return <IconBrandFacebook size={size} />;
   if (p.includes('linkedin')) return <IconBrandLinkedin size={size} />;
   if (p.includes('youtube')) return <IconBrandYoutube size={size} />;
-  if (p.includes('gbp') || p.includes('google')) return <IconBrandGoogle size={size} />;
+  if (p === 'gbp') return <IconBrandGoogle size={size} />;
   return <IconPhoto size={size} />;
 }
+
+const PLATFORM_LABELS: Record<Platform, string> = {
+  instagram: 'Instagram',
+  facebook: 'Facebook',
+  linkedin: 'LinkedIn',
+  youtube: 'YouTube',
+  gbp: 'Google Business',
+  x: 'X (Twitter)',
+  threads: 'Threads',
+  tiktok: 'TikTok',
+};
+
+const PLATFORMS: Platform[] = [
+  'instagram', 'facebook', 'linkedin', 'youtube',
+  'gbp', 'x', 'threads', 'tiktok',
+];
 
 function CompletenessBadge({ value }: { value: string }) {
   const color =
@@ -74,6 +97,219 @@ function draftTypeIcon(type: DraftItem['type']) {
   return <IconFileText size={13} className="text-muted-foreground" />;
 }
 
+function fmtK(n: number | null): string {
+  if (n === null) return '—';
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+  return String(n);
+}
+
+function fmtTs(iso: string | null): string {
+  if (!iso) return '—';
+  try { return new Date(iso).toLocaleString('en-CA', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }); }
+  catch { return iso; }
+}
+
+// --- Per-platform analytics panel ---
+function PlatformAnalyticsSection({ platform }: { platform: Platform }) {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState<PlatformTimeseries | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    if (!open || data) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`/api/social/analytics/${platform}`);
+      const json = await res.json() as PlatformTimeseries;
+      setData(json);
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setLoading(false);
+    }
+  }, [open, data, platform]);
+
+  useEffect(() => { void load(); }, [load]);
+
+  const latest = data?.latestSnapshot;
+  const label = PLATFORM_LABELS[platform];
+  const hasData = (data?.snapshots?.length ?? 0) > 0;
+
+  // Prep chart data — last 30 days
+  const chartData = (data?.snapshots ?? []).slice(-30).map(s => ({
+    date: s.date.slice(5),           // MM-DD
+    followers: s.followers,
+    impressions: s.impressions,
+    reach: s.reach,
+  }));
+
+  const postRows = latest?.recentPosts?.slice(0, 8) ?? [];
+
+  return (
+    <div className="rounded-lg border overflow-hidden">
+      {/* Header row — always visible */}
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/30 transition-colors text-left"
+      >
+        <span className="text-muted-foreground">
+          {open ? <IconChevronDown size={15} /> : <IconChevronRight size={15} />}
+        </span>
+        <span className="text-muted-foreground">
+          <PlatformIcon platform={platform} size={16} />
+        </span>
+        <span className="text-sm font-medium flex-1">{label}</span>
+        <span className="text-xs text-muted-foreground font-mono">{data?.handle ?? '—'}</span>
+        {latest && (
+          <span className="text-sm tabular-nums font-medium ml-4">
+            {fmtK(latest.followers)} followers
+          </span>
+        )}
+        {!latest && !loading && (
+          <span className="text-xs text-muted-foreground ml-4">No data yet</span>
+        )}
+        {loading && (
+          <span className="text-xs text-muted-foreground ml-4 animate-pulse">Loading…</span>
+        )}
+      </button>
+
+      {/* Expanded body */}
+      {open && (
+        <div className="border-t px-4 py-4 space-y-5">
+          {error && (
+            <p className="text-xs text-red-600 flex items-center gap-1.5">
+              <IconAlertCircle size={13} /> {error}
+            </p>
+          )}
+
+          {!hasData && !loading && (
+            <EmptyState
+              icon={<PlatformIcon platform={platform} size={32} />}
+              title="No scraped data yet"
+              sub={`Run social-analytics-scrape cron to start collecting daily snapshots for ${label}.`}
+            />
+          )}
+
+          {hasData && (
+            <>
+              {/* Metric pills */}
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { label: 'Followers', value: latest?.followers },
+                  { label: 'Impressions', value: latest?.impressions },
+                  { label: 'Reach', value: latest?.reach },
+                  { label: 'Profile Views', value: latest?.profileViews },
+                  { label: 'Video Views', value: latest?.videoViews },
+                ].map(({ label: l, value: v }) => v !== null && v !== undefined ? (
+                  <div key={l} className="rounded-md border bg-muted/20 px-3 py-1.5 text-center min-w-[90px]">
+                    <p className="text-[11px] text-muted-foreground uppercase tracking-wide">{l}</p>
+                    <p className="text-base font-semibold tabular-nums">{fmtK(v)}</p>
+                  </div>
+                ) : null)}
+              </div>
+
+              {/* Followers over time chart */}
+              {chartData.some(d => d.followers !== null) && (
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                    Followers — last {chartData.length} days
+                  </p>
+                  <ResponsiveContainer width="100%" height={140}>
+                    <LineChart data={chartData} margin={{ top: 4, right: 8, bottom: 0, left: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                      <XAxis dataKey="date" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+                      <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={fmtK} width={40} />
+                      <Tooltip
+                        formatter={(v) => [fmtK(v as number | null), 'Followers']}
+                        contentStyle={{ fontSize: 12, borderRadius: 6 }}
+                      />
+                      <Line
+                        type="monotone" dataKey="followers" stroke="hsl(var(--primary))"
+                        strokeWidth={2} dot={false} connectNulls
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              )}
+
+              {/* Impressions / reach chart */}
+              {chartData.some(d => d.impressions !== null || d.reach !== null) && (
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                    Impressions &amp; Reach — last {chartData.length} days
+                  </p>
+                  <ResponsiveContainer width="100%" height={120}>
+                    <BarChart data={chartData} margin={{ top: 4, right: 8, bottom: 0, left: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                      <XAxis dataKey="date" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+                      <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} tickFormatter={fmtK} width={40} />
+                      <Tooltip formatter={(v) => fmtK(v as number | null)} contentStyle={{ fontSize: 12, borderRadius: 6 }} />
+                      <Bar dataKey="impressions" fill="hsl(var(--primary) / 0.6)" name="Impressions" />
+                      <Bar dataKey="reach" fill="hsl(var(--primary) / 0.3)" name="Reach" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              )}
+
+              {/* Recent posts table */}
+              {postRows.length > 0 && (
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                    Recent posts
+                  </p>
+                  <div className="rounded-md border overflow-hidden">
+                    <table className="w-full text-xs">
+                      <thead className="bg-muted/40 text-muted-foreground">
+                        <tr>
+                          <th className="px-3 py-1.5 text-left font-medium">Post</th>
+                          <th className="px-3 py-1.5 text-right font-medium">Likes</th>
+                          <th className="px-3 py-1.5 text-right font-medium">Comments</th>
+                          <th className="px-3 py-1.5 text-right font-medium">Shares</th>
+                          <th className="px-3 py-1.5 text-right font-medium">Views</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y">
+                        {postRows.map(post => (
+                          <tr key={post.id} className="hover:bg-muted/20">
+                            <td className="px-3 py-1.5 max-w-[200px]">
+                              {post.url ? (
+                                <a href={post.url} target="_blank" rel="noreferrer"
+                                  className="truncate block text-primary hover:underline">
+                                  {post.caption?.slice(0, 50) ?? post.id}
+                                </a>
+                              ) : (
+                                <span className="truncate block text-muted-foreground">
+                                  {post.caption?.slice(0, 50) ?? post.id}
+                                </span>
+                              )}
+                            </td>
+                            <td className="px-3 py-1.5 text-right tabular-nums">{fmtK(post.likes)}</td>
+                            <td className="px-3 py-1.5 text-right tabular-nums">{fmtK(post.comments)}</td>
+                            <td className="px-3 py-1.5 text-right tabular-nums">{fmtK(post.shares)}</td>
+                            <td className="px-3 py-1.5 text-right tabular-nums">{fmtK(post.views)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              <p className="text-[11px] text-muted-foreground">
+                Last scraped: {fmtTs(data?.lastScrapedAt ?? null)} · {data?.snapshots.length} days of data
+              </p>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ============================================================
 export default function SocialPage() {
   const [channels, setChannels] = useState<SocialChannel[]>([]);
   const [pipeline, setPipeline] = useState<ContentPipeline | null>(null);
@@ -104,8 +340,8 @@ export default function SocialPage() {
   }
 
   useEffect(() => {
-    load();
-    const interval = setInterval(() => load(true), 30_000);
+    void load();
+    const interval = setInterval(() => void load(true), 30_000);
     return () => clearInterval(interval);
   }, []);
 
@@ -115,7 +351,7 @@ export default function SocialPage() {
     catch { return iso; }
   }
 
-  function fmtTs(iso: string | null) {
+  function fmtTsLocal(iso: string | null) {
     if (!iso) return '—';
     try { return new Date(iso).toLocaleString('en-CA', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }); }
     catch { return iso; }
@@ -132,11 +368,11 @@ export default function SocialPage() {
         <div>
           <h1 className="text-2xl font-semibold">Social</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            8-channel snapshot · Content pipeline · Reel state · Weekly rollup
+            8-channel snapshot · Content pipeline · Reel state · Weekly rollup · Per-account analytics
           </p>
         </div>
         <button
-          onClick={() => load(true)}
+          onClick={() => void load(true)}
           disabled={refreshing}
           className="flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-40"
         >
@@ -209,12 +445,29 @@ export default function SocialPage() {
         </p>
       </section>
 
-      {/* PANEL 2 — Content Pipeline */}
+      {/* PANEL 2 — Per-Account Analytics (collapsible) */}
+      <section>
+        <div className="mb-3 flex items-center gap-2">
+          <h2 className="text-base font-semibold">Per-Account Analytics</h2>
+          <span className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground font-medium">
+            Daily scrape · 06:00 UTC
+          </span>
+        </div>
+        <div className="space-y-2">
+          {PLATFORMS.map(p => (
+            <PlatformAnalyticsSection key={p} platform={p} />
+          ))}
+        </div>
+        <p className="mt-2 text-[11px] text-muted-foreground">
+          Data collected by social-analytics-scrape cron · Sessions at ~/.cache/agent-browser/sessions/glv-socials
+        </p>
+      </section>
+
+      {/* PANEL 3 — Content Pipeline */}
       <section>
         <h2 className="text-base font-semibold mb-4">Content Pipeline</h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 
-          {/* Drafts pending QC */}
           <div className="rounded-lg border p-4">
             <SectionHeader title="Drafts pending QC" count={draftsOnly.length} />
             {loading ? (
@@ -245,7 +498,6 @@ export default function SocialPage() {
             )}
           </div>
 
-          {/* Renders awaiting Aiden review */}
           <div className="rounded-lg border p-4">
             <SectionHeader title="Renders awaiting review" count={renders.length} />
             {loading ? (
@@ -289,7 +541,6 @@ export default function SocialPage() {
             )}
           </div>
 
-          {/* Scheduled posts */}
           <div className="rounded-lg border p-4">
             <SectionHeader title="Scheduled (next 7 days)" count={0} />
             <EmptyState
@@ -299,7 +550,6 @@ export default function SocialPage() {
             />
           </div>
 
-          {/* Posted this week */}
           <div className="rounded-lg border p-4">
             <SectionHeader title="Posted this week" count={0} />
             <EmptyState
@@ -311,7 +561,7 @@ export default function SocialPage() {
         </div>
       </section>
 
-      {/* PANEL 3 — Reel Pipeline State */}
+      {/* PANEL 4 — Reel Pipeline State */}
       <section>
         <h2 className="text-base font-semibold mb-4">Reel Pipeline</h2>
         <div className="rounded-lg border p-4">
@@ -327,7 +577,7 @@ export default function SocialPage() {
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <div>
                 <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-1">Last Run</p>
-                <p className="text-sm font-medium">{fmtTs(reel.lastRunTimestamp)}</p>
+                <p className="text-sm font-medium">{fmtTsLocal(reel.lastRunTimestamp)}</p>
               </div>
               <div>
                 <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-1">Last Output</p>
@@ -366,7 +616,7 @@ export default function SocialPage() {
         </div>
       </section>
 
-      {/* PANEL 4 — Weekly Performance Rollup */}
+      {/* PANEL 5 — Weekly Performance Rollup */}
       <section>
         <h2 className="text-base font-semibold mb-4">Weekly Rollup</h2>
         <div className="rounded-lg border p-4">
@@ -385,9 +635,6 @@ export default function SocialPage() {
                 <span className="text-sm font-medium">Report available — week of {rollup.weekOf}</span>
               </div>
               <p className="text-xs text-muted-foreground font-mono">{rollup.filePath}</p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Top post / follower deltas / engagement trend chart displayed here in v2
-              </p>
             </div>
           )}
         </div>
