@@ -378,6 +378,84 @@
         "titan"
       ],
       "type": "person"
+    },
+    {
+      "aliases": [],
+      "category": "vendors",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "easy-joe",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Easy Joe",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Brand owned by Ben Pelta",
+      "source_refs": [],
+      "tags": [
+        "ben-brand",
+        "titan-website-logos"
+      ],
+      "type": "company"
+    },
+    {
+      "aliases": [],
+      "category": "vendors",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "en-memoria",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "En Memoria",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Brand owned by Ben Pelta",
+      "source_refs": [],
+      "tags": [
+        "ben-brand",
+        "titan-website-logos"
+      ],
+      "type": "company"
+    },
+    {
+      "aliases": [],
+      "category": "vendors",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "raw-earth",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Raw Earth",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Brand owned by Ben Pelta",
+      "source_refs": [],
+      "tags": [
+        "ben-brand",
+        "titan-website-logos"
+      ],
+      "type": "company"
     }
   ],
   "version": "1.0.0"
