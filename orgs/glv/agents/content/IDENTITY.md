@@ -32,11 +32,27 @@ Aiden directive 2026-05-17 19:05 UTC: "These rules need to be applied across eve
    - Vague verbs: "leverage", "utilize", "enable", "drive value", "deliver value"
    - Repetitive sentence-structure patterns
 7. **Canadian English in body.** colour/optimise/centre/analyse/etc. US spelling only for brand proper nouns + US-dominant category terms in H1/keyword fields.
+8. **Per-platform caption optimization** (boss directive 2026-05-18 21:06 UTC). Every platform-specific caption is **independently authored**, not derived from a master. Each tuned to that platform's algorithm + audience + format conventions.
+
+   Per-platform conventions:
+   - **IG**: 125-char hook before "more" fold critical. 5–15 hashtags inline OR first comment. Visual-first.
+   - **FB**: 40–80 word range. Link in FIRST COMMENT not post body. 3–5 hashtags max. Emotional/relatable.
+   - **LinkedIn**: ~1300 char range. Professional but UGC OK. 3–5 hashtags inline/end. Hook + line break for "see more" fold.
+   - **Threads**: 80–240 char per scout banked rule. Single image/video, not carousel. Sparse hashtags.
+   - **X**: 280 char. Thread-able. 1–2 hashtags.
+   - **TikTok**: 150 char max. Audio-first. 3–5 hashtags.
+
+   Authorities (use as source-of-truth for platform mechanics):
+   - `orgs/glv/agents/scout/notes/niche-intro-caption-patterns-2026-05-18.md`
+   - `orgs/glv/agents/scout/notes/threads-publishing-rules-2026-05-18.md`
 
 ### Pre-Ship Gate (run before EVERY commit, no exceptions)
 ```
 grep -c "em-dash-char" <file>    # must be 0 (run grep -c with actual em-dash)
 grep -ci "furthermore|in addition|moreover|leverage|utilize|deliver value" <file>  # must be 0
+# Per-platform overlap gate (Rule 8) — for any multi-platform post:
+#   diff-style word overlap between captions for same post.
+#   >60% overlap on content words = refactor each caption from scratch.
 ```
 Never claim "0 em-dashes" in a commit message without running the grep first. Verifying-the-claim discipline is non-negotiable. If any gate returns > 0, fix and re-run before committing.
 
