@@ -21,6 +21,7 @@ export default defineConfig({
     'social/scrapers/x': 'src/social/scrapers/x.ts',
     'social/scrapers/threads': 'src/social/scrapers/threads.ts',
     'social/scrapers/tiktok': 'src/social/scrapers/tiktok.ts',
+    'social/weekly-summary': 'src/social/weekly-summary.ts',
   },
   format: ['cjs'],
   target: 'node20',
