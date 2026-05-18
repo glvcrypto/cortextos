@@ -7,13 +7,13 @@
       ],
       "created": "2026-05-14",
       "id": "ben-glv",
+      "location": "Puerto Vallarta, Mexico",
       "loop_in_default": true,
       "name": "Ben",
       "notes": "Aiden's full partner (not advisor/contractor). Has repo access, ships code; direction authoritative on project/code; $/external-comms still need Aiden. End-state: Ben = USA ops, Aiden = Canada ops. Aiden wants Ben looped in on mostly everything via Slack. Located in Puerto Vallarta, MX (per transcript 00:59:28). Currently between computers (May 2026) \u2014 Aiden may buy + ship via Miami contact Carlos. ~$2,500 USD between Aiden + Ben in float (split 50/50). Dropped $2K on other business recently \u2014 financial-pressure context. Israeli security-conscious; got tripped up by hearing about Trojan-via-compromised-library hack of a friend.",
       "primary_channel": "slack",
       "role": "Full partner \u2014 GLV Marketing",
-      "source": "onboarding-batch-3",
-      "location": "Puerto Vallarta, Mexico"
+      "source": "onboarding-batch-3"
     },
     {
       "aliases": [],
@@ -445,12 +445,12 @@
       "last_meaningful_contact": null,
       "location": null,
       "name": "Raw Earth",
-      "notes": "",
+      "notes": "Whatnot channel selling crystals + gemstones. Stream operationally managed by Carlos. One of Ben Pelta's brands. Logo pending for GLV Marketing site.",
       "phones": [],
       "preferences": {},
       "priority": "normal",
       "relationship_strength": null,
-      "role": "Brand owned by Ben Pelta",
+      "role": "Whatnot livestream channel \u2014 crystals and gemstones (Ben Pelta brand)",
       "source_refs": [],
       "tags": [
         "ben-brand",
@@ -471,12 +471,12 @@
       "last_meaningful_contact": null,
       "location": null,
       "name": "Katherine",
-      "notes": "Joseph Rattan's wife. Indigenous. Titan retainer gatekeeper \u2014 past bad website-design experience makes her cautious. ALSO the bridge to Wobitech / Six Nations connections (Thunder Bay 53-unit reserve order dangling via her family). Spiritual decision-maker; reads people on intuition. (Transcript 01:23:55, 01:14:23, 02:00:53)",
+      "notes": "Co-runs Titan Tiny Homes with Joseph. Indigenous \u2014 lets the company identify as indigenous-owned for narrative + grant purposes. Per Aiden 2026-05-18: she is NOT the bridge to any specific reserve order; the Six Nations/Wobitech mention in the meeting was incidental context, not her contact source. Past bad website-design experience makes her cautious on retainer decisions. (Aiden correction 2026-05-18T22:00Z; prior adri inference retracted)",
       "phones": [],
       "preferences": {},
       "priority": "high",
       "relationship_strength": null,
-      "role": "Joseph Rattan's wife / Titan retainer decision-maker",
+      "role": "Co-owner \u2014 Titan Tiny Homes (with Joseph Rattan)",
       "source_refs": [],
       "tags": [
         "titan",
@@ -610,6 +610,58 @@
         "titan-competitor"
       ],
       "type": "company"
+    },
+    {
+      "aliases": [],
+      "category": "professional_network",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "lydia-pelta",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": "Puerto Vallarta, Mexico",
+      "name": "Lydia",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Ben Pelta's partner \u2014 UI/UX designer (Masters in UX/UI), works on projects with Ben",
+      "source_refs": [],
+      "tags": [
+        "ben-partner",
+        "designer"
+      ],
+      "type": "person"
+    },
+    {
+      "aliases": [],
+      "category": "vendors",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "carlos-raw-earth",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Carlos",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Stream manager for Raw Earth (Ben Pelta's Whatnot crystals/gemstones channel)",
+      "source_refs": [],
+      "tags": [
+        "raw-earth",
+        "whatnot-stream"
+      ],
+      "type": "person"
     }
   ],
   "version": "1.0.0"
