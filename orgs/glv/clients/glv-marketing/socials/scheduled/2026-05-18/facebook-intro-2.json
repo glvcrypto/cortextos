@@ -4,7 +4,7 @@
   "scheduled_at": "2026-05-19T09:00:00-04:00",
   "status": "draft",
   "carousel_ref": "intro-2-what-we-do-2026-05-16",
-  "caption": "Quick intro to what GLV Marketing actually does.\n\nWe handle local SEO, websites, email, paid ads, and AI integration for small businesses across Northern Ontario. Six services in one place, one strategy behind all of it.\n\nComment BRIEF below and I'll DM you our service brief with the full breakdown.",
+  "caption": "Quick intro to what GLV Marketing actually does.\n\nWe handle local SEO, websites, email, paid ads, and AI integration for small businesses across Northern Ontario. Six services in one place, one strategy behind all of it.\n\nComment SERVICES below and I'll DM you our 6-service brief with the full breakdown.",
   "hashtags": [
     "#SaultSteMarie",
     "#NorthernOntario",
@@ -15,6 +15,6 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": null,
-  "manychat_keyword_triggers": ["BRIEF"],
+  "manychat_keyword_triggers": ["SERVICES"],
   "manychat_dm_template_id": null
 }
