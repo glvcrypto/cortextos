@@ -44,6 +44,14 @@ Two pre-existing TypeScript errors block Dashboard Build CI on ALL branches:
 - Merge sequence: PR #84 → PR #86 → rebase PR #85 → PR #85 → all CI green
 - Static analysis from cloud session identified error #2 without running tsc
 
+### goals.json / GOALS.md revert-loop bug (recurring)
+
+- **Pattern**: Local heartbeat reads stale goals.json from disk (not pulling origin/main first) and writes it back, overwriting any cloud-session corrections already committed.
+- **Occurrences**: HB7 reverted HB6's correction; HB8 local (15:39 UTC) reverted HB8 cloud's correction (12:22 UTC); HB9 cloud caught and re-corrected again.
+- **Root cause**: Local HEARTBEAT.md step sequence does not include `git pull --ff-only origin main` before Step 5 (write daily memory) or any goals update. Cloud commits happen between local ticks. On the next local tick, old in-memory or on-disk state is written back.
+- **Recommended fix**: Add `git fetch origin main && git merge --ff-only origin/main` as the FIRST step of the local heartbeat (before any file reads), so local state is always current. OR: local agent should read goals.json via `git show origin/main:orgs/glv/agents/dev/goals.json` rather than the local file.
+- **Interim guard**: Cloud sessions that correct goals should note the corrected commit SHA in the daily memory. Local agents seeing a goals update should check if the in-memory state predates that SHA before overwriting.
+
 ## Cloud Session Protocol
 
 When running in cloud (no local daemon):
