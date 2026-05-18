@@ -38,7 +38,7 @@ The order matters more than most people realise. A well-structured site makes co
 
 The foundation is only worth what you put on top of it. And that work has to be consistent.
 
-Content goes out on schedule. SEO work gets done weekly, not in bursts before a quarterly report. Ads get monitored and adjusted on a regular cadence. No off weeks. No stretches where nothing moves forward.
+Content goes out on schedule. SEO work gets done weekly, not in bursts before a quarterly report. Ads get monitored and adjusted on a regular cadence. The work keeps moving. That's what consistent actually means.
 
 Consistency is one of the most underrated factors in marketing results. Google rewards sites that publish on a cadence. Email lists decay if they go quiet. The businesses that compound are the ones where the work doesn't stop.
 

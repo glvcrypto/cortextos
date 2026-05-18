@@ -72,7 +72,7 @@ We set up and run AI systems that stay on your hardware. No data sent to third-p
 
 These six services are built to work as one system. Your SEO strategy informs your content. Your content feeds your email list. Your paid ads amplify what's already working organically. Your website converts what the ads and search bring in.
 
-That's what one team with one strategy produces. No handoffs. No gaps.
+That's what one team with one strategy produces. Everyone who touches your account knows the full picture. The strategy holds because the same people built it from the start.
 
 ---
 
