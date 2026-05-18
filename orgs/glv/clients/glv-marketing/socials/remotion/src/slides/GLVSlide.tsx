@@ -243,6 +243,29 @@ export const GLVSlide: React.FC<Props> = ({ slide, slideIndex, totalSlides, bran
             Swipe to read {"→"}
           </div>
         )}
+
+        {/* CTA brand sign-off: GLV logo bottom-centered above footer */}
+        {slide.type === "cta" && (
+          <div
+            style={{
+              marginTop: "auto",
+              alignSelf: "center",
+              paddingTop: 56,
+              paddingBottom: 24,
+            }}
+          >
+            <img
+              src={require("../../public/glv-logo.png")}
+              alt="GLV"
+              style={{
+                width: 260,
+                height: 260,
+                objectFit: "contain",
+                display: "block",
+              }}
+            />
+          </div>
+        )}
       </div>
 
       {/* Footer */}
