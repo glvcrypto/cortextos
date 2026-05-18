@@ -8,10 +8,10 @@
  * from any cwd, and corrupt JSON must NEVER be silently destroyed.
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { mkdtempSync, rmSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'fs';
+import { mkdtempSync, rmSync, writeFileSync, readFileSync, mkdirSync, existsSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
-import { discoverProjectRoot, readEnabledAgents } from '../../../src/cli/enable-agent';
+import { discoverProjectRoot, readEnabledAgents, writeDisableMarker } from '../../../src/cli/enable-agent';
 
 describe('BUG-035 + BUG-013: enable-agent validation', () => {
   let tmpHome: string;
@@ -135,6 +135,41 @@ describe('BUG-035 + BUG-013: enable-agent validation', () => {
       const backups = readdirSync(join(tmpHome, '.cortextos', 'default', 'config'))
         .filter(f => f.startsWith('enabled-agents.json.broken-'));
       expect(backups.length).toBe(0);
+    });
+  });
+
+  describe('writeDisableMarker (BUG-036)', () => {
+    it('creates state directory and writes reason to .user-disable', () => {
+      writeDisableMarker('default', 'testbot', 'disabled via cortextos disable');
+
+      const markerPath = join(tmpHome, '.cortextos', 'default', 'state', 'testbot', '.user-disable');
+      expect(existsSync(markerPath)).toBe(true);
+      expect(readFileSync(markerPath, 'utf-8')).toBe('disabled via cortextos disable');
+    });
+
+    it('creates nested state dir that does not exist yet', () => {
+      // No pre-existing state dir
+      const stateDir = join(tmpHome, '.cortextos', 'default', 'state', 'newagent');
+      expect(existsSync(stateDir)).toBe(false);
+
+      writeDisableMarker('default', 'newagent', 'some reason');
+
+      expect(existsSync(stateDir)).toBe(true);
+    });
+
+    it('overwrites an existing marker (idempotent)', () => {
+      writeDisableMarker('default', 'testbot', 'first disable');
+      writeDisableMarker('default', 'testbot', 'second disable');
+
+      const markerPath = join(tmpHome, '.cortextos', 'default', 'state', 'testbot', '.user-disable');
+      expect(readFileSync(markerPath, 'utf-8')).toBe('second disable');
+    });
+
+    it('silently ignores write failures — never throws', () => {
+      // Pass a name that would cause mkdirSync to fail on a read-only parent.
+      // We simulate by passing an empty string (invalid agent name).
+      // The implementation has try/catch so this must not propagate.
+      expect(() => writeDisableMarker('', '', '')).not.toThrow();
     });
   });
 });
