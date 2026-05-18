@@ -9,10 +9,11 @@
       "id": "ben-glv",
       "loop_in_default": true,
       "name": "Ben",
-      "notes": "Aiden's full partner (not advisor/contractor). Has repo access, ships code; direction authoritative on project/code; $/external-comms still need Aiden. End-state: Ben = USA ops, Aiden = Canada ops. Aiden wants Ben looped in on mostly everything via Slack.",
+      "notes": "Aiden's full partner (not advisor/contractor). Has repo access, ships code; direction authoritative on project/code; $/external-comms still need Aiden. End-state: Ben = USA ops, Aiden = Canada ops. Aiden wants Ben looped in on mostly everything via Slack. Located in Puerto Vallarta, MX (per transcript 00:59:28). Currently between computers (May 2026) \u2014 Aiden may buy + ship via Miami contact Carlos. ~$2,500 USD between Aiden + Ben in float (split 50/50). Dropped $2K on other business recently \u2014 financial-pressure context. Israeli security-conscious; got tripped up by hearing about Trojan-via-compromised-library hack of a friend.",
       "primary_channel": "slack",
       "role": "Full partner \u2014 GLV Marketing",
-      "source": "onboarding-batch-3"
+      "source": "onboarding-batch-3",
+      "location": "Puerto Vallarta, Mexico"
     },
     {
       "aliases": [],
@@ -342,7 +343,7 @@
       "last_meaningful_contact": null,
       "location": null,
       "name": "Joseph Rattan",
-      "notes": "",
+      "notes": "Founder, Tiny Titan Homes. Born/raised Toronto, dealt with scams, was a boxer his entire life, came to SSM and set up business. 30y traditional construction experience. Two other businesses: global logistics/shipping (China-Canada), landscaping/contracting. Indigenous. Frames Aiden as \"advisor\" + emotional partner (\"this is your baby as much as it is ours\"). Spiritual decision-maker. First sale = year-long showhouse contract included. (Transcript 00:26:27, 00:27:34, 01:29:01, 02:00:53)",
       "phones": [],
       "preferences": {},
       "priority": "high",
@@ -470,7 +471,7 @@
       "last_meaningful_contact": null,
       "location": null,
       "name": "Katherine",
-      "notes": "",
+      "notes": "Joseph Rattan's wife. Indigenous. Titan retainer gatekeeper \u2014 past bad website-design experience makes her cautious. ALSO the bridge to Wobitech / Six Nations connections (Thunder Bay 53-unit reserve order dangling via her family). Spiritual decision-maker; reads people on intuition. (Transcript 01:23:55, 01:14:23, 02:00:53)",
       "phones": [],
       "preferences": {},
       "priority": "high",
