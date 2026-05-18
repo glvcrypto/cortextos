@@ -401,7 +401,7 @@
       "source_refs": [],
       "tags": [
         "ben-brand",
-        "titan-website-logos"
+        "glv-marketing-website-logos"
       ],
       "type": "company"
     },
@@ -427,7 +427,7 @@
       "source_refs": [],
       "tags": [
         "ben-brand",
-        "titan-website-logos"
+        "glv-marketing-website-logos"
       ],
       "type": "company"
     },
@@ -453,7 +453,160 @@
       "source_refs": [],
       "tags": [
         "ben-brand",
-        "titan-website-logos"
+        "glv-marketing-website-logos"
+      ],
+      "type": "company"
+    },
+    {
+      "aliases": [],
+      "category": "clients",
+      "company": "Titan Tiny Homes",
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "katherine-titan",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Katherine",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "high",
+      "relationship_strength": null,
+      "role": "Joseph Rattan's wife / Titan retainer decision-maker",
+      "source_refs": [],
+      "tags": [
+        "titan",
+        "retainer-gatekeeper"
+      ],
+      "type": "person"
+    },
+    {
+      "aliases": [],
+      "category": "vendors",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "jeremy-prior-agency",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Jeremy",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Lead at prior marketing agency holding Titan grant (transitioning off project)",
+      "source_refs": [],
+      "tags": [
+        "titan",
+        "prior-agency",
+        "conflict"
+      ],
+      "type": "person"
+    },
+    {
+      "aliases": [],
+      "category": "vendors",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "sentum",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Sentum",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Titan financing partner (refinancing, HELOC)",
+      "source_refs": [],
+      "tags": [
+        "titan-financing"
+      ],
+      "type": "company"
+    },
+    {
+      "aliases": [],
+      "category": "vendors",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "northern-credit-union",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Northern Credit Union",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Titan financing partner",
+      "source_refs": [],
+      "tags": [
+        "titan-financing"
+      ],
+      "type": "company"
+    },
+    {
+      "aliases": [],
+      "category": "prospects",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "wobitech",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Wobitech",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Potential Titan community-project partner (Six Nations reserve)",
+      "source_refs": [],
+      "tags": [
+        "titan-partnership"
+      ],
+      "type": "company"
+    },
+    {
+      "aliases": [],
+      "category": "professional_network",
+      "company": null,
+      "context": "",
+      "emails": [],
+      "followup_cadence_days": null,
+      "handles": {},
+      "id": "echo-build",
+      "important_dates": [],
+      "last_meaningful_contact": null,
+      "location": null,
+      "name": "Echo Build",
+      "notes": "",
+      "phones": [],
+      "preferences": {},
+      "priority": "normal",
+      "relationship_strength": null,
+      "role": "Titan competitor in tiny-home / modular space",
+      "source_refs": [],
+      "tags": [
+        "titan-competitor"
       ],
       "type": "company"
     }
