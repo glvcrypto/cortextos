@@ -56,6 +56,12 @@
       "prompt": "Run daily social analytics scrape. Execute: node $CTX_ROOT/../../dist/social/scrape.js (or node /home/aiden/cortextos/dist/social/scrape.js if CTX_ROOT is unavailable). Report per-platform results: which platforms succeeded, which failed, and any error messages. If 3+ platforms fail, send alert via cortextos bus send-telegram."
     },
     {
+      "name": "post-tracker-15m",
+      "type": "recurring",
+      "cron": "*/15 * * * *",
+      "prompt": "Run per-post live metrics scrape (Phase 1: instagram only). Execute: node /home/aiden/cortextos/dist/social/post-tracker.js --platform=instagram. Reads orgs/glv/clients/glv-marketing/socials/posts-registry.json and writes per-post JSON to orgs/glv/clients/glv-marketing/socials/analytics/live/<platform>/<platform_post_id>.json. Call cortextos bus update-cron-fire post-tracker-15m --interval 15m on every fire. Only escalate via send-telegram if all posts fail (ok=0)."
+    },
+    {
       "name": "social-weekly-summary",
       "type": "recurring",
       "cron": "0 13 * * 1",
