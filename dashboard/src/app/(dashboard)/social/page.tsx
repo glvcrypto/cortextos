@@ -33,6 +33,7 @@ import type { SocialChannel, ContentPipeline, ReelPipelineState, WeeklyRollup, D
 import type { PlatformTimeseries, Platform } from '@/lib/data/social-analytics';
 import type { ScheduledPost, PostStatus } from '@/lib/data/social-scheduled-types';
 import { GLV_CATEGORIES } from '@/lib/data/social-scheduled-types';
+import type { LivePostRow } from '@/lib/data/social-live-types';
 
 interface PlatformBestTimes {
   platform: string;
@@ -513,6 +514,127 @@ function RescheduleModal({
         </div>
       </div>
     </div>
+  );
+}
+
+// --- Live Posts panel ---
+// Reads /api/social/live-metrics, which joins posts-registry.json against
+// per-platform snapshot files under analytics/live/<platform>/<post>.json
+// (written by the post-tracker-15m cron). Phase 1 ships instagram only;
+// other platforms in the registry appear once their scrapers ship.
+function LivePostsPanel() {
+  const [rows, setRows] = useState<LivePostRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filterPlatform, setFilterPlatform] = useState<string>('all');
+
+  const load = useCallback(async () => {
+    try {
+      const res = await fetch('/api/social/live-metrics');
+      const data = await res.json() as LivePostRow[];
+      setRows(Array.isArray(data) ? data : []);
+    } catch { /* no-op */ } finally { setLoading(false); }
+  }, []);
+
+  useEffect(() => {
+    void load();
+    const id = setInterval(() => { void load(); }, 60_000);
+    return () => clearInterval(id);
+  }, [load]);
+
+  const platforms = ['all', ...Array.from(new Set(rows.map(r => r.entry.platform))).sort()];
+  const visible = rows.filter(r => filterPlatform === 'all' || r.entry.platform === filterPlatform);
+
+  const fmt = (n: number | null | undefined): string =>
+    n == null ? '—' : n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n);
+
+  const ageMin = (iso: string | undefined): string => {
+    if (!iso) return '—';
+    const mins = Math.floor((Date.now() - new Date(iso).getTime()) / 60_000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    return `${Math.floor(hrs / 24)}d ago`;
+  };
+
+  return (
+    <>
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <select
+          value={filterPlatform}
+          onChange={e => setFilterPlatform(e.target.value)}
+          className="rounded-md border px-2 py-1 text-xs focus:outline-none"
+        >
+          {platforms.map(p => <option key={p} value={p}>{p === 'all' ? 'All platforms' : p}</option>)}
+        </select>
+        <div className="ml-auto flex items-center gap-1 text-xs text-muted-foreground">
+          <IconRefresh size={12} /> auto-refresh 60s · scrape cadence 15min
+        </div>
+      </div>
+
+      {loading ? (
+        <p className="text-sm text-muted-foreground py-4 text-center">Loading…</p>
+      ) : visible.length === 0 ? (
+        <EmptyState
+          icon={<IconPhoto size={32} />}
+          title="No tracked posts"
+          sub="post-tracker-15m writes to orgs/glv/clients/glv-marketing/socials/analytics/live/<platform>/"
+        />
+      ) : (
+        <div className="rounded-lg border overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/40 text-muted-foreground text-xs uppercase tracking-wide">
+              <tr>
+                <th className="px-3 py-2.5 text-left font-medium">Platform</th>
+                <th className="px-3 py-2.5 text-left font-medium">Post</th>
+                <th className="px-3 py-2.5 text-right font-medium">Likes</th>
+                <th className="px-3 py-2.5 text-right font-medium">Comments</th>
+                <th className="px-3 py-2.5 text-right font-medium">Views</th>
+                <th className="px-3 py-2.5 text-left font-medium">Last scrape</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {visible.map(row => {
+                const { entry, snapshot } = row;
+                const stale = snapshot && snapshot.ok === false;
+                return (
+                  <tr key={entry.post_id} className={stale ? 'bg-amber-50/40 dark:bg-amber-950/20' : ''}>
+                    <td className="px-3 py-2">
+                      <div className="flex items-center gap-1.5">
+                        <PlatformIcon platform={entry.platform} size={14} />
+                        <span className="capitalize">{entry.platform}</span>
+                      </div>
+                    </td>
+                    <td className="px-3 py-2">
+                      <a
+                        href={entry.post_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline truncate inline-block max-w-[18rem]"
+                        title={entry.post_url}
+                      >
+                        {entry.platform_post_id}
+                      </a>
+                      <div className="text-[11px] text-muted-foreground">
+                        {entry.intro !== 'unknown' ? entry.intro : ''} · pub {ageMin(entry.published_at)}
+                      </div>
+                    </td>
+                    <td className="px-3 py-2 text-right tabular-nums">{fmt(snapshot?.likes)}</td>
+                    <td className="px-3 py-2 text-right tabular-nums">{fmt(snapshot?.comments)}</td>
+                    <td className="px-3 py-2 text-right tabular-nums">{fmt(snapshot?.views)}</td>
+                    <td className="px-3 py-2 text-xs text-muted-foreground">
+                      {snapshot
+                        ? <>{ageMin(snapshot.scraped_at)}{stale && <span className="ml-1 text-amber-600">⚠ {snapshot.error?.slice(0, 24) ?? 'error'}</span>}</>
+                        : <span className="italic">not yet scraped</span>}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -1187,6 +1309,17 @@ export default function SocialPage() {
           </span>
         </div>
         <QueuedPostsPanel />
+      </section>
+
+      {/* PANEL 3b — Live Posts (15-min scrape) */}
+      <section>
+        <div className="mb-3 flex items-center gap-2">
+          <h2 className="text-base font-semibold">Live Posts</h2>
+          <span className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground font-medium">
+            15-min scrape · likes · comments · views
+          </span>
+        </div>
+        <LivePostsPanel />
       </section>
 
       {/* PANEL 4 — Category Balance */}
