@@ -52,12 +52,12 @@ export async function ab(args: string[]): Promise<ABResult> {
 
 /**
  * Run JavaScript in the current page context and return the result as a
- * parsed JSON value. Uses agent-browser's `evaluate` command which prints
+ * parsed JSON value. Uses agent-browser's `eval` command which prints
  * the return value to stdout as JSON.
  */
 export async function evaluate<T>(js: string): Promise<T | null> {
   try {
-    const { stdout } = await ab(['evaluate', js]);
+    const { stdout } = await ab(['eval', js]);
     return JSON.parse(stdout) as T;
   } catch {
     return null;
