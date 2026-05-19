@@ -1,0 +1,46 @@
+{
+  "date": "2026-05-18",
+  "scrapedAt": "2026-05-19T00:07:05.076646Z",
+  "ok": true,
+  "error": null,
+  "followers": 4,
+  "following": 0,
+  "postCount": 2,
+  "impressions": null,
+  "reach": null,
+  "profileViews": null,
+  "likes": null,
+  "comments": null,
+  "shares": null,
+  "saves": null,
+  "videoViews": null,
+  "recentPosts": [
+    {
+      "id": "intro-1",
+      "url": null,
+      "date": "2026-05-18",
+      "type": "carousel",
+      "caption": "intro-1-who-is-glv-v3 (live caption custom by Aiden, not lifted from drafts)",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    },
+    {
+      "id": "intro-2",
+      "url": null,
+      "date": "2026-05-18",
+      "type": "carousel",
+      "caption": "intro-2-what-we-do (live)",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    }
+  ],
+  "bio": "\ud83d\udcbbLocal SEO, websites, paid ads, and AI for Canadian SMBs. \ud83d\udcc8Marketing that compounds instead of resets. \ud83d\udccdBased in Sault Ste. Marie."
+}

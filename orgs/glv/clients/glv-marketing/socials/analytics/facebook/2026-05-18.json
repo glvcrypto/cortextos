@@ -1,0 +1,18 @@
+{
+  "date": "2026-05-18",
+  "scrapedAt": "2026-05-19T00:07:05.076646Z",
+  "ok": false,
+  "error": "Login wall \u2014 Facebook page view requires authenticated access. Public-side scrape returns login redirect. Need Blotato API or admin-auth for analytics.",
+  "followers": null,
+  "following": null,
+  "postCount": null,
+  "impressions": null,
+  "reach": null,
+  "profileViews": null,
+  "likes": null,
+  "comments": null,
+  "shares": null,
+  "saves": null,
+  "videoViews": null,
+  "recentPosts": []
+}

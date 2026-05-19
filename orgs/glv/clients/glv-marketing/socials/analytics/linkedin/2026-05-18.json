@@ -1,0 +1,33 @@
+{
+  "date": "2026-05-18",
+  "scrapedAt": "2026-05-19T00:07:05.076646Z",
+  "ok": true,
+  "error": null,
+  "followers": 5,
+  "following": null,
+  "postCount": 6,
+  "impressions": null,
+  "reach": null,
+  "profileViews": null,
+  "likes": null,
+  "comments": null,
+  "shares": null,
+  "saves": null,
+  "videoViews": null,
+  "recentPosts": [
+    {
+      "id": "intro-1-li-2026-05-18",
+      "url": "https://www.linkedin.com/company/glv-marketing/",
+      "date": "2026-05-18",
+      "type": "text",
+      "caption": "GLV exists because local businesses in Northern Ontario keep losing leads they don't even know about. Wrong GBP categories. No local content. Invisible on Maps. None of it is hard to fix. It's just what gets missed when no one's looking at the whole system. We handle SEO, websites, email, paid ads, and AI integration for small and mid-size businesses across Northern Ontario and Canada. One team, one strategy. Comment AUDIT below and I'll DM you a free 15-min Google Business Profile audit. Exactly why you're not showing up and what to fix first. What's the biggest marketing challenge you're dealing with right now?",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    }
+  ],
+  "bio": "AI-powered digital marketing for Northern Ontario businesses. SEO, GEO, paid ads, and websites that drive real results."
+}
