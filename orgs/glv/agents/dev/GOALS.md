@@ -4,14 +4,14 @@
 > To regenerate: `cortextos goals generate-md --agent dev --org glv`
 
 ## Focus
-Idle monitoring — all active goals blocked on Aiden. Reyco PRs #240/#242 highest priority (Rank Math CSV ready, 100h+ open).
+Idle monitoring — all active goals blocked on Aiden. Reyco PRs #240/#242 highest priority (Rank Math CSV ready, 148h+ open).
 
 ## Goals
-1. Reyco PRs #240/#242 — WP admin: import Rank Math CSV redirects (100h+ open, CSV ready in deliverables/seo/)
+1. Reyco PRs #240/#242 — WP admin: import Rank Math CSV redirects (148h+ open, CSV ready in deliverables/seo/)
 2. Reyco PR #243 — review + merge + `git config core.hooksPath .githooks` (unlocks exp_h8h91 measurement)
-3. Test PRs #48–#68 — batch merge when Aiden has time (20 PRs, no deadline)
+3. Test PRs #38–#68 — batch merge when Aiden has time (30+ PRs, no deadline)
 4. Soosackers OAuth scope + FTP permanent fix — gated on Aiden PAT
-5. `npm run build && pm2 restart cortextos-daemon` — Aiden terminal required (post-PR #116 merge)
+5. GSC duplicate-canonical fix — glvmarketing.ca + soosackers.com — [HUMAN] task created, Aiden GSC + Rank Math access needed
 
 ## Completed
 - PR #98 (Lead interface CI fix) — merged 2026-05-14
@@ -21,9 +21,16 @@ Idle monitoring — all active goals blocked on Aiden. Reyco PRs #240/#242 highe
 - PR #115 (pre-commit content-rules guard) — merged 2026-05-18
 - PR #116 (queued posts + watchdog + funnel batch-1 + competitor radar) — merged 2026-05-18 01:02 UTC
 - Reyco GSC tasks #23-26 — noindex/canonicals/5xx/404s scoped; redirect CSVs ready in PRs #240/#242
+- PR #117 (feat: 15-min live per-post IG metrics tracker, Phase 1) — merged 2026-05-19
+- PR #118 (fix: per-post IG metrics extract real numbers) — merged 2026-05-19
+- PR #119 (feat(dashboard): /social rebuild PR A — 7 UI panels) — merged 2026-05-20
+- PR #120 (feat(social): PR B — channel scrapers + Phase 2 per-post scrapers + Blotato writeback) — merged 2026-05-20
+- npm run build + pm2 restart cortextos-daemon — done 2026-05-20 00:03 UTC (boss); channel-stats-15m + blotato-writeback-15m crons registered
+- Google Reviews System carousel render — 4 compositions rendered, 17 stills + PDF — 2026-05-20
+- GSC redirect + canonical analysis — glvmarketing.ca clean, soosackers.com http-apex gap found; [HUMAN] task created for Aiden — 2026-05-20
 
 ## Bottleneck
-All work gated on Aiden. No critical deadline remaining. Reyco PRs #240/#242 most urgent (WP admin import needed).
+All work gated on Aiden. No critical deadline remaining. Reyco PRs #240/#242 most urgent (WP admin import, 148h+ open).
 
 ## Updated
-2026-05-18T23:45:00Z (by dev-agent-cloud-HB10)
+2026-05-20T12:00:00Z (by dev-agent-cloud-HB20)
