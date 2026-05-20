@@ -54,10 +54,13 @@ Check open PRs each session. Prioritize:
 
 ## Content Rules Guard (pre-commit hook)
 
-A pre-commit hook at `.husky/pre-commit` runs `scripts/content-check.sh` against staged `.md` files in:
+A pre-commit hook at `.husky/pre-commit` runs `scripts/content-check.sh` against staged `.md` files. The guard gates PUBLISHED / publishable client-facing copy only, not internal reference, research, or data files. Gated paths:
+- `orgs/glv/clients/*/socials/scheduled/`
+- `orgs/glv/clients/*/deliverables/{copy,web-copy,content,product-rewrite}/`
 - `orgs/glv/social/glvbuilds/drafts/`
-- `orgs/glv/clients/` (deliverables)
-- `orgs/glv/agents/*/notes/`
+- `orgs/glv/agents/{content,web-copy,ads}/notes/`
+
+Not gated (internal reference / research / data): `CLIENT.md`, `CLIENT_STATUS.md`, `deliverables/seo/`, `deliverables/audit{,s}/`, `socials/post-packages/`, `socials/analytics/`, `research/`.
 
 **Checks:**
 1. Em-dashes (`—`) — must be 0. Replace with comma, period, or hyphen.

@@ -12,16 +12,19 @@ if [[ ! -x "$SCRIPT" ]]; then
   exit 1
 fi
 
-# Patterns of paths to check (relative to repo root)
+# Path patterns to gate (relative to repo root). Glob '*' is honoured — it
+# matches the client-name segment. The guard protects PUBLISHED / publishable
+# client-facing copy only, not internal reference, research, or data files.
 CHECKED_PATTERNS=(
+  "orgs/glv/clients/*/socials/scheduled/"
+  "orgs/glv/clients/*/deliverables/copy/"
+  "orgs/glv/clients/*/deliverables/web-copy/"
+  "orgs/glv/clients/*/deliverables/content/"
+  "orgs/glv/clients/*/deliverables/product-rewrite/"
   "orgs/glv/social/glvbuilds/drafts/"
-  "orgs/glv/clients/"
-  "orgs/glv/agents/ads/notes/"
   "orgs/glv/agents/content/notes/"
-  "orgs/glv/agents/designer/notes/"
-  "orgs/glv/agents/scout/notes/"
-  "orgs/glv/agents/seo/notes/"
   "orgs/glv/agents/web-copy/notes/"
+  "orgs/glv/agents/ads/notes/"
 )
 
 # Auto-skip patterns (heartbeat/memory logs — these are fine)
@@ -46,7 +49,8 @@ while IFS= read -r staged_file; do
 
   MATCH=0
   for pat in "${CHECKED_PATTERNS[@]}"; do
-    if [[ "$staged_file" == *"$pat"* ]]; then
+    # $pat unquoted so its '*' is treated as a glob wildcard.
+    if [[ "$staged_file" == *$pat* ]]; then
       MATCH=1
       break
     fi
