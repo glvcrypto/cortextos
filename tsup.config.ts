@@ -29,6 +29,7 @@ export default defineConfig({
     'social/weekly-summary': 'src/social/weekly-summary.ts',
     'social/post-tracker': 'src/social/post-tracker.ts',
     'social/channel-tracker': 'src/social/channel-tracker.ts',
+    'social/blotato-writeback': 'src/social/blotato-writeback.ts',
   },
   format: ['cjs'],
   target: 'node20',
