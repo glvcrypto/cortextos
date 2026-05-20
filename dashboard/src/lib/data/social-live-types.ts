@@ -43,6 +43,8 @@ export interface LivePostSnapshot {
   shares: number | null;
   saves: number | null;
   views: number | null;
+  thumbnail_url: string | null;
+  caption: string | null;
 }
 
 export interface LivePostRow {

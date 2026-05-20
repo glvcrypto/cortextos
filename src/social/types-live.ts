@@ -22,6 +22,8 @@ export interface LivePostSnapshot {
   shares: number | null;
   saves: number | null;
   views: number | null;
+  thumbnail_url: string | null;
+  caption: string | null;
 }
 
 export interface PostRegistryEntry {
@@ -57,5 +59,7 @@ export function emptyLiveSnapshot(
     shares: null,
     saves: null,
     views: null,
+    thumbnail_url: null,
+    caption: null,
   };
 }

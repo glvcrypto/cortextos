@@ -24,6 +24,7 @@ export default defineConfig({
     'social/scrapers/instagram-post': 'src/social/scrapers/instagram-post.ts',
     'social/weekly-summary': 'src/social/weekly-summary.ts',
     'social/post-tracker': 'src/social/post-tracker.ts',
+    'social/channel-tracker': 'src/social/channel-tracker.ts',
   },
   format: ['cjs'],
   target: 'node20',

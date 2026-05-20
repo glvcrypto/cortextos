@@ -1,4 +1,6 @@
 import { AnalyticsSnapshot, emptySnapshot } from '../types.js';
+import type { LiveChannelSnapshot } from '../types-channel.js';
+import { emptyChannelSnapshot } from '../types-channel.js';
 import { goto, evaluate, parseCompact } from './base.js';
 
 const HANDLE = '@glv.marketing';
@@ -63,3 +65,51 @@ export async function scrape(date: string): Promise<AnalyticsSnapshot> {
 }
 
 export const meta = { platform: 'threads' as const, handle: HANDLE };
+
+/**
+ * Lightweight channel snapshot — single profile-page nav, header counts only.
+ * Used by the 15-min channel-stats cron (see channel-tracker.ts).
+ *
+ * Primary path is the og:description meta tag, rendered server-side. Observed
+ * format: "0 Followers • 4 Threads • <bio>". The body-text scan is a fallback.
+ */
+export async function scrapeChannel(): Promise<LiveChannelSnapshot> {
+  try {
+    await goto(PROFILE_URL);
+
+    const data = await evaluate<{ followers: string | null; posts: string | null }>(`
+      (() => {
+        const og = document.querySelector('meta[property="og:description"]')?.getAttribute('content')
+          ?? document.querySelector('meta[name="description"]')?.getAttribute('content')
+          ?? '';
+        const fM = og.match(/([\\d,.KM]+)\\s+Followers/i);
+        const pM = og.match(/([\\d,.KM]+)\\s+Threads/i);
+        let followers = fM ? fM[1] : null;
+        let posts = pM ? pM[1] : null;
+        if (!followers) {
+          const bM = document.body.innerText.match(/([\\d,.KM]+)\\s*follower/i);
+          followers = bM ? bM[1] : null;
+        }
+        return { followers, posts };
+      })()
+    `);
+
+    const followers = parseCompact(data?.followers ?? null);
+    if (followers === null) {
+      return emptyChannelSnapshot('threads', HANDLE, 'follower count not found (login wall or layout change)');
+    }
+
+    return {
+      platform: 'threads',
+      handle: HANDLE,
+      scraped_at: new Date().toISOString(),
+      ok: true,
+      error: null,
+      followers,
+      posts: parseCompact(data?.posts ?? null),
+      following: null,
+    };
+  } catch (err) {
+    return emptyChannelSnapshot('threads', HANDLE, String(err));
+  }
+}

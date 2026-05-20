@@ -155,6 +155,11 @@ function PlatformAnalyticsSection({ platform }: { platform: Platform }) {
   const label = PLATFORM_LABELS[platform];
   const hasData = (data?.snapshots?.length ?? 0) > 0;
 
+  // 15-min channel refresh (channel-stats cron) — fresher than the daily scrape.
+  const live = data?.liveSnapshot;
+  const liveFollowers = live?.ok && live.followers !== null ? live.followers : null;
+  const headerFollowers = liveFollowers ?? latest?.followers ?? null;
+
   // Prep chart data — last 30 days
   const chartData = (data?.snapshots ?? []).slice(-30).map(s => ({
     date: s.date.slice(5),           // MM-DD
@@ -180,12 +185,18 @@ function PlatformAnalyticsSection({ platform }: { platform: Platform }) {
         </span>
         <span className="text-sm font-medium flex-1">{label}</span>
         <span className="text-xs text-muted-foreground font-mono">{data?.handle ?? '—'}</span>
-        {latest && (
-          <span className="text-sm tabular-nums font-medium ml-4">
-            {fmtK(latest.followers)} followers
+        {headerFollowers !== null && (
+          <span className="text-sm tabular-nums font-medium ml-4 flex items-center gap-1.5">
+            {liveFollowers !== null && (
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"
+                title={`Live · refreshed ${live ? fmtTs(live.scraped_at) : ''}`}
+              />
+            )}
+            {fmtK(headerFollowers)} followers
           </span>
         )}
-        {!latest && !loading && (
+        {headerFollowers === null && !loading && (
           <span className="text-xs text-muted-foreground ml-4">No data yet</span>
         )}
         {loading && (
@@ -215,7 +226,7 @@ function PlatformAnalyticsSection({ platform }: { platform: Platform }) {
               {/* Metric pills */}
               <div className="flex flex-wrap gap-3">
                 {[
-                  { label: 'Followers', value: latest?.followers },
+                  { label: 'Followers', value: headerFollowers },
                   { label: 'Impressions', value: latest?.impressions },
                   { label: 'Reach', value: latest?.reach },
                   { label: 'Profile Views', value: latest?.profileViews },
@@ -603,10 +614,27 @@ function LivePostsPanel() {
                   </span>
                 </div>
 
+                {snapshot?.thumbnail_url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={snapshot.thumbnail_url}
+                    alt={intro ?? entry.platform_post_id}
+                    loading="lazy"
+                    className="w-full aspect-square rounded-md object-cover bg-muted"
+                    onError={e => { e.currentTarget.style.display = 'none'; }}
+                  />
+                )}
+
                 {intro && (
                   <div className="text-sm font-medium leading-snug line-clamp-2">
                     {intro}
                   </div>
+                )}
+
+                {snapshot?.caption && (
+                  <p className="text-xs text-muted-foreground leading-snug line-clamp-3 italic">
+                    &ldquo;{snapshot.caption}&rdquo;
+                  </p>
                 )}
 
                 <div className="grid grid-cols-4 gap-1 py-1">
@@ -1773,7 +1801,15 @@ export default function SocialPage() {
                     </td>
                     <td className="px-4 py-2.5 text-muted-foreground text-xs font-mono">{ch.handle}</td>
                     <td className="px-4 py-2.5 text-right tabular-nums">
-                      {ch.followers === null ? <span className="text-muted-foreground">—</span> : ch.followers}
+                      <span className="inline-flex items-center justify-end gap-1.5">
+                        {ch.liveScrapedAt && (
+                          <span
+                            className="h-1.5 w-1.5 rounded-full bg-emerald-500"
+                            title={`Live · scraped ${ch.liveScrapedAt}`}
+                          />
+                        )}
+                        {ch.followers === null ? <span className="text-muted-foreground">—</span> : ch.followers}
+                      </span>
                     </td>
                     <td className="px-4 py-2.5 text-right text-xs text-muted-foreground">
                       {ch.lastPostDate ?? '—'}
@@ -1794,7 +1830,8 @@ export default function SocialPage() {
           </table>
         </div>
         <p className="mt-1.5 text-[11px] text-muted-foreground">
-          Live analytics pending Blotato account IDs in secrets.env · Facebook gated behind login
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 align-middle mr-1" />
+          Followers refreshed every 15 min by channel-stats cron (IG/Threads/X/FB/LinkedIn) · TikTok/YouTube/GBP from baseline audit
         </p>
       </section>
 
@@ -1812,7 +1849,7 @@ export default function SocialPage() {
           ))}
         </div>
         <p className="mt-2 text-[11px] text-muted-foreground">
-          Data collected by social-analytics-scrape cron · Sessions at ~/.cache/agent-browser/sessions/glv-socials
+          Daily metrics from social-analytics-scrape cron · Follower counts with a green dot are refreshed every 15 min by channel-stats cron · Sessions at ~/.cache/agent-browser/sessions/glv-socials
         </p>
         <div className="mt-3">
           <BrowserSessionHealth />

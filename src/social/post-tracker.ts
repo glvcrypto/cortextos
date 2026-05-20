@@ -85,6 +85,7 @@ async function run(): Promise<void> {
           ok: false,
           error: String(err),
           likes: null, comments: null, shares: null, saves: null, views: null,
+          thumbnail_url: null, caption: null,
         };
       }
 

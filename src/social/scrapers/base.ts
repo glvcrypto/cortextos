@@ -69,9 +69,17 @@ export async function goto(url: string): Promise<void> {
   await ab(['open', url]);
 }
 
-/** Wait for a selector to appear (up to timeout). */
+/**
+ * Wait for a CSS selector to appear in the DOM (up to timeout).
+ *
+ * agent-browser's `wait` command takes `@ref`s (from a snapshot), not raw CSS
+ * selectors — so a selector wait goes through `wait --fn` with a
+ * querySelector probe. Throws (non-zero exit) if the element never appears,
+ * so callers that treat the wait as best-effort should `.catch()`.
+ */
 export async function waitFor(selector: string, timeoutMs = 10_000): Promise<void> {
-  await ab(['wait-for', selector, `--timeout=${timeoutMs}`]);
+  const probe = `document.querySelector('${selector.replace(/'/g, "\\'")}') !== null`;
+  await ab(['wait', '--fn', probe, '--timeout', String(timeoutMs)]);
 }
 
 /** Parse a compact number string like "1.2K", "4.5M", "12,345" → number | null */
