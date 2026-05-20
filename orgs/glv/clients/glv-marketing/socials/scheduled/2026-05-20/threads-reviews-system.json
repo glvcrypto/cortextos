@@ -2,7 +2,7 @@
   "id": "reviews-system-threads",
   "platform": "Threads",
   "scheduled_at": "2026-05-20T13:00:00-04:00",
-  "status": "draft",
+  "status": "scheduled",
   "carousel_ref": "google-reviews-system-2026-05-20-v1",
   "caption": "Google reviews are the fastest free way to climb local search. The step most owners skip: replying to every review, good and bad. Google reads it as a sign of a real, active business.\n\nFull four-step system on Instagram @glv.marketing",
   "hashtags": [
@@ -10,7 +10,7 @@
   ],
   "audio_brief": null,
   "geotag": null,
-  "blotato_job_id": null,
+  "blotato_job_id": "c481be61-7198-4faa-b8df-a1f307787380",
   "category": "Marketing",
   "first_comment": null,
   "manychat_keyword_triggers": [],

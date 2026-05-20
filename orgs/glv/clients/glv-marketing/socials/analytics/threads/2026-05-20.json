@@ -1,0 +1,72 @@
+{
+  "date": "2026-05-20",
+  "scrapedAt": "2026-05-20T12:02:23.580398Z",
+  "ok": true,
+  "error": null,
+  "followers": 0,
+  "following": null,
+  "postCount": 4,
+  "impressions": null,
+  "reach": null,
+  "profileViews": null,
+  "likes": null,
+  "comments": null,
+  "shares": null,
+  "saves": null,
+  "videoViews": null,
+  "recentPosts": [
+    {
+      "id": "4200555",
+      "url": "https://www.threads.com/@glv.marketing/post/DYh_vUPD3QR",
+      "date": "2026-05-19",
+      "type": "image",
+      "caption": "Most agencies figure it out as they go. Nothing compounds.\n\nEvery GLV client runs through the same five-step process. Every time.\n\nComment PROCESS for the full doc. Breakdown at @glv.marketing on IG.",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    },
+    {
+      "id": "4196021",
+      "url": "https://www.threads.com/@glv.marketing/post/DYhkRZkEV19",
+      "date": "2026-05-19",
+      "type": "image",
+      "caption": "Most small businesses are paying three or four marketing vendors. None of them coordinate.\n\nGLV runs the whole stack. SEO. Websites. Email. Paid. AI. One team. One strategy. Comment SERVICES for the brief.",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    },
+    {
+      "id": "4193753",
+      "url": "https://www.threads.com/@glv.marketing/post/DYhWixzIFkV",
+      "date": "2026-05-19",
+      "type": "image",
+      "caption": "Most local marketing stops the second you stop paying. We built GLV the opposite way.\n\nFree 15-min Google Maps audit if you want one. Comment AUDIT or DM.",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    },
+    {
+      "id": "4193751",
+      "url": "https://www.threads.com/@glv.marketing/post/DYhWi-AlggZ",
+      "date": "2026-05-19",
+      "type": "image",
+      "caption": "Most local marketing stops the second you stop paying. We built GLV the opposite way.\n\nFree 15-min Google Maps audit if you want one. Comment AUDIT or DM.",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    }
+  ],
+  "bio": "\ud83d\udcbbLocal SEO, websites, paid ads, and AI for Canadian SMBs. \ud83d\udcc8Marketing that compounds instead of resets. \ud83d\udccdBased in Sault Ste Marie, ON"
+}
