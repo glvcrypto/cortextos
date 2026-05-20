@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-20T00:46:20Z",
+  "updated_at": "2026-05-20T03:28:12Z",
   "client": "glv-marketing",
   "stages": {
     "ideas": [],
@@ -138,6 +138,51 @@
         "carousel_ref": "intro-3-who-is-glv-2026-05-18-v4",
         "status": "draft",
         "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/x-intro-3.json"
+      },
+      {
+        "id": "reviews-system-instagram",
+        "title": "4-step Google review system (Instagram)",
+        "platform": "instagram",
+        "scheduled_at": "2026-05-20T13:00:00-04:00",
+        "carousel_ref": "google-reviews-system-2026-05-20-v1",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/instagram-reviews-system.json"
+      },
+      {
+        "id": "reviews-system-facebook",
+        "title": "4-step Google review system (Facebook)",
+        "platform": "facebook",
+        "scheduled_at": "2026-05-20T13:00:00-04:00",
+        "carousel_ref": "google-reviews-system-fb-2026-05-20-v1",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/facebook-reviews-system.json"
+      },
+      {
+        "id": "reviews-system-threads",
+        "title": "4-step Google review system (Threads)",
+        "platform": "threads",
+        "scheduled_at": "2026-05-20T13:00:00-04:00",
+        "carousel_ref": "google-reviews-system-threads-single-2026-05-20-v1",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/threads-reviews-system.json"
+      },
+      {
+        "id": "reviews-system-linkedin",
+        "title": "4-step Google review system (LinkedIn)",
+        "platform": "linkedin",
+        "scheduled_at": "2026-05-20T13:00:00-04:00",
+        "carousel_ref": "google-reviews-system-linkedin-doc-2026-05-20-v1",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/linkedin-reviews-system.json"
+      },
+      {
+        "id": "reviews-system-x",
+        "title": "4-step Google review system (X/Twitter)",
+        "platform": "x",
+        "scheduled_at": "2026-05-20T13:00:00-04:00",
+        "carousel_ref": null,
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/x-reviews-system.json"
       }
     ],
     "in_review": [
@@ -505,10 +550,10 @@
   },
   "counts": {
     "ideas": 0,
-    "drafted": 15,
+    "drafted": 20,
     "in_review": 8,
     "scheduled": 0,
     "posted": 29
   },
-  "notes": "v1 — first write per boss dispatch 2026-05-20T00:30Z. Drafted = scheduled/2026-05-18/ files all currently status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json."
+  "notes": "v2 — boss dispatch task_1779247134789_74789596 2026-05-20T03:28Z added 5 May-20 reviews-system drafts (scheduled/2026-05-20/*.json) into drafted stage. Drafted = scheduled/2026-05-18/ intro batch (15) + scheduled/2026-05-20/ reviews-system batch (5), all status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json + scheduled/2026-05-20/*.json."
 }
