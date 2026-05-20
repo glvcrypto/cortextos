@@ -29,7 +29,7 @@ import {
   IconPlayerPlay,
   IconSend,
 } from '@tabler/icons-react';
-import type { SocialChannel, ContentPipeline, ReelPipelineState, WeeklyRollup, DraftItem, RenderItem } from '@/lib/data/social';
+import type { SocialChannel, ContentPipeline, ContentPipelineItem, PipelineStage, ReelPipelineState, WeeklyRollup, DraftItem, RenderItem } from '@/lib/data/social';
 import type { PlatformTimeseries, Platform } from '@/lib/data/social-analytics';
 import type { ScheduledPost, PostStatus } from '@/lib/data/social-scheduled-types';
 import { GLV_CATEGORIES } from '@/lib/data/social-scheduled-types';
@@ -581,57 +581,74 @@ function LivePostsPanel() {
           sub="post-tracker-15m writes to orgs/glv/clients/glv-marketing/socials/analytics/live/<platform>/"
         />
       ) : (
-        <div className="rounded-lg border overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-muted/40 text-muted-foreground text-xs uppercase tracking-wide">
-              <tr>
-                <th className="px-3 py-2.5 text-left font-medium">Platform</th>
-                <th className="px-3 py-2.5 text-left font-medium">Post</th>
-                <th className="px-3 py-2.5 text-right font-medium">Likes</th>
-                <th className="px-3 py-2.5 text-right font-medium">Comments</th>
-                <th className="px-3 py-2.5 text-right font-medium">Views</th>
-                <th className="px-3 py-2.5 text-left font-medium">Last scrape</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              {visible.map(row => {
-                const { entry, snapshot } = row;
-                const stale = snapshot && snapshot.ok === false;
-                return (
-                  <tr key={entry.post_id} className={stale ? 'bg-amber-50/40 dark:bg-amber-950/20' : ''}>
-                    <td className="px-3 py-2">
-                      <div className="flex items-center gap-1.5">
-                        <PlatformIcon platform={entry.platform} size={14} />
-                        <span className="capitalize">{entry.platform}</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {visible.map(row => {
+            const { entry, snapshot } = row;
+            const stale = snapshot && snapshot.ok === false;
+            const intro = entry.intro && entry.intro !== 'unknown' ? entry.intro : null;
+            return (
+              <div
+                key={entry.post_id}
+                className={`rounded-lg border bg-card p-3 flex flex-col gap-2.5 ${
+                  stale ? 'border-amber-300 bg-amber-50/40 dark:bg-amber-950/20' : ''
+                }`}
+              >
+                <div className="flex items-center gap-2 text-xs">
+                  <PlatformIcon platform={entry.platform} size={16} />
+                  <span className="capitalize font-medium">{entry.platform}</span>
+                  <span className="ml-auto text-muted-foreground">
+                    {snapshot
+                      ? <>scraped {ageMin(snapshot.scraped_at)}</>
+                      : <span className="italic">not yet scraped</span>}
+                  </span>
+                </div>
+
+                {intro && (
+                  <div className="text-sm font-medium leading-snug line-clamp-2">
+                    {intro}
+                  </div>
+                )}
+
+                <div className="grid grid-cols-4 gap-1 py-1">
+                  {[
+                    { label: 'likes', value: snapshot?.likes },
+                    { label: 'comments', value: snapshot?.comments },
+                    { label: 'shares', value: snapshot?.shares },
+                    { label: 'views', value: snapshot?.views },
+                  ].map(m => (
+                    <div key={m.label} className="text-center">
+                      <div className="text-lg font-semibold tabular-nums leading-tight">
+                        {fmt(m.value)}
                       </div>
-                    </td>
-                    <td className="px-3 py-2">
-                      <a
-                        href={entry.post_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary hover:underline truncate inline-block max-w-[18rem]"
-                        title={entry.post_url}
-                      >
-                        {entry.platform_post_id}
-                      </a>
-                      <div className="text-[11px] text-muted-foreground">
-                        {entry.intro !== 'unknown' ? entry.intro : ''} · pub {ageMin(entry.published_at)}
+                      <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                        {m.label}
                       </div>
-                    </td>
-                    <td className="px-3 py-2 text-right tabular-nums">{fmt(snapshot?.likes)}</td>
-                    <td className="px-3 py-2 text-right tabular-nums">{fmt(snapshot?.comments)}</td>
-                    <td className="px-3 py-2 text-right tabular-nums">{fmt(snapshot?.views)}</td>
-                    <td className="px-3 py-2 text-xs text-muted-foreground">
-                      {snapshot
-                        ? <>{ageMin(snapshot.scraped_at)}{stale && <span className="ml-1 text-amber-600">⚠ {snapshot.error?.slice(0, 24) ?? 'error'}</span>}</>
-                        : <span className="italic">not yet scraped</span>}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                    </div>
+                  ))}
+                </div>
+
+                {stale && snapshot?.error && (
+                  <div className="flex items-start gap-1 text-[11px] text-amber-700 dark:text-amber-400">
+                    <IconAlertCircle size={12} className="mt-0.5 flex-shrink-0" />
+                    <span className="line-clamp-2">{snapshot.error}</span>
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-1 border-t">
+                  <a
+                    href={entry.post_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline truncate max-w-[10rem]"
+                    title={entry.post_url}
+                  >
+                    {entry.platform_post_id} →
+                  </a>
+                  <span>pub {ageMin(entry.published_at)}</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </>
@@ -645,6 +662,7 @@ function QueuedPostsPanel() {
   const [filterPlatform, setFilterPlatform] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'date' | 'platform' | 'status'>('date');
+  const [queuedOnly, setQueuedOnly] = useState<boolean>(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [editPost, setEditPost] = useState<ScheduledPost | null>(null);
   const [reschedulePost, setReschedulePost] = useState<ScheduledPost | null>(null);
@@ -658,7 +676,11 @@ function QueuedPostsPanel() {
     } catch { /* no-op */ } finally { setLoading(false); }
   }, []);
 
-  useEffect(() => { void load(); }, [load]);
+  useEffect(() => {
+    void load();
+    const id = setInterval(() => { void load(); }, 60_000);
+    return () => clearInterval(id);
+  }, [load]);
 
   async function cancel(post: ScheduledPost) {
     if (!confirm(`Cancel this ${post.platform} post?`)) return;
@@ -673,7 +695,11 @@ function QueuedPostsPanel() {
   const platforms = ['all', ...Array.from(new Set(posts.map(p => p.platform))).sort()];
   const statuses = ['all', 'draft', 'scheduled', 'posted', 'failed', 'cancelled'];
 
+  const now = Date.now();
   const visible = posts
+    .filter(p => !queuedOnly || (
+      p.status === 'scheduled' && new Date(p.scheduled_at).getTime() > now
+    ))
     .filter(p => filterPlatform === 'all' || p.platform === filterPlatform)
     .filter(p => filterStatus === 'all' || p.status === filterStatus)
     .sort((a, b) => {
@@ -705,6 +731,16 @@ function QueuedPostsPanel() {
 
       {/* Filters + sort bar */}
       <div className="flex flex-wrap items-center gap-2 mb-3">
+        <label className="flex items-center gap-1.5 text-xs cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={queuedOnly}
+            onChange={e => setQueuedOnly(e.target.checked)}
+            className="h-3.5 w-3.5"
+          />
+          <span>Queued only</span>
+          <span className="text-muted-foreground">(future + scheduled)</span>
+        </label>
         <select
           value={filterPlatform}
           onChange={e => setFilterPlatform(e.target.value)}
@@ -715,7 +751,8 @@ function QueuedPostsPanel() {
         <select
           value={filterStatus}
           onChange={e => setFilterStatus(e.target.value)}
-          className="rounded-md border px-2 py-1 text-xs focus:outline-none"
+          disabled={queuedOnly}
+          className="rounded-md border px-2 py-1 text-xs focus:outline-none disabled:opacity-50"
         >
           {statuses.map(s => <option key={s} value={s}>{s === 'all' ? 'All statuses' : s}</option>)}
         </select>
@@ -862,6 +899,180 @@ function QueuedPostsPanel() {
               })}
             </tbody>
           </table>
+        </div>
+      )}
+    </>
+  );
+}
+
+// --- Content Calendar panel ---
+function ContentCalendarPanel() {
+  const [posts, setPosts] = useState<ScheduledPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [view, setView] = useState<'week' | 'month'>('week');
+  const [anchor, setAnchor] = useState<Date>(() => new Date());
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    try {
+      const res = await fetch('/api/social/scheduled');
+      const data = await res.json() as ScheduledPost[];
+      setPosts(Array.isArray(data) ? data : []);
+    } catch { /* no-op */ } finally { setLoading(false); }
+  }, []);
+
+  useEffect(() => {
+    void load();
+    const id = setInterval(() => { void load(); }, 60_000);
+    return () => clearInterval(id);
+  }, [load]);
+
+  const buckets = new Map<string, ScheduledPost[]>();
+  for (const p of posts) {
+    const key = p.scheduled_at?.slice(0, 10);
+    if (!key) continue;
+    const arr = buckets.get(key) ?? [];
+    arr.push(p);
+    buckets.set(key, arr);
+  }
+
+  function dateKey(d: Date): string {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  const days: Date[] = [];
+  if (view === 'week') {
+    const start = new Date(anchor);
+    start.setDate(start.getDate() - start.getDay());
+    start.setHours(0, 0, 0, 0);
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(start);
+      d.setDate(start.getDate() + i);
+      days.push(d);
+    }
+  } else {
+    const first = new Date(anchor.getFullYear(), anchor.getMonth(), 1);
+    const start = new Date(first);
+    start.setDate(1 - first.getDay());
+    for (let i = 0; i < 42; i++) {
+      const d = new Date(start);
+      d.setDate(start.getDate() + i);
+      days.push(d);
+    }
+  }
+
+  function shiftAnchor(direction: -1 | 0 | 1): void {
+    if (direction === 0) { setAnchor(new Date()); return; }
+    const next = new Date(anchor);
+    if (view === 'week') next.setDate(next.getDate() + direction * 7);
+    else next.setMonth(next.getMonth() + direction);
+    setAnchor(next);
+  }
+
+  const monthLabel = anchor.toLocaleString('en-CA', { month: 'long', year: 'numeric' });
+  const selectedPosts = selectedDate ? buckets.get(selectedDate) ?? [] : [];
+  const todayKey = dateKey(new Date());
+  const currentMonth = anchor.getMonth();
+
+  return (
+    <>
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <div className="inline-flex rounded-md border overflow-hidden">
+          {(['week', 'month'] as const).map(v => (
+            <button
+              key={v}
+              onClick={() => setView(v)}
+              className={`px-2.5 py-1 text-xs ${view === v ? 'bg-primary text-primary-foreground' : 'hover:bg-muted/50'}`}
+            >
+              {v === 'week' ? 'Week' : 'Month'}
+            </button>
+          ))}
+        </div>
+        <div className="inline-flex items-center gap-1">
+          <button onClick={() => shiftAnchor(-1)} className="rounded border px-2 py-1 text-xs hover:bg-muted/50">‹</button>
+          <button onClick={() => shiftAnchor(0)} className="rounded border px-2 py-1 text-xs hover:bg-muted/50">Today</button>
+          <button onClick={() => shiftAnchor(1)} className="rounded border px-2 py-1 text-xs hover:bg-muted/50">›</button>
+        </div>
+        <span className="text-xs font-medium ml-1">{monthLabel}</span>
+        <span className="ml-auto text-xs text-muted-foreground">
+          {loading ? 'Loading…' : `${posts.length} scheduled total · auto-refresh 60s`}
+        </span>
+      </div>
+
+      <div className="grid grid-cols-7 gap-1">
+        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
+          <div key={d} className="text-[10px] uppercase tracking-wide text-muted-foreground text-center pb-1">{d}</div>
+        ))}
+        {days.map(d => {
+          const key = dateKey(d);
+          const dayPosts = buckets.get(key) ?? [];
+          const counts = {
+            scheduled: dayPosts.filter(p => p.status === 'scheduled').length,
+            posted: dayPosts.filter(p => p.status === 'posted').length,
+            failed: dayPosts.filter(p => p.status === 'failed').length,
+            other: dayPosts.filter(p => !['scheduled', 'posted', 'failed'].includes(p.status)).length,
+          };
+          const isOtherMonth = view === 'month' && d.getMonth() !== currentMonth;
+          const isToday = key === todayKey;
+          const isSelected = key === selectedDate;
+          return (
+            <button
+              key={key}
+              onClick={() => setSelectedDate(isSelected ? null : key)}
+              className={`text-left p-1.5 rounded border text-xs min-h-[3.5rem]
+                ${isToday ? 'border-primary border-2' : 'border-border'}
+                ${isSelected ? 'ring-2 ring-primary' : ''}
+                ${isOtherMonth ? 'opacity-40' : ''}
+                ${dayPosts.length > 0 ? 'bg-muted/30 hover:bg-muted/50' : 'hover:bg-muted/20'}`}
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className={`tabular-nums ${isToday ? 'font-bold text-primary' : ''}`}>{d.getDate()}</span>
+                {dayPosts.length > 0 && (
+                  <span className="text-[10px] text-muted-foreground tabular-nums">{dayPosts.length}</span>
+                )}
+              </div>
+              {dayPosts.length > 0 && (
+                <div className="flex flex-wrap gap-0.5">
+                  {counts.scheduled > 0 && <span className="rounded bg-violet-200 dark:bg-violet-900 px-1 text-[9px]">{counts.scheduled}s</span>}
+                  {counts.posted > 0 && <span className="rounded bg-green-200 dark:bg-green-900 px-1 text-[9px]">{counts.posted}p</span>}
+                  {counts.failed > 0 && <span className="rounded bg-red-200 dark:bg-red-900 px-1 text-[9px]">{counts.failed}f</span>}
+                  {counts.other > 0 && <span className="rounded bg-gray-200 dark:bg-gray-700 px-1 text-[9px]">{counts.other}</span>}
+                </div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {selectedDate && (
+        <div className="mt-3 rounded-lg border bg-muted/20 p-3">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="text-sm font-semibold">{selectedDate} · {selectedPosts.length} post{selectedPosts.length !== 1 ? 's' : ''}</h4>
+            <button onClick={() => setSelectedDate(null)} className="text-xs text-muted-foreground hover:text-foreground">
+              <IconX size={14} />
+            </button>
+          </div>
+          {selectedPosts.length === 0 ? (
+            <p className="text-xs text-muted-foreground italic">No posts scheduled this day.</p>
+          ) : (
+            <ul className="space-y-1.5">
+              {selectedPosts
+                .sort((a, b) => a.scheduled_at.localeCompare(b.scheduled_at))
+                .map(p => (
+                  <li key={p.id} className="flex items-center gap-2 text-xs">
+                    <PlatformIcon platform={p.platform} size={12} />
+                    <span className="capitalize text-muted-foreground">{p.platform}</span>
+                    <span className="tabular-nums">
+                      {new Date(p.scheduled_at).toLocaleTimeString('en-CA', { hour: '2-digit', minute: '2-digit' })}
+                    </span>
+                    <StatusBadge status={p.status} />
+                    <span className="text-muted-foreground line-clamp-1 flex-1">
+                      {p.caption?.slice(0, 80) ?? '(no caption)'}
+                    </span>
+                  </li>
+                ))}
+            </ul>
+          )}
         </div>
       )}
     </>
@@ -1143,6 +1354,307 @@ function BrowserSessionHealth() {
   );
 }
 
+// --- Content Pipeline kanban ---
+const PIPELINE_STAGES: { stage: PipelineStage; label: string; tone: string }[] = [
+  { stage: 'idea',      label: 'Ideas',      tone: 'bg-slate-50  dark:bg-slate-900/40 border-slate-300' },
+  { stage: 'drafted',   label: 'Drafted',    tone: 'bg-blue-50   dark:bg-blue-950/30   border-blue-300' },
+  { stage: 'in_review', label: 'In review',  tone: 'bg-amber-50  dark:bg-amber-950/30  border-amber-300' },
+  { stage: 'scheduled', label: 'Scheduled',  tone: 'bg-violet-50 dark:bg-violet-950/30 border-violet-300' },
+  { stage: 'posted',    label: 'Posted (7d)',tone: 'bg-green-50  dark:bg-green-950/30  border-green-300' },
+];
+
+function ContentPipelineKanban(props: {
+  items: ContentPipelineItem[];
+  loading: boolean;
+}) {
+  const { items, loading } = props;
+
+  if (loading) {
+    return <p className="text-sm text-muted-foreground py-4 text-center">Loading…</p>;
+  }
+
+  const grouped: Record<PipelineStage, ContentPipelineItem[]> = {
+    idea: [], drafted: [], in_review: [], scheduled: [], posted: [],
+  };
+  for (const it of items) grouped[it.stage]?.push(it);
+
+  // Sort within each column: scheduled by scheduled_at asc (soonest first),
+  // posted by posted_at desc (newest first), others by updated_at desc.
+  grouped.scheduled.sort((a, b) =>
+    (a.scheduled_at ?? '').localeCompare(b.scheduled_at ?? ''),
+  );
+  grouped.posted.sort((a, b) =>
+    (b.posted_at ?? b.updated_at).localeCompare(a.posted_at ?? a.updated_at),
+  );
+  for (const s of ['idea', 'drafted', 'in_review'] as PipelineStage[]) {
+    grouped[s].sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+  }
+
+  const totalItems = items.length;
+  if (totalItems === 0) {
+    return (
+      <EmptyState
+        icon={<IconFileText size={32} />}
+        title="Pipeline empty"
+        sub="Content agent will write orgs/glv/clients/glv-marketing/socials/content-pipeline.json. Drafts + scheduled + posted entries also populate columns automatically."
+      />
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+      {PIPELINE_STAGES.map(({ stage, label, tone }) => {
+        const col = grouped[stage];
+        return (
+          <div key={stage} className={`rounded-lg border ${tone} p-2 min-h-[200px]`}>
+            <div className="flex items-center justify-between mb-2 px-1">
+              <span className="text-xs font-semibold uppercase tracking-wide">{label}</span>
+              <span className="text-xs text-muted-foreground tabular-nums">{col.length}</span>
+            </div>
+            {col.length === 0 ? (
+              <p className="text-[11px] text-muted-foreground italic px-1 py-2">none</p>
+            ) : (
+              <ul className="space-y-1.5 max-h-[26rem] overflow-y-auto pr-0.5">
+                {col.map(it => <KanbanCard key={it.id} item={it} />)}
+              </ul>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function KanbanCard({ item }: { item: ContentPipelineItem }) {
+  const dateLabel =
+    item.posted_at ? new Date(item.posted_at).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' })
+    : item.scheduled_at ? new Date(item.scheduled_at).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+    : item.updated_at ? item.updated_at.slice(0, 10)
+    : '';
+
+  const body = (
+    <>
+      <p className="text-xs font-medium leading-snug line-clamp-2">{item.title}</p>
+      <div className="flex items-center gap-1 mt-1 text-[10px] text-muted-foreground">
+        {item.platforms.slice(0, 3).map(p => (
+          <PlatformIcon key={p} platform={p} size={10} />
+        ))}
+        {item.platforms.length > 3 && <span>+{item.platforms.length - 3}</span>}
+        {dateLabel && <span className="ml-auto">{dateLabel}</span>}
+      </div>
+    </>
+  );
+
+  return (
+    <li className="rounded bg-white dark:bg-gray-900 border border-border/60 px-1.5 py-1.5 shadow-sm">
+      {item.post_url ? (
+        <a href={item.post_url} target="_blank" rel="noopener noreferrer" className="block hover:underline">
+          {body}
+        </a>
+      ) : body}
+    </li>
+  );
+}
+
+// --- Task at Hand panel ---
+interface TaskRow {
+  id: string;
+  title: string;
+  description?: string;
+  status: string;
+  priority: string;
+  assignee?: string;
+  org: string;
+  project?: string;
+  updated_at?: string;
+}
+
+interface AgentRow {
+  name: string;
+  org: string;
+  health: 'healthy' | 'warning' | 'down' | string;
+  lastHeartbeat?: string;
+  currentTask?: string;
+  status?: string;
+}
+
+const PRIORITY_TONE: Record<string, string> = {
+  urgent: 'bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-300 border-red-300',
+  high:   'bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-300 border-orange-300',
+  normal: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 border-slate-300',
+  low:    'bg-slate-50 text-slate-500 dark:bg-slate-900/40 dark:text-slate-400 border-slate-200',
+};
+
+const HEALTH_DOT: Record<string, string> = {
+  healthy: 'bg-green-500',
+  warning: 'bg-yellow-500',
+  down:    'bg-red-500',
+};
+
+function fmtRelative(iso: string | undefined): string {
+  if (!iso) return 'never';
+  const t = new Date(iso).getTime();
+  if (!Number.isFinite(t)) return 'unknown';
+  const diff = Date.now() - t;
+  if (diff < 60_000) return 'just now';
+  const m = Math.floor(diff / 60_000);
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
+}
+
+function TaskAtHandPanel() {
+  const [tasks, setTasks] = useState<TaskRow[]>([]);
+  const [agents, setAgents] = useState<AgentRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const [tRes, aRes] = await Promise.all([
+          fetch('/api/tasks?status=in_progress'),
+          fetch('/api/agents'),
+        ]);
+        const [t, a] = await Promise.all([tRes.json(), aRes.json()]);
+        if (cancelled) return;
+        setTasks(Array.isArray(t) ? t : []);
+        setAgents(Array.isArray(a) ? a : []);
+        setErr(null);
+      } catch (e) {
+        if (!cancelled) setErr(String(e));
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    void load();
+    const interval = setInterval(load, 60_000);
+    return () => { cancelled = true; clearInterval(interval); };
+  }, []);
+
+  const grouped = new Map<string, TaskRow[]>();
+  const unassigned: TaskRow[] = [];
+  for (const t of tasks) {
+    if (!t.assignee) { unassigned.push(t); continue; }
+    if (!grouped.has(t.assignee)) grouped.set(t.assignee, []);
+    grouped.get(t.assignee)!.push(t);
+  }
+  const orderedAssignees = Array.from(grouped.keys()).sort();
+
+  const sortedAgents = [...agents].sort((a, b) => {
+    const rank = (h: string) => h === 'healthy' ? 0 : h === 'warning' ? 1 : 2;
+    const r = rank(a.health) - rank(b.health);
+    if (r !== 0) return r;
+    return a.name.localeCompare(b.name);
+  });
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      {/* In-progress tasks */}
+      <div className="rounded-lg border p-4">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-sm font-semibold">In-progress tasks</h3>
+          <span className="text-xs text-muted-foreground tabular-nums">{tasks.length}</span>
+        </div>
+        {loading ? (
+          <p className="text-sm text-muted-foreground py-2">Loading…</p>
+        ) : err ? (
+          <p className="text-xs text-red-600">Failed to load tasks: {err}</p>
+        ) : tasks.length === 0 ? (
+          <p className="text-sm text-muted-foreground py-2">No tasks in progress.</p>
+        ) : (
+          <div className="space-y-3 max-h-[26rem] overflow-y-auto pr-1">
+            {orderedAssignees.map(name => (
+              <div key={name}>
+                <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-1">
+                  {name} · {grouped.get(name)!.length}
+                </p>
+                <ul className="space-y-1.5">
+                  {grouped.get(name)!.map(task => (
+                    <TaskItem key={task.id} task={task} />
+                  ))}
+                </ul>
+              </div>
+            ))}
+            {unassigned.length > 0 && (
+              <div>
+                <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-1">
+                  Unassigned · {unassigned.length}
+                </p>
+                <ul className="space-y-1.5">
+                  {unassigned.map(task => <TaskItem key={task.id} task={task} />)}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Agent status */}
+      <div className="rounded-lg border p-4">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-sm font-semibold">Agent status</h3>
+          <span className="text-xs text-muted-foreground tabular-nums">{agents.length}</span>
+        </div>
+        {loading ? (
+          <p className="text-sm text-muted-foreground py-2">Loading…</p>
+        ) : err ? (
+          <p className="text-xs text-red-600">Failed to load agents: {err}</p>
+        ) : agents.length === 0 ? (
+          <p className="text-sm text-muted-foreground py-2">No agents registered.</p>
+        ) : (
+          <ul className="space-y-1.5 max-h-[26rem] overflow-y-auto pr-1">
+            {sortedAgents.map(agent => (
+              <li key={`${agent.org}/${agent.name}`} className="flex items-start gap-2 rounded border border-border/60 px-2 py-1.5">
+                <span
+                  className={`mt-1 h-2 w-2 shrink-0 rounded-full ${HEALTH_DOT[agent.health] ?? 'bg-slate-400'}`}
+                  title={agent.health}
+                />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-xs font-medium truncate">{agent.name}</p>
+                    <span className="text-[10px] text-muted-foreground shrink-0 tabular-nums">
+                      {fmtRelative(agent.lastHeartbeat)}
+                    </span>
+                  </div>
+                  {agent.currentTask ? (
+                    <p className="text-[11px] text-muted-foreground line-clamp-2 leading-snug">{agent.currentTask}</p>
+                  ) : (
+                    <p className="text-[11px] text-muted-foreground italic">no current task</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function TaskItem({ task }: { task: TaskRow }) {
+  const tone = PRIORITY_TONE[task.priority] ?? PRIORITY_TONE.normal;
+  return (
+    <li className="rounded border border-border/60 px-2 py-1.5 bg-white dark:bg-gray-900">
+      <div className="flex items-start gap-2">
+        <span className={`shrink-0 mt-0.5 rounded border px-1.5 py-0 text-[10px] uppercase tracking-wide ${tone}`}>
+          {task.priority}
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-medium leading-snug line-clamp-2">{task.title}</p>
+          <div className="flex items-center gap-1.5 mt-0.5 text-[10px] text-muted-foreground">
+            {task.project && <span className="font-mono">{task.project}</span>}
+            {task.org && <span className="font-mono">· {task.org}</span>}
+            {task.updated_at && <span className="ml-auto">{fmtRelative(task.updated_at)}</span>}
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+}
+
 // ============================================================
 export default function SocialPage() {
   const [channels, setChannels] = useState<SocialChannel[]>([]);
@@ -1151,7 +1663,6 @@ export default function SocialPage() {
   const [rollup, setRollup] = useState<WeeklyRollup | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [previewRender, setPreviewRender] = useState<RenderItem | null>(null);
 
   async function load(isRefresh = false) {
     if (isRefresh) setRefreshing(true);
@@ -1191,9 +1702,6 @@ export default function SocialPage() {
     catch { return iso; }
   }
 
-  const draftsOnly = pipeline?.drafts.filter((d) => d.type !== 'content-calendar') ?? [];
-  const calendars = pipeline?.drafts.filter((d) => d.type === 'content-calendar') ?? [];
-  const renders = pipeline?.renders ?? [];
 
   return (
     <div className="space-y-8">
@@ -1214,6 +1722,17 @@ export default function SocialPage() {
           Refresh
         </button>
       </div>
+
+      {/* PANEL 0 — Task at Hand */}
+      <section>
+        <div className="mb-3 flex items-center gap-2">
+          <h2 className="text-base font-semibold">Task at Hand</h2>
+          <span className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground font-medium">
+            In-progress · 60s refresh
+          </span>
+        </div>
+        <TaskAtHandPanel />
+      </section>
 
       {/* PANEL 1 — 8-Channel Snapshot */}
       <section>
@@ -1322,108 +1841,30 @@ export default function SocialPage() {
         <LivePostsPanel />
       </section>
 
+      {/* PANEL 3c — Content Calendar */}
+      <section>
+        <div className="mb-3 flex items-center gap-2">
+          <h2 className="text-base font-semibold">Content Calendar</h2>
+          <span className="rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground font-medium">
+            Week · Month
+          </span>
+        </div>
+        <ContentCalendarPanel />
+      </section>
+
       {/* PANEL 4 — Category Balance */}
       <CategoryBalancePanel />
 
       {/* PANEL 5 — Best Times to Post */}
       <BestTimesWidget />
 
-      {/* PANEL 6 — Content Pipeline */}
+      {/* PANEL 6 — Content Pipeline (kanban) */}
       <section>
         <h2 className="text-base font-semibold mb-4">Content Pipeline</h2>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-
-          <div className="rounded-lg border p-4">
-            <SectionHeader title="Drafts pending QC" count={draftsOnly.length} />
-            {loading ? (
-              <p className="text-sm text-muted-foreground">Loading…</p>
-            ) : draftsOnly.length === 0 ? (
-              <EmptyState
-                icon={<IconFileText size={32} />}
-                title="No drafts"
-                sub="Social agent writes drafts to orgs/glv/social/glvbuilds/drafts/"
-              />
-            ) : (
-              <ul className="space-y-1.5 max-h-60 overflow-y-auto">
-                {draftsOnly.map((d) => (
-                  <li key={d.filename} className="flex items-start gap-2 text-sm">
-                    <span className="mt-0.5 shrink-0">{draftTypeIcon(d.type)}</span>
-                    <div className="min-w-0">
-                      <p className="truncate font-medium leading-tight">{d.title}</p>
-                      <p className="text-[11px] text-muted-foreground">{d.date}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {calendars.length > 0 && (
-              <p className="mt-2 text-[11px] text-muted-foreground">
-                + {calendars.length} content calendar file{calendars.length > 1 ? 's' : ''} not shown
-              </p>
-            )}
-          </div>
-
-          <div className="rounded-lg border p-4">
-            <SectionHeader title="Renders awaiting review" count={renders.length} />
-            {loading ? (
-              <p className="text-sm text-muted-foreground">Loading…</p>
-            ) : renders.length === 0 ? (
-              <EmptyState
-                icon={<IconPhoto size={32} />}
-                title="No renders"
-                sub="Remotion renders appear here once composite-preview.png is built"
-              />
-            ) : (
-              <ul className="space-y-1.5 max-h-60 overflow-y-auto">
-                {renders.map((r) => (
-                  <li key={r.name}>
-                    <button
-                      onClick={() => setPreviewRender(previewRender?.name === r.name ? null : r)}
-                      className="flex w-full items-start gap-2 rounded px-1 py-1 text-sm hover:bg-muted/40 transition-colors text-left"
-                    >
-                      <IconPhoto size={13} className="mt-0.5 shrink-0 text-blue-500" />
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate font-medium leading-tight">{r.name}</p>
-                        <p className="text-[11px] text-muted-foreground">{r.slideCount} slides · {r.date}</p>
-                      </div>
-                      <span className="text-[11px] text-muted-foreground shrink-0">
-                        {previewRender?.name === r.name ? 'hide' : 'preview'}
-                      </span>
-                    </button>
-                    {previewRender?.name === r.name && (
-                      <div className="mt-2 rounded border bg-muted/20 p-2">
-                        <p className="text-[11px] text-muted-foreground mb-1 font-mono truncate">
-                          {r.compositePath}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          Open in file browser to preview · {r.slideCount} slides
-                        </p>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          <div className="rounded-lg border p-4">
-            <SectionHeader title="Scheduled (next 7 days)" count={0} />
-            <EmptyState
-              icon={<IconClock size={32} />}
-              title="No scheduled posts"
-              sub="Social agent will write scheduled.json once Blotato account IDs land in secrets.env"
-            />
-          </div>
-
-          <div className="rounded-lg border p-4">
-            <SectionHeader title="Posted this week" count={0} />
-            <EmptyState
-              icon={<IconCheck size={32} />}
-              title="No posts yet"
-              sub="Social agent writes posted.json after each Blotato syndication run"
-            />
-          </div>
-        </div>
+        <ContentPipelineKanban
+          items={pipeline?.items ?? []}
+          loading={loading}
+        />
       </section>
 
       {/* PANEL 7 — Reel Pipeline State */}
