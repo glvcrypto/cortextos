@@ -11,10 +11,24 @@ GLV Marketing is a digital marketing agency running a cortextOS agent fleet to a
 | `glvcrypto/cortextos` | Fork of `grandamenium/cortextos` — fleet framework + dashboard |
 | `glvcrypto/reyco-marine` | Reyco Marine WordPress/WooCommerce site |
 
+## Client Context Protocol
+
+**Before doing ANY work on a client, load that client's context files:**
+
+- `orgs/glv/clients/<client>/CLIENT.md` — static reference (identity, tech stack, brand rules, staff, gotchas)
+- `orgs/glv/clients/<client>/CLIENT_STATUS.md` — current operational state (pipeline, open gates, last touch)
+
+This is mandatory — it prevents re-learning client specifics each session and prevents acting on stale assumptions. Boss maintains both files; boss updates CLIENT_STATUS.md as work is done. When boss dispatches a client task, the dispatch names the client — load its two files first.
+
 ## Active Clients
 
-- **Reyco Marine** — primary active client. Marine/power equipment dealer. WordPress + WooCommerce, Lightspeed DMS inventory sync. Site at `reyco.glvmarketing.ca`. Owner: Casey (handles Lightspeed/inventory flags).
-- **Soo Sackers** — Netlify SPA (React + Vite + prerender). GSC canonical issue fixed Apr 2026.
+Client dirs: `orgs/glv/clients/{reyco, titan, fusion, soo-sackers, glv-marketing}/`
+
+- **Reyco Marine** (`clients/reyco/`) — primary paying client ($2K/mo SEO retainer). Marine/power equipment dealer. WordPress + WooCommerce, Lightspeed DMS sync. Live at `reycomarine.com`. Owner: Casey Davieaux.
+- **Titan Tiny Homes** (`clients/titan/`) — active. Indigenous-owned tiny home builder. Vite SPA, WordPress migration planned. `titantinyhomes.ca`.
+- **Fusion Financial** (`clients/fusion/`) — favour engagement (not paying). Bookkeeping/tax. React SPA + Supabase. `fusionfinancialssm.com`.
+- **Soo Sackers** (`clients/soo-sackers/`) — sandbox/testing ground (Aiden's brother's softball team). Netlify SPA. `soosackers.com`.
+- **GLV Marketing** (`clients/glv-marketing/`) — the agency's own marketing (self-as-client). WordPress on SiteGround. `glvmarketing.ca`.
 
 ## Internal Infrastructure
 

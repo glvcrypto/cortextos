@@ -1,0 +1,59 @@
+{
+  "date": "2026-05-19",
+  "scrapedAt": "2026-05-19T12:04:14.277764Z",
+  "ok": true,
+  "error": "Public IG view shows 0 posts (was 2 yesterday at 17:55 EDT). Blotato inventory says 3 posts published. Either Aiden removed posts, IG removed them, or public-view cache lag. Recent posts in snapshot are from Blotato published-state \u2014 may not currently be visible on profile.",
+  "followers": 4,
+  "following": 0,
+  "postCount": 0,
+  "impressions": null,
+  "reach": null,
+  "profileViews": null,
+  "likes": null,
+  "comments": null,
+  "shares": null,
+  "saves": null,
+  "videoViews": null,
+  "recentPosts": [
+    {
+      "id": "4178742",
+      "url": "https://www.instagram.com/p/DYfJDXslJ9z/",
+      "date": "2026-05-18",
+      "type": "carousel",
+      "caption": "Most businesses in SSM are invisible on Google Maps. Not because they're doing anything wrong. Because nobody's looked at the full picture.\n\nWe handle SEO, websites, email, paid ads, and AI integration for local businesses. One team, one strategy.\n\nComment SERVICES below and I'll DM you our 6-service brief. What we do, how it works, what to expect.",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    },
+    {
+      "id": "4177796",
+      "url": "https://www.instagram.com/p/DYfF7GYlLwY/",
+      "date": "2026-05-18",
+      "type": "carousel",
+      "caption": "Most local marketing stops the moment you stop paying.\n\nWe built GLV to work the other way. Marketing that stacks month over month for small businesses across Northern Ontario.\n\nComment AUDIT below and I'll DM you a free 15-min Google Maps audit. We'll tell you exactly why you're not showing up and what to fix first.",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    },
+    {
+      "id": "4177761",
+      "url": "https://www.instagram.com/p/DYfFaHcCU8H/",
+      "date": "2026-05-18",
+      "type": "image",
+      "caption": "hello",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    }
+  ],
+  "bio": "\ud83d\udcbbLocal SEO, websites, paid ads, and AI for Canadian SMBs. \ud83d\udcc8Marketing that compounds instead of resets. \ud83d\udccdBased in Sault Ste. Marie."
+}

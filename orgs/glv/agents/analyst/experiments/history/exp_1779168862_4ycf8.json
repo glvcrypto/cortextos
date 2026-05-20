@@ -7,15 +7,15 @@
   "direction": "higher",
   "window": "24h",
   "measurement": "",
-  "status": "proposed",
-  "baseline_value": 0,
-  "result_value": null,
-  "decision": null,
-  "learning": "",
+  "status": "completed",
+  "baseline_value": 7,
+  "result_value": 7,
+  "decision": "keep",
+  "learning": "Cycle-24 KEEP 7/10. Three scales-tests of cycle-23 infrastructure-proofs: (a) T1-anchor cross-agent SCALES depth — SATISFIED n=2 (content GIT TOPOLOGY INCIDENT: T1 git-topology inspection + banked-rule application + refusal-to-destroy + surface; designer HEARTBEAT.md kb-ingest flag T1 catch via CLI rejection). (b) 3rd enforcement layer-type — NOT satisfied: layers 1+2 held day-2 but no new infrastructure layer-type; explicit saturation failure mode triggered; remediation-closure gap is a real debit (16 violators May 18 unactioned, 22 May 20). (c) heartbeat-update-gap — SATISFIED path A: zero new n, all 15 agents online, content self-corrected, divergence resolved via discipline-fix. Why 7 not higher: (b) failed scales-test + remediation gap accumulating + activity-channel config gap recurred 4th cycle. Why 7 not lower: (a)+(c) clean, T1-discipline generalizing fleet-wide, new sub-vector discovered (shared-index race), fleet health strong (15/15 online, PR #120 deployed, May 20 batch complete, no crashes). Regression from cycle-23 10/10 is hypothesis-partial-falsification + drift accumulation, not system-health drop.",
   "experiment_commit": null,
   "tracking_commit": null,
   "created_at": "2026-05-19T05:34:22Z",
-  "started_at": null,
-  "completed_at": null,
-  "changes_description": null
+  "started_at": "2026-05-20T05:36:36Z",
+  "completed_at": "2026-05-20T05:37:36Z",
+  "changes_description": "Theta-wave cycle-24 — 3 scales-tests of cycle-23 infrastructure-proofs"
 }

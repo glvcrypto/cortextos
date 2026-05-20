@@ -1,0 +1,32 @@
+{
+  "date": "2026-05-19",
+  "scrapedAt": "2026-05-19T12:04:14.277764Z",
+  "ok": false,
+  "error": "Facebook page view requires authenticated access. Public scrape returns login redirect. Blotato API shows 1 published post (intro-3 FB at 21:03 UTC May 18).",
+  "followers": null,
+  "following": null,
+  "postCount": 1,
+  "impressions": null,
+  "reach": null,
+  "profileViews": null,
+  "likes": null,
+  "comments": null,
+  "shares": null,
+  "saves": null,
+  "videoViews": null,
+  "recentPosts": [
+    {
+      "id": "4183099",
+      "url": "https://facebook.com/1032144439974830_122126115255246960",
+      "date": "2026-05-18",
+      "type": "carousel",
+      "caption": "We're GLV Marketing, a Sault Ste. Marie agency built for small businesses that want marketing that holds up past the billing cycle.\n\nIf your business is invisible on Google Maps, that's a fixable problem. We know exactly what to look at.\n\nComment AUDIT below and I'll DM you a free 15-min audit showing exactly where you're losing search visibility.",
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "saves": null,
+      "views": null,
+      "reach": null
+    }
+  ]
+}
