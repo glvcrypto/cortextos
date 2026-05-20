@@ -2,7 +2,7 @@
   "id": "intro-2-linkedin",
   "platform": "LinkedIn",
   "scheduled_at": "2026-05-18T11:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-2-what-we-do-2026-05-18-v2",
   "caption": "Most small business owners I talk to are paying three or four different marketing vendors.\n\nA website person who built the site three years ago and disappears for months. An SEO contractor still optimising for keywords nobody searches anymore. A freelance ad person who can't see the email list. Maybe a content writer who's never actually read the website.\n\nEach one bills you separately. Each one has their own theory of what's working. None of them coordinate.\n\nThis is the small-business marketing default in 2026 and it's the most expensive way to do it.\n\nGLV runs the whole stack in one place. Local SEO. Websites. Email. Paid ads. AI integration. Six services. One team that actually knows how the pieces connect. One strategy that compounds month over month instead of pulling in five directions.\n\nYou save twice: the actual cost of three or four retainers, and the meeting time you'd spend trying to get vendors to align.\n\nComment SERVICES below and I'll DM you the six-service brief. What each service does, what results to expect, and how we connect them.\n\nWhat does your current marketing setup look like?",
   "hashtags": [
@@ -17,6 +17,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": "6-service brief available. Comment SERVICES or visit glvmarketing.ca",
-  "manychat_keyword_triggers": ["SERVICES"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "SERVICES"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T15:00:18.458Z",
+  "post_url": "https://linkedin.com/feed/update/urn:li:ugcPost:7462517497229950976",
+  "blotato_submission_id": "4195934",
+  "blotato_writeback_at": "2026-05-20T04:47:58.591Z"
 }

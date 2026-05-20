@@ -2,7 +2,7 @@
   "id": "intro-1-facebook",
   "platform": "Facebook",
   "scheduled_at": "2026-05-18T09:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
   "caption": "We're GLV Marketing, based right here in Sault Ste. Marie. Built for small businesses that need marketing to hold up past month three.\n\nIf your business is invisible on Google Maps, that's a fixable problem. We know exactly where to look.\n\nComment AUDIT below and I'll DM you a free 15-minute audit. Quick read, real fixes.\n\n#SaultSteMarie #NorthernOntario #LocalBusiness",
   "hashtags": [
@@ -15,6 +15,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": "Free GBP audit: comment AUDIT or visit glvmarketing.ca",
-  "manychat_keyword_triggers": ["AUDIT"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "AUDIT"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T13:00:19.443Z",
+  "post_url": "https://facebook.com/1032144439974830_122126215923246960",
+  "blotato_submission_id": "4193626",
+  "blotato_writeback_at": "2026-05-20T04:47:58.588Z"
 }

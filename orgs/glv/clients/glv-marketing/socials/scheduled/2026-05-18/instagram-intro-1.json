@@ -2,7 +2,7 @@
   "id": "intro-1-instagram",
   "platform": "Instagram",
   "scheduled_at": "2026-05-18T09:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
   "caption": "Most local marketing stops the moment you stop paying.\n\nThat's not how we built GLV. Every piece of work we ship is an asset that keeps earning long after the invoice clears.\n\nComment AUDIT below and I'll DM you a free 15-min Google Maps audit. We'll show you exactly why your business isn't showing up on local search, and what to fix first.\n\nQuick read. Real fixes. No pitch deck.",
   "hashtags": [
@@ -22,6 +22,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": null,
-  "manychat_keyword_triggers": ["AUDIT"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "AUDIT"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T13:01:01.590Z",
+  "post_url": "https://www.instagram.com/p/DYhWmilFAWa/",
+  "blotato_submission_id": "4193827",
+  "blotato_writeback_at": "2026-05-20T04:47:58.590Z"
 }

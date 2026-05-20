@@ -2,7 +2,7 @@
   "id": "intro-3-threads",
   "platform": "Threads",
   "scheduled_at": "2026-05-18T15:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-3-how-we-work-2026-05-18-v3",
   "caption": "Most agencies figure it out as they go. Nothing compounds.\n\nEvery GLV client runs through the same five-step process. Every time.\n\nComment PROCESS for the full doc. Breakdown at @glv.marketing on IG.",
   "hashtags": [
@@ -14,6 +14,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": null,
-  "manychat_keyword_triggers": ["PROCESS"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "PROCESS"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T19:00:42.020Z",
+  "post_url": "https://www.threads.com/@glv.marketing/post/DYh_vUPD3QR",
+  "blotato_submission_id": "4200555",
+  "blotato_writeback_at": "2026-05-20T04:47:58.593Z"
 }

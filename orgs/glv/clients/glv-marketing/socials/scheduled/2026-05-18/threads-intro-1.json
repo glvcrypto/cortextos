@@ -2,7 +2,7 @@
   "id": "intro-1-threads",
   "platform": "Threads",
   "scheduled_at": "2026-05-18T09:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
   "caption": "Most local marketing stops the second you stop paying. We built GLV the opposite way.\n\nFree 15-min Google Maps audit if you want one. Comment AUDIT or DM.",
   "hashtags": [
@@ -14,6 +14,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": null,
-  "manychat_keyword_triggers": ["AUDIT"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "AUDIT"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T13:00:42.739Z",
+  "post_url": "https://www.threads.com/@glv.marketing/post/DYhWi-AlggZ",
+  "blotato_submission_id": "4193751",
+  "blotato_writeback_at": "2026-05-20T04:47:58.592Z"
 }

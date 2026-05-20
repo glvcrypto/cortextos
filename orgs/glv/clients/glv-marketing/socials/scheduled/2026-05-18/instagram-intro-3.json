@@ -2,7 +2,7 @@
   "id": "intro-3-instagram",
   "platform": "Instagram",
   "scheduled_at": "2026-05-18T15:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-3-how-we-work-2026-05-18-v3",
   "caption": "Here's the exact five-step process we run on every GLV client.\n\nResearch the market before we touch anything. Build the foundation in the right order. Execute weekly. Review what's actually moving. Let it compound over time.\n\nMost agencies skip step one and step four. That's why month six looks the same as month one for their clients.\n\nOurs doesn't.\n\nComment PROCESS below and I'll DM you the full process doc we walk every new client through.",
   "hashtags": [
@@ -22,6 +22,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": null,
-  "manychat_keyword_triggers": ["PROCESS"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "PROCESS"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T19:00:53.358Z",
+  "post_url": "https://www.instagram.com/p/DYh_yU6FJ8W/",
+  "blotato_submission_id": "4200606",
+  "blotato_writeback_at": "2026-05-20T04:47:58.591Z"
 }

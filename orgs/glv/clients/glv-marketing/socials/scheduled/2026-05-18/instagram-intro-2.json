@@ -2,7 +2,7 @@
   "id": "intro-2-instagram",
   "platform": "Instagram",
   "scheduled_at": "2026-05-18T11:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-2-what-we-do-2026-05-18-v2",
   "caption": "Most SSM businesses are juggling three or four marketing vendors. None of them talk to each other.\n\nWebsite guy. SEO contractor. Maybe a freelance ad person. Each one billing separately. Each one quoting their own version of what's working.\n\nWe do all of it in one place. SEO, websites, email, paid ads, AI integration. Six services, one team that actually knows how the pieces fit.\n\nComment SERVICES below and I'll DM you our six-service brief. Full breakdown of what each service does and what results to expect.",
   "hashtags": [
@@ -22,6 +22,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": null,
-  "manychat_keyword_triggers": ["SERVICES"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "SERVICES"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T15:00:58.851Z",
+  "post_url": "https://www.instagram.com/p/DYhkVJ8FGBT/",
+  "blotato_submission_id": "4196101",
+  "blotato_writeback_at": "2026-05-20T04:47:58.590Z"
 }

@@ -2,7 +2,7 @@
   "id": "intro-2-facebook",
   "platform": "Facebook",
   "scheduled_at": "2026-05-18T11:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-2-what-we-do-2026-05-18-v2",
   "caption": "Three vendors. Four invoices. Nobody's strategy actually fits together.\n\nThat's the small-business marketing default in 2026, and it costs you twice. Once on the retainers, again on the meetings trying to align them.\n\nGLV runs all six channels under one roof. One team, one strategy that compounds.\n\nComment SERVICES for the breakdown.\n\n#NorthernOntario #SaultSteMarie #FullService",
   "hashtags": [
@@ -15,6 +15,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": "Full 6-service brief: comment SERVICES or visit glvmarketing.ca",
-  "manychat_keyword_triggers": ["SERVICES"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "SERVICES"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T15:00:16.155Z",
+  "post_url": "https://facebook.com/1032144439974830_122126227677246960",
+  "blotato_submission_id": "4195926",
+  "blotato_writeback_at": "2026-05-20T04:47:58.589Z"
 }

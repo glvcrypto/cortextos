@@ -2,7 +2,7 @@
   "id": "intro-3-facebook",
   "platform": "Facebook",
   "scheduled_at": "2026-05-18T15:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-3-how-we-work-2026-05-18-v3",
   "caption": "Most agencies figure it out as they go. New play every client, new strategy every quarter, month six ends up feeling like month one.\n\nWe don't work that way. Every GLV client gets walked through the same five-step playbook. Same process, every time. That's how the work actually compounds.\n\nComment PROCESS for the doc.\n\n#NorthernOntario #SaultSteMarie #MarketingStrategy",
   "hashtags": [
@@ -15,6 +15,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": "Full step-by-step process doc: comment PROCESS or visit glvmarketing.ca",
-  "manychat_keyword_triggers": ["PROCESS"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "PROCESS"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T19:00:15.479Z",
+  "post_url": "https://facebook.com/1032144439974830_122126255313246960",
+  "blotato_submission_id": "4200467",
+  "blotato_writeback_at": "2026-05-20T04:47:58.590Z"
 }

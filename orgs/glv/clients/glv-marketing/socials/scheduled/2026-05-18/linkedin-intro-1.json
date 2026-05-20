@@ -2,7 +2,7 @@
   "id": "intro-1-linkedin",
   "platform": "LinkedIn",
   "scheduled_at": "2026-05-18T09:00:00-04:00",
-  "status": "draft",
+  "status": "posted",
   "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
   "caption": "GLV exists because small businesses across Northern Ontario keep losing leads they never knew about.\n\nWrong GBP categories. Outdated NAP citations. Zero local content. Invisible on Google Maps. Most of it isn't hard to fix. It's just what gets missed when nobody's looking at the full system.\n\nWe handle SEO, websites, email, paid ads, and AI integration for small and mid-size businesses across Northern Ontario and Canada. One team. One strategy.\n\nMost agencies hand you outputs and disappear when the retainer ends. We build differently. Every piece of work is an asset that keeps earning past the billing cycle.\n\nIf you're a local business owner reading this and your Google Maps presence feels invisible, that's almost always fixable inside 90 days.\n\nComment AUDIT below and I'll DM you a free 15-minute Google Business Profile audit. You'll get exactly why you're not showing up and the three things to fix first.\n\nWhat's the biggest marketing problem you're dealing with right now?",
   "hashtags": [
@@ -17,6 +17,12 @@
   "blotato_job_id": null,
   "category": "Marketing",
   "first_comment": "Full intro in the carousel. Comment AUDIT for the free GBP audit or visit glvmarketing.ca",
-  "manychat_keyword_triggers": ["AUDIT"],
-  "manychat_dm_template_id": null
+  "manychat_keyword_triggers": [
+    "AUDIT"
+  ],
+  "manychat_dm_template_id": null,
+  "published_at": "2026-05-19T13:00:24.349Z",
+  "post_url": "https://linkedin.com/feed/update/urn:li:ugcPost:7462487320567549953",
+  "blotato_submission_id": "4193635",
+  "blotato_writeback_at": "2026-05-20T04:47:58.591Z"
 }
