@@ -52,12 +52,27 @@ export interface PostMetric {
   reach: number | null;
 }
 
+// Channel-level snapshot written by the channel-stats-15m cron
+// (src/social/channel-tracker.ts) — a 15-min follower/posts refresh that is
+// far fresher than the 06:00 UTC daily scrape.
+export interface LiveChannelSnapshot {
+  platform: string;
+  handle: string;
+  scraped_at: string;
+  ok: boolean;
+  error: string | null;
+  followers: number | null;
+  posts: number | null;
+  following: number | null;
+}
+
 export interface PlatformTimeseries {
   platform: Platform;
   handle: string;
   snapshots: DailySnapshot[];   // sorted ascending by date
   latestSnapshot: DailySnapshot | null;
   lastScrapedAt: string | null;
+  liveSnapshot: LiveChannelSnapshot | null;  // 15-min channel refresh, when available
 }
 
 const HANDLES: Record<Platform, string> = {
@@ -70,6 +85,17 @@ const HANDLES: Record<Platform, string> = {
   threads:   '@glv.marketing',
   tiktok:    '@glvmarketing',
 };
+
+function readLiveChannel(platform: Platform): LiveChannelSnapshot | null {
+  try {
+    const raw = fs.readFileSync(
+      path.join(ANALYTICS_BASE, 'live-channels', `${platform}.json`), 'utf-8',
+    );
+    return JSON.parse(raw) as LiveChannelSnapshot;
+  } catch {
+    return null;
+  }
+}
 
 export function getPlatformTimeseries(platform: Platform): PlatformTimeseries {
   const dir = path.join(ANALYTICS_BASE, platform);
@@ -97,6 +123,7 @@ export function getPlatformTimeseries(platform: Platform): PlatformTimeseries {
     snapshots,
     latestSnapshot: latest,
     lastScrapedAt: latest?.scrapedAt ?? null,
+    liveSnapshot: readLiveChannel(platform),
   };
 }
 

@@ -22,6 +22,8 @@ interface DomCounts {
   commentsText: string | null;
   viewsText: string | null;
   ogDescription: string | null;
+  ogImage: string | null;
+  captionText: string | null;
   unavailable: boolean;
 }
 
@@ -41,7 +43,17 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
     const counts = await evaluate<DomCounts>(`
       (() => {
         const og = document.querySelector('meta[property="og:description"]')?.getAttribute('content') ?? null;
+        const ogImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content') ?? null;
         const unavailable = /isn['\\u2019]t available/i.test(document.title ?? '');
+
+        // og:description tail format: '... on <date>: "<caption>". '
+        // The caption is the quoted run after the first ': "'. Greedy capture
+        // stops at the trailing quote so internal quotes survive.
+        let caption = null;
+        if (og) {
+          const capM = og.match(/: "([\\s\\S]*)"\\s*\\.?\\s*$/);
+          if (capM) caption = capM[1];
+        }
 
         // og:description format: "N likes, M comments - <author> on <date>: <caption>"
         // Reels sometimes include "X views" — pattern: "X views, N likes, M comments - ..."
@@ -73,7 +85,7 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
           }
         }
 
-        return { likesText: likes, commentsText: comments, viewsText: views, ogDescription: og, unavailable };
+        return { likesText: likes, commentsText: comments, viewsText: views, ogDescription: og, ogImage, captionText: caption, unavailable };
       })()
     `);
 
@@ -94,6 +106,8 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
       shares: null,
       saves: null,
       views: parseCount(counts?.viewsText ?? null),
+      thumbnail_url: counts?.ogImage ?? null,
+      caption: counts?.captionText ?? null,
     };
   } catch (err) {
     return emptyLiveSnapshot(entry, String(err));

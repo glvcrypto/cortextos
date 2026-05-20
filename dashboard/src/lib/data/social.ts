@@ -21,6 +21,7 @@ export interface SocialChannel {
   engagementPct: number | null;
   state: string;
   completeness: string;
+  liveScrapedAt?: string | null;
 }
 
 export interface DraftItem {
@@ -88,9 +89,58 @@ const CHANNEL_BASELINE: SocialChannel[] = [
   { platform: 'GBP', handle: 'GLV Marketing', followers: null, lastPostDate: null, postsThisWeek: 0, engagementPct: null, state: 'Live (5.0★)', completeness: 'MEDIUM' },
 ];
 
+// Maps a baseline display-name to the live-channel JSON file key written by
+// the channel-stats-15m cron (src/social/channel-tracker.ts).
+const LIVE_CHANNEL_KEY: Record<string, string> = {
+  Instagram: 'instagram',
+  Threads: 'threads',
+  'X / Twitter': 'x',
+  Facebook: 'facebook',
+  LinkedIn: 'linkedin',
+};
+
+interface LiveChannelSnapshot {
+  platform: string;
+  handle: string;
+  scraped_at: string;
+  ok: boolean;
+  error: string | null;
+  followers: number | null;
+  posts: number | null;
+  following: number | null;
+}
+
+const LIVE_CHANNELS_DIR = path.join(
+  GLV_ROOT, 'clients', 'glv-marketing', 'socials', 'analytics', 'live-channels',
+);
+
+function readLiveChannel(key: string): LiveChannelSnapshot | null {
+  try {
+    const raw = fs.readFileSync(path.join(LIVE_CHANNELS_DIR, `${key}.json`), 'utf-8');
+    return JSON.parse(raw) as LiveChannelSnapshot;
+  } catch {
+    return null;
+  }
+}
+
 export function getSocialChannels(): SocialChannel[] {
-  // Future: merge with per-channel JSON files when social agent starts writing them
-  return CHANNEL_BASELINE;
+  // Overlay the latest channel-stats-15m snapshot onto the static baseline.
+  // A live snapshot only overrides followers when it scraped cleanly (ok &&
+  // followers !== null); otherwise the baseline value stands.
+  return CHANNEL_BASELINE.map((ch) => {
+    const key = LIVE_CHANNEL_KEY[ch.platform];
+    if (!key) return ch;
+    const live = readLiveChannel(key);
+    if (!live || !live.ok || live.followers === null) return ch;
+    return {
+      ...ch,
+      followers: live.followers,
+      completeness: ch.completeness === 'LOW' || ch.completeness === 'UNKNOWN'
+        ? 'MEDIUM'
+        : ch.completeness,
+      liveScrapedAt: live.scraped_at,
+    };
+  });
 }
 
 // --- Content pipeline ---

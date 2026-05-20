@@ -1,4 +1,6 @@
 import { AnalyticsSnapshot, PostMetric, emptySnapshot } from '../types.js';
+import type { LiveChannelSnapshot } from '../types-channel.js';
+import { emptyChannelSnapshot } from '../types-channel.js';
 import { goto, evaluate, parseCompact } from './base.js';
 
 const HANDLE = '@glv.marketing';
@@ -97,3 +99,60 @@ export async function scrape(date: string): Promise<AnalyticsSnapshot> {
 }
 
 export const meta = { platform: 'instagram' as const, handle: HANDLE };
+
+/**
+ * Lightweight channel snapshot — single profile-page nav, header counts only.
+ * Used by the 15-min channel-stats cron (see channel-tracker.ts).
+ *
+ * Primary path is the og:description meta tag, which IG renders server-side
+ * even on the login-wall variant. Observed format:
+ *   "4 Followers, 0 Following, 3 Posts - See Instagram photos and videos..."
+ * The header-li DOM is a fallback for when that string format shifts.
+ */
+export async function scrapeChannel(): Promise<LiveChannelSnapshot> {
+  try {
+    await goto(PROFILE_URL);
+
+    const profile = await evaluate<{ followers: string | null; following: string | null; posts: string | null }>(`
+      (() => {
+        const og = document.querySelector('meta[property="og:description"]')?.getAttribute('content')
+          ?? document.querySelector('meta[name="description"]')?.getAttribute('content')
+          ?? '';
+        const m1 = og.match(/([\\d,.KM]+)\\s+Followers/i);
+        const m2 = og.match(/([\\d,.KM]+)\\s+Following/i);
+        const m3 = og.match(/([\\d,.KM]+)\\s+Posts/i);
+        let followers = m1 ? m1[1] : null;
+        let following = m2 ? m2[1] : null;
+        let posts = m3 ? m3[1] : null;
+
+        if (!followers) {
+          const stats = document.querySelectorAll('header section ul li');
+          const cell = (el) => el?.querySelector('span[title], span > span')?.getAttribute('title')
+            ?? el?.querySelector('span[title], span > span')?.textContent?.trim() ?? null;
+          posts = posts ?? cell(stats[0]);
+          followers = followers ?? cell(stats[1]);
+          following = following ?? cell(stats[2]);
+        }
+        return { followers, following, posts };
+      })()
+    `);
+
+    const followers = parseCompact(profile?.followers ?? null);
+    if (followers === null) {
+      return emptyChannelSnapshot('instagram', HANDLE, 'profile header not found (login wall or layout change)');
+    }
+
+    return {
+      platform: 'instagram',
+      handle: HANDLE,
+      scraped_at: new Date().toISOString(),
+      ok: true,
+      error: null,
+      followers,
+      posts: parseCompact(profile?.posts ?? null),
+      following: parseCompact(profile?.following ?? null),
+    };
+  } catch (err) {
+    return emptyChannelSnapshot('instagram', HANDLE, String(err));
+  }
+}
