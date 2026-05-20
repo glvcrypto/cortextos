@@ -51,11 +51,29 @@ export interface WeeklyRollup {
   filePath: string | null;
 }
 
+export type PipelineStage = 'idea' | 'drafted' | 'in_review' | 'scheduled' | 'posted';
+
+export interface ContentPipelineItem {
+  id: string;
+  title: string;
+  stage: PipelineStage;
+  platforms: string[];
+  owner: string | null;
+  created_at: string;
+  updated_at: string;
+  scheduled_at?: string | null;
+  posted_at?: string | null;
+  draft_ref?: string | null;
+  render_ref?: string | null;
+  post_url?: string | null;
+}
+
 export interface ContentPipeline {
   drafts: DraftItem[];
   renders: RenderItem[];
   scheduled: never[];
   postedThisWeek: never[];
+  items: ContentPipelineItem[];
 }
 
 // --- Channel data (baseline-audit-2026-05-16.md + social-accounts.md) ---
@@ -127,7 +145,150 @@ export function getContentPipeline(): ContentPipeline {
     }
   }
 
-  return { drafts, renders, scheduled: [], postedThisWeek: [] };
+  const items = assembleContentPipelineItems(drafts, renders);
+  return { drafts, renders, scheduled: [], postedThisWeek: [], items };
+}
+
+// --- Content pipeline kanban items ---
+const PIPELINE_FILE = path.join(
+  GLV_ROOT, 'clients', 'glv-marketing', 'socials', 'content-pipeline.json',
+);
+const SCHEDULED_BASE = path.join(
+  GLV_ROOT, 'clients', 'glv-marketing', 'socials', 'scheduled',
+);
+const POSTS_REGISTRY = path.join(
+  GLV_ROOT, 'clients', 'glv-marketing', 'socials', 'posts-registry.json',
+);
+
+interface RawPipelineFile {
+  generated_at?: string;
+  items?: ContentPipelineItem[];
+}
+
+function assembleContentPipelineItems(
+  drafts: DraftItem[],
+  renders: RenderItem[],
+): ContentPipelineItem[] {
+  const items: ContentPipelineItem[] = [];
+  const seenIds = new Set<string>();
+
+  // 1. content-pipeline.json (authoritative when present) — written by content agent
+  if (fs.existsSync(PIPELINE_FILE)) {
+    try {
+      const raw = JSON.parse(fs.readFileSync(PIPELINE_FILE, 'utf-8')) as RawPipelineFile;
+      for (const it of raw.items ?? []) {
+        if (!it.id || seenIds.has(it.id)) continue;
+        items.push(it);
+        seenIds.add(it.id);
+      }
+    } catch { /* tolerate malformed */ }
+  }
+
+  // 2. Drafts on disk → stage='drafted' (skip if already in pipeline file)
+  for (const d of drafts) {
+    const id = `draft:${d.filename}`;
+    if (seenIds.has(id)) continue;
+    items.push({
+      id,
+      title: d.title,
+      stage: 'drafted',
+      platforms: [],
+      owner: 'content',
+      created_at: d.date || '',
+      updated_at: d.date || '',
+      draft_ref: d.filename,
+    });
+    seenIds.add(id);
+  }
+
+  // 3. Renders → tagged in_review (waiting for QC)
+  for (const r of renders) {
+    const id = `render:${r.name}`;
+    if (seenIds.has(id)) continue;
+    items.push({
+      id,
+      title: r.name.replace(/^\d{4}-\d{2}-\d{2}_/, '').replace(/-/g, ' '),
+      stage: 'in_review',
+      platforms: [],
+      owner: 'designer',
+      created_at: r.date || '',
+      updated_at: r.date || '',
+      render_ref: r.compositePath,
+    });
+    seenIds.add(id);
+  }
+
+  // 4. Scheduled posts → stage='scheduled'
+  if (fs.existsSync(SCHEDULED_BASE)) {
+    const now = Date.now();
+    try {
+      const dateDirs = fs.readdirSync(SCHEDULED_BASE)
+        .filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d));
+      for (const dateDir of dateDirs) {
+        const dirPath = path.join(SCHEDULED_BASE, dateDir);
+        let files: string[];
+        try { files = fs.readdirSync(dirPath).filter(f => f.endsWith('.json')); }
+        catch { continue; }
+        for (const f of files) {
+          try {
+            const raw = fs.readFileSync(path.join(dirPath, f), 'utf-8');
+            const data = JSON.parse(raw) as {
+              id?: string; platform?: string; scheduled_at?: string;
+              status?: string; caption?: string | null;
+            };
+            if (!data.id || data.status !== 'scheduled') continue;
+            if (!data.scheduled_at) continue;
+            if (new Date(data.scheduled_at).getTime() <= now) continue;
+            const id = `sched:${data.id}`;
+            if (seenIds.has(id)) continue;
+            items.push({
+              id,
+              title: (data.caption ?? '').slice(0, 60).trim() || `${data.platform ?? 'post'} ${data.id}`,
+              stage: 'scheduled',
+              platforms: data.platform ? [data.platform] : [],
+              owner: 'social',
+              created_at: data.scheduled_at,
+              updated_at: data.scheduled_at,
+              scheduled_at: data.scheduled_at,
+            });
+            seenIds.add(id);
+          } catch { /* skip malformed */ }
+        }
+      }
+    } catch { /* tolerate */ }
+  }
+
+  // 5. Posted in last 7d (from posts-registry.json)
+  if (fs.existsSync(POSTS_REGISTRY)) {
+    try {
+      const reg = JSON.parse(fs.readFileSync(POSTS_REGISTRY, 'utf-8')) as {
+        posts?: Array<{
+          post_id: string; platform: string; intro: string;
+          post_url: string; published_at: string; platform_post_id: string;
+        }>;
+      };
+      const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+      for (const p of reg.posts ?? []) {
+        if (new Date(p.published_at).getTime() < sevenDaysAgo) continue;
+        const id = `posted:${p.post_id}`;
+        if (seenIds.has(id)) continue;
+        items.push({
+          id,
+          title: (p.intro && p.intro !== 'unknown') ? p.intro : `${p.platform} ${p.platform_post_id}`,
+          stage: 'posted',
+          platforms: [p.platform],
+          owner: 'social',
+          created_at: p.published_at,
+          updated_at: p.published_at,
+          posted_at: p.published_at,
+          post_url: p.post_url,
+        });
+        seenIds.add(id);
+      }
+    } catch { /* tolerate */ }
+  }
+
+  return items;
 }
 
 // --- Reel pipeline ---
