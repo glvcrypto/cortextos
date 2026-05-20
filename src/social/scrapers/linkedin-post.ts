@@ -24,6 +24,8 @@ interface DomCounts {
   reactionsText: string | null;
   commentsText: string | null;
   repostsText: string | null;
+  ogImage: string | null;
+  ogDescription: string | null;
   unavailable: boolean;
   authWalled: boolean;
 }
@@ -52,9 +54,12 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
         const commentsText = matchN(/([\\d,.]+)\\s+comments?/i);
         const repostsText = matchN(/([\\d,.]+)\\s+reposts?/i);
 
+        const og = document.querySelector('meta[property="og:description"]')?.getAttribute('content') ?? null;
+        const ogImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content') ?? null;
+
         const authWalled = !reactionsText && !commentsText && !repostsText;
 
-        return { reactionsText, commentsText, repostsText, unavailable, authWalled };
+        return { reactionsText, commentsText, repostsText, ogImage, ogDescription: og, unavailable, authWalled };
       })()
     `);
 
@@ -78,6 +83,8 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
       shares: parseCompact(counts?.repostsText ?? null),
       saves: null,
       views: null,
+      thumbnail_url: counts?.ogImage ?? null,
+      caption: counts?.ogDescription ?? null,
     };
   } catch (err) {
     return emptyLiveSnapshot(entry, String(err));

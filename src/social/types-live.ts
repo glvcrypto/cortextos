@@ -9,9 +9,14 @@
  */
 import type { Platform } from './types.js';
 
+// The posts-registry.json (built from Blotato submissions) labels X posts
+// 'twitter', so the per-post live layer accepts that alias alongside the
+// canonical Platform set.
+export type LivePlatform = Platform | 'twitter';
+
 export interface LivePostSnapshot {
   post_id: string;
-  platform: Platform;
+  platform: LivePlatform;
   post_url: string;
   platform_post_id: string;
   scraped_at: string;
@@ -28,7 +33,7 @@ export interface LivePostSnapshot {
 
 export interface PostRegistryEntry {
   post_id: string;
-  platform: Platform;
+  platform: LivePlatform;
   intro: string;
   post_url: string;
   blotato_submission_id: string;

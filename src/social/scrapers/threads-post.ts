@@ -19,6 +19,8 @@ interface DomCounts {
   commentText: string | null;
   repostText: string | null;
   shareText: string | null;
+  ogImage: string | null;
+  ogDescription: string | null;
   unavailable: boolean;
 }
 
@@ -39,6 +41,8 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
     const counts = await evaluate<DomCounts>(`
       (() => {
         const unavailable = /post.*not.*available|sorry.*page/i.test(document.title ?? '');
+        const og = document.querySelector('meta[property="og:description"]')?.getAttribute('content') ?? null;
+        const ogImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content') ?? null;
         const buttons = Array.from(document.querySelectorAll('[role="button"]')).filter(b => {
           const t = b.textContent?.trim() ?? '';
           return /^(Like|Comment|Repost|Share)/.test(t);
@@ -49,6 +53,8 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
           commentText: firstFour[1] ?? null,
           repostText: firstFour[2] ?? null,
           shareText: firstFour[3] ?? null,
+          ogImage,
+          ogDescription: og,
           unavailable,
         };
       })()
@@ -71,6 +77,8 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
       shares: extractCount(counts?.repostText ?? null, 'Repost'),
       saves: null,
       views: null,
+      thumbnail_url: counts?.ogImage ?? null,
+      caption: counts?.ogDescription ?? null,
     };
   } catch (err) {
     return emptyLiveSnapshot(entry, String(err));

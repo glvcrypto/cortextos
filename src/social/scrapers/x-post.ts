@@ -22,12 +22,14 @@ interface DomCounts {
   likes: string | null;
   bookmarks: string | null;
   views: string | null;
+  ogImage: string | null;
+  ogDescription: string | null;
   unavailable: boolean;
 }
 
 function parseAriaCount(label: string | null): number | null {
   if (!label) return null;
-  const m = label.match(/^([\d,.]+)\s/);
+  const m = label.match(/^([\d,.]+[KMB]?)/i);
   if (!m) return null;
   return parseCompact(m[1]);
 }
@@ -42,6 +44,9 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
         const title = document.title ?? '';
         const unavailable = /post.*not.*(found|available)|suspended.*account|hmm.*page/i.test(title);
 
+        const og = document.querySelector('meta[property="og:description"]')?.getAttribute('content') ?? null;
+        const ogImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content') ?? null;
+
         const labels = Array.from(document.querySelectorAll('[aria-label]'))
           .map(el => el.getAttribute('aria-label'))
           .filter(l => l && /\\d/.test(l));
@@ -54,6 +59,8 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
           likes: find(/likes?\\.?\\s*Like/i),
           bookmarks: find(/bookmarks?\\.?\\s*Bookmark/i),
           views: find(/views?$/i) ?? find(/\\bview\\b/i),
+          ogImage,
+          ogDescription: og,
           unavailable,
         };
       })()
@@ -65,7 +72,7 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
 
     return {
       post_id: entry.post_id,
-      platform: 'twitter',
+      platform: entry.platform,
       post_url: entry.post_url,
       platform_post_id: entry.platform_post_id,
       scraped_at: new Date().toISOString(),
@@ -76,6 +83,8 @@ export async function scrapePost(entry: PostRegistryEntry): Promise<LivePostSnap
       shares: parseAriaCount(counts?.reposts ?? null),
       saves: parseAriaCount(counts?.bookmarks ?? null),
       views: parseAriaCount(counts?.views ?? null),
+      thumbnail_url: counts?.ogImage ?? null,
+      caption: counts?.ogDescription ?? null,
     };
   } catch (err) {
     return emptyLiveSnapshot(entry, String(err));

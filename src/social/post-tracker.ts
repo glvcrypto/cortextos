@@ -7,18 +7,22 @@
  * Reads:  orgs/glv/clients/glv-marketing/socials/posts-registry.json
  * Writes: orgs/glv/clients/glv-marketing/socials/analytics/live/<platform>/<platform_post_id>.json
  *
- * Phase 1 ships instagram only. FB/Threads/LinkedIn/X scrapers land in Phase 2.
+ * Supports instagram/threads/x/linkedin/facebook. FB and LinkedIn gate post
+ * pages behind login and return ok:false until session auth is wired.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
-import type { PostRegistry, LivePostSnapshot } from './types-live.js';
-import type { Platform } from './types.js';
+import type { PostRegistry, LivePostSnapshot, LivePlatform } from './types-live.js';
 import { SESSION } from './scrapers/base.js';
 import { startWatchdog } from './watchdog.js';
 import { scrapePost as scrapeInstagramPost } from './scrapers/instagram-post.js';
+import { scrapePost as scrapeThreadsPost } from './scrapers/threads-post.js';
+import { scrapePost as scrapeXPost } from './scrapers/x-post.js';
+import { scrapePost as scrapeLinkedinPost } from './scrapers/linkedin-post.js';
+import { scrapePost as scrapeFacebookPost } from './scrapers/facebook-post.js';
 
-const SUPPORTED_PLATFORMS: Platform[] = ['instagram'];
+const SUPPORTED_PLATFORMS: LivePlatform[] = ['instagram', 'threads', 'twitter', 'linkedin', 'facebook'];
 const SCRAPE_GAP_MS = 5_000;
 
 async function sleep(ms: number): Promise<void> {
@@ -47,14 +51,14 @@ async function run(): Promise<void> {
   const registry = JSON.parse(readFileSync(registryPath, 'utf-8')) as PostRegistry;
 
   const platformArg = process.argv.find(a => a.startsWith('--platform='))?.split('=')[1];
-  const targets: Platform[] = platformArg
-    ? (platformArg.split(',') as Platform[])
+  const targets: LivePlatform[] = platformArg
+    ? (platformArg.split(',') as LivePlatform[])
     : SUPPORTED_PLATFORMS;
 
   const targetsSupported = targets.filter(p => SUPPORTED_PLATFORMS.includes(p));
   const skipped = targets.filter(p => !SUPPORTED_PLATFORMS.includes(p));
   if (skipped.length) {
-    console.log(`[post-tracker] skipping unsupported platforms (Phase 1): ${skipped.join(', ')}`);
+    console.log(`[post-tracker] skipping unsupported platforms: ${skipped.join(', ')}`);
   }
 
   console.log(`[post-tracker] platforms=${targetsSupported.join(',')} registry-size=${registry.posts.length}`);
@@ -70,10 +74,24 @@ async function run(): Promise<void> {
     for (const entry of posts) {
       let snapshot: LivePostSnapshot;
       try {
-        if (platform === 'instagram') {
-          snapshot = await scrapeInstagramPost(entry);
-        } else {
-          throw new Error(`unsupported platform ${platform}`);
+        switch (platform) {
+          case 'instagram':
+            snapshot = await scrapeInstagramPost(entry);
+            break;
+          case 'threads':
+            snapshot = await scrapeThreadsPost(entry);
+            break;
+          case 'twitter':
+            snapshot = await scrapeXPost(entry);
+            break;
+          case 'linkedin':
+            snapshot = await scrapeLinkedinPost(entry);
+            break;
+          case 'facebook':
+            snapshot = await scrapeFacebookPost(entry);
+            break;
+          default:
+            throw new Error(`unsupported platform ${platform}`);
         }
       } catch (err) {
         snapshot = {
