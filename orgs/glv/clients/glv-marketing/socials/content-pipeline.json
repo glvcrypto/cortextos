@@ -1,0 +1,514 @@
+{
+  "updated_at": "2026-05-20T00:46:20Z",
+  "client": "glv-marketing",
+  "stages": {
+    "ideas": [],
+    "drafted": [
+      {
+        "id": "intro-1-facebook",
+        "title": "intro-1 — Who is GLV (Facebook)",
+        "platform": "facebook",
+        "scheduled_at": "2026-05-18T09:00:00-04:00",
+        "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/facebook-intro-1.json"
+      },
+      {
+        "id": "intro-2-facebook",
+        "title": "intro-2 — Who is GLV (Facebook)",
+        "platform": "facebook",
+        "scheduled_at": "2026-05-18T11:00:00-04:00",
+        "carousel_ref": "intro-2-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/facebook-intro-2.json"
+      },
+      {
+        "id": "intro-3-facebook",
+        "title": "intro-3 — Who is GLV (Facebook)",
+        "platform": "facebook",
+        "scheduled_at": "2026-05-18T15:00:00-04:00",
+        "carousel_ref": "intro-3-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/facebook-intro-3.json"
+      },
+      {
+        "id": "intro-1-instagram",
+        "title": "intro-1 — Who is GLV (Instagram)",
+        "platform": "instagram",
+        "scheduled_at": "2026-05-18T09:00:00-04:00",
+        "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/instagram-intro-1.json"
+      },
+      {
+        "id": "intro-2-instagram",
+        "title": "intro-2 — Who is GLV (Instagram)",
+        "platform": "instagram",
+        "scheduled_at": "2026-05-18T11:00:00-04:00",
+        "carousel_ref": "intro-2-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/instagram-intro-2.json"
+      },
+      {
+        "id": "intro-3-instagram",
+        "title": "intro-3 — Who is GLV (Instagram)",
+        "platform": "instagram",
+        "scheduled_at": "2026-05-18T15:00:00-04:00",
+        "carousel_ref": "intro-3-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/instagram-intro-3.json"
+      },
+      {
+        "id": "intro-1-linkedin",
+        "title": "intro-1 — Who is GLV (LinkedIn)",
+        "platform": "linkedin",
+        "scheduled_at": "2026-05-18T09:00:00-04:00",
+        "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/linkedin-intro-1.json"
+      },
+      {
+        "id": "intro-2-linkedin",
+        "title": "intro-2 — Who is GLV (LinkedIn)",
+        "platform": "linkedin",
+        "scheduled_at": "2026-05-18T11:00:00-04:00",
+        "carousel_ref": "intro-2-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/linkedin-intro-2.json"
+      },
+      {
+        "id": "intro-3-linkedin",
+        "title": "intro-3 — Who is GLV (LinkedIn)",
+        "platform": "linkedin",
+        "scheduled_at": "2026-05-18T15:00:00-04:00",
+        "carousel_ref": "intro-3-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/linkedin-intro-3.json"
+      },
+      {
+        "id": "intro-1-threads",
+        "title": "intro-1 — Who is GLV (Threads)",
+        "platform": "threads",
+        "scheduled_at": "2026-05-18T09:00:00-04:00",
+        "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/threads-intro-1.json"
+      },
+      {
+        "id": "intro-2-threads",
+        "title": "intro-2 — Who is GLV (Threads)",
+        "platform": "threads",
+        "scheduled_at": "2026-05-18T11:00:00-04:00",
+        "carousel_ref": "intro-2-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/threads-intro-2.json"
+      },
+      {
+        "id": "intro-3-threads",
+        "title": "intro-3 — Who is GLV (Threads)",
+        "platform": "threads",
+        "scheduled_at": "2026-05-18T15:00:00-04:00",
+        "carousel_ref": "intro-3-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/threads-intro-3.json"
+      },
+      {
+        "id": "intro-1-x",
+        "title": "intro-1 — Who is GLV (X/Twitter)",
+        "platform": "x",
+        "scheduled_at": "2026-05-18T09:00:00-04:00",
+        "carousel_ref": "intro-1-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/x-intro-1.json"
+      },
+      {
+        "id": "intro-2-x",
+        "title": "intro-2 — Who is GLV (X/Twitter)",
+        "platform": "x",
+        "scheduled_at": "2026-05-18T11:00:00-04:00",
+        "carousel_ref": "intro-2-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/x-intro-2.json"
+      },
+      {
+        "id": "intro-3-x",
+        "title": "intro-3 — Who is GLV (X/Twitter)",
+        "platform": "x",
+        "scheduled_at": "2026-05-18T15:00:00-04:00",
+        "carousel_ref": "intro-3-who-is-glv-2026-05-18-v4",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/x-intro-3.json"
+      }
+    ],
+    "in_review": [
+      {
+        "id": "captions-2026-05-18-v1",
+        "title": "15 caption JSONs (intro batch) — Aiden QC pending",
+        "platform": "multi",
+        "submitted_at": "2026-05-18T00:00:00Z",
+        "sha_ref": "89c75457",
+        "notes": "Captions for 3 intros × 5 platforms locked in scheduled/2026-05-18/; status stays draft until Aiden QC"
+      },
+      {
+        "id": "carousels-intro-v4",
+        "title": "intro-1/2/3 carousels v4 — designer rendered, Aiden QC pending",
+        "platform": "instagram,facebook,linkedin",
+        "submitted_at": "2026-05-18T00:00:00Z",
+        "sha_ref": "db0942df",
+        "notes": "GLVCarousel.tsx style locked per memory; clean verdict on 4 rendered carousels"
+      },
+      {
+        "id": "lead-magnet-pdfs-v2",
+        "title": "Lead-magnet PDFs (GBP audit doc) — Aiden QC pending",
+        "platform": "linkedin,email",
+        "submitted_at": "2026-05-17T00:00:00Z",
+        "notes": "PDF generation per md2pdf-tech.cjs; standing deliverable"
+      },
+      {
+        "id": "linkedin-articles-v2",
+        "title": "LinkedIn long-form articles v2 — Aiden QC pending",
+        "platform": "linkedin",
+        "submitted_at": "2026-05-17T00:00:00Z",
+        "notes": "Long-form expansion of intro-1/2/3 themes"
+      },
+      {
+        "id": "reel-outlines-2026-05",
+        "title": "May reel outlines (screen-recording + voiceover) — Aiden Q&A pending",
+        "platform": "instagram,tiktok",
+        "submitted_at": "2026-05-12T00:00:00Z",
+        "notes": "6 screen-recording guidance questions unanswered in production notes (May 12 reel blocker)"
+      },
+      {
+        "id": "princecraft-sport-172-listing",
+        "title": "Princecraft Sport 172 Max listing — applied & live",
+        "platform": "reyco-site",
+        "submitted_at": "2026-05-10T00:00:00Z",
+        "sha_ref": "db9003fd",
+        "notes": "Cross-client (Reyco). Live page verified."
+      },
+      {
+        "id": "category-sweep-9-pages",
+        "title": "Category sweep — 9 page replacements (PR #244 merged) — Aiden application pending",
+        "platform": "reyco-site",
+        "submitted_at": "2026-05-15T00:00:00Z",
+        "sha_ref": "d5fe2544",
+        "notes": "Cross-client (Reyco). PR merged; live application is Aiden's call."
+      },
+      {
+        "id": "product-copy-sweep-rj",
+        "title": "Product-copy sweep — 8 R&J pages — verification blocked (50-year claim)",
+        "platform": "reyco-site",
+        "submitted_at": "2026-05-12T00:00:00Z",
+        "sha_ref": "4bdb0472",
+        "notes": "Cross-client (Reyco). Awaiting R&J 50-year-claim verification before ship."
+      }
+    ],
+    "scheduled": [],
+    "posted": [
+      {
+        "id": "twitter-unknown-2056865469483679898",
+        "title": "X/Twitter post 2056865469483679898",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:31:57.371Z",
+        "post_url": "https://x.com/glvmarketing/status/2056865469483679898",
+        "platform_post_id": "2056865469483679898",
+        "blotato_submission_id": "4203230"
+      },
+      {
+        "id": "twitter-unknown-2056865409677062370",
+        "title": "X/Twitter post 2056865409677062370",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:31:43.121Z",
+        "post_url": "https://x.com/glvmarketing/status/2056865409677062370",
+        "platform_post_id": "2056865409677062370",
+        "blotato_submission_id": "4203226"
+      },
+      {
+        "id": "twitter-unknown-2056865344136806640",
+        "title": "X/Twitter post 2056865344136806640",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:31:27.504Z",
+        "post_url": "https://x.com/glvmarketing/status/2056865344136806640",
+        "platform_post_id": "2056865344136806640",
+        "blotato_submission_id": "4203224"
+      },
+      {
+        "id": "twitter-unknown-2056865283382317210",
+        "title": "X/Twitter post 2056865283382317210",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:31:13.002Z",
+        "post_url": "https://x.com/glvmarketing/status/2056865283382317210",
+        "platform_post_id": "2056865283382317210",
+        "blotato_submission_id": "4203218"
+      },
+      {
+        "id": "twitter-unknown-2056865212049887316",
+        "title": "X/Twitter post 2056865212049887316",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:30:56.023Z",
+        "post_url": "https://x.com/glvmarketing/status/2056865212049887316",
+        "platform_post_id": "2056865212049887316",
+        "blotato_submission_id": "4203214"
+      },
+      {
+        "id": "twitter-unknown-2056865148405465514",
+        "title": "X/Twitter post 2056865148405465514",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:30:40.829Z",
+        "post_url": "https://x.com/glvmarketing/status/2056865148405465514",
+        "platform_post_id": "2056865148405465514",
+        "blotato_submission_id": "4203204"
+      },
+      {
+        "id": "twitter-unknown-2056865085579002331",
+        "title": "X/Twitter post 2056865085579002331",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:30:25.854Z",
+        "post_url": "https://x.com/glvmarketing/status/2056865085579002331",
+        "platform_post_id": "2056865085579002331",
+        "blotato_submission_id": "4203191"
+      },
+      {
+        "id": "twitter-unknown-2056865022240833992",
+        "title": "X/Twitter post 2056865022240833992",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:30:10.761Z",
+        "post_url": "https://x.com/glvmarketing/status/2056865022240833992",
+        "platform_post_id": "2056865022240833992",
+        "blotato_submission_id": "4203185"
+      },
+      {
+        "id": "twitter-unknown-2056864959020077506",
+        "title": "X/Twitter post 2056864959020077506",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:29:55.684Z",
+        "post_url": "https://x.com/glvmarketing/status/2056864959020077506",
+        "platform_post_id": "2056864959020077506",
+        "blotato_submission_id": "4203168"
+      },
+      {
+        "id": "twitter-unknown-2056864666710630619",
+        "title": "X/Twitter post 2056864666710630619",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:28:46.005Z",
+        "post_url": "https://x.com/glvmarketing/status/2056864666710630619",
+        "platform_post_id": "2056864666710630619",
+        "blotato_submission_id": "4203164"
+      },
+      {
+        "id": "twitter-unknown-2056864470769504584",
+        "title": "X/Twitter post 2056864470769504584",
+        "platform": "twitter",
+        "intro": "unknown",
+        "posted_at": "2026-05-19T22:27:59.267Z",
+        "post_url": "https://x.com/glvmarketing/status/2056864470769504584",
+        "platform_post_id": "2056864470769504584",
+        "blotato_submission_id": "4203162"
+      },
+      {
+        "id": "instagram-intro-3-DYh_yU6FJ8W",
+        "title": "intro-3 — Who is GLV (Instagram)",
+        "platform": "instagram",
+        "intro": "intro-3",
+        "posted_at": "2026-05-19T19:00:53.358Z",
+        "post_url": "https://www.instagram.com/p/DYh_yU6FJ8W/",
+        "platform_post_id": "DYh_yU6FJ8W",
+        "blotato_submission_id": "4200606"
+      },
+      {
+        "id": "threads-intro-3-DYh_vUPD3QR",
+        "title": "intro-3 — Who is GLV (Threads)",
+        "platform": "threads",
+        "intro": "intro-3",
+        "posted_at": "2026-05-19T19:00:42.020Z",
+        "post_url": "https://www.threads.com/@glv.marketing/post/DYh_vUPD3QR",
+        "platform_post_id": "DYh_vUPD3QR",
+        "blotato_submission_id": "4200555"
+      },
+      {
+        "id": "linkedin-intro-3-urn:li:ugcPost:7462577897644544000",
+        "title": "intro-3 — Who is GLV (LinkedIn)",
+        "platform": "linkedin",
+        "intro": "intro-3",
+        "posted_at": "2026-05-19T19:00:19.126Z",
+        "post_url": "https://linkedin.com/feed/update/urn:li:ugcPost:7462577897644544000",
+        "platform_post_id": "urn:li:ugcPost:7462577897644544000",
+        "blotato_submission_id": "4200472"
+      },
+      {
+        "id": "facebook-intro-3-1032144439974830_122126255313246960",
+        "title": "intro-3 — Who is GLV (Facebook)",
+        "platform": "facebook",
+        "intro": "intro-3",
+        "posted_at": "2026-05-19T19:00:15.479Z",
+        "post_url": "https://facebook.com/1032144439974830_122126255313246960",
+        "platform_post_id": "1032144439974830_122126255313246960",
+        "blotato_submission_id": "4200467"
+      },
+      {
+        "id": "instagram-intro-2-DYhkV2VlvrT",
+        "title": "intro-2 — Who is GLV (Instagram)",
+        "platform": "instagram",
+        "intro": "intro-2",
+        "posted_at": "2026-05-19T15:01:05.782Z",
+        "post_url": "https://www.instagram.com/p/DYhkV2VlvrT/",
+        "platform_post_id": "DYhkV2VlvrT",
+        "blotato_submission_id": "4196114"
+      },
+      {
+        "id": "instagram-intro-2-DYhkVJ8FGBT",
+        "title": "intro-2 — Who is GLV (Instagram, dupe)",
+        "platform": "instagram",
+        "intro": "intro-2",
+        "posted_at": "2026-05-19T15:00:58.851Z",
+        "post_url": "https://www.instagram.com/p/DYhkVJ8FGBT/",
+        "platform_post_id": "DYhkVJ8FGBT",
+        "blotato_submission_id": "4196101",
+        "dupe_of": "instagram-intro-2-DYhkV2VlvrT"
+      },
+      {
+        "id": "threads-intro-2-DYhkRZkEV19",
+        "title": "intro-2 — Who is GLV (Threads)",
+        "platform": "threads",
+        "intro": "intro-2",
+        "posted_at": "2026-05-19T15:00:39.024Z",
+        "post_url": "https://www.threads.com/@glv.marketing/post/DYhkRZkEV19",
+        "platform_post_id": "DYhkRZkEV19",
+        "blotato_submission_id": "4196021"
+      },
+      {
+        "id": "linkedin-intro-2-urn:li:ugcPost:7462517497229950976",
+        "title": "intro-2 — Who is GLV (LinkedIn)",
+        "platform": "linkedin",
+        "intro": "intro-2",
+        "posted_at": "2026-05-19T15:00:18.458Z",
+        "post_url": "https://linkedin.com/feed/update/urn:li:ugcPost:7462517497229950976",
+        "platform_post_id": "urn:li:ugcPost:7462517497229950976",
+        "blotato_submission_id": "4195934"
+      },
+      {
+        "id": "facebook-intro-2-1032144439974830_122126227683246960",
+        "title": "intro-2 — Who is GLV (Facebook)",
+        "platform": "facebook",
+        "intro": "intro-2",
+        "posted_at": "2026-05-19T15:00:16.238Z",
+        "post_url": "https://facebook.com/1032144439974830_122126227683246960",
+        "platform_post_id": "1032144439974830_122126227683246960",
+        "blotato_submission_id": "4195927"
+      },
+      {
+        "id": "facebook-intro-2-1032144439974830_122126227677246960",
+        "title": "intro-2 — Who is GLV (Facebook, dupe)",
+        "platform": "facebook",
+        "intro": "intro-2",
+        "posted_at": "2026-05-19T15:00:16.155Z",
+        "post_url": "https://facebook.com/1032144439974830_122126227677246960",
+        "platform_post_id": "1032144439974830_122126227677246960",
+        "blotato_submission_id": "4195926",
+        "dupe_of": "facebook-intro-2-1032144439974830_122126227683246960"
+      },
+      {
+        "id": "instagram-intro-1-DYhWoAfoAeu",
+        "title": "intro-1 — Who is GLV (Instagram)",
+        "platform": "instagram",
+        "intro": "intro-1",
+        "posted_at": "2026-05-19T13:01:15.127Z",
+        "post_url": "https://www.instagram.com/p/DYhWoAfoAeu/",
+        "platform_post_id": "DYhWoAfoAeu",
+        "blotato_submission_id": "4193860"
+      },
+      {
+        "id": "instagram-intro-1-DYhWmilFAWa",
+        "title": "intro-1 — Who is GLV (Instagram, dupe)",
+        "platform": "instagram",
+        "intro": "intro-1",
+        "posted_at": "2026-05-19T13:01:01.590Z",
+        "post_url": "https://www.instagram.com/p/DYhWmilFAWa/",
+        "platform_post_id": "DYhWmilFAWa",
+        "blotato_submission_id": "4193827",
+        "dupe_of": "instagram-intro-1-DYhWoAfoAeu"
+      },
+      {
+        "id": "threads-intro-1-DYhWixzIFkV",
+        "title": "intro-1 — Who is GLV (Threads)",
+        "platform": "threads",
+        "intro": "intro-1",
+        "posted_at": "2026-05-19T13:00:42.972Z",
+        "post_url": "https://www.threads.com/@glv.marketing/post/DYhWixzIFkV",
+        "platform_post_id": "DYhWixzIFkV",
+        "blotato_submission_id": "4193753"
+      },
+      {
+        "id": "threads-intro-1-DYhWi-AlggZ",
+        "title": "intro-1 — Who is GLV (Threads, dupe)",
+        "platform": "threads",
+        "intro": "intro-1",
+        "posted_at": "2026-05-19T13:00:42.739Z",
+        "post_url": "https://www.threads.com/@glv.marketing/post/DYhWi-AlggZ",
+        "platform_post_id": "DYhWi-AlggZ",
+        "blotato_submission_id": "4193751",
+        "dupe_of": "threads-intro-1-DYhWixzIFkV"
+      },
+      {
+        "id": "linkedin-intro-1-urn:li:ugcPost:7462487323134513152",
+        "title": "intro-1 — Who is GLV (LinkedIn)",
+        "platform": "linkedin",
+        "intro": "intro-1",
+        "posted_at": "2026-05-19T13:00:25.025Z",
+        "post_url": "https://linkedin.com/feed/update/urn:li:ugcPost:7462487323134513152",
+        "platform_post_id": "urn:li:ugcPost:7462487323134513152",
+        "blotato_submission_id": "4193638"
+      },
+      {
+        "id": "linkedin-intro-1-urn:li:ugcPost:7462487320567549953",
+        "title": "intro-1 — Who is GLV (LinkedIn, dupe)",
+        "platform": "linkedin",
+        "intro": "intro-1",
+        "posted_at": "2026-05-19T13:00:24.349Z",
+        "post_url": "https://linkedin.com/feed/update/urn:li:ugcPost:7462487320567549953",
+        "platform_post_id": "urn:li:ugcPost:7462487320567549953",
+        "blotato_submission_id": "4193635",
+        "dupe_of": "linkedin-intro-1-urn:li:ugcPost:7462487323134513152"
+      },
+      {
+        "id": "facebook-intro-1-1032144439974830_122126215929246960",
+        "title": "intro-1 — Who is GLV (Facebook)",
+        "platform": "facebook",
+        "intro": "intro-1",
+        "posted_at": "2026-05-19T13:00:19.907Z",
+        "post_url": "https://facebook.com/1032144439974830_122126215929246960",
+        "platform_post_id": "1032144439974830_122126215929246960",
+        "blotato_submission_id": "4193627"
+      },
+      {
+        "id": "facebook-intro-1-1032144439974830_122126215923246960",
+        "title": "intro-1 — Who is GLV (Facebook, dupe)",
+        "platform": "facebook",
+        "intro": "intro-1",
+        "posted_at": "2026-05-19T13:00:19.443Z",
+        "post_url": "https://facebook.com/1032144439974830_122126215923246960",
+        "platform_post_id": "1032144439974830_122126215923246960",
+        "blotato_submission_id": "4193626",
+        "dupe_of": "facebook-intro-1-1032144439974830_122126215929246960"
+      }
+    ]
+  },
+  "counts": {
+    "ideas": 0,
+    "drafted": 15,
+    "in_review": 8,
+    "scheduled": 0,
+    "posted": 29
+  },
+  "notes": "v1 — first write per boss dispatch 2026-05-20T00:30Z. Drafted = scheduled/2026-05-18/ files all currently status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json."
+}
