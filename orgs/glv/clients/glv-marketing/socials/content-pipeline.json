@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-20T03:28:12Z",
+  "updated_at": "2026-05-20T04:52:21Z",
   "client": "glv-marketing",
   "stages": {
     "ideas": [],
@@ -145,6 +145,8 @@
         "platform": "instagram",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
         "carousel_ref": "google-reviews-system-2026-05-20-v1",
+        "remotion_composition_id": "GoogleReviewsSystemIGPortrait",
+        "visual_status": "slide-content-authored-render-pending",
         "status": "draft",
         "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/instagram-reviews-system.json"
       },
@@ -154,6 +156,8 @@
         "platform": "facebook",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
         "carousel_ref": "google-reviews-system-fb-2026-05-20-v1",
+        "remotion_composition_id": "GoogleReviewsSystemFBSquare",
+        "visual_status": "slide-content-authored-render-pending",
         "status": "draft",
         "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/facebook-reviews-system.json"
       },
@@ -163,6 +167,8 @@
         "platform": "threads",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
         "carousel_ref": "google-reviews-system-threads-single-2026-05-20-v1",
+        "remotion_composition_id": "GoogleReviewsSystemThreadsSingle",
+        "visual_status": "slide-content-authored-render-pending",
         "status": "draft",
         "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/threads-reviews-system.json"
       },
@@ -172,6 +178,8 @@
         "platform": "linkedin",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
         "carousel_ref": "google-reviews-system-linkedin-doc-2026-05-20-v1",
+        "remotion_composition_id": "GoogleReviewsSystemLinkedInPDF",
+        "visual_status": "slide-content-authored-render-pending",
         "status": "draft",
         "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/linkedin-reviews-system.json"
       },
@@ -181,6 +189,7 @@
         "platform": "x",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
         "carousel_ref": null,
+        "visual_status": "no-visual-required-text-thread",
         "status": "draft",
         "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/x-reviews-system.json"
       }
@@ -555,5 +564,5 @@
     "scheduled": 0,
     "posted": 29
   },
-  "notes": "v2 — boss dispatch task_1779247134789_74789596 2026-05-20T03:28Z added 5 May-20 reviews-system drafts (scheduled/2026-05-20/*.json) into drafted stage. Drafted = scheduled/2026-05-18/ intro batch (15) + scheduled/2026-05-20/ reviews-system batch (5), all status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json + scheduled/2026-05-20/*.json."
+  "notes": "v3 — boss dispatch task_1779247134789_74789596 (visual continuation) 2026-05-20T04:52Z: slide-by-slide visual content for the 5 May-20 reviews-system drafts authored into socials/remotion/src/Root.tsx as 3 SlideData arrays (reviewsSystemSlides 6-slide IG/LinkedIn, reviewsSystemFBSlides 4-slide FB, reviewsSystemThreadsSlides 1-slide Threads) + 4 Composition entries (GoogleReviewsSystemIGPortrait/FBSquare/LinkedInPDF/ThreadsSingle). The 4 visual platforms now carry remotion_composition_id + visual_status=slide-content-authored-render-pending (awaiting dev Remotion render before Aiden QC); X is text-thread, visual_status=no-visual-required-text-thread. Entries stay in drafted (not draft-complete until visuals rendered). v2 — 2026-05-20T03:28Z added the 5 reviews-system caption drafts. Drafted = scheduled/2026-05-18/ intro batch (15) + scheduled/2026-05-20/ reviews-system batch (5), all status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json + scheduled/2026-05-20/*.json + remotion/src/Root.tsx."
 }

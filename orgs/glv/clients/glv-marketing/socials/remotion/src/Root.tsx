@@ -146,6 +146,40 @@ const intro3v4Slides: SlideData[] = [
   { type: "cta", headline: "If your business needs marketing that compounds, message us.", body: "We take a small number of clients at a time. If you want to know whether GLV is the right fit, start with a message." },
 ];
 
+// ── May 20 daily post: "4-step Google review system" ───────────────────────
+// Standalone value post (not a numbered series) — slide 1 is a hook, not a
+// cover. The cover type renders an "Intro N / 3" eyebrow + 520pt series number,
+// which is series-specific and wrong for a standalone post. GLVSlide style is
+// locked (project_glv_carousel_style_locked), so the post adapts to the
+// component rather than the component changing. Copy source:
+// post-packages/google-reviews-system-2026-05-20.md (boss dispatch
+// task_1779247134789_74789596, visual continuation).
+const reviewsSystemSlides: SlideData[] = [
+  { type: "hook", tag: "@glv.marketing", headline: "The 4-step Google review system.", body: "All free. You can start this week." },
+  { type: "content", tag: "Step 1", headline: "Ask in person, at the peak moment.", body: "Job done, customer happy. That's the window. Not an email a week later." },
+  { type: "content", tag: "Step 2", headline: "Hand them the direct link.", body: "Google gives every profile a short review link. 'Look us up on Google' loses people. The link doesn't." },
+  { type: "content", tag: "Step 3", headline: "Reply to every review, good and bad.", body: "Google's local ranking reads it as a real, active business. Most owners skip this one." },
+  { type: "content", tag: "Step 4", headline: "Never buy reviews.", body: "Google's filter catches fake patterns and can suspend your whole profile. Slow and real wins." },
+  { type: "cta", headline: "What's your Google review count right now?", body: "Drop it in the comments for a realistic 90-day target." },
+];
+
+// FB 1:1 — 4-slide cap, independently authored per the per-platform-optimisation
+// rule (condenses 4 steps into 2 content slides, not a literal subset of IG).
+// Last slide is type cta so the GLV logo conditional fires (intro FB pattern).
+const reviewsSystemFBSlides: SlideData[] = [
+  { type: "hook", tag: "@glv.marketing", headline: "4 steps to more Google reviews", body: "All free. You can start this week." },
+  { type: "content", headline: "Ask in person, at the peak moment.", body: "Then hand them the direct review link. 'Look us up on Google' loses people." },
+  { type: "content", headline: "Reply to every review, good and bad.", body: "Google reads it as a real, active business. The step most owners skip." },
+  { type: "cta", headline: "Never buy reviews.", body: "Google's filter catches them and can suspend your profile. Slow and real wins." },
+];
+
+// Threads single image — one summary card. cta type carries the GLV logo
+// sign-off and, unlike hook, renders no "Swipe to read" hint (wrong for a
+// single image). Copy is the step-3 takeaway, per post-package.
+const reviewsSystemThreadsSlides: SlideData[] = [
+  { type: "cta", tag: "Google reviews", headline: "Reply to every review. Good and bad.", body: "Google reads it as a real, active business. The step most owners skip." },
+];
+
 export const RemotionRoot: React.FC = () => (
   <>
     {/* 1080×1350 portrait — IG/LI */}
@@ -759,6 +793,60 @@ export const RemotionRoot: React.FC = () => (
       width={1200}
       height={675}
       defaultProps={{ slides: intro3v4Slides.slice(1, 2), brand: brandGLV_B }}
+    />
+
+    {/* ── May 20 daily post: "4-step Google review system" — palette B ──
+        Standalone value post. Slide content from
+        post-packages/google-reviews-system-2026-05-20.md.
+        carousel_ref → composition-id map:
+          google-reviews-system-2026-05-20-v1            → GoogleReviewsSystemIGPortrait
+          google-reviews-system-fb-2026-05-20-v1         → GoogleReviewsSystemFBSquare
+          google-reviews-system-linkedin-doc-2026-05-20-v1 → GoogleReviewsSystemLinkedInPDF
+          google-reviews-system-threads-single-2026-05-20-v1 → GoogleReviewsSystemThreadsSingle
+        X is text-thread only — no composition. ── */}
+
+    {/* IG-portrait carousel — 6 slides, 1080×1350 */}
+    <Composition
+      id="GoogleReviewsSystemIGPortrait"
+      component={GLVCarousel}
+      durationInFrames={reviewsSystemSlides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1350}
+      defaultProps={{ slides: reviewsSystemSlides, brand: brandGLV_B }}
+    />
+
+    {/* FB-square carousel — 4 slides (per-platform-optimised copy), 1080×1080 */}
+    <Composition
+      id="GoogleReviewsSystemFBSquare"
+      component={GLVCarousel}
+      durationInFrames={reviewsSystemFBSlides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: reviewsSystemFBSlides, brand: brandGLV_B }}
+    />
+
+    {/* LinkedIn document (PDF pages) — same 6 slides as IG, 1080×1350 */}
+    <Composition
+      id="GoogleReviewsSystemLinkedInPDF"
+      component={GLVCarousel}
+      durationInFrames={reviewsSystemSlides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1350}
+      defaultProps={{ slides: reviewsSystemSlides, brand: brandGLV_B }}
+    />
+
+    {/* Threads single image — one summary card, 1080×1080 */}
+    <Composition
+      id="GoogleReviewsSystemThreadsSingle"
+      component={GLVCarousel}
+      durationInFrames={reviewsSystemThreadsSlides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: reviewsSystemThreadsSlides, brand: brandGLV_B }}
     />
 
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}
