@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-20T04:52:21Z",
+  "updated_at": "2026-05-20T05:55:12Z",
   "client": "glv-marketing",
   "stages": {
     "ideas": [],
@@ -138,63 +138,76 @@
         "carousel_ref": "intro-3-who-is-glv-2026-05-18-v4",
         "status": "draft",
         "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/x-intro-3.json"
-      },
+      }
+    ],
+    "in_review": [
       {
         "id": "reviews-system-instagram",
-        "title": "4-step Google review system (Instagram)",
+        "title": "4-step Google review system (Instagram) — caption + 6-slide carousel rendered, Aiden QC pending",
         "platform": "instagram",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
         "carousel_ref": "google-reviews-system-2026-05-20-v1",
         "remotion_composition_id": "GoogleReviewsSystemIGPortrait",
-        "visual_status": "slide-content-authored-render-pending",
-        "status": "draft",
-        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/instagram-reviews-system.json"
+        "render_dir": "orgs/glv/clients/glv-marketing/socials/remotion/renders/google-reviews-system-2026-05-20-v1-ig-portrait",
+        "visual_status": "rendered",
+        "submitted_at": "2026-05-20T05:50:00Z",
+        "sha_ref": "d7da0da0",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/instagram-reviews-system.json",
+        "notes": "6-slide carousel rendered by dev (d7da0da0); content-agent visual QC passed (no clipping, copy intact). status=draft until Aiden AM QC."
       },
       {
         "id": "reviews-system-facebook",
-        "title": "4-step Google review system (Facebook)",
+        "title": "4-step Google review system (Facebook) — caption + 4-slide carousel rendered, Aiden QC pending",
         "platform": "facebook",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
-        "carousel_ref": "google-reviews-system-fb-2026-05-20-v1",
+        "carousel_ref": "google-reviews-system-2026-05-20-v1",
         "remotion_composition_id": "GoogleReviewsSystemFBSquare",
-        "visual_status": "slide-content-authored-render-pending",
-        "status": "draft",
-        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/facebook-reviews-system.json"
+        "render_dir": "orgs/glv/clients/glv-marketing/socials/remotion/renders/google-reviews-system-2026-05-20-v1-fb-square",
+        "visual_status": "rendered",
+        "submitted_at": "2026-05-20T05:50:00Z",
+        "sha_ref": "d7da0da0",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/facebook-reviews-system.json",
+        "notes": "4-slide carousel rendered by dev (d7da0da0); content-agent visual QC passed. carousel_ref corrected to base ref (was google-reviews-system-fb-2026-05-20-v1) to match the intro one-base-ref convention and the render dir. status=draft until Aiden AM QC."
       },
       {
         "id": "reviews-system-threads",
-        "title": "4-step Google review system (Threads)",
+        "title": "4-step Google review system (Threads) — caption + single-image card rendered, Aiden QC pending",
         "platform": "threads",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
-        "carousel_ref": "google-reviews-system-threads-single-2026-05-20-v1",
+        "carousel_ref": "google-reviews-system-2026-05-20-v1",
         "remotion_composition_id": "GoogleReviewsSystemThreadsSingle",
-        "visual_status": "slide-content-authored-render-pending",
-        "status": "draft",
-        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/threads-reviews-system.json"
+        "render_dir": "orgs/glv/clients/glv-marketing/socials/remotion/renders/google-reviews-system-2026-05-20-v1-threads-single",
+        "visual_status": "rendered",
+        "submitted_at": "2026-05-20T05:50:00Z",
+        "sha_ref": "d7da0da0",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/threads-reviews-system.json",
+        "notes": "Single summary-card image rendered by dev (d7da0da0); content-agent visual QC passed. carousel_ref corrected to base ref. status=draft until Aiden AM QC."
       },
       {
         "id": "reviews-system-linkedin",
-        "title": "4-step Google review system (LinkedIn)",
+        "title": "4-step Google review system (LinkedIn) — caption + 6-page PDF doc rendered, Aiden QC pending",
         "platform": "linkedin",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
-        "carousel_ref": "google-reviews-system-linkedin-doc-2026-05-20-v1",
+        "carousel_ref": "google-reviews-system-2026-05-20-v1",
         "remotion_composition_id": "GoogleReviewsSystemLinkedInPDF",
-        "visual_status": "slide-content-authored-render-pending",
-        "status": "draft",
-        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/linkedin-reviews-system.json"
+        "render_dir": "orgs/glv/clients/glv-marketing/socials/remotion/renders/google-reviews-system-2026-05-20-v1-linkedin-pdf",
+        "visual_status": "rendered",
+        "submitted_at": "2026-05-20T05:50:00Z",
+        "sha_ref": "d7da0da0",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/linkedin-reviews-system.json",
+        "notes": "6-page PDF document (google-reviews-system-v1.pdf) rendered by dev (d7da0da0); content-agent visual QC passed. carousel_ref corrected to base ref. status=draft until Aiden AM QC."
       },
       {
         "id": "reviews-system-x",
-        "title": "4-step Google review system (X/Twitter)",
+        "title": "4-step Google review system (X/Twitter) — 6-tweet text thread, Aiden QC pending",
         "platform": "x",
         "scheduled_at": "2026-05-20T13:00:00-04:00",
         "carousel_ref": null,
         "visual_status": "no-visual-required-text-thread",
-        "status": "draft",
-        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/x-reviews-system.json"
-      }
-    ],
-    "in_review": [
+        "submitted_at": "2026-05-20T05:50:00Z",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-20/x-reviews-system.json",
+        "notes": "Text-only 6-tweet thread; no visual required, draft-complete. status=draft until Aiden AM QC."
+      },
       {
         "id": "captions-2026-05-18-v1",
         "title": "15 caption JSONs (intro batch) — Aiden QC pending",
@@ -559,10 +572,10 @@
   },
   "counts": {
     "ideas": 0,
-    "drafted": 20,
-    "in_review": 8,
+    "drafted": 15,
+    "in_review": 13,
     "scheduled": 0,
     "posted": 29
   },
-  "notes": "v3 — boss dispatch task_1779247134789_74789596 (visual continuation) 2026-05-20T04:52Z: slide-by-slide visual content for the 5 May-20 reviews-system drafts authored into socials/remotion/src/Root.tsx as 3 SlideData arrays (reviewsSystemSlides 6-slide IG/LinkedIn, reviewsSystemFBSlides 4-slide FB, reviewsSystemThreadsSlides 1-slide Threads) + 4 Composition entries (GoogleReviewsSystemIGPortrait/FBSquare/LinkedInPDF/ThreadsSingle). The 4 visual platforms now carry remotion_composition_id + visual_status=slide-content-authored-render-pending (awaiting dev Remotion render before Aiden QC); X is text-thread, visual_status=no-visual-required-text-thread. Entries stay in drafted (not draft-complete until visuals rendered). v2 — 2026-05-20T03:28Z added the 5 reviews-system caption drafts. Drafted = scheduled/2026-05-18/ intro batch (15) + scheduled/2026-05-20/ reviews-system batch (5), all status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json + scheduled/2026-05-20/*.json + remotion/src/Root.tsx."
+  "notes": "v4 — boss dispatch task_1779247134789_74789596 (visual continuation) 2026-05-20T05:55Z: dev rendered all 4 reviews-system carousels via Remotion (commit d7da0da0) — IG 6-slide portrait, FB 4-slide square, LinkedIn 6-page PDF, Threads single card. Content-agent visual QC passed clean on all variants (no clipping, copy intact, correct slide counts, hooks carry swipe hint, ctas carry GLV logo). carousel_ref linkage corrected: FB/LinkedIn/Threads JSON drafts moved from per-platform variant refs to the base ref google-reviews-system-2026-05-20-v1, matching the intro one-base-ref convention + dev render dir naming. The 5 reviews-system entries moved drafted -> in_review (visual_status=rendered for the 4 visual platforms, no-visual-required-text-thread for X); status stays draft until Aiden AM QC. v3 — 2026-05-20T04:52Z: slide content authored into socials/remotion/src/Root.tsx (3 SlideData arrays + 4 Composition entries). v2 — 2026-05-20T03:28Z added the 5 reviews-system caption drafts. Drafted = scheduled/2026-05-18/ intro batch (15), all status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json + scheduled/2026-05-20/*.json + remotion/src/Root.tsx + remotion/renders/google-reviews-system-2026-05-20-v1-*/."
 }
