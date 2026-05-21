@@ -180,6 +180,37 @@ const reviewsSystemThreadsSlides: SlideData[] = [
   { type: "cta", tag: "Google reviews", headline: "Reply to every review. Good and bad.", body: "Google reads it as a real, active business. The step most owners skip." },
 ];
 
+// ── May 21 daily post: "4 free Google Business Profile fixes" ──────────────
+// Standalone value post, same pattern as the May 20 reviews-system post:
+// slide 1 is a hook, not a cover (cover type renders a series eyebrow that is
+// wrong for a standalone post). Palette B, GLVCarousel. Copy source:
+// post-packages/google-profile-fields-2026-05-21.md (boss dispatch
+// 1779339333637-boss-x7jse, May 21 daily content).
+const profileFieldsSlides: SlideData[] = [
+  { type: "hook", tag: "@glv.marketing", headline: "4 free fixes for a half-empty Google profile.", body: "All free. All doable this week." },
+  { type: "content", tag: "Fix 1", headline: "Pick the most specific primary category.", body: "It's the highest-weight field on the profile. Google uses it to decide which searches you show up for." },
+  { type: "content", tag: "Fix 2", headline: "Add a photo every week.", body: "Google's ranking favours active profiles. A fresh photo says you're open and operating." },
+  { type: "content", tag: "Fix 3", headline: "Fill every Services and Products field.", body: "Each one is a term Google can match you to. Free keyword space, and most profiles leave it blank." },
+  { type: "content", tag: "Fix 4", headline: "Post a Google Post every week.", body: "A sale, a seasonal note, a new service. They expire after 7 days, so it has to be a habit." },
+  { type: "cta", headline: "How complete is your Google profile right now?", body: "Drop a comment and I'll point you to the weakest spot." },
+];
+
+// FB 1:1 — 4-slide cap, independently authored per the per-platform rule
+// (condenses 4 fixes into 2 content slides). Last slide is cta so the GLV
+// logo conditional fires.
+const profileFieldsFBSlides: SlideData[] = [
+  { type: "hook", tag: "@glv.marketing", headline: "4 free Google profile fixes", body: "All free. All doable this week." },
+  { type: "content", headline: "Set a specific category. Add a photo weekly.", body: "The category is your highest-weight field. Fresh photos tell Google you're active." },
+  { type: "content", headline: "Fill every service field. Post weekly.", body: "Each service is another search Google can match. Posts keep the profile fresh." },
+  { type: "cta", headline: "When did you last finish your profile?", body: "Most owners set it up once and never look again. That's the gap." },
+];
+
+// Threads single image — one summary card. cta type carries the GLV logo
+// sign-off and renders no "Swipe to read" hint (wrong for a single image).
+const profileFieldsThreadsSlides: SlideData[] = [
+  { type: "cta", tag: "Google profile", headline: "Fill every Services field.", body: "Each service you list is another search Google can match you to. Free keyword space most profiles leave blank." },
+];
+
 export const RemotionRoot: React.FC = () => (
   <>
     {/* 1080×1350 portrait — IG/LI */}
@@ -847,6 +878,60 @@ export const RemotionRoot: React.FC = () => (
       width={1080}
       height={1080}
       defaultProps={{ slides: reviewsSystemThreadsSlides, brand: brandGLV_B }}
+    />
+
+    {/* ── May 21 daily post: "4 free Google Business Profile fixes" — palette B ──
+        Standalone value post. Slide content from
+        post-packages/google-profile-fields-2026-05-21.md.
+        carousel_ref → composition-id map:
+          google-profile-fields-2026-05-21-v1 → GoogleProfileFieldsIGPortrait
+                                              / GoogleProfileFieldsLinkedInPDF
+                                              / GoogleProfileFieldsFBSquare
+                                              / GoogleProfileFieldsThreadsSingle
+        X is single-post text only — no composition. ── */}
+
+    {/* IG-portrait carousel — 6 slides, 1080×1350 */}
+    <Composition
+      id="GoogleProfileFieldsIGPortrait"
+      component={GLVCarousel}
+      durationInFrames={profileFieldsSlides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1350}
+      defaultProps={{ slides: profileFieldsSlides, brand: brandGLV_B }}
+    />
+
+    {/* FB-square carousel — 4 slides (per-platform-optimised copy), 1080×1080 */}
+    <Composition
+      id="GoogleProfileFieldsFBSquare"
+      component={GLVCarousel}
+      durationInFrames={profileFieldsFBSlides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: profileFieldsFBSlides, brand: brandGLV_B }}
+    />
+
+    {/* LinkedIn document (PDF pages) — same 6 slides as IG, 1080×1350 */}
+    <Composition
+      id="GoogleProfileFieldsLinkedInPDF"
+      component={GLVCarousel}
+      durationInFrames={profileFieldsSlides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1350}
+      defaultProps={{ slides: profileFieldsSlides, brand: brandGLV_B }}
+    />
+
+    {/* Threads single image — one summary card, 1080×1080 */}
+    <Composition
+      id="GoogleProfileFieldsThreadsSingle"
+      component={GLVCarousel}
+      durationInFrames={profileFieldsThreadsSlides.length * brandGLV_B.slideDuration}
+      fps={brandGLV_B.fps}
+      width={1080}
+      height={1080}
+      defaultProps={{ slides: profileFieldsThreadsSlides, brand: brandGLV_B }}
     />
 
     {/* 1080×1920 — @glv.marketing reel with captions + headline overlay */}

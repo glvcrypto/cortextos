@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-20T23:41:43Z",
+  "updated_at": "2026-05-21T05:06:00Z",
   "client": "glv-marketing",
   "stages": {
     "ideas": [],
@@ -138,6 +138,61 @@
         "carousel_ref": "intro-3-who-is-glv-2026-05-18-v4",
         "status": "draft",
         "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-18/x-intro-3.json"
+      },
+      {
+        "id": "profile-fields-instagram",
+        "title": "4 free Google profile fixes (Instagram)",
+        "platform": "instagram",
+        "scheduled_at": "2026-05-21T13:00:00-04:00",
+        "carousel_ref": "google-profile-fields-2026-05-21-v1",
+        "remotion_composition_id": "GoogleProfileFieldsIGPortrait",
+        "visual_status": "render_pending",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-21/instagram-google-profile-fields.json"
+      },
+      {
+        "id": "profile-fields-facebook",
+        "title": "4 free Google profile fixes (Facebook)",
+        "platform": "facebook",
+        "scheduled_at": "2026-05-21T13:00:00-04:00",
+        "carousel_ref": "google-profile-fields-2026-05-21-v1",
+        "remotion_composition_id": "GoogleProfileFieldsFBSquare",
+        "visual_status": "render_pending",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-21/facebook-google-profile-fields.json"
+      },
+      {
+        "id": "profile-fields-linkedin",
+        "title": "4 free Google profile fixes (LinkedIn)",
+        "platform": "linkedin",
+        "scheduled_at": "2026-05-21T13:00:00-04:00",
+        "carousel_ref": "google-profile-fields-2026-05-21-v1",
+        "remotion_composition_id": "GoogleProfileFieldsLinkedInPDF",
+        "visual_status": "render_pending",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-21/linkedin-google-profile-fields.json"
+      },
+      {
+        "id": "profile-fields-threads",
+        "title": "4 free Google profile fixes (Threads)",
+        "platform": "threads",
+        "scheduled_at": "2026-05-21T13:00:00-04:00",
+        "carousel_ref": "google-profile-fields-2026-05-21-v1",
+        "remotion_composition_id": "GoogleProfileFieldsThreadsSingle",
+        "visual_status": "render_pending",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-21/threads-google-profile-fields.json"
+      },
+      {
+        "id": "profile-fields-x",
+        "title": "4 free Google profile fixes (X)",
+        "platform": "x",
+        "scheduled_at": "2026-05-21T13:00:00-04:00",
+        "carousel_ref": null,
+        "remotion_composition_id": null,
+        "visual_status": "not_applicable",
+        "status": "draft",
+        "source_path": "orgs/glv/clients/glv-marketing/socials/scheduled/2026-05-21/x-google-profile-fields.json"
       }
     ],
     "in_review": [
@@ -593,10 +648,10 @@
   },
   "counts": {
     "ideas": 0,
-    "drafted": 15,
+    "drafted": 20,
     "in_review": 8,
     "scheduled": 5,
     "posted": 29
   },
-  "notes": "v5 - 2026-05-20T23:10Z: boss sync msg 1779320330595-boss-6vyys reports Aiden QC'd the May 20 reviews-system batch ('Looks good') and all 5 platforms published 2026-05-20T17:00Z. The 5 reviews-system entries moved in_review -> scheduled: verifiable on-disk state is scheduled/2026-05-20/*.json status='scheduled' + blotato_job_id populated on all 5 (Blotato submit confirmed). The posted stage is a posts-registry.json snapshot and is left to the post-tracker scraper - the 5 reviews-system posts are not yet in the registry, and content-agent does not fabricate platform_post_id/post_url. Once the scraper picks them up they advance scheduled -> posted. v4 — boss dispatch task_1779247134789_74789596 (visual continuation) 2026-05-20T05:55Z: dev rendered all 4 reviews-system carousels via Remotion (commit d7da0da0) — IG 6-slide portrait, FB 4-slide square, LinkedIn 6-page PDF, Threads single card. Content-agent visual QC passed clean on all variants (no clipping, copy intact, correct slide counts, hooks carry swipe hint, ctas carry GLV logo). carousel_ref linkage corrected: FB/LinkedIn/Threads JSON drafts moved from per-platform variant refs to the base ref google-reviews-system-2026-05-20-v1, matching the intro one-base-ref convention + dev render dir naming. The 5 reviews-system entries moved drafted -> in_review (visual_status=rendered for the 4 visual platforms, no-visual-required-text-thread for X); status stays draft until Aiden AM QC. v3 — 2026-05-20T04:52Z: slide content authored into socials/remotion/src/Root.tsx (3 SlideData arrays + 4 Composition entries). v2 — 2026-05-20T03:28Z added the 5 reviews-system caption drafts. Drafted = scheduled/2026-05-18/ intro batch (15), all status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json + scheduled/2026-05-20/*.json + remotion/src/Root.tsx + remotion/renders/google-reviews-system-2026-05-20-v1-*/."
+  "notes": "v6 - 2026-05-21T05:06Z: boss overnight dispatch 1779339333637-boss-x7jse - drafted the May 21 daily-cadence post \"4 free Google Business Profile fixes\" (primary category / weekly photos / Services+Products fields / weekly Google Posts). 5 platforms added to drafted stage (drafted 15 -> 20): profile-fields-{instagram,facebook,linkedin,threads,x}. Per-platform captions independently authored (<60% overlap), per-platform visuals: IG 4:5 6-slide carousel, FB 1:1 4-slide carousel, LinkedIn 6-page PDF doc, Threads 1:1 single image, X single long-form post (no visual, banked rule feedback-x-single-post-not-thread). Slide content + 4 Remotion compositions authored in remotion/src/Root.tsx (GoogleProfileFields IGPortrait/FBSquare/LinkedInPDF/ThreadsSingle, brandGLV_B) - render pending dev dispatch. All JSONs status=draft, no blotato_job_id - awaiting Aiden AM QC before render/schedule. Grep gates pass: 0 em-dash, 0 AI-tells. Post-package: socials/post-packages/google-profile-fields-2026-05-21.md.\n\nv5 - 2026-05-20T23:10Z: boss sync msg 1779320330595-boss-6vyys reports Aiden QC'd the May 20 reviews-system batch ('Looks good') and all 5 platforms published 2026-05-20T17:00Z. The 5 reviews-system entries moved in_review -> scheduled: verifiable on-disk state is scheduled/2026-05-20/*.json status='scheduled' + blotato_job_id populated on all 5 (Blotato submit confirmed). The posted stage is a posts-registry.json snapshot and is left to the post-tracker scraper - the 5 reviews-system posts are not yet in the registry, and content-agent does not fabricate platform_post_id/post_url. Once the scraper picks them up they advance scheduled -> posted. v4 — boss dispatch task_1779247134789_74789596 (visual continuation) 2026-05-20T05:55Z: dev rendered all 4 reviews-system carousels via Remotion (commit d7da0da0) — IG 6-slide portrait, FB 4-slide square, LinkedIn 6-page PDF, Threads single card. Content-agent visual QC passed clean on all variants (no clipping, copy intact, correct slide counts, hooks carry swipe hint, ctas carry GLV logo). carousel_ref linkage corrected: FB/LinkedIn/Threads JSON drafts moved from per-platform variant refs to the base ref google-reviews-system-2026-05-20-v1, matching the intro one-base-ref convention + dev render dir naming. The 5 reviews-system entries moved drafted -> in_review (visual_status=rendered for the 4 visual platforms, no-visual-required-text-thread for X); status stays draft until Aiden AM QC. v3 — 2026-05-20T04:52Z: slide content authored into socials/remotion/src/Root.tsx (3 SlideData arrays + 4 Composition entries). v2 — 2026-05-20T03:28Z added the 5 reviews-system caption drafts. Drafted = scheduled/2026-05-18/ intro batch (15), all status=draft (HARD APPROVAL GATE — no posting until Aiden QC). Posted = posts-registry.json snapshot incl. Blotato dupes flagged via dupe_of. Twitter 11 records have intro=unknown (registry field gap). Source-of-truth files: posts-registry.json + scheduled/2026-05-18/*.json + scheduled/2026-05-20/*.json + remotion/src/Root.tsx + remotion/renders/google-reviews-system-2026-05-20-v1-*/."
 }
